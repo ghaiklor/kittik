@@ -2,7 +2,6 @@
   "name": "@kittikjs/kittik",
   "version": "0.0.0-semantic-release",
   "description": "Keynote in Terminal (KiT) allows to you create and show ASCII presentations in terminal",
-  "main": "lib/index.js",
   "author": "ghaiklor",
   "bin": {
     "kittik": "./lib/bin/kittik.js"
