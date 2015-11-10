@@ -1,22 +1,28 @@
 {
   "name": "@kittikjs/kittik",
+  "version": "0.0.0-semantic-release",
   "description": "Keynote in Terminal (KiT) allows to you create and show ASCII presentations in terminal",
   "main": "lib/index.js",
   "author": "ghaiklor",
+  "bin": {
+    "kittik": "./lib/bin/kittik.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kittikjs/kittik.git"
   },
   "license": "MIT",
   "scripts": {
-    "compile": "babel src --out-dir lib",
+    "compile": "babel src --presets es2015 --out-dir lib",
     "coveralls": "cat coverage/lcov.info | coveralls",
+    "dev": "babel src --presets es2015 --watch --out-dir lib",
     "prepublish": "npm run compile",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "babel-node --presets es2015 ./node_modules/.bin/isparta cover _mocha"
   },
   "dependencies": {
-    "charm": "1.0.0"
+    "charm": "1.0.0",
+    "commander": "2.9.0"
   },
   "devDependencies": {
     "babel-cli": "6.1.2",
