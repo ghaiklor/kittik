@@ -13,8 +13,9 @@
     "coveralls": "cat coverage/lcov.info | coveralls",
     "prepublish": "npm run compile",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "babel-node ./node_modules/.bin/isparta cover _mocha"
+    "test": "babel-node --presets es2015 ./node_modules/.bin/isparta cover _mocha"
   },
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "6.1.2",
     "babel-preset-es2015": "6.1.2",
@@ -30,10 +31,6 @@
     "url": "https://github.com/kittikjs/kittik/issues"
   },
   "homepage": "https://github.com/kittikjs/kittik#readme",
-  "directories": {
-    "test": "test"
-  },
-  "dependencies": {},
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
