@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-var program = require('commander');
-var pkg = require('../../package.json');
-var Cursor = require('../../lib/Cursor');
+import program from 'commander';
+import pkg from '../../package.json';
 
 program
   .version(pkg.version)

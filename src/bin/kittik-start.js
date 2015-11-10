@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-var program = require('commander');
-var pkg = require('../../package.json');
+import program from 'commander';
 
 program
-  .version(pkg.version)
   .usage('<file> [options]')
   .parse(process.argv);
