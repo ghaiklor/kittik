@@ -18,13 +18,13 @@
 Install it via npm:
 
 ```shell
-npm install kittik
+npm install -g kittik
 ```
 
-And include in your project:
+Start your presentation:
 
-```javascript
-import kittik from 'kittik';
+```shell
+kittik start my_presentation.json
 ```
 
 ## License
