@@ -3,6 +3,8 @@ export default class Shape {
     this.setWidth(options.width);
     this.setHeight(options.height);
     this.setPosition(options.x, options.y);
+    this.setBackground(options.background);
+    this.setForeground(options.foreground);
   }
 
   /**
@@ -58,6 +60,42 @@ export default class Shape {
   setPosition(x = this._x || 10, y = this._y || 10) {
     this._x = x;
     this._y = y;
+    return this;
+  }
+
+  /**
+   * Get background color
+   * @returns {String}
+   */
+  getBackground() {
+    return this._background;
+  }
+
+  /**
+   * Set new background color
+   * @param {String} background
+   * @returns {Shape}
+   */
+  setBackground(background) {
+    this._background = background;
+    return this;
+  }
+
+  /**
+   * Get foreground color
+   * @returns {String}
+   */
+  getForeground() {
+    return this._foreground;
+  }
+
+  /**
+   * Set new foreground color
+   * @param {String} foreground
+   * @returns {Shape}
+   */
+  setForeground(foreground) {
+    this._foreground = foreground;
     return this;
   }
 
