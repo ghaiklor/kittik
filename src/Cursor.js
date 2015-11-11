@@ -21,8 +21,11 @@ export const ERASE_REGIONS = {
 };
 
 export default class Cursor {
-  constructor() {
-    this._cursor = charm(process);
+  constructor(stdout = process.stdout, stdin = false) {
+    this._cursor = charm();
+
+    if (stdout) this._cursor.pipe(stdout);
+    if (stdin) stdin.pipe(this._cursor);
   }
 
   /**
