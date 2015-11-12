@@ -1,16 +1,41 @@
 export class Shape {
   /**
-   * Creates base shape instance
-   * It needed for creating your own shapes
+   * Creates new base shape instance
+   * It needed for creating other shapes as base class
    * @constructor
-   * @param {Object} options
+   * @param {String} text
+   * @param {Number} width
+   * @param {Number} height
+   * @param {Number} x
+   * @param {Number} y
+   * @param {String} background
+   * @param {String} foreground
    */
-  constructor(options = {}) {
-    this.setWidth(options.width);
-    this.setHeight(options.height);
-    this.setPosition(options.x, options.y);
-    this.setBackground(options.background);
-    this.setForeground(options.foreground);
+  constructor({text, width, height, x, y, background, foreground}) {
+    this.setText(text);
+    this.setWidth(width);
+    this.setHeight(height);
+    this.setPosition(x, y);
+    this.setBackground(background);
+    this.setForeground(foreground);
+  }
+
+  /**
+   * Get text content from this shape
+   * @returns {String}
+   */
+  getText() {
+    return this._text;
+  }
+
+  /**
+   * Set new text content to this shape
+   * @param {String} text
+   * @returns {Shape}
+   */
+  setText(text) {
+    this._text = text;
+    return this;
   }
 
   /**
