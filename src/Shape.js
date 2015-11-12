@@ -33,7 +33,7 @@ export class Shape {
    * @param {String} text
    * @returns {Shape}
    */
-  setText(text) {
+  setText(text = '') {
     this._text = text;
     return this;
   }
