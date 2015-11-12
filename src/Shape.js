@@ -51,7 +51,7 @@ export class Shape {
    * @param {Number} width
    * @returns {Shape}
    */
-  setWidth(width = 10) {
+  setWidth(width = 15) {
     this._width = width;
     return this;
   }
@@ -69,7 +69,7 @@ export class Shape {
    * @param {Number} height
    * @returns {Shape}
    */
-  setHeight(height = 10) {
+  setHeight(height = 5) {
     this._height = height;
     return this;
   }
