@@ -11,7 +11,7 @@ export class Shape {
    * @param {String} background
    * @param {String} foreground
    */
-  constructor({text, width, height, x, y, background, foreground}) {
+  constructor({text, width, height, x, y, background, foreground} = {}) {
     this.setText(text);
     this.setWidth(width);
     this.setHeight(height);
