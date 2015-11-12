@@ -137,4 +137,13 @@ export class Shape {
     // TODO: Make sure that it's correct
     throw new Error('render() method must be implemented');
   }
+
+  /**
+   * Create new shape instance
+   * @param {*} args
+   * @returns {Shape}
+   */
+  static create(...args) {
+    return new this(...args);
+  }
 }
