@@ -20,7 +20,13 @@ export const ERASE_REGIONS = {
   ENTIRE_SCREEN: 'screen'
 };
 
-export default class Cursor {
+export class Cursor {
+  /**
+   * Creates new Cursor instance
+   * @constructor
+   * @param {Stream|Boolean} [stdout]
+   * @param {Stream|Boolean} [stdin]
+   */
   constructor(stdout = process.stdout, stdin = false) {
     this._cursor = charm();
 
@@ -135,6 +141,33 @@ export default class Cursor {
    */
   background(color) {
     this._cursor.background(color);
+    return this;
+  }
+
+  /**
+   * Fill the specified region with symbol
+   * @param {String} [symbol] Symbol that will be used for filling the region
+   * @param {String} [background] Background color from COLORS
+   * @param {String} [foreground] Foreground color from COLORS
+   * @param {Number} x1
+   * @param {Number} y1
+   * @param {Number} x2
+   * @param {Number} y2
+   * @returns {Cursor}
+   */
+  fill({x1, y1, x2, y2, symbol = ' ', background, foreground}) {
+    let filler = new Array(x2 - x1).fill(symbol).join('');
+
+    if (background) this.background(background);
+    if (foreground) this.foreground(foreground);
+
+    this.setPosition(x1, y1);
+
+    while (y1 <= y2) {
+      this.write(filler);
+      this.setPosition(x1, ++y1);
+    }
+
     return this;
   }
 
