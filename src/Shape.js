@@ -1,4 +1,10 @@
-export default class Shape {
+export class Shape {
+  /**
+   * Creates base shape instance
+   * It needed for creating your own shapes
+   * @constructor
+   * @param {Object} options
+   */
   constructor(options = {}) {
     this.setWidth(options.width);
     this.setHeight(options.height);

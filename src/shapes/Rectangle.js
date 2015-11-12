@@ -1,4 +1,4 @@
-import Shape from './Shape';
+import Shape from './../Shape';
 import { COLORS } from '../Cursor';
 
 export default class Rectangle extends Shape {
