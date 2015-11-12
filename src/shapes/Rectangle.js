@@ -1,22 +1,35 @@
-import Shape from './../Shape';
-import { COLORS } from '../Cursor';
+import { Shape } from '../Shape';
 
-export default class Rectangle extends Shape {
-  constructor() {
-    super();
+export class Rectangle extends Shape {
+  /**
+   * Creates new Rectangle instance
+   * @constructor
+   */
+  constructor(...args) {
+    super(...args);
   }
 
+  /**
+   * Renders the shape
+   * @param {Cursor} cursor
+   * @returns {Rectangle}
+   */
   render(cursor) {
-    let text = '      ';
+    let position = this.getPosition();
+    let width = this.getWidth();
+    let height = this.getHeight();
+    let background = this.getBackground();
+    let foreground = this.getForeground();
 
-    cursor
-      .reset()
-      .background(COLORS.YELLOW)
-      .setPosition(this.getPosition().x, this.getPosition().y)
-      .write(text)
-      .move(-text.length, 1)
-      .write(text)
-      .move(-text.length, 1)
-      .write(text);
+    cursor.fill({
+      x1: position.x,
+      y1: position.y,
+      x2: width + position.x,
+      y2: height + position.y,
+      background,
+      foreground
+    });
+
+    return this;
   }
 }
