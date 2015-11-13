@@ -32,6 +32,8 @@ export class Cursor {
 
     if (stdout) this._cursor.pipe(stdout);
     if (stdin) stdin.pipe(this._cursor);
+
+    process.on('exit', () => this.setPosition(Cursor.getTerminalWidth(), Cursor.getTerminalHeight()));
   }
 
   /**
