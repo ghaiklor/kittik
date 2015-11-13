@@ -15,20 +15,16 @@ export class Rectangle extends Shape {
    * @returns {Rectangle}
    */
   render(cursor) {
-    let position = this.getPosition();
+    let text = this.getText();
     let width = this.getWidth();
     let height = this.getHeight();
+    let {x: x1, y: y1} = this.getPosition();
+    let {x2, y2} = {x2: width + x1, y2: height + y1};
     let background = this.getBackground();
     let foreground = this.getForeground();
 
-    cursor.fill({
-      x1: position.x,
-      y1: position.y,
-      x2: width + position.x,
-      y2: height + position.y,
-      background,
-      foreground
-    });
+    cursor.fill({x1, y1, x2, y2, background, foreground});
+    cursor.setPosition(x1 + (width / 2 - text.length / 2), y1 + (height / 2)).write(text);
 
     return this;
   }
