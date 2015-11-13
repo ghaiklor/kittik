@@ -15,8 +15,8 @@ export class Text extends Shape {
    * @returns {Text}
    */
   render(cursor) {
-    let {x, y} = this.getPosition();
     let text = this.getText();
+    let {x, y} = this.getPosition();
     let background = this.getBackground();
     let foreground = this.getForeground();
 
