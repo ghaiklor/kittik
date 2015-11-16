@@ -27,13 +27,35 @@ export class Cursor {
    * @param {Stream|Boolean} [stdout]
    * @param {Stream|Boolean} [stdin]
    */
-  constructor(stdout = process.stdout, stdin = false) {
+  constructor({stdout = process.stdout, stdin = false}) {
     this._cursor = charm();
 
     if (stdout) this._cursor.pipe(stdout);
     if (stdin) stdin.pipe(this._cursor);
 
     this.off('^C').on('^C', this._onExit);
+  }
+
+  /**
+   * Sets listener to the specified event
+   * @param {String} event Event name
+   * @param {Function} handler Handler for the specified event
+   * @returns {Cursor}
+   */
+  on(event, handler) {
+    this._cursor.on(event, handler);
+    return this;
+  }
+
+  /**
+   * Removes all listeners or specified listener from the event
+   * @param {String} event Event name
+   * @param {Function} [handler] Handler that you want to delete
+   * @returns {Cursor}
+   */
+  off(event, handler) {
+    handler ? this._cursor.off(event, handler) : this._cursor.removeAllListeners(event);
+    return this;
   }
 
   /**
@@ -206,33 +228,6 @@ export class Cursor {
    */
   destroy() {
     this._cursor.destroy();
-    return this;
-  }
-
-  /**
-   * Sets listener to the specified event
-   * @param {String} event
-   * @param {Function} handler
-   * @returns {Cursor}
-   */
-  on(event, handler) {
-    this._cursor.on(event, handler);
-    return this;
-  }
-
-  /**
-   * Removes all listeners or specified from the event
-   * @param {String} event
-   * @param {Function} [handler]
-   * @returns {Cursor}
-   */
-  off(event, handler) {
-    if (handler) {
-      this._cursor.off(event, handler);
-    } else {
-      this._cursor.removeAllListeners(event);
-    }
-
     return this;
   }
 
