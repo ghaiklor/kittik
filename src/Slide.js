@@ -1,3 +1,5 @@
+import { Shape } from './Shape';
+
 export class Slide {
   /**
    * Creates new Slide instance
@@ -13,6 +15,8 @@ export class Slide {
    * @returns {Slide}
    */
   addShape(shape) {
+    if (!(shape instanceof Shape)) throw new Error('You must provide Shape instance');
+
     this._shapes.push(shape);
     return this;
   }
