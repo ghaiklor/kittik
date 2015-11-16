@@ -33,7 +33,7 @@ export class Cursor {
     if (stdout) this._cursor.pipe(stdout);
     if (stdin) stdin.pipe(this._cursor);
 
-    process.on('exit', () => this.setPosition(Cursor.getTerminalWidth(), Cursor.getTerminalHeight()));
+    this.off('^C').on('^C', this._onClose);
   }
 
   /**
@@ -207,6 +207,43 @@ export class Cursor {
   destroy() {
     this._cursor.destroy();
     return this;
+  }
+
+  /**
+   * Sets listener to the specified event
+   * @param {String} event
+   * @param {Function} handler
+   * @returns {Cursor}
+   */
+  on(event, handler) {
+    this._cursor.on(event, handler);
+    return this;
+  }
+
+  /**
+   * Removes all listeners or specified from the event
+   * @param {String} event
+   * @param {Function} [handler]
+   * @returns {Cursor}
+   */
+  off(event, handler) {
+    if (handler) {
+      this._cursor.off(event, handler);
+    } else {
+      this._cursor.removeAllListeners(event);
+    }
+
+    return this;
+  }
+
+  /**
+   * Triggers when user types ^C combination for exit
+   * @private
+   * @returns {Cursor}
+   */
+  _onClose() {
+    this.setPosition(Cursor.getTerminalWidth(), Cursor.getTerminalHeight());
+    process.exit(0);
   }
 
   /**
