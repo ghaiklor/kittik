@@ -1,5 +1,8 @@
 import charm from 'charm';
 
+/**
+ * Map of colors that can be used to change the color of cursor
+ */
 export const COLORS = {
   RED: 'red',
   YELLOW: 'yellow',
@@ -11,6 +14,9 @@ export const COLORS = {
   WHITE: 'white'
 };
 
+/**
+ * Map of regions that can be passed to erase method to determine what need to erase
+ */
 export const ERASE_REGIONS = {
   FROM_CURSOR_TO_END: 'end',
   FROM_CURSOR_TO_START: 'start',
@@ -24,10 +30,11 @@ export class Cursor {
   /**
    * Creates new Cursor instance
    * @constructor
-   * @param {Stream|Boolean} [stdout]
-   * @param {Stream|Boolean} [stdin]
+   * @param {Stream|Boolean} [stdout = process.stdout]
+   * @param {Stream|Boolean} [stdin = false]
    */
   constructor({stdout = process.stdout, stdin = false}) {
+    // TODO: implement chain of transform streams for cursor
     this._cursor = charm();
 
     if (stdout) this._cursor.pipe(stdout);
@@ -37,7 +44,7 @@ export class Cursor {
   }
 
   /**
-   * Sets listener to the specified event
+   * Sets a listener to the specified event
    * @param {String} event Event name
    * @param {Function} handler Handler for the specified event
    * @returns {Cursor}
@@ -60,7 +67,7 @@ export class Cursor {
 
   /**
    * Write to the stream
-   * @param {String} message Message to write into a stream
+   * @param {String} message Message to write to the stream
    * @returns {Cursor}
    */
   write(message) {
@@ -69,9 +76,9 @@ export class Cursor {
   }
 
   /**
-   * Set cursor position to specified point
-   * @param {Number} x
-   * @param {Number} y
+   * Set the cursor position to the absolute coordinates
+   * @param {Number} x Coordinate X
+   * @param {Number} y Coordinate Y
    * @returns {Cursor}
    */
   setPosition(x, y) {
@@ -80,7 +87,7 @@ export class Cursor {
   }
 
   /**
-   * Get current position of cursor
+   * Get the absolute cursor position
    * @returns {Promise}
    */
   getPosition() {
@@ -89,8 +96,8 @@ export class Cursor {
 
   /**
    * Move the cursor by the relative coordinates
-   * @param {Number} x
-   * @param {Number} y
+   * @param {Number} x Coordinate X
+   * @param {Number} y Coordinate Y
    * @returns {Cursor}
    */
   move(x, y) {
@@ -150,7 +157,7 @@ export class Cursor {
 
   /**
    * Set the foreground color
-   * @param {String|Number} color Constant from COLORS
+   * @param {String|Number} color Constant from COLORS or number from 0 to 255
    * @returns {Cursor}
    */
   foreground(color) {
@@ -160,7 +167,7 @@ export class Cursor {
 
   /**
    * Set the background color
-   * @param {String|Number} color Constant from COLORS
+   * @param {String|Number} color Constant from COLORS or number from 0 to 255
    * @returns {Cursor}
    */
   background(color) {
@@ -173,10 +180,10 @@ export class Cursor {
    * @param {String} [symbol] Symbol that will be used for filling the region
    * @param {String} [background] Background color from COLORS
    * @param {String} [foreground] Foreground color from COLORS
-   * @param {Number} x1
-   * @param {Number} y1
-   * @param {Number} x2
-   * @param {Number} y2
+   * @param {Number} x1 Start coordinate X
+   * @param {Number} y1 Start coordinate Y
+   * @param {Number} x2 End coordinate X
+   * @param {Number} y2 End coordinate Y
    * @returns {Cursor}
    */
   fill({x1, y1, x2, y2, symbol = ' ', background, foreground}) {
@@ -214,7 +221,7 @@ export class Cursor {
   }
 
   /**
-   * Clear the entire screen
+   * Resets the entire screen
    * @returns {Cursor}
    */
   reset() {
@@ -223,7 +230,7 @@ export class Cursor {
   }
 
   /**
-   * Destroy the cursor and emit end event downstream
+   * Destroy the cursor
    * @returns {Cursor}
    */
   destroy() {
