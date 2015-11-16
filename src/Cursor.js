@@ -78,40 +78,40 @@ export class Cursor {
 
   /**
    * Move the cursor up
-   * @param {Number} y Rows count
+   * @param {Number} [y] Rows count
    * @returns {Cursor}
    */
-  up(y) {
+  up(y = 1) {
     this._cursor.up(y);
     return this;
   }
 
   /**
    * Move the cursor down
-   * @param {Number} y Rows count
+   * @param {Number} [y] Rows count
    * @returns {Cursor}
    */
-  down(y) {
+  down(y = 1) {
     this._cursor.down(y);
     return this;
   }
 
   /**
    * Move the cursor left
-   * @param {Number} x Columns count
+   * @param {Number} [x] Columns count
    * @returns {Cursor}
    */
-  left(x) {
+  left(x = 1) {
     this._cursor.left(x);
     return this;
   }
 
   /**
    * Move the cursor right
-   * @param {Number} x Columns count
+   * @param {Number} [x] Columns count
    * @returns {Cursor}
    */
-  right(x) {
+  right(x = 1) {
     this._cursor.right(x);
     return this;
   }
