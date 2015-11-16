@@ -33,7 +33,7 @@ export class Cursor {
     if (stdout) this._cursor.pipe(stdout);
     if (stdin) stdin.pipe(this._cursor);
 
-    this.off('^C').on('^C', this._onClose);
+    this.off('^C').on('^C', this._onExit);
   }
 
   /**
@@ -241,7 +241,7 @@ export class Cursor {
    * @private
    * @returns {Cursor}
    */
-  _onClose() {
+  _onExit() {
     this.setPosition(Cursor.getTerminalWidth(), Cursor.getTerminalHeight());
     process.exit(0);
   }
