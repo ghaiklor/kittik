@@ -38,8 +38,6 @@ export class Cursor {
 
     if (stdout.length > 0) stdout.reduce((cursor, pipe) => cursor.pipe(pipe), this._cursor);
     if (stdin.length > 0) stdin.reduce((cursor, pipe) => cursor.pipe(pipe)).pipe(this._cursor);
-
-    process.on('exit', this._onExit.bind(this));
   }
 
   /**
@@ -235,15 +233,6 @@ export class Cursor {
   destroy() {
     this._cursor.destroy();
     return this;
-  }
-
-  /**
-   * Triggers when program is closing
-   * @private
-   * @returns {Cursor}
-   */
-  _onExit() {
-    this.reset();
   }
 
   /**
