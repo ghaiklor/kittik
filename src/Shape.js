@@ -1,15 +1,15 @@
 export class Shape {
   /**
    * Creates new base shape instance
-   * It needed for creating other shapes as base class
+   * It needed for creating other shapes
    * @constructor
-   * @param {String} text
-   * @param {Number} width
-   * @param {Number} height
-   * @param {Number} x
-   * @param {Number} y
-   * @param {String} background
-   * @param {String} foreground
+   * @param {String} text Text that will be rendered in shape
+   * @param {Number} width Shape width
+   * @param {Number} height Shape height
+   * @param {Number} x Absolute coordinate X
+   * @param {Number} y Absolute coordinate Y
+   * @param {String|Number} background Background color
+   * @param {String|Number} foreground Foreground color
    */
   constructor({text, width, height, x, y, background, foreground} = {}) {
     this.setText(text);
@@ -30,7 +30,7 @@ export class Shape {
 
   /**
    * Set new text content to this shape
-   * @param {String} text
+   * @param {String} text New text
    * @returns {Shape}
    */
   setText(text = '') {
@@ -48,7 +48,7 @@ export class Shape {
 
   /**
    * Set new shape width
-   * @param {Number} width
+   * @param {Number} width Shape width
    * @returns {Shape}
    */
   setWidth(width = 15) {
@@ -66,7 +66,7 @@ export class Shape {
 
   /**
    * Set new shape height
-   * @param {Number} height
+   * @param {Number} height Shape height
    * @returns {Shape}
    */
   setHeight(height = 5) {
@@ -84,8 +84,8 @@ export class Shape {
 
   /**
    * Set new shape position
-   * @param {Number} x
-   * @param {Number} y
+   * @param {Number} x Absolute coordinate X
+   * @param {Number} y Absolute coordinate Y
    * @returns {Shape}
    */
   setPosition(x = this._x || 10, y = this._y || 10) {
@@ -104,7 +104,7 @@ export class Shape {
 
   /**
    * Set new background color
-   * @param {String} background
+   * @param {String|Number} background Background color
    * @returns {Shape}
    */
   setBackground(background) {
@@ -122,7 +122,7 @@ export class Shape {
 
   /**
    * Set new foreground color
-   * @param {String} foreground
+   * @param {String|Number} foreground Foreground color
    * @returns {Shape}
    */
   setForeground(foreground) {
@@ -134,7 +134,6 @@ export class Shape {
    * Base render method that must be implemented in childes
    */
   render() {
-    // TODO: Make sure that it's correct
     throw new Error('render() method must be implemented');
   }
 
