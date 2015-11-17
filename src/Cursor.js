@@ -1,3 +1,4 @@
+import tty from 'tty';
 import charm from 'charm';
 
 /**
@@ -236,18 +237,34 @@ export class Cursor {
   }
 
   /**
-   * Get width of terminal
-   * @returns {Number}
+   * Get TTY sizes
+   * @returns {{width: Number, height: Number}}
    */
-  static getTerminalWidth() {
-    return process.stdout.columns;
+  static getTTYSize() {
+    if (process.stdout.getWindowSize) {
+      return {width: process.stdout.getWindowSize()[0], height: process.stdout.getWindowSize()[1]};
+    } else if (tty.getWindowSize) {
+      return {width: tty.getWindowSize()[0], height: tty.getWindowSize()[1]};
+    } else if (process.stdout.columns && process.stdout.rows) {
+      return {width: process.stdout.columns, height: process.stdout.rows};
+    } else {
+      throw new Error('Failed to determine TTY size');
+    }
   }
 
   /**
-   * Get height of terminal
+   * Get width of TTY
    * @returns {Number}
    */
-  static getTerminalHeight() {
-    return process.stdout.rows;
+  static getTTYWidth() {
+    return Cursor.getTTYSize().width;
+  }
+
+  /**
+   * Get height of TTY
+   * @returns {Number}
+   */
+  static getTTYHeight() {
+    return Cursor.getTTYSize().height;
   }
 }
