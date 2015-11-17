@@ -15,6 +15,7 @@
     "compile": "babel src --presets es2015 --out-dir lib",
     "coveralls": "cat coverage/lcov.info | coveralls",
     "dev": "babel src --presets es2015 --watch --out-dir lib",
+    "docs": "esdoc -c .esdoc",
     "prepublish": "npm run compile",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "babel-node --presets es2015 ./node_modules/.bin/isparta cover _mocha"
@@ -30,6 +31,7 @@
     "chai": "3.4.1",
     "coveralls": "2.11.4",
     "cz-conventional-changelog": "1.1.4",
+    "esdoc": "0.4.3",
     "isparta": "3.5.3",
     "mocha": "2.3.3",
     "semantic-release": "4.3.5",

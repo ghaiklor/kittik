@@ -28,6 +28,9 @@ node_modules
 # Babel compiled sources
 lib
 
+# Documentation folder
+docs
+
 # Miscellaneous
 *~
 *#
