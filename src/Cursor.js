@@ -244,7 +244,7 @@ export class Cursor {
    * @returns {Cursor}
    */
   _onExit() {
-    this.setPosition(Cursor.getTerminalWidth(), Cursor.getTerminalHeight());
+    this.reset();
     process.exit(0);
   }
 
