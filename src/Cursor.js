@@ -30,17 +30,16 @@ export class Cursor {
   /**
    * Creates new Cursor instance
    * @constructor
-   * @param {Stream|Boolean} [stdout = process.stdout]
-   * @param {Stream|Boolean} [stdin = false]
+   * @param {Array} [stdout]
+   * @param {Array} [stdin]
    */
-  constructor({stdout = process.stdout, stdin = false}) {
-    // TODO: implement chain of transform streams for cursor
+  constructor({stdout = [process.stdout], stdin = []}) {
     this._cursor = charm();
 
-    if (stdout) this._cursor.pipe(stdout);
-    if (stdin) stdin.pipe(this._cursor);
+    if (stdout.length > 0) stdout.reduce((cursor, pipe) => cursor.pipe(pipe), this._cursor);
+    if (stdin.length > 0) stdin.reduce((cursor, pipe) => cursor.pipe(pipe)).pipe(this._cursor);
 
-    this.off('^C').on('^C', this._onExit);
+    process.on('exit', this._onExit.bind(this));
   }
 
   /**
@@ -239,13 +238,12 @@ export class Cursor {
   }
 
   /**
-   * Triggers when user types ^C combination for exit
+   * Triggers when program is closing
    * @private
    * @returns {Cursor}
    */
   _onExit() {
     this.reset();
-    process.exit(0);
   }
 
   /**
