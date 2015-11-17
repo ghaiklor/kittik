@@ -1,9 +1,18 @@
+import keypress from 'keypress';
+
 import { Slide } from './Slide';
+import { Cursor } from './Cursor';
 
 export class Presentation {
   constructor() {
     this._slides = [];
     this._currentSlideIndex = 0;
+    this._cursor = new Cursor([process.stdout], [process.stdin]);
+
+    keypress(process.stdin);
+
+    process.stdin.setRawMode(true);
+    process.stdin.setEncoding('utf8');
   }
 
   /**
