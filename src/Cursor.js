@@ -30,10 +30,10 @@ export class Cursor {
   /**
    * Creates new Cursor instance
    * @constructor
-   * @param {Array} [stdout]
-   * @param {Array} [stdin]
+   * @param {Array} [stdout] Array of Writable streams that will be used as target source for cursor
+   * @param {Array} [stdin] Array of Readable streams that will be used as source data for cursor
    */
-  constructor({stdout = [process.stdout], stdin = []}) {
+  constructor(stdout = [process.stdout], stdin = []) {
     this._cursor = charm();
 
     if (stdout.length > 0) stdout.reduce((cursor, pipe) => cursor.pipe(pipe), this._cursor);
