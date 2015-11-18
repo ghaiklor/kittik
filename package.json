@@ -12,13 +12,13 @@
   },
   "license": "MIT",
   "scripts": {
-    "compile": "babel src --presets es2015 --out-dir lib",
+    "compile": "babel src --out-dir lib",
     "coveralls": "cat coverage/lcov.info | coveralls",
-    "dev": "babel src --presets es2015 --watch --out-dir lib",
+    "dev": "babel src --watch --out-dir lib",
     "docs": "esdoc -c .esdoc",
     "prepublish": "npm run compile",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "babel-node --presets es2015 ./node_modules/.bin/isparta cover _mocha"
+    "test": "babel-node ./node_modules/.bin/isparta cover _mocha"
   },
   "dependencies": {
     "charm": "1.0.0",
@@ -26,14 +26,14 @@
     "keypress": "0.2.1"
   },
   "devDependencies": {
-    "babel-cli": "6.1.2",
-    "babel-preset-es2015": "6.1.2",
+    "babel-cli": "6.1.18",
+    "babel-preset-stage-0": "6.1.18",
     "chai": "3.4.1",
     "coveralls": "2.11.4",
     "cz-conventional-changelog": "1.1.4",
     "esdoc": "0.4.3",
-    "isparta": "3.5.3",
-    "mocha": "2.3.3",
+    "isparta": "4.0.0",
+    "mocha": "2.3.4",
     "semantic-release": "4.3.5",
     "sinon": "1.17.2"
   },
