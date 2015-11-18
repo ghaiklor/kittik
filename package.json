@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "babel-cli": "6.1.18",
+    "babel-preset-es2015-node5": "1.1.0",
     "babel-preset-stage-0": "6.1.18",
     "chai": "3.4.1",
     "core-decorators": "0.9.0",
