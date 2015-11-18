@@ -1,50 +1,8 @@
 import tty from 'tty';
 import charm from 'charm';
 
-/**
- * Dictionary of colors to use in methods like {@link Cursor.background}, {@link Cursor.foreground}, etc...
- *
- * @property {String} COLORS.RED Red color
- * @property {String} COLORS.YELLOW Yellow color
- * @property {String} COLORS.GREEN Green color
- * @property {String} COLORS.BLUE Blue color
- * @property {String} COLORS.CYAN Cyan color
- * @property {String} COLORS.MAGENTA Magenta color
- * @property {String} COLORS.BLACK Black color
- * @property {String} COLORS.WHITE White color
- * @see {@link Cursor.background}
- * @see {@link Cursor.foreground}
- */
-export const COLORS = {
-  RED: 'red',
-  YELLOW: 'yellow',
-  GREEN: 'green',
-  BLUE: 'blue',
-  CYAN: 'cyan',
-  MAGENTA: 'magenta',
-  BLACK: 'black',
-  WHITE: 'white'
-};
-
-/**
- * Dictionary of regions to use in {@link Cursor.erase}.
- *
- * @property {String} ERASE_REGIONS.FROM_CURSOR_TO_END Erase the region from cursor to the end of line
- * @property {String} ERASE_REGIONS.FROM_CURSOR_TO_START Erase the region from cursor to the start of line
- * @property {String} ERASE_REGIONS.FROM_CURSOR_TO_DOWN Erase the region from cursor to the down of TTY
- * @property {String} ERASE_REGIONS.FROM_CURSOR_TO_UP Erase the region from cursor to the up of TTY
- * @property {String} ERASE_REGIONS.CURRENT_LINE Erase the current line
- * @property {String} ERASE_REGIONS.ENTIRE_SCREEN Erase the entire screen
- * @see {@link Cursor.erase}
- */
-export const ERASE_REGIONS = {
-  FROM_CURSOR_TO_END: 'end',
-  FROM_CURSOR_TO_START: 'start',
-  FROM_CURSOR_TO_DOWN: 'down',
-  FROM_CURSOR_TO_UP: 'up',
-  CURRENT_LINE: 'line',
-  ENTIRE_SCREEN: 'screen'
-};
+export * from './colors';
+export * from './eraseRegions';
 
 /**
  * Cursor implements low-level API to terminal control codes.
