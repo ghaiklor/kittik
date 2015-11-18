@@ -7,7 +7,6 @@ notifications:
   email: true
 node_js:
   - stable
-  - 4
 before_script:
   - npm prune
 after_success:
