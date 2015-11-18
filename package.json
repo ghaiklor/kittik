@@ -6,9 +6,13 @@
   "bin": {
     "kittik": "./lib/bin/kittik.js"
   },
+  "homepage": "https://github.com/kittikjs/kittik#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/kittikjs/kittik.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kittikjs/kittik/issues"
   },
   "license": "MIT",
   "scripts": {
@@ -29,6 +33,7 @@
     "babel-cli": "6.1.18",
     "babel-preset-stage-0": "6.1.18",
     "chai": "3.4.1",
+    "core-decorators": "0.9.0",
     "coveralls": "2.11.4",
     "cz-conventional-changelog": "1.1.4",
     "esdoc": "0.4.3",
@@ -37,10 +42,6 @@
     "semantic-release": "4.3.5",
     "sinon": "1.17.2"
   },
-  "bugs": {
-    "url": "https://github.com/kittikjs/kittik/issues"
-  },
-  "homepage": "https://github.com/kittikjs/kittik#readme",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
