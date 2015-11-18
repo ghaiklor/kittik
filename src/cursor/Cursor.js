@@ -60,7 +60,7 @@ export class Cursor {
    * @returns {Cursor}
    */
   off(event, handler) {
-    handler ? this._cursor.off(event, handler) : this._cursor.removeAllListeners(event);
+    handler ? this._cursor.removeListener(event, handler) : this._cursor.removeAllListeners(event);
     return this;
   }
 
