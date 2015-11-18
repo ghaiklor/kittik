@@ -228,4 +228,113 @@ describe('Cursor', () => {
 
     mock.verify();
   });
+
+  it('Should properly hide the cursor', () => {
+    let cursor = new Cursor();
+    let mock = sinon.mock(cursor._cursor);
+
+    mock.expects('cursor').once().withArgs(false);
+
+    cursor.hide();
+
+    mock.verify();
+  });
+
+  it('Should properly show the cursor', () => {
+    let cursor = new Cursor();
+    let mock = sinon.mock(cursor._cursor);
+
+    mock.expects('cursor').once().withArgs(true);
+
+    cursor.show();
+
+    mock.verify();
+  });
+
+  it('Should properly reset the TTY state', () => {
+    let cursor = new Cursor();
+    let mock = sinon.mock(cursor._cursor);
+
+    mock.expects('reset').once();
+
+    cursor.reset();
+
+    mock.verify();
+  });
+
+  it('Should properly destroy the cursor', () => {
+    let cursor = new Cursor();
+    let mock = sinon.mock(cursor._cursor);
+
+    mock.expects('destroy').once();
+
+    cursor.destroy();
+
+    mock.verify();
+  });
+
+  it('Should properly get TTY size based on process.stdout.getWindowSize', () => {
+    let stdout = sinon.mock(process.stdout);
+
+    stdout.expects('getWindowSize').twice().returns([10, 10]);
+
+    let {width, height} = Cursor.getTTYSize();
+    assert.equal(width, 10);
+    assert.equal(height, 10);
+
+    stdout.verify();
+  });
+
+  it('Should propery get TTY size based on tty module', () => {
+    process.stdout.getWindowSize = null;
+
+    // TODO: implement normal test case
+
+    let {width, height} = Cursor.getTTYSize();
+    assert.isNumber(width);
+    assert.isNumber(height);
+  });
+
+  it('Should properly get TTY size based on process columns and rows', () => {
+    process.stdout.getWindowSize = null;
+    process.stdout.columns = 10;
+    process.stdout.rows = 10;
+
+    let {width, height} = Cursor.getTTYSize();
+    assert.equal(width, 10);
+    assert.equal(height, 10);
+  });
+
+  it('Should properly throw error if failed to determine TTY size', () => {
+    process.stdout.getWindowSize = null;
+    process.stdout.columns = null;
+    process.stdout.rows = null;
+
+    assert.throws(() => Cursor.getTTYSize(), Error);
+  });
+
+  it('Should properly get TTY width', () => {
+    let mock = sinon.mock(Cursor);
+
+    mock.expects('getTTYSize').once().returns({width: 10, height: 10});
+
+    assert.equal(Cursor.getTTYWidth(), 10);
+
+    mock.verify();
+  });
+
+  it('Should properly get TTY height', () => {
+    let mock = sinon.mock(Cursor);
+
+    mock.expects('getTTYSize').once().returns({width: 10, height: 10});
+
+    assert.equal(Cursor.getTTYHeight(), 10);
+
+    mock.verify();
+  });
+
+  it('Should properly create new instance from static create()', () => {
+    let cursor = Cursor.create([], []);
+    assert.instanceOf(cursor, Cursor);
+  });
 });
