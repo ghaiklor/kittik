@@ -12,6 +12,8 @@ export * from './eraseRegions';
  * @version 1.0.0
  */
 export class Cursor {
+  _cursor = charm();
+
   /**
    * By default, creates simple cursor that writes direct to `stdout`.
    *
@@ -32,8 +34,6 @@ export class Cursor {
    * let cursor = new Cursor([new MyTransformStream(), process.stdout], [process.stdin]);
    */
   constructor(stdout = [process.stdout], stdin = []) {
-    this._cursor = charm();
-
     if (stdout.length > 0) stdout.reduce((cursor, pipe) => cursor.pipe(pipe), this._cursor);
     if (stdin.length > 0) stdin.reduce((cursor, pipe) => cursor.pipe(pipe)).pipe(this._cursor);
   }
