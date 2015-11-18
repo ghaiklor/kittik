@@ -13,10 +13,10 @@ export * from './eraseRegions';
  */
 export class Cursor {
   /**
-   * Creates new Cursor instance.
+   * By default, creates simple cursor that writes direct to `stdout`.
    *
-   * You can pass custom `stdout` and `stdin` streams in.
-   * It's useful when you want to chain few streams before pipe it into the cursor or modify what cursor pipes.
+   * If you want to work with other streams, you can pass custom `stdout` and `stdin` streams in.
+   * It's useful when you want to chain few streams before pipe it into the cursor or want to modify what cursor pipes to `stdout`.
    *
    * @constructor
    * @param {Array<Stream.Transform>} [stdout=[process.stdout]] Array of Transform streams that will be used as target source for cursor
@@ -27,8 +27,9 @@ export class Cursor {
    * // Creates simple cursor that renders direct to `process.stdout`
    * let cursor = new Cursor();
    *
-   * // Creates cursor that takes input from `myCustomInputStream` and pipes to cursor -> myTransform -> process.stdout
-   * let customCursor = new Cursor([myTransform, process.stdout], [myCustomInputStream]);
+   * // Creates cursor that takes data from `stdin` and pipes to cursor.
+   * // Afterwards to some Transform stream and `stdout`.
+   * let cursor = new Cursor([new MyTransformStream(), process.stdout], [process.stdin]);
    */
   constructor(stdout = [process.stdout], stdin = []) {
     this._cursor = charm();
@@ -38,7 +39,7 @@ export class Cursor {
   }
 
   /**
-   * Sets a listener to the specified event.
+   * Sets a listener on cursor stream.
    *
    * @param {String} event Event name
    * @param {Function} handler Handler for the specified event
@@ -55,7 +56,7 @@ export class Cursor {
    * If handler is not defined then removes all listeners from the specified event.
    *
    * @param {String} event Event name
-   * @param {Function} [handler] Handler that you want to delete
+   * @param {Function} [handler] Handler that you want to delete from the event
    * @returns {Cursor}
    */
   off(event, handler) {
@@ -65,6 +66,7 @@ export class Cursor {
 
   /**
    * Write to the stream.
+   * It can be whatever info you want, but usually it's just a text that you want to print out.
    *
    * @param {String} message Message to write to the stream
    * @returns {Cursor}
@@ -75,7 +77,7 @@ export class Cursor {
   }
 
   /**
-   * Set the cursor position to the absolute coordinates.
+   * Set the cursor position by absolute coordinates.
    *
    * @param {Number} x Coordinate X
    * @param {Number} y Coordinate Y
@@ -87,19 +89,27 @@ export class Cursor {
   }
 
   /**
-   * Get the absolute cursor position.
+   * Get the cursor position in absolute coordinates.
    *
    * @returns {Promise}
    * @example
    * let cursor = new Cursor();
+   *
+   * // Old-fashioned way
    * cursor.getPosition().then(position => {x: position.x, y: position.y});
+   *
+   * // In async\await style
+   * async function myMagicFunction() {
+   *   let {x, y} = await cursor.getPosition();
+   *   doSomethingWithPosition(x, y);
+   * }
    */
   getPosition() {
     return new Promise((resolve, reject) => this._cursor.position((x, y) => resolve({x, y})));
   }
 
   /**
-   * Move the cursor by the relative coordinates.
+   * Move the cursor by the relative coordinates starting from the current position of cursor.
    *
    * @param {Number} x Coordinate X
    * @param {Number} y Coordinate Y
@@ -160,6 +170,8 @@ export class Cursor {
    * @param {String} region Value from {@link ERASE_REGIONS}
    * @returns {Cursor}
    * @example
+   * import { Cursor, ERASE_REGIONS } from './src/Cursor';
+   *
    * let cursor = new Cursor();
    * cursor.erase(ERASE_REGIONS.CURRENT_LINE); // Erases current line
    */
@@ -170,10 +182,13 @@ export class Cursor {
 
   /**
    * Set the foreground color.
+   * This color is used when text is rendering.
    *
    * @param {String} color Value from {@link COLORS}
    * @returns {Cursor}
    * @example
+   * import { Cursor, COLORS } from './src/Cursor';
+   *
    * let cursor = new Cursor();
    * cursor.foreground(COLORS.BLACK);
    */
@@ -184,10 +199,13 @@ export class Cursor {
 
   /**
    * Set the background color.
+   * This color is used for filling the whole cell in the TTY.
    *
    * @param {String} color Value from {@link COLORS}
    * @returns {Cursor}
    * @example
+   * import { Cursor, COLORS } from './src/Cursor';
+   *
    * let cursor = new Cursor();
    * cursor.background(COLORS.YELLOW);
    */
@@ -198,6 +216,7 @@ export class Cursor {
 
   /**
    * Fill the specified region with symbol.
+   * By default this symbol is whitespace but you can change it and fill with another symbol.
    *
    * @param {Object} options
    * @param {Number} options.x1 Start coordinate X
@@ -211,12 +230,12 @@ export class Cursor {
    * @example
    * let cursor = new Cursor();
    *
-   * // Renders the rectangle at top of terminal
+   * // Renders the rectangle at top of TTY
    * cursor.fill({x1: 0, y1: 0, x2: Cursor.getTTYWidth(), y2: 4, background: COLORS.YELLOW});
    */
   fill(options) {
     let {x1, y1, x2, y2, symbol = ' ', background, foreground} = options;
-    let filler = new Array(x2 - x1).fill(symbol).join('');
+    let filler = symbol.repeat(x2 - x1);
 
     if (background) this.background(background);
     if (foreground) this.foreground(foreground);
