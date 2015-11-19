@@ -18,8 +18,7 @@
  * }
  */
 export class Shape {
-  static name = 'Shape';
-
+  _name = 'Shape';
   _text = '';
   _width = 15;
   _height = 5;
@@ -51,6 +50,15 @@ export class Shape {
     this.setPosition(x, y);
     this.setBackground(background);
     this.setForeground(foreground);
+  }
+
+  /**
+   * Get name of the shape.
+   *
+   * @returns {String}
+   */
+  getName() {
+    return this._name;
   }
 
   /**
@@ -194,7 +202,7 @@ export class Shape {
    */
   toObject() {
     return {
-      name: Shape.name,
+      name: this.getName(),
       options: {
         text: this.getText(),
         width: this.getWidth(),
@@ -235,7 +243,6 @@ export class Shape {
    */
   static fromObject(obj) {
     if (!obj.name || !obj.options) throw new Error('It looks like it is not an Object representation of the Shape');
-    if (obj.name !== Shape.name) throw new Error('You are trying to create Shape from Object representation of another Shape');
 
     return new this(obj.options);
   }
