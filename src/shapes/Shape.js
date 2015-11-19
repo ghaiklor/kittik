@@ -1,17 +1,48 @@
+/**
+ * Base class for creating other shapes.
+ * Each custom shape must extends from this class.
+ *
+ * @since 1.0.0
+ * @version 1.0.0
+ * @example
+ * import { Shape } from './src/shapes/Shape';
+ *
+ * export class Rectangle extends Shape {
+ *   constructor(...args) {
+ *     super(...args);
+ *   }
+ *
+ *   render(cursor) {
+ *     // Implement your logic here for rendering the shape
+ *   }
+ * }
+ */
 export class Shape {
+  _text = '';
+  _width = 15;
+  _height = 5;
+  _x = 10;
+  _y = 10;
+  _background;
+  _foreground;
+
   /**
-   * Creates new base shape instance
-   * It needed for creating other shapes
+   * Constructor is responsible for initializing base properties.
+   * Don't forgot to call `super(...args)` when extending from this class.
+   *
    * @constructor
-   * @param {String} text Text that will be rendered in shape
-   * @param {Number} width Shape width
-   * @param {Number} height Shape height
-   * @param {Number} x Absolute coordinate X
-   * @param {Number} y Absolute coordinate Y
-   * @param {String|Number} background Background color
-   * @param {String|Number} foreground Foreground color
+   * @param {Object} [options]
+   * @param {String} [options.text] Text that will be rendered in shape
+   * @param {Number} [options.width] Shape width
+   * @param {Number} [options.height] Shape height
+   * @param {Number} [options.x] Absolute coordinate X
+   * @param {Number} [options.y] Absolute coordinate Y
+   * @param {String} [options.background] Background color from {@link COLORS}
+   * @param {String} [options.foreground] Foreground color from {@link COLORS}
    */
-  constructor({text, width, height, x, y, background, foreground} = {}) {
+  constructor(options) {
+    let {text, width, height, x, y, background, foreground} = options;
+
     this.setText(text);
     this.setWidth(width);
     this.setHeight(height);
@@ -21,7 +52,8 @@ export class Shape {
   }
 
   /**
-   * Get text content from this shape
+   * Get text content from this shape.
+   *
    * @returns {String}
    */
   getText() {
@@ -29,8 +61,9 @@ export class Shape {
   }
 
   /**
-   * Set new text content to this shape
-   * @param {String} text New text
+   * Set new text content to this shape.
+   *
+   * @param {String} [text=''] New text
    * @returns {Shape}
    */
   setText(text = '') {
@@ -39,7 +72,8 @@ export class Shape {
   }
 
   /**
-   * Get shape width
+   * Get shape width.
+   *
    * @returns {Number}
    */
   getWidth() {
@@ -47,8 +81,9 @@ export class Shape {
   }
 
   /**
-   * Set new shape width
-   * @param {Number} width Shape width
+   * Set new shape width.
+   *
+   * @param {Number} [width=15] Shape width
    * @returns {Shape}
    */
   setWidth(width = 15) {
@@ -57,7 +92,8 @@ export class Shape {
   }
 
   /**
-   * Get shape height
+   * Get shape height.
+   *
    * @returns {Number}
    */
   getHeight() {
@@ -65,8 +101,9 @@ export class Shape {
   }
 
   /**
-   * Set new shape height
-   * @param {Number} height Shape height
+   * Set new shape height.
+   *
+   * @param {Number} [height=5] Shape height
    * @returns {Shape}
    */
   setHeight(height = 5) {
@@ -75,7 +112,8 @@ export class Shape {
   }
 
   /**
-   * Get current position of shape
+   * Get current position of shape.
+   *
    * @returns {{x: Number, y: Number}}
    */
   getPosition() {
@@ -83,9 +121,10 @@ export class Shape {
   }
 
   /**
-   * Set new shape position
-   * @param {Number} x Absolute coordinate X
-   * @param {Number} y Absolute coordinate Y
+   * Set new shape position.
+   *
+   * @param {Number} [x=10] Absolute coordinate X
+   * @param {Number} [y=10] Absolute coordinate Y
    * @returns {Shape}
    */
   setPosition(x = this._x || 10, y = this._y || 10) {
@@ -95,7 +134,8 @@ export class Shape {
   }
 
   /**
-   * Get background color
+   * Get background color.
+   *
    * @returns {String}
    */
   getBackground() {
@@ -103,8 +143,9 @@ export class Shape {
   }
 
   /**
-   * Set new background color
-   * @param {String|Number} background Background color
+   * Set new background color.
+   *
+   * @param {String} background Background color from {@link COLORS}
    * @returns {Shape}
    */
   setBackground(background) {
@@ -113,7 +154,8 @@ export class Shape {
   }
 
   /**
-   * Get foreground color
+   * Get foreground color.
+   *
    * @returns {String}
    */
   getForeground() {
@@ -121,8 +163,9 @@ export class Shape {
   }
 
   /**
-   * Set new foreground color
-   * @param {String|Number} foreground Foreground color
+   * Set new foreground color.
+   *
+   * @param {String} foreground Foreground color from {@link COLORS}
    * @returns {Shape}
    */
   setForeground(foreground) {
@@ -131,14 +174,19 @@ export class Shape {
   }
 
   /**
-   * Base render method that must be implemented in childes
+   * Base render method that must be implemented in childes.
+   *
+   * @abstract
+   * @param {Cursor} cursor Cursor instance that you can use for render the shape
+   * @throws {Error} Throws error if method will not be overridden
    */
-  render() {
+  render(cursor) {
     throw new Error('render() method must be implemented');
   }
 
   /**
-   * Create new shape instance
+   * Wrapper around `new Shape()`.
+   *
    * @param {*} args
    * @returns {Shape}
    */
