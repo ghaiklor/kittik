@@ -18,6 +18,7 @@
  * }
  */
 export class Shape {
+  _name = 'Shape';
   _text = '';
   _width = 15;
   _height = 5;
@@ -49,6 +50,27 @@ export class Shape {
     this.setPosition(x, y);
     this.setBackground(background);
     this.setForeground(foreground);
+  }
+
+  /**
+   * Get name of shape.
+   * Base shape has `Shape` name.
+   *
+   * @returns {String}
+   */
+  getName() {
+    return this._name;
+  }
+
+  /**
+   * Set new name to shape.
+   *
+   * @param {String} name New name of the shape
+   * @returns {Shape}
+   */
+  setName(name) {
+    this._name = name;
+    return this;
   }
 
   /**
