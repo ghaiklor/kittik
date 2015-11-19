@@ -24,7 +24,7 @@ export class Rectangle extends Shape {
     let foreground = this.getForeground();
 
     cursor.fill({x1, y1, x2, y2, background, foreground});
-    cursor.setPosition(x1 + (width / 2 - text.length / 2), y1 + (height / 2)).write(text);
+    cursor.setPosition(x1 + Math.round(width / 2 - text.length / 2), y1 + Math.round(height / 2)).write(text);
 
     return this;
   }
