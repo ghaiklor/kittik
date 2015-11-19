@@ -2,6 +2,14 @@ import { assert } from 'chai';
 import sinon from 'sinon';
 import { Cursor, COLORS, ERASE_REGIONS } from '../../../src/cursor/Cursor';
 
+before(() => {
+  sinon.stub(console, 'error');
+});
+
+after(() => {
+  console.error.restore();
+});
+
 describe('Cursor', () => {
   it('Should properly initialize with default arguments', () => {
     let cursor = new Cursor();
