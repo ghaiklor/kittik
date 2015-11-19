@@ -282,15 +282,15 @@ describe('Cursor', () => {
   });
 
   it('Should properly get TTY size based on process.stdout.getWindowSize', () => {
-    let stdout = sinon.mock(process.stdout);
+    let mock = sinon.mock(process.stdout);
 
-    stdout.expects('getWindowSize').twice().returns([10, 10]);
+    mock.expects('getWindowSize').twice().returns([10, 10]);
 
     let {width, height} = Cursor.getTTYSize();
     assert.equal(width, 10);
     assert.equal(height, 10);
 
-    stdout.verify();
+    mock.verify();
   });
 
   it('Should properly get TTY size based on process columns and rows', () => {
