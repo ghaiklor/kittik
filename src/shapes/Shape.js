@@ -177,7 +177,7 @@ export class Shape {
    * Base render method that must be implemented in childes.
    *
    * @abstract
-   * @param {Cursor} cursor Cursor instance that you can use for render the shape
+   * @param {Cursor} cursor Cursor instance which you can use for render the shape
    * @throws {Error} Throws error if method will not be overridden
    */
   render(cursor) {

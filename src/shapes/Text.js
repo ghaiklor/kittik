@@ -1,16 +1,26 @@
 import { Shape } from './Shape';
 
+/**
+ * Implements Text shape which is rendering the text at specified point.
+ *
+ * @since 1.0.0
+ * @version 1.0.0
+ */
 export class Text extends Shape {
   /**
-   * Creates new Text instance
+   * Creates new Text instance.
+   *
    * @constructor
+   * @param {Object} [options] Options go into {@link Shape} class and they are the same.
    */
-  constructor(...args) {
-    super(...args);
+  constructor(options) {
+    super(options);
   }
 
   /**
-   * Renders a shape
+   * Renders a shape.
+   *
+   * @override
    * @param {Cursor} cursor
    * @returns {Text}
    */

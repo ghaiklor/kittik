@@ -1,16 +1,26 @@
 import { Shape } from './Shape';
 
+/**
+ * Implements rectangle shape with text support.
+ *
+ * @since 1.0.0
+ * @version 1.0.0
+ */
 export class Rectangle extends Shape {
   /**
-   * Creates new Rectangle instance
+   * Creates new Rectangle instance.
+   *
    * @constructor
+   * @param {Object} [options] Options go into {@link Shape} class and supports all the options from there
    */
-  constructor(...args) {
-    super(...args);
+  constructor(options) {
+    super(options);
   }
 
   /**
-   * Renders the shape
+   * Renders the shape.
+   *
+   * @override
    * @param {Cursor} cursor
    * @returns {Rectangle}
    */
