@@ -18,7 +18,8 @@
  * }
  */
 export class Shape {
-  _name = 'Shape';
+  static name = 'Shape';
+
   _text = '';
   _width = 15;
   _height = 5;
@@ -50,27 +51,6 @@ export class Shape {
     this.setPosition(x, y);
     this.setBackground(background);
     this.setForeground(foreground);
-  }
-
-  /**
-   * Get name of shape.
-   * Base shape has `Shape` name.
-   *
-   * @returns {String}
-   */
-  getName() {
-    return this._name;
-  }
-
-  /**
-   * Set new name to shape.
-   *
-   * @param {String} name New name of the shape
-   * @returns {Shape}
-   */
-  setName(name) {
-    this._name = name;
-    return this;
   }
 
   /**
@@ -207,6 +187,36 @@ export class Shape {
   }
 
   /**
+   * Returns Object representation of the shape.
+   * This representation consists of all options fields.
+   *
+   * @returns {{name: String, options: {text: String, width: Number, height: Number, x: Number, y: Number, background: String, foreground: String}}}
+   */
+  toObject() {
+    return {
+      name: Shape.name,
+      options: {
+        text: this.getText(),
+        width: this.getWidth(),
+        height: this.getHeight(),
+        x: this.getPosition().x,
+        y: this.getPosition().y,
+        background: this.getBackground(),
+        foreground: this.getForeground()
+      }
+    };
+  }
+
+  /**
+   * Returns JSON representation of the shape.
+   *
+   * @returns {String}
+   */
+  toJSON() {
+    return JSON.stringify(this.toObject());
+  }
+
+  /**
    * Wrapper around `new Shape()`.
    *
    * @param {*} args
@@ -214,5 +224,31 @@ export class Shape {
    */
   static create(...args) {
     return new this(...args);
+  }
+
+  /**
+   * Creates new Shape instance from Object representation.
+   *
+   * @static
+   * @param {Object} obj Object that you got from {@link Shape.toObject}
+   * @returns {Shape}
+   */
+  static fromObject(obj) {
+    if (!obj.name || !obj.options) throw new Error('It looks like it is not an Object representation of the Shape');
+    if (obj.name !== Shape.name) throw new Error('You are trying to create Shape from Object representation of another Shape');
+
+    return new this(obj.options);
+  }
+
+  /**
+   * Creates new Shape instance from JSON representation.
+   *
+   * @static
+   * @param {String} json JSON string that you got from {@link Shape.toJSON}
+   * @returns {Shape}
+   */
+  static fromJSON(json) {
+    let obj = JSON.parse(json);
+    return Shape.fromObject(obj);
   }
 }
