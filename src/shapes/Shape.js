@@ -127,7 +127,7 @@ export class Shape {
    * @param {Number} [y=10] Absolute coordinate Y
    * @returns {Shape}
    */
-  setPosition(x = this._x || 10, y = this._y || 10) {
+  setPosition(x = this._x, y = this._y) {
     this._x = x;
     this._y = y;
     return this;
