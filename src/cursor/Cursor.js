@@ -1,4 +1,3 @@
-import tty from 'tty';
 import charm from 'charm';
 
 export * from './colors';
@@ -301,8 +300,6 @@ export class Cursor {
   static getTTYSize() {
     if (process.stdout.getWindowSize) {
       return {width: process.stdout.getWindowSize()[0], height: process.stdout.getWindowSize()[1]};
-    } else if (tty.getWindowSize) {
-      return {width: tty.getWindowSize()[0], height: tty.getWindowSize()[1]};
     } else if (process.stdout.columns && process.stdout.rows) {
       return {width: process.stdout.columns, height: process.stdout.rows};
     } else {

@@ -293,16 +293,6 @@ describe('Cursor', () => {
     stdout.verify();
   });
 
-  it('Should propery get TTY size based on tty module', () => {
-    process.stdout.getWindowSize = null;
-
-    // TODO: implement normal test case
-
-    let {width, height} = Cursor.getTTYSize();
-    assert.isNumber(width);
-    assert.isNumber(height);
-  });
-
   it('Should properly get TTY size based on process columns and rows', () => {
     process.stdout.getWindowSize = null;
     process.stdout.columns = 10;
