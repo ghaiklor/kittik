@@ -40,7 +40,7 @@ export class Shape {
    * @param {String} [options.background] Background color from {@link COLORS}
    * @param {String} [options.foreground] Foreground color from {@link COLORS}
    */
-  constructor(options) {
+  constructor(options = {}) {
     let {text, width, height, x, y, background, foreground} = options;
 
     this.setText(text);
