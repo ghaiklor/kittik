@@ -4,11 +4,6 @@ import { Text } from '../../../src/shapes/Text';
 import { Cursor, COLORS } from '../../../src/cursor/Cursor';
 
 describe('Shape::Text', () => {
-  it('Should properly create instance', () => {
-    let text = new Text();
-    assert.instanceOf(text, Text);
-  });
-
   it('Should properly render with default options', () => {
     let cursor = Cursor.create();
     let text = new Text();
@@ -31,7 +26,7 @@ describe('Shape::Text', () => {
 
     mock.expects('background').once().withArgs('yellow');
     mock.expects('foreground').once().withArgs('black');
-    mock.expects('setPosition').once(20, 20);
+    mock.expects('setPosition').once().withArgs(20, 20);
     mock.expects('write').once().withArgs('test');
 
     text.render(cursor);
