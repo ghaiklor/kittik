@@ -18,7 +18,6 @@
  * }
  */
 export class Shape {
-  _name = 'Shape';
   _text = '';
   _width = 15;
   _height = 5;
@@ -50,15 +49,6 @@ export class Shape {
     this.setPosition(x, y);
     this.setBackground(background);
     this.setForeground(foreground);
-  }
-
-  /**
-   * Get name of the shape.
-   *
-   * @returns {String}
-   */
-  getName() {
-    return this._name;
   }
 
   /**
@@ -202,7 +192,7 @@ export class Shape {
    */
   toObject() {
     return {
-      name: this.getName(),
+      name: this.constructor.name,
       options: {
         text: this.getText(),
         width: this.getWidth(),
