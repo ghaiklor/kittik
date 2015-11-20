@@ -217,6 +217,7 @@ export class Shape {
   /**
    * Wrapper around `new Shape()`.
    *
+   * @static
    * @param {*} args
    * @returns {Shape}
    */
@@ -233,8 +234,9 @@ export class Shape {
    */
   static fromObject(obj) {
     if (!obj.name || !obj.options) throw new Error('It looks like it is not an Object representation of the Shape');
+    if (obj.name !== this.name) throw new Error(`It is not an Object representation of the ${this.name}`);
 
-    return new this(obj.options);
+    return this.create(obj.options);
   }
 
   /**
@@ -246,6 +248,6 @@ export class Shape {
    */
   static fromJSON(json) {
     let obj = JSON.parse(json);
-    return Shape.fromObject(obj);
+    return this.fromObject(obj);
   }
 }
