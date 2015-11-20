@@ -71,4 +71,28 @@ describe('Shape::Rectangle', () => {
       }
     });
   });
+
+  it('Should properly create rectangle from Object representation', () => {
+    let obj = {
+      name: 'Rectangle',
+      options: {
+        text: 'test',
+        width: 30,
+        height: 50,
+        x: 0,
+        y: 0,
+        background: undefined,
+        foreground: undefined
+      }
+    };
+
+    let rectangle = Rectangle.fromObject(obj);
+    assert.instanceOf(rectangle, Rectangle);
+    assert.equal(rectangle.getText(), 'test');
+    assert.equal(rectangle.getWidth(), 30);
+    assert.equal(rectangle.getHeight(), 50);
+    assert.deepEqual(rectangle.getPosition(), {x: 0, y: 0});
+    assert.isUndefined(rectangle.getBackground());
+    assert.isUndefined(rectangle.getForeground());
+  });
 });

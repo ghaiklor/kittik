@@ -119,7 +119,12 @@ describe('Shape', () => {
 
   it('Should properly throw error if trying to create Shape not from Object representation', () => {
     let obj = {};
-    assert.throws(() => Shape.fromObject(obj), Error);
+    assert.throws(() => Shape.fromObject(obj), Error, 'It looks like it is not an Object representation of the Shape');
+  });
+
+  it('Should properly throw error if trying to create Shape not from its representation', () => {
+    let obj = {name: 'Rectangle', options: {}};
+    assert.throws(() => Shape.fromObject(obj), Error, 'It is not an Object representation of the Shape');
   });
 
   it('Should properly create Shape instance from Object representation', () => {

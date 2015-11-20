@@ -35,13 +35,13 @@ describe('Shape::Text', () => {
   });
 
   it('Should properly serialize shape to Object representation', () => {
-    let text = new Text();
+    let text = new Text().setText('test');
     let obj = text.toObject();
 
     assert.deepEqual(obj, {
       name: 'Text',
       options: {
-        text: '',
+        text: 'test',
         width: 15,
         height: 5,
         x: 10,
@@ -50,5 +50,29 @@ describe('Shape::Text', () => {
         foreground: undefined
       }
     });
+  });
+
+  it('Should properly create text from Object representation', () => {
+    let obj = {
+      name: 'Text',
+      options: {
+        text: 'test',
+        width: 30,
+        height: 50,
+        x: 0,
+        y: 0,
+        background: undefined,
+        foreground: undefined
+      }
+    };
+
+    let text = Text.fromObject(obj);
+    assert.instanceOf(text, Text);
+    assert.equal(text.getText(), 'test');
+    assert.equal(text.getWidth(), 30);
+    assert.equal(text.getHeight(), 50);
+    assert.deepEqual(text.getPosition(), {x: 0, y: 0});
+    assert.isUndefined(text.getBackground());
+    assert.isUndefined(text.getForeground());
   });
 });
