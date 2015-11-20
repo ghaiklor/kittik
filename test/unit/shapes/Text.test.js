@@ -33,4 +33,22 @@ describe('Shape::Text', () => {
 
     mock.verify();
   });
+
+  it('Should properly serialize shape to Object representation', () => {
+    let text = new Text();
+    let obj = text.toObject();
+
+    assert.deepEqual(obj, {
+      name: 'Text',
+      options: {
+        text: '',
+        width: 15,
+        height: 5,
+        x: 10,
+        y: 10,
+        background: undefined,
+        foreground: undefined
+      }
+    });
+  });
 });

@@ -53,4 +53,22 @@ describe('Shape::Rectangle', () => {
 
     mock.verify();
   });
+
+  it('Should properly serialize shape to Object representation', () => {
+    let rectangle = new Rectangle();
+    let obj = rectangle.toObject();
+
+    assert.deepEqual(obj, {
+      name: 'Rectangle',
+      options: {
+        text: '',
+        width: 15,
+        height: 5,
+        x: 10,
+        y: 10,
+        background: undefined,
+        foreground: undefined
+      }
+    });
+  });
 });
