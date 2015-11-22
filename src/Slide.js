@@ -12,9 +12,20 @@ export class Slide {
 
   /**
    * Creates new Slide instance.
+   * You must pass serialized Object representation of each {@link Shape} as an array to this constructor.
    *
    * @param {Array<Shape>} shapes Array of serialized shapes
    * @constructor
+   * @example
+   * Slide.create([{
+   *   name: 'Rectangle',
+   *   options: {}
+   * }, {
+   *   name: 'Text',
+   *   options: {
+   *     text: 'Hello there'
+   *   }
+   * }]);
    */
   constructor(shapes) {
     this._shapes = shapes.map(shape => {
@@ -32,5 +43,16 @@ export class Slide {
   render(cursor) {
     this._shapes.forEach(shape => shape.render(cursor));
     return this;
+  }
+
+  /**
+   * Wrapper around `new Slide()`.
+   *
+   * @static
+   * @param {*} args
+   * @returns {Slide}
+   */
+  static create(...args) {
+    return new this(...args);
   }
 }
