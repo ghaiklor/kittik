@@ -29,8 +29,8 @@ export class Slide {
    */
   constructor(shapes) {
     this._shapes = shapes.map(shape => {
-      if (shape.name === 'Rectangle') return Rectangle.fromObject(shape.options);
-      if (shape.name === 'Text') return Text.fromObject(shape.options);
+      if (shape.name === 'Rectangle') return Rectangle.fromObject(shape);
+      if (shape.name === 'Text') return Text.fromObject(shape);
     });
   }
 
