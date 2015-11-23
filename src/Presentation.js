@@ -1,30 +1,25 @@
 import keypress from 'keypress';
 
 import { Slide } from './Slide';
-import { Cursor } from './Cursor';
+import { Cursor } from './cursor/Cursor';
 
+/**
+ * Implements Presentation class.
+ * Responsible for switching slide and running presentation.
+ *
+ * @since 1.0.0
+ * @version 1.0.0
+ */
 export class Presentation {
+  _cursor = Cursor.create([process.stdout], [process.stdin]);
+  _currentSlideIndex = 0;
+  _slides = [];
+
   constructor() {
-    this._slides = [];
-    this._currentSlideIndex = 0;
-    this._cursor = new Cursor([process.stdout], [process.stdin]);
-
-    keypress(process.stdin);
-
     process.stdin.setRawMode(true);
     process.stdin.setEncoding('utf8');
-  }
 
-  /**
-   * Push slide instance
-   * @param {Slide} slide
-   * @returns {Presentation}
-   */
-  pushSlide(slide) {
-    if (!(slide instanceof Slide)) throw new Error('You must provide Slide instance');
-
-    this._slides.push(slide);
-    return this;
+    keypress(process.stdin);
   }
 
   /**
@@ -33,8 +28,7 @@ export class Presentation {
    * @returns {Presentation}
    */
   renderSlide(index) {
-    this._slides[index].render();
-
+    this._slides[index || this._currentSlideIndex].render(this._cursor);
     return this;
   }
 
@@ -43,6 +37,7 @@ export class Presentation {
    * @returns {Presentation}
    */
   nextSlide() {
+    this.renderSlide(++this._currentSlideIndex);
     return this;
   }
 
@@ -51,6 +46,7 @@ export class Presentation {
    * @returns {Presentation}
    */
   prevSlide() {
+    this.renderSlide(--this._currentSlideIndex);
     return this;
   }
 }
