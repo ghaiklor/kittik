@@ -5,7 +5,7 @@ import { Cursor } from './cursor/Cursor';
 
 /**
  * Implements Presentation class.
- * Responsible for switching slide and running presentation.
+ * Responsible for switching slide and running the presentation.
  *
  * @since 1.0.0
  * @version 1.0.0
@@ -16,49 +16,59 @@ export class Presentation {
   _slides = [];
 
   /**
-   * Creates presentation instance with slides
+   * Creates presentation instance with slides.
+   *
    * @param {Array<Array<Object>>} slides
    */
   constructor(slides) {
+    this._slides = slides.map(slide => Slide.create(slide));
+
+    keypress(process.stdin);
     process.stdin.setRawMode(true);
     process.stdin.setEncoding('utf8');
 
-    keypress(process.stdin);
-
     process.stdin.on('keypress', this._onKeyPress.bind(this));
 
-    this._slides = slides.map(slide => Slide.create(slide));
     this.renderSlide();
   }
 
   /**
-   * Renders specified slide
+   * Renders specified slide.
+   *
    * @param {Number} [index] Slide index in presentation
    * @returns {Presentation}
    */
-  renderSlide(index) {
-    this._slides[index || this._currentSlideIndex].render(this._cursor);
+  renderSlide(index = this._currentSlideIndex) {
+    this._cursor.reset().hide();
+    if (this._slides[index]) this._slides[index].render(this._cursor);
     return this;
   }
 
   /**
-   * Render the next slide
+   * Renders the next slide.
+   *
    * @returns {Presentation}
    */
   nextSlide() {
-    this.renderSlide(++this._currentSlideIndex);
+    this._currentSlideIndex = this._currentSlideIndex + 1 > this._slides.length - 1 ? this._slides.length - 1 : this._currentSlideIndex + 1;
+    this.renderSlide(this._currentSlideIndex);
     return this;
   }
 
   /**
-   * Render the previous slide
+   * Renders the previous slide.
+   *
    * @returns {Presentation}
    */
   prevSlide() {
-    this.renderSlide(--this._currentSlideIndex);
+    this._currentSlideIndex = this._currentSlideIndex - 1 < 0 ? 0 : this._currentSlideIndex - 1;
+    this.renderSlide(this._currentSlideIndex);
     return this;
   }
 
+  /**
+   * Closes the presentation and returns to terminal.
+   */
   exit() {
     this._cursor.show().reset();
     process.exit(0);
@@ -67,8 +77,8 @@ export class Presentation {
   /**
    * Triggers when user is pressing the key.
    *
-   * @param ch
-   * @param key
+   * @param {String} ch
+   * @param {Object} key
    * @private
    */
   _onKeyPress(ch, key) {
@@ -79,6 +89,12 @@ export class Presentation {
     return this;
   }
 
+  /**
+   * Wrapper around `new Presentation()`.
+   *
+   * @param {*} args
+   * @returns {Presentation}
+   */
   static create(...args) {
     return new this(...args);
   }
