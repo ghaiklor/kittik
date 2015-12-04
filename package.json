@@ -1,5 +1,5 @@
 {
-  "name": "@kittikjs/kittik",
+  "name": "kittik",
   "version": "0.0.0-semantic-release",
   "description": "Keynote in Terminal (KiT) allows to you create and show ASCII presentations in terminal",
   "author": "ghaiklor",
@@ -27,7 +27,10 @@
   "dependencies": {
     "charm": "1.0.0",
     "commander": "2.9.0",
-    "keypress": "0.2.1"
+    "keypress": "0.2.1",
+    "kittik-cursor": "1.0.2",
+    "kittik-shape-rectangle": "1.0.1",
+    "kittik-shape-text": "1.0.1"
   },
   "devDependencies": {
     "babel-cli": "6.3.13",

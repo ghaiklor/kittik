@@ -1,5 +1,5 @@
-import { Rectangle } from './shapes/Rectangle';
-import { Text } from './shapes/Text';
+import Rectangle from 'kittik-shape-rectangle';
+import Text from 'kittik-shape-text';
 
 /**
  * Creates a new slide with shapes.

@@ -1,7 +1,6 @@
 import keypress from 'keypress';
-
+import { Cursor } from 'kittik-cursor';
 import { Slide } from './Slide';
-import { Cursor } from './cursor/Cursor';
 
 /**
  * Implements Presentation class.
