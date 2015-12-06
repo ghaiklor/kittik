@@ -1,5 +1,6 @@
 import keypress from 'keypress';
 import { Cursor } from 'kittik-cursor';
+import Print from 'kittik-animation-print';
 import { Slide } from './Slide';
 
 /**
@@ -10,7 +11,7 @@ import { Slide } from './Slide';
  * @version 1.0.0
  */
 export class Presentation {
-  _cursor = Cursor.create([process.stdout], [process.stdin]).reset().hide();
+  _cursor = Cursor.create([new Print().enable(), process.stdout], [process.stdin]).reset().hide();
   _currentSlideIndex = 0;
   _slides = [];
 
@@ -27,8 +28,16 @@ export class Presentation {
     process.stdin.setEncoding('utf8');
 
     process.stdin.on('keypress', this._onKeyPress.bind(this));
+  }
 
+  /**
+   * Run the presentation.
+   *
+   * @returns {Presentation}
+   */
+  run() {
     this.renderSlide();
+    return this;
   }
 
   /**
