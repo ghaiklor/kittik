@@ -25,10 +25,8 @@
     "test": "babel-node ./node_modules/.bin/isparta cover _mocha"
   },
   "dependencies": {
-    "charm": "1.0.0",
-    "commander": "2.9.0",
     "keypress": "0.2.1",
-    "kittik-animation-print": "1.0.0",
+    "kittik-animation-print": "1.1.0",
     "kittik-cursor": "1.0.2",
     "kittik-shape-rectangle": "1.0.2",
     "kittik-shape-text": "1.0.2"
@@ -54,7 +52,7 @@
     }
   },
   "publishConfig": {
-    "tag": "next"
+    "tag": "latest"
   },
   "release": {
     "branch": "master"

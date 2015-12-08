@@ -11,7 +11,7 @@ import { Slide } from './Slide';
  * @version 1.0.0
  */
 export class Presentation {
-  _cursor = Cursor.create([new Print().enable(), process.stdout], [process.stdin]).reset().hide();
+  _cursor = Cursor.create([new Print().enable().setRandom(false), process.stdout], [process.stdin]).reset().hide();
   _currentSlideIndex = 0;
   _slides = [];
 
@@ -47,8 +47,11 @@ export class Presentation {
    * @returns {Presentation}
    */
   renderSlide(index = this._currentSlideIndex) {
+    if (!this._slides[index]) return this;
+
     this._cursor.reset().hide();
-    if (this._slides[index]) this._slides[index].render(this._cursor);
+    this._slides[index].render(this._cursor);
+
     return this;
   }
 
@@ -58,8 +61,9 @@ export class Presentation {
    * @returns {Presentation}
    */
   nextSlide() {
-    this._currentSlideIndex = this._currentSlideIndex + 1 > this._slides.length - 1 ? this._slides.length - 1 : this._currentSlideIndex + 1;
-    this.renderSlide(this._currentSlideIndex);
+    if (this._currentSlideIndex + 1 > this._slides.length - 1) return this;
+
+    this.renderSlide(++this._currentSlideIndex);
     return this;
   }
 
@@ -69,8 +73,9 @@ export class Presentation {
    * @returns {Presentation}
    */
   prevSlide() {
-    this._currentSlideIndex = this._currentSlideIndex - 1 < 0 ? 0 : this._currentSlideIndex - 1;
-    this.renderSlide(this._currentSlideIndex);
+    if (this._currentSlideIndex - 1 < 0) return this;
+
+    this.renderSlide(--this._currentSlideIndex);
     return this;
   }
 
@@ -78,8 +83,8 @@ export class Presentation {
    * Closes the presentation and returns to terminal.
    */
   exit() {
-    this._cursor.show().reset();
-    process.exit(0);
+    this._cursor.reset().show();
+    setTimeout(process.exit, 500);
   }
 
   /**

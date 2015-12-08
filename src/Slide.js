@@ -1,6 +1,11 @@
 import Rectangle from 'kittik-shape-rectangle';
 import Text from 'kittik-shape-text';
 
+const shapesManager = {
+  rectangle: Rectangle,
+  text: Text
+};
+
 /**
  * Creates a new slide with shapes.
  *
@@ -28,10 +33,7 @@ export class Slide {
    * }]);
    */
   constructor(shapes) {
-    this._shapes = shapes.map(shape => {
-      if (shape.name === 'Rectangle') return Rectangle.fromObject(shape);
-      if (shape.name === 'Text') return Text.fromObject(shape);
-    });
+    this._shapes = shapes.map(shape => shapesManager[shape.name.toLowerCase()].fromObject(shape));
   }
 
   /**
