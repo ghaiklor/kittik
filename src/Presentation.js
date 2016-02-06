@@ -11,16 +11,14 @@ import { Slide } from './Slide';
  * @version 1.0.0
  */
 export class Presentation {
-  _cursor = Cursor.create([new Print().enable().setRandom(false), process.stdout], [process.stdin]).reset().hide();
-  _currentSlideIndex = 0;
-  _slides = [];
-
   /**
    * Creates presentation instance with slides.
    *
    * @param {Array<Array<Object>>} slides
    */
   constructor(slides) {
+    this._cursor = Cursor.create([new Print().enable().setRandom(false), process.stdout], [process.stdin]).reset().hide();
+    this._currentSlideIndex = 0;
     this._slides = slides.map(slide => Slide.create(slide));
 
     keypress(process.stdin);
