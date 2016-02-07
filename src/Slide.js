@@ -1,13 +1,21 @@
-import FigText from 'kittik-shape-fig-text';
-import Image from 'kittik-shape-image';
-import Rectangle from 'kittik-shape-rectangle';
-import Text from 'kittik-shape-text';
+import FigTextShape from 'kittik-shape-fig-text';
+import ImageShape from 'kittik-shape-image';
+import RectangleShape from 'kittik-shape-rectangle';
+import TextShape from 'kittik-shape-text';
 
-const shapesManager = {
-  figText: FigText,
-  image: Image,
-  rectangle: Rectangle,
-  text: Text
+import PrintAnimation from 'kittik-animation-print';
+import SlideAnimation from 'kittik-animation-slide';
+
+const shapes = {
+  figText: FigTextShape,
+  image: ImageShape,
+  rectangle: RectangleShape,
+  text: TextShape
+};
+
+const animations = {
+  print: PrintAnimation,
+  slide: SlideAnimation
 };
 
 /**
@@ -16,7 +24,7 @@ const shapesManager = {
  * @since 1.0.0
  * @version 1.0.0
  */
-export class Slide {
+export default class Slide {
   /**
    * Creates new Slide instance.
    * You must pass serialized Object representation of each {@link Shape} as an array to this constructor.
@@ -35,7 +43,7 @@ export class Slide {
    * }]);
    */
   constructor(shapes) {
-    this._shapes = shapes.map(shape => shapesManager[shape.type.toLowerCase()].fromObject(shape));
+    this._shapes = shapes.map(shape => shapes[shape.type.toLowerCase()].fromObject(shape));
   }
 
   /**
