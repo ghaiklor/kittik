@@ -1,7 +1,7 @@
 import keypress from 'keypress';
-import { Cursor } from 'kittik-cursor';
+import Cursor from 'kittik-cursor';
 import Print from 'kittik-animation-print';
-import { Slide } from './Slide';
+import Slide from './Slide';
 
 /**
  * Implements Presentation class.
@@ -17,7 +17,7 @@ export class Presentation {
    * @param {Array<Array<Object>>} slides
    */
   constructor(slides) {
-    this._cursor = Cursor.create([new Print().enable().setRandom(false), process.stdout], [process.stdin]).reset().hide();
+    this._cursor = Cursor.create().resetTTY().hideCursor();
     this._currentSlideIndex = 0;
     this._slides = slides.map(slide => Slide.create(slide));
 
@@ -47,7 +47,7 @@ export class Presentation {
   renderSlide(index = this._currentSlideIndex) {
     if (!this._slides[index]) return this;
 
-    this._cursor.reset().hide();
+    this._cursor.resetTTY().hideCursor();
     this._slides[index].render(this._cursor);
 
     return this;
@@ -81,7 +81,7 @@ export class Presentation {
    * Closes the presentation and returns to terminal.
    */
   exit() {
-    this._cursor.reset().show();
+    this._cursor.resetTTY().showCursor();
     setTimeout(process.exit, 500);
   }
 
