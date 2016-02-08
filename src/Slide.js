@@ -6,14 +6,14 @@ import TextShape from 'kittik-shape-text';
 import PrintAnimation from 'kittik-animation-print';
 import SlideAnimation from 'kittik-animation-slide';
 
-const shapes = {
+const SHAPES = {
   figText: FigTextShape,
   image: ImageShape,
   rectangle: RectangleShape,
   text: TextShape
 };
 
-const animations = {
+const ANIMATIONS = {
   print: PrintAnimation,
   slide: SlideAnimation
 };
@@ -27,23 +27,26 @@ const animations = {
 export default class Slide {
   /**
    * Creates new Slide instance.
-   * You must pass serialized Object representation of each {@link Shape} as an array to this constructor.
    *
-   * @param {Array<Shape>} shapes Array of serialized shapes
+   * @param {Object} [declaration] Array of serialized shapes
+   * @param {Array<Object>} [declaration.shapes] Array of shapes to render
+   * @param {Array<Object>} [declaration.animations] Array of animation to create in this slide
+   * @param {Array<String>} [declaration.flow] Array of flow for current slide
    * @constructor
-   * @example
-   * Slide.create([{
-   *   name: 'Rectangle',
-   *   options: {}
-   * }, {
-   *   name: 'Text',
-   *   options: {
-   *     text: 'Hello there'
-   *   }
-   * }]);
    */
-  constructor(shapes) {
-    this._shapes = shapes.map(shape => shapes[shape.type.toLowerCase()].fromObject(shape));
+  constructor(declaration = {}) {
+    const {shapes, animations, flow} = declaration;
+
+    this._renderedShapes = [];
+    this._shapes = shapes.reduce((obj, shape) => (obj[shape.name] = SHAPES[shape.type.toLowerCase()].fromObject(shape)) && obj, {});
+    this._animations = animations.reduce((obj, animation) => (obj[animation.name] = ANIMATIONS[animation.type.toLowerCase()].fromObject(animation)) && obj, {});
+    this._flow = flow;
+    this._currentPlayIndex = 0;
+  }
+
+  _parseFlow(flow) {
+    const [,shapeName, animationName] = flow.match(/(.*)\((.*)\)/);
+    return {shapeName, animationName};
   }
 
   /**
@@ -53,7 +56,9 @@ export default class Slide {
    * @returns {Slide}
    */
   render(cursor) {
-    this._shapes.forEach(shape => shape.render(cursor));
+    const flow = this._parseFlow(this._flow[this._currentPlayIndex]);
+    this._shapes[flow.shapeName].render(cursor);
+
     return this;
   }
 
