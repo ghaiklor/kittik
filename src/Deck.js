@@ -10,7 +10,7 @@ import Slide from './Slide';
  * @since 1.0.0
  * @version 1.0.0
  */
-export class Presentation {
+export default class Deck {
   /**
    * Creates presentation instance with slides.
    *
