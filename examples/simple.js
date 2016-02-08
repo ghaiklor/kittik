@@ -1,38 +1,58 @@
-var Presentation = require('../lib/Presentation').Presentation;
-var COLORS = require('kittik-cursor').COLORS;
+var Deck = require('../lib/Deck');
 
-Presentation
-  .create([[{
-    name: 'Text',
-    options: {
-      text: 'Hello there!',
-      background: COLORS.YELLOW,
-      foreground: COLORS.BLACK,
-      animation: {
-        name: 'print'
+Deck
+  .create([{
+    // Slide #1
+    shapes: [{
+      name: 'Hello',
+      type: 'Text',
+      options: {
+        text: 'Hello there!',
+        background: 'yellow',
+        foreground: 'black'
       }
-    }
-  }], [{
-    name: 'Text',
-    options: {
-      text: 'You can combine different shapes in one slide',
-      background: COLORS.YELLOW,
-      foreground: COLORS.BLACK,
-      animation: {
-        name: 'print',
-        interval: 10
-      }
-    }
+    }],
+    animations: [{
+      name: 'Simple Print',
+      type: 'Print',
+      options: {}
+    }],
+    flow: [
+      'Hello(Simple Print)'
+    ]
   }, {
-    name: 'Rectangle',
-    options: {
-      text: 'You can write text in the center of the rectangle',
-      width: 100,
-      height: 5,
-      x: 10,
-      y: 50,
-      background: COLORS.BLUE,
-      foreground: COLORS.WHITE
-    }
-  }]])
+    // Slide #2
+    shapes: [{
+      name: 'Desc 1',
+      type: 'Text',
+      options: {
+        text: 'You can combine different shapes in one slide',
+        background: 'yellow',
+        foreground: 'black'
+      }
+    }, {
+      name: 'Desc 2',
+      type: 'Rectangle',
+      options: {
+        text: 'You can write text in the center of the rectangle',
+        width: 100,
+        height: 5,
+        x: 10,
+        y: 50,
+        background: 'blue',
+        foreground: 'white'
+      }
+    }],
+    animations: [{
+      name: 'Slide In',
+      type: 'Slide',
+      options: {
+        direction: 'outRight'
+      }
+    }],
+    flow: [
+      'Desc 1(Slide In)',
+      'Desc 2(Slide In)'
+    ]
+  }])
   .run();
