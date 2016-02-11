@@ -1,6 +1,6 @@
 "use strict";
 
-const cursor = require('kittik-cursor').create().resetTTY();
+const Deck = require('../../lib/Deck');
 const SLIDES = [
   require('./slides/slide-1'),
   require('./slides/slide-2'),
@@ -11,9 +11,4 @@ const SLIDES = [
   require('./slides/slide-7')
 ];
 
-const Deck = require('../../lib/Deck');
-const Slide = require('../../lib/Slide');
-
-//Deck.create({slides: SLIDES}).run();
-Slide.create(SLIDES[2]).render(cursor);
-cursor.flush();
+Deck.create({slides: SLIDES}).run();
