@@ -14,12 +14,12 @@ export default class Deck {
   /**
    * Creates presentation instance with slides.
    *
-   * @param {Array<Array<Object>>} slides
+   * @param {Array<Array<Object>>} declaration
    */
-  constructor(slides) {
+  constructor(declaration) {
     this._cursor = Cursor.create().resetTTY().hideCursor();
     this._currentSlideIndex = 0;
-    this._slides = slides.map(slide => Slide.create(slide));
+    this._slides = declaration.slides.map(slide => Slide.create(slide));
 
     keypress(process.stdin);
     process.stdin.setRawMode(true);
