@@ -31,7 +31,7 @@ export default class Slide {
     this._currentIndex = 0;
     this._shapes = this._parseShapes(shapes);
     this._animations = this._parseAnimations(animations);
-    this._order = order.map(item => this._parseOrder(item));
+    this._order = this._parseOrder(order);
   }
 
   /**
@@ -42,7 +42,10 @@ export default class Slide {
    * @private
    */
   _parseShapes(shapes) {
-    return shapes.reduce((obj, shape) => (obj[shape.name] = SHAPES[shape.type].fromObject(shape)) && obj, {});
+    return shapes.reduce((obj, shape) => {
+      obj[shape.name] = SHAPES[shape.type].fromObject(shape);
+      return obj;
+    }, {});
   }
 
   /**
@@ -53,7 +56,10 @@ export default class Slide {
    * @private
    */
   _parseAnimations(animations) {
-    return animations.reduce((obj, animation) => (obj[animation.name] = ANIMATIONS[animation.type].fromObject(animation)) && obj, {});
+    return animations.reduce((obj, animation) => {
+      obj[animation.name] = ANIMATIONS[animation.type].fromObject(animation);
+      return obj;
+    }, {});
   }
 
   /**
@@ -64,11 +70,66 @@ export default class Slide {
    * @private
    */
   _parseOrder(order) {
-    const parsed = order.split('::');
-    const shape = parsed[0];
-    const animations = (parsed[1] && parsed[1].split('->')) || undefined;
+    return order.map(item => {
+      const parsed = item.split('::');
+      const shape = parsed[0];
+      const animations = (parsed[1] && parsed[1].split('->')) || undefined;
 
-    return {shape, animations};
+      return {shape, animations};
+    });
+  }
+
+  /**
+   * Switch current Slide state to the next shape.
+   *
+   * @returns {Slide}
+   */
+  nextShape() {
+    if (this._currentIndex + 1 > this._order.length - 1) return this;
+
+    this._currentIndex++;
+    return this;
+  }
+
+  /**
+   * Switch current Slide state to the previous shape.
+   *
+   * @returns {Slide}
+   */
+  prevShape() {
+    if (this._currentIndex - 1 < 0) return this;
+
+    this._currentIndex--;
+    return this;
+  }
+
+  /**
+   * Get current shape for rendering.
+   *
+   * @returns {Shape}
+   */
+  getCurrentShape() {
+    return this._shapes[this._order[this._currentIndex].shape];
+  }
+
+  /**
+   * Get an array of animations that must be played along with the current shape.
+   *
+   * @returns {Array}
+   */
+  getCurrentAnimations() {
+    return this._order[this._currentIndex].animations.map(animation => this._animations[animation]);
+  }
+
+  /**
+   * Iterate through all shapes in the slide.
+   *
+   * @param {Function} fn
+   * @returns {Slide}
+   */
+  forEachShape(fn) {
+    Object.keys(this._shapes).forEach(key => fn(this._shapes[key]));
+    return this;
   }
 
   /**
@@ -89,18 +150,31 @@ export default class Slide {
    * @returns {Promise} Promise will be fulfilled when slide has rendered
    */
   render(cursor) {
-    const shape = this._shapes[this._order[this._currentIndex].shape];
-    const animations = this._animations[this._order[this._currentIndex].animations];
+    this.forEachShape(shape => shape.render(cursor));
+    cursor.flush();
+    return this;
+  }
 
-    this.forEachRenderedShape(shape => shape.render(cursor));
+  /**
+   * Serialize Slide state to Object representation.
+   *
+   * @returns {Object}
+   */
+  toObject() {
+    return {
+      shapes: this._shapes.map(shape => shape.toObject()),
+      animations: this._animations.map(animation => animation.toObject()),
+      order: this._order.map(order => `${order.shape}::${order.animations.join('->')}`)
+    }
+  }
 
-    return new Promise(resolve => {
-      if (animations) return animations.animate(shape, cursor).then(resolve);
-
-      shape.render(cursor);
-
-      return resolve();
-    });
+  /**
+   * Serialize Slide state to JSON representation.
+   *
+   * @returns {JSON}
+   */
+  toJSON() {
+    return JSON.stringify(this.toObject());
   }
 
   /**
@@ -112,5 +186,25 @@ export default class Slide {
    */
   static create(...args) {
     return new this(...args);
+  }
+
+  /**
+   * Create Slide instance from Object representation.
+   *
+   * @param {Object} obj
+   * @returns {Slide}
+   */
+  static fromObject(obj) {
+    return this.create({shapes: obj.shapes, animations: obj.animations, order: obj.order});
+  }
+
+  /**
+   * Create Slide instance from JSON representation.
+   *
+   * @param {JSON} json
+   * @returns {Slide}
+   */
+  static fromJSON(json) {
+    return this.fromObject(JSON.parse(json));
   }
 }
