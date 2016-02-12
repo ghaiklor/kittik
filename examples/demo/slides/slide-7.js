@@ -15,10 +15,10 @@ module.exports = {
       direction: 'shakeX',
       offset: 10,
       repeat: 5,
-      duration: 3000
+      duration: 2000
     }
   }],
   order: [
-    'Shape 1::Shake->Shake'
+    'Shape 1::Shake'
   ]
 };

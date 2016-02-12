@@ -1,14 +1,15 @@
 module.exports = {
   shapes: [{
-    name: 'Shape 1',
-    type: 'Text',
+    name: 'End',
+    type: 'FigText',
     options: {
-      text: 'What can I do?',
+      text: 'The End',
+      font: 'Star Wars',
       x: 'center',
       y: 'middle'
     }
   }],
   order: [
-    'Shape 1'
+    'End'
   ]
 };

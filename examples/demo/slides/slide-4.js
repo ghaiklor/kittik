@@ -1,30 +1,36 @@
 module.exports = {
   shapes: [{
-    name: 'Print Effect',
+    name: 'Text Shape',
     type: 'Text',
     options: {
-      text: 'I can simulate typing!!!',
+      text: 'Simple text',
       x: 'center',
-      y: 'middle'
+      y: 2
     }
   }, {
-    name: 'Print Effect 2',
-    type: 'Text',
+    name: 'Rectangle Shape',
+    type: 'Rectangle',
     options: {
-      text: 'I can do it sequentially',
+      text: 'You can render rectangle',
       x: 'center',
-      y: 'bottom'
+      y: 4,
+      width: '90%',
+      height: 1,
+      background: 'black',
+      foreground: 'white'
     }
-  }],
-  animations: [{
-    name: 'Print',
-    type: 'Print',
+  }, {
+    name: 'Fig Text',
+    type: 'FigText',
     options: {
-      duration: 2000
+      text: 'ASCII ART',
+      x: 'center',
+      y: 6
     }
   }],
   order: [
-    'Print Effect::Print',
-    'Print Effect 2::Print'
+    'Text Shape',
+    'Rectangle Shape',
+    'Fig Text'
   ]
 };

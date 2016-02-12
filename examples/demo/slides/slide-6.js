@@ -3,19 +3,19 @@ module.exports = {
     name: 'Shape 1',
     type: 'Rectangle',
     options: {
-      text: 'And... slide out',
+      text: 'I can slide in...',
       x: 'center',
       y: 'middle'
     }
   }],
   animations: [{
-    name: 'Slide Out',
+    name: 'Slide In',
     type: 'Slide',
     options: {
-      direction: 'outRight'
+      direction: 'inLeft'
     }
   }],
   order: [
-    'Shape 1::Slide Out'
+    'Shape 1::Slide In'
   ]
 };

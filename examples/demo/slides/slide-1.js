@@ -4,6 +4,7 @@ module.exports = {
     type: 'FigText',
     options: {
       text: 'Kittik',
+      font: 'Star Wars',
       x: 'center',
       y: 'middle'
     }

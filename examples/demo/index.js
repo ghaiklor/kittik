@@ -8,7 +8,9 @@ const SLIDES = [
   require('./slides/slide-4'),
   require('./slides/slide-5'),
   require('./slides/slide-6'),
-  require('./slides/slide-7')
+  require('./slides/slide-7'),
+  require('./slides/slide-8'),
+  require('./slides/slide-9')
 ];
 
 Deck.create({slides: SLIDES}).run();

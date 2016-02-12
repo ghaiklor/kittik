@@ -1,18 +1,11 @@
 module.exports = {
   shapes: [{
     name: 'Shape 1',
-    type: 'Rectangle',
+    type: 'Text',
     options: {
-      text: 'I can slide in...',
+      text: 'What else?',
       x: 'center',
       y: 'middle'
-    }
-  }],
-  animations: [{
-    name: 'Slide In',
-    type: 'Slide',
-    options: {
-      direction: 'inLeft'
     }
   }],
   order: [

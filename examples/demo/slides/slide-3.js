@@ -1,45 +1,15 @@
 module.exports = {
   shapes: [{
-    name: 'Text Shape',
+    name: 'Shape 1',
     type: 'Text',
     options: {
-      text: 'You can render simple text',
+      text: '- Render a Text shape\n- Render a Rectangle shape\n- Render an ASCII art',
+      align: 'center',
       x: 'center',
-      y: 2
-    }
-  }, {
-    name: 'Rectangle Shape',
-    type: 'Rectangle',
-    options: {
-      text: 'You can render rectangle',
-      x: 'center',
-      y: 4,
-      width: '90%',
-      height: 5,
-      background: 'black',
-      foreground: 'white'
-    }
-  }, {
-    name: 'Fig Text',
-    type: 'FigText',
-    options: {
-      text: 'ASCII ART',
-      x: 'center',
-      y: 10
-    }
-  }, {
-    name: 'Image Shape',
-    type: 'Image',
-    options: {
-      image: './examples/demo/images/kittik.png',
-      x: 'center',
-      y: 20
+      y: 'middle'
     }
   }],
   order: [
-    'Text Shape',
-    'Rectangle Shape',
-    'Fig Text',
-    'Image Shape'
+    'Shape 1'
   ]
 };
