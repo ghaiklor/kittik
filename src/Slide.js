@@ -28,118 +28,22 @@ export default class Slide {
   constructor(declaration = {}) {
     const {shapes = [], animations = [], order = []} = declaration;
 
-    this._currentIndex = 0;
-    this._shapes = this._parseShapes(shapes);
-    this._animations = this._parseAnimations(animations);
-    this._order = this._parseOrder(order);
+    this._shapes = Slide.parseShapes(shapes);
+    this._animations = Slide.parseAnimations(animations);
+    this._order = Slide.parseOrder(order);
   }
 
-  /**
-   * Parse shapes array and return object with references to the shapes.
-   *
-   * @param {Array} shapes Array of shapes
-   * @returns {Object}
-   * @private
-   */
-  _parseShapes(shapes) {
-    return shapes.reduce((obj, shape) => {
-      obj[shape.name] = SHAPES[shape.type].fromObject(shape);
-      return obj;
-    }, {});
-  }
-
-  /**
-   * Parse animations and return object with references to the animations.
-   *
-   * @param {Array} animations Array of animations
-   * @returns {Object}
-   * @private
-   */
-  _parseAnimations(animations) {
-    return animations.reduce((obj, animation) => {
-      obj[animation.name] = ANIMATIONS[animation.type].fromObject(animation);
-      return obj;
-    }, {});
-  }
-
-  /**
-   * Parse array with order settings and return array with shape reference and its animations references.
-   *
-   * @param {Array} order
-   * @returns {{shape: *, animations: (Array|*)}}
-   * @private
-   */
-  _parseOrder(order) {
-    return order.map(item => {
-      const parsed = item.split('::');
-      const shape = parsed[0];
-      const animations = (parsed[1] && parsed[1].split('->')) || undefined;
-
-      return {shape, animations};
-    });
-  }
-
-  /**
-   * Switch current Slide state to the next shape.
-   *
-   * @returns {Slide}
-   */
-  nextShape() {
-    if (this._currentIndex + 1 > this._order.length - 1) return this;
-
-    this._currentIndex++;
+  renderShape(shape, cursor) {
+    cursor.resetCursor();
+    shape.render(cursor);
+    cursor.flush();
     return this;
   }
 
-  /**
-   * Switch current Slide state to the previous shape.
-   *
-   * @returns {Slide}
-   */
-  prevShape() {
-    if (this._currentIndex - 1 < 0) return this;
-
-    this._currentIndex--;
-    return this;
-  }
-
-  /**
-   * Get current shape for rendering.
-   *
-   * @returns {Shape}
-   */
-  getCurrentShape() {
-    return this._shapes[this._order[this._currentIndex].shape];
-  }
-
-  /**
-   * Get an array of animations that must be played along with the current shape.
-   *
-   * @returns {Array}
-   */
-  getCurrentAnimations() {
-    return this._order[this._currentIndex].animations.map(animation => this._animations[animation]);
-  }
-
-  /**
-   * Iterate through all shapes in the slide.
-   *
-   * @param {Function} fn
-   * @returns {Slide}
-   */
-  forEachShape(fn) {
-    Object.keys(this._shapes).forEach(key => fn(this._shapes[key]));
-    return this;
-  }
-
-  /**
-   * Iterate through all previously rendered shapes.
-   *
-   * @param {Function} fn
-   * @returns {Slide}
-   */
-  forEachRenderedShape(fn) {
-    this._order.slice(0, this._currentIndex).map(item => this._shapes[item.shape]).forEach(fn);
+  renderShapes(shapes, cursor) {
+    cursor.eraseScreen().resetCursor();
+    shapes.map(shape => this.renderShape(shape, cursor));
+    cursor.flush();
     return this;
   }
 
@@ -150,9 +54,25 @@ export default class Slide {
    * @returns {Promise} Promise will be fulfilled when slide has rendered
    */
   render(cursor) {
-    this.forEachShape(shape => shape.render(cursor));
-    cursor.flush();
-    return this;
+    const renderShape = (shape, cursor) => () => this.renderShape(shape, cursor);
+    const renderShapes = (shapes, cursor) => () => this.renderShapes(shapes, cursor);
+    const animateShape = (shape, animation, cursor) => () => animation.animate(shape, cursor);
+    const promises = [];
+
+    for (let i = 0; i < this._order.length; i++) {
+      const shape = this._shapes[this._order[i].shape];
+      const renderedShapes = this._order.slice(0, i).map(order => this._shapes[order.shape]);
+      const animations = (this._order[i].animations || []).map(item => this._animations[item]);
+
+      animations.forEach(animation => {
+        animation.on('tick', shape => this.renderShapes(renderedShapes, cursor) && this.renderShape(shape, cursor));
+        promises.push(animateShape(shape, animation, cursor));
+      });
+
+      promises.push(renderShapes(renderedShapes.concat([shape]), cursor));
+    }
+
+    return promises.reduce((promise, i) => promise.then(i), Promise.resolve());
   }
 
   /**
@@ -175,6 +95,45 @@ export default class Slide {
    */
   toJSON() {
     return JSON.stringify(this.toObject());
+  }
+
+  /**
+   * Parse shapes array and return object with references to the shapes.
+   *
+   * @static
+   * @param {Array<Object>} shapes Array of shapes declaration
+   * @returns {Object} Returns Object with created Shape instances
+   */
+  static parseShapes(shapes) {
+    return shapes.reduce((obj, shape) => (obj[shape.name] = SHAPES[shape.type].fromObject(shape)) && obj, {});
+  }
+
+  /**
+   * Parse animations array and return object with references to the animations.
+   *
+   * @param {Array<Object>} animations Array of animations declaration
+   * @returns {Object}
+   * @static
+   */
+  static parseAnimations(animations) {
+    return animations.reduce((obj, animation) => (obj[animation.name] = ANIMATIONS[animation.type].fromObject(animation)) && obj, {});
+  }
+
+  /**
+   * Parse array with order settings and return array with shape reference and its animations references.
+   *
+   * @param {Array<String>} order
+   * @returns {Array<Object>}
+   * @static
+   */
+  static parseOrder(order) {
+    return order.map(item => {
+      const parsed = item.split('::');
+      const shape = parsed[0];
+      const animations = parsed[1] && parsed[1].split('->');
+
+      return {shape, animations};
+    });
   }
 
   /**
