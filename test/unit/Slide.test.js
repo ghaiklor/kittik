@@ -27,6 +27,18 @@ describe('kittik::Slide', () => {
     });
   });
 
+  it('Should properly parse shapes', () => {
+    const shapes = [{name: 'Shape', type: 'Text', options: {}}];
+    assert.instanceOf(Slide.parseShapes(shapes), Object);
+    assert.instanceOf(Slide.parseShapes(shapes)['Shape'], Object);
+  });
+
+  it('Should properly parse animations', () => {
+    const animations = [{name: 'Anim', type: 'Print', options: {}}];
+    assert.instanceOf(Slide.parseAnimations(animations), Object);
+    assert.instanceOf(Slide.parseAnimations(animations)['Anim'], Object);
+  });
+
   it('Should properly parse order', () => {
     assert.deepEqual(Slide.parseOrder(['Shape 1::Anim 1']), [{shape: 'Shape 1', animations: ['Anim 1']}]);
   });
