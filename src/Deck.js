@@ -17,7 +17,7 @@ export default class Deck {
    * @param {Array<Array<Object>>} declaration
    */
   constructor(declaration) {
-    this._cursor = Cursor.create().resetTTY().hideCursor();
+    this._cursor = Cursor.create().resetTTY().hideCursor().flush();
     this._currentSlideIndex = 0;
     this._slides = declaration.slides.map(slide => Slide.create(slide));
 
@@ -47,7 +47,7 @@ export default class Deck {
   renderSlide(index = this._currentSlideIndex) {
     if (!this._slides[index]) return this;
 
-    this._cursor.resetTTY().hideCursor();
+    this._cursor.resetTTY().hideCursor().flush();
     this._slides[index].render(this._cursor);
 
     return this;
@@ -81,8 +81,8 @@ export default class Deck {
    * Closes the presentation and returns to terminal.
    */
   exit() {
-    this._cursor.resetTTY().showCursor();
-    setTimeout(process.exit, 500);
+    this._cursor.resetTTY().showCursor().flush();
+    process.exit(0);
   }
 
   /**
