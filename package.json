@@ -28,7 +28,7 @@
     "kittik-cursor": "4.0.0",
     "kittik-shape-fig-text": "1.2.4",
     "kittik-shape-image": "1.1.4",
-    "kittik-shape-rectangle": "1.1.5",
+    "kittik-shape-rectangle": "2.0.0",
     "kittik-shape-text": "1.3.2"
   },
   "devDependencies": {
