@@ -1,6 +1,5 @@
 import keypress from 'keypress';
 import Cursor from 'kittik-cursor';
-import Print from 'kittik-animation-print';
 import Slide from './Slide';
 
 /**
@@ -17,9 +16,9 @@ export default class Deck {
    * @param {Array<Array<Object>>} declaration
    */
   constructor(declaration) {
-    this._cursor = Cursor.create().resetTTY().hideCursor().flush();
+    this._cursor = Cursor.create().reset().hideCursor();
     this._currentSlideIndex = 0;
-    this._slides = declaration.slides.map(slide => Slide.create(slide));
+    this._slides = declaration.slides.map(slide => Slide.create(this._cursor, slide));
 
     keypress(process.stdin);
     process.stdin.setRawMode(true);
@@ -31,7 +30,7 @@ export default class Deck {
   /**
    * Run the presentation.
    *
-   * @returns {Presentation}
+   * @returns {Deck}
    */
   run() {
     this.renderSlide();
@@ -42,13 +41,13 @@ export default class Deck {
    * Renders specified slide.
    *
    * @param {Number} [index] Slide index in presentation
-   * @returns {Presentation}
+   * @returns {Deck}
    */
   renderSlide(index = this._currentSlideIndex) {
     if (!this._slides[index]) return this;
 
-    this._cursor.resetTTY().hideCursor().flush();
-    this._slides[index].render(this._cursor);
+    this._cursor.reset().hideCursor();
+    this._slides[index].render();
 
     return this;
   }
@@ -56,7 +55,7 @@ export default class Deck {
   /**
    * Renders the next slide.
    *
-   * @returns {Presentation}
+   * @returns {Deck}
    */
   nextSlide() {
     if (this._currentSlideIndex + 1 > this._slides.length - 1) return this;
@@ -68,7 +67,7 @@ export default class Deck {
   /**
    * Renders the previous slide.
    *
-   * @returns {Presentation}
+   * @returns {Deck}
    */
   prevSlide() {
     if (this._currentSlideIndex - 1 < 0) return this;
@@ -81,7 +80,7 @@ export default class Deck {
    * Closes the presentation and returns to terminal.
    */
   exit() {
-    this._cursor.resetTTY().showCursor().flush();
+    this._cursor.reset().showCursor();
     process.exit(0);
   }
 
@@ -104,7 +103,7 @@ export default class Deck {
    * Wrapper around `new Presentation()`.
    *
    * @param {*} args
-   * @returns {Presentation}
+   * @returns {Deck}
    */
   static create(...args) {
     return new this(...args);

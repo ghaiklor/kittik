@@ -19,29 +19,30 @@ export default class Slide {
   /**
    * Creates new Slide instance.
    *
+   * @param {Cursor} cursor Cursor instance
    * @param {Object} [declaration]
    * @param {Array<Object>} [declaration.shapes] Array of shapes to render
    * @param {Array<Object>} [declaration.animations] Array of animations to create in this slide
    * @param {Array<String>} [declaration.order] Order for rendering shapes for this slide
    * @constructor
    */
-  constructor(declaration = {}) {
+  constructor(cursor, declaration = {}) {
     const {shapes = [], animations = [], order = []} = declaration;
 
+    this._cursor = cursor;
     this._shapes = Slide.parseShapes(shapes);
     this._animations = Slide.parseAnimations(animations);
     this._order = Slide.parseOrder(order);
   }
 
   renderShape(shape, cursor) {
-    cursor.resetCursor();
-    shape.render(cursor);
+    shape.setCursor(cursor).render();
     cursor.flush();
     return this;
   }
 
   renderShapes(shapes, cursor) {
-    cursor.eraseScreen().resetCursor();
+    cursor.eraseScreen();
     shapes.map(shape => this.renderShape(shape, cursor));
     cursor.flush();
     return this;
