@@ -35,7 +35,7 @@ const cursor = Cursor.create();
 cursor.reset().moveTo(10, 10).write('Hello, World').flush();
 ```
 
-## Change process.stdout to other writable stream
+## Additional parameters
 
 You can pass additional parameters to the cursor: `stream`, `width` and `height`.
 
@@ -116,3 +116,7 @@ After some time, you decide to flush changes. When flush() method is called it d
 That's how I made it possible to render videos in the terminal at 30 FPS.
 
 BTW, if I remove Throttle stream, I'm getting 120 FPS :smiley:
+
+## API
+
+API declaration you can find [here](./API.md#Cursor).
