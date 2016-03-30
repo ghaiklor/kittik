@@ -30,7 +30,7 @@
     "kittik-shape-fig-text": "2.0.0",
     "kittik-shape-image": "2.0.0",
     "kittik-shape-rectangle": "2.0.0",
-    "kittik-shape-text": "2.0.0"
+    "kittik-shape-text": "2.1.0"
   },
   "devDependencies": {
     "babel-cli": "6.6.5",
