@@ -29,7 +29,7 @@
     "kittik-cursor": "4.1.0",
     "kittik-shape-fig-text": "2.0.0",
     "kittik-shape-image": "2.0.0",
-    "kittik-shape-rectangle": "2.0.0",
+    "kittik-shape-rectangle": "2.1.0",
     "kittik-shape-text": "2.0.0"
   },
   "devDependencies": {
