@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "keypress": "0.2.1",
-    "kittik-animation-focus": "2.0.0",
+    "kittik-animation-focus": "2.1.0",
     "kittik-animation-print": "3.0.0",
     "kittik-animation-slide": "2.1.0",
     "kittik-cursor": "4.1.0",
