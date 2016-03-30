@@ -2,14 +2,13 @@
 
 <dl>
 <dt><a href="#Cell">Cell</a></dt>
-<dd><p>Wrapper around one cell in the terminal.
-Used for filling terminal wrapper in the cursor.</p>
+<dd><p>Cell responsible for mapping separate cells in the real terminal to the virtual one.</p>
 </dd>
 <dt><a href="#Color">Color</a></dt>
 <dd><p>Color class responsible for converting colors between rgb and hex.</p>
 </dd>
 <dt><a href="#Cursor">Cursor</a></dt>
-<dd><p>Cursor implements low-level API to terminal control codes.</p>
+<dd><p>Cursor implements low-level API to terminal cursor.</p>
 </dd>
 </dl>
 
@@ -20,19 +19,18 @@ Used for filling terminal wrapper in the cursor.</p>
 <dd><p>Dictionary of colors which can be used for instantiating the <a href="#Color">Color</a> instance.</p>
 </dd>
 <dt><a href="#DISPLAY_MODES">DISPLAY_MODES</a> : <code>Object</code></dt>
-<dd><p>Map of the display modes that can be used in Cursor API.
+<dd><p>Dictionary of the display modes and VT100 control sequences.
 There are the most commonly supported control sequences for formatting text and their resetting.</p>
 </dd>
 <dt><a href="#encodeToVT100">encodeToVT100</a> ⇒ <code>String</code></dt>
-<dd><p>Bytes to encode to VT100 control sequence.</p>
+<dd><p>Encode control sequence to VT100 compatible control sequence.</p>
 </dd>
 </dl>
 
 <a name="Cell"></a>
 
 ## Cell
-Wrapper around one cell in the terminal.
-Used for filling terminal wrapper in the cursor.
+Cell responsible for mapping separate cells in the real terminal to the virtual one.
 
 **Kind**: global class  
 **Since**: 3.1.0  
@@ -67,7 +65,7 @@ Create Cell instance which are able to convert itself to ASCII control sequence.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| [char] | <code>String</code> | Char that you want to wrap with control sequence |
+| [char] | <code>String</code> | Char that you want to wrap with control sequences |
 | [options] | <code>Object</code> | Options object where you can set additional style to char |
 | [options.x] | <code>Number</code> | X coordinate |
 | [options.y] | <code>Number</code> | Y coordinate |
@@ -101,9 +99,9 @@ If char is longer than 1 char, it slices string to 1 char.
 
 **Kind**: instance method of <code>[Cell](#Cell)</code>  
 
-| Param | Type |
-| --- | --- |
-| [char] | <code>String</code> | 
+| Param | Type | Default |
+| --- | --- | --- |
+| [char] | <code>String</code> | <code>&#x27; &#x27;</code> | 
 
 <a name="Cell+getX"></a>
 
@@ -203,7 +201,6 @@ Set new display modes to cell.
 
 ### cell.setModified([isModified]) ⇒ <code>[Cell](#Cell)</code>
 Mark cell as modified or not.
-It useful when you need to filter out only modified cells without building the diff.
 
 **Kind**: instance method of <code>[Cell](#Cell)</code>  
 
@@ -227,8 +224,7 @@ It resets char, background, foreground and display mode.
 <a name="Cell+toString"></a>
 
 ### cell.toString() ⇒ <code>String</code>
-Convert cell to ASCII control sequence.
-Disables flag which marks cell as modified.
+Convert cell to VT100 compatible control sequence.
 
 **Kind**: instance method of <code>[Cell](#Cell)</code>  
 <a name="Cell.create"></a>
@@ -269,15 +265,15 @@ Color class responsible for converting colors between rgb and hex.
 ### new Color(color)
 Create new Color instance.
 You can use different formats of color: named, rgb or hex.
-Class will try to parse your provided color, otherwise throws an error.
+[Color](#Color) will try to parse your provided color, otherwise throws an error.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | color | <code>String</code> &#124; <code>Object</code> | String with named color, rgb, hex or object with {r, g, b} properties |
-| color.r | <code>Number</code> | Red channel |
-| color.g | <code>Number</code> | Green channel |
-| color.b | <code>Number</code> | Blue channel |
+| [color.r] | <code>Number</code> | Red channel |
+| [color.g] | <code>Number</code> | Green channel |
+| [color.b] | <code>Number</code> | Blue channel |
 
 **Example**  
 ```js
@@ -363,7 +359,7 @@ Check if provided color is named color.
 <a name="Color.isRgb"></a>
 
 ### Color.isRgb(rgb) ⇒ <code>Boolean</code>
-Check if provided color written in RGB representation.
+Check if provided color is written in RGB representation.
 
 **Kind**: static method of <code>[Color](#Color)</code>  
 
@@ -374,7 +370,7 @@ Check if provided color written in RGB representation.
 <a name="Color.isHex"></a>
 
 ### Color.isHex(hex) ⇒ <code>Boolean</code>
-Check if provided color written in HEX representation.
+Check if provided color is written in HEX representation.
 
 **Kind**: static method of <code>[Color](#Color)</code>  
 
@@ -413,7 +409,7 @@ Wrapper around `new Color()`.
 <a name="Cursor"></a>
 
 ## Cursor
-Cursor implements low-level API to terminal control codes.
+Cursor implements low-level API to terminal cursor.
 
 **Kind**: global class  
 **See**
@@ -477,6 +473,17 @@ Also, you can specify custom width and height of viewport where cursor will rend
 | [options.width] | <code>Number</code> | <code>stream.columns</code> | Number of columns (width) |
 | [options.height] | <code>Number</code> | <code>stream.rows</code> | Number of rows (height) |
 
+**Example**  
+```js
+new Cursor(); // creates cursor with viewport in process.stdout
+
+// creates cursor with file as a target source and custom sizes of the viewport
+new Cursor({
+  stream: fs.createWriteStream('./test'),
+  width: 60,
+  height: 20
+});
+```
 <a name="Cursor+write"></a>
 
 ### cursor.write(data) ⇒ <code>[Cursor](#Cursor)</code>
@@ -490,17 +497,30 @@ For applying changes you need to [flush](flush) changes.
 | --- | --- | --- |
 | data | <code>String</code> | Data to write to the terminal |
 
+**Example**  
+```js
+cursor.write('Hello, World'); // write Hello, World at current position of the cursor
+cursor.flush(); // apply changes to the real terminal
+```
 <a name="Cursor+flush"></a>
 
 ### cursor.flush() ⇒ <code>[Cursor](#Cursor)</code>
 Takes only modified cells from virtual terminal and flush changes to the real terminal.
-There is no requirements to build diff or something, we have the markers for each cell that has been modified.
+Before flush the changes, it checks if this modified cell was actually changed.
+If so, writes to the stream, otherwise ignore this cell.
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.moveTo(10, 10); // Make some changes
+cursor.write('Hello'); // One more change
+cursor.write('World'); // The last one
+cursor.flush(); // When changes is ready, call flush()
+```
 <a name="Cursor+getPointerFromXY"></a>
 
 ### cursor.getPointerFromXY([x], [y]) ⇒ <code>Number</code>
-Get index of the virtual terminal representation from (x, y) coordinates.
+Get index in the virtual terminal representation from (x, y) coordinates.
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
 **Returns**: <code>Number</code> - Returns index in the buffer array  
@@ -510,18 +530,28 @@ Get index of the virtual terminal representation from (x, y) coordinates.
 | [x] | <code>Number</code> | X coordinate on the terminal |
 | [y] | <code>Number</code> | Y coordinate on the terminal |
 
+**Example**  
+```js
+cursor.getPointerFromXY(0, 0); // returns 0
+cursor.getPointerFromXY(10, 0); // returns 10
+```
 <a name="Cursor+getXYFromPointer"></a>
 
 ### cursor.getXYFromPointer(index) ⇒ <code>Array</code>
-Get (x, y) coordinate from the virtual terminal pointer.
+Get (x, y) coordinate from the index in the virtual terminal representation.
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
 **Returns**: <code>Array</code> - Returns an array [x, y]  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| index | <code>Number</code> | Index in the buffer |
+| index | <code>Number</code> | Index in the buffer which represents terminal |
 
+**Example**  
+```js
+const [x, y] = cursor.getXYFromPointer(0); // returns [0, 0]
+const [x, y] = cursor.getXYFromPointer(10); // returns [10, 0]
+```
 <a name="Cursor+up"></a>
 
 ### cursor.up([y]) ⇒ <code>[Cursor](#Cursor)</code>
@@ -533,6 +563,11 @@ Move the cursor up.
 | --- | --- | --- |
 | [y] | <code>Number</code> | <code>1</code> | 
 
+**Example**  
+```js
+cursor.up(); // move cursor up by 1 cell
+cursor.up(5); // move cursor up by 5 cells
+```
 <a name="Cursor+down"></a>
 
 ### cursor.down([y]) ⇒ <code>[Cursor](#Cursor)</code>
@@ -544,6 +579,11 @@ Move the cursor down.
 | --- | --- | --- |
 | [y] | <code>Number</code> | <code>1</code> | 
 
+**Example**  
+```js
+cursor.down(); // move cursor down by 1 cell
+cursor.down(5); // move cursor down by 5 cells
+```
 <a name="Cursor+right"></a>
 
 ### cursor.right([x]) ⇒ <code>[Cursor](#Cursor)</code>
@@ -555,6 +595,11 @@ Move the cursor right.
 | --- | --- | --- |
 | [x] | <code>Number</code> | <code>1</code> | 
 
+**Example**  
+```js
+cursor.right(); // move cursor right by 1 cell
+cursor.right(5); // move cursor right by 5 cells
+```
 <a name="Cursor+left"></a>
 
 ### cursor.left([x]) ⇒ <code>[Cursor](#Cursor)</code>
@@ -566,6 +611,11 @@ Move the cursor left.
 | --- | --- | --- |
 | [x] | <code>Number</code> | <code>1</code> | 
 
+**Example**  
+```js
+cursor.left(); // move cursor left by 1 cell
+cursor.left(5); // move cursor left by 5 cells
+```
 <a name="Cursor+moveBy"></a>
 
 ### cursor.moveBy(x, y) ⇒ <code>[Cursor](#Cursor)</code>
@@ -578,6 +628,11 @@ Move the cursor position relative current coordinates.
 | x | <code>Number</code> | Offset by X coordinate |
 | y | <code>Number</code> | Offset by Y coordinate |
 
+**Example**  
+```js
+cursor.moveBy(10, 10); // moves cursor down and right by 10 cells
+cursor.moveBy(-10, -10); // moves cursor up and left by 10 cells
+```
 <a name="Cursor+moveTo"></a>
 
 ### cursor.moveTo(x, y) ⇒ <code>[Cursor](#Cursor)</code>
@@ -590,6 +645,10 @@ Set the cursor position by absolute coordinates.
 | x | <code>Number</code> | X coordinate |
 | y | <code>Number</code> | Y coordinate |
 
+**Example**  
+```js
+cursor.moveTo(5, 10); // Move cursor to (5, 10) point in the terminal
+```
 <a name="Cursor+foreground"></a>
 
 ### cursor.foreground(color) ⇒ <code>[Cursor](#Cursor)</code>
@@ -602,6 +661,13 @@ This color is used when text is rendering.
 | --- | --- | --- |
 | color | <code>String</code> &#124; <code>Boolean</code> | Color name or false if you want to disable foreground filling |
 
+**Example**  
+```js
+cursor.foreground('black');
+cursor.foreground('#AABBCC');
+cursor.foreground('rgb(0, 200, 255)');
+cursor.foreground(false); // disables foreground filling
+```
 <a name="Cursor+background"></a>
 
 ### cursor.background(color) ⇒ <code>[Cursor](#Cursor)</code>
@@ -614,6 +680,13 @@ This color is used for filling the whole cell in the TTY.
 | --- | --- | --- |
 | color | <code>String</code> &#124; <code>Boolean</code> | Color name or false if you want to disable background filling |
 
+**Example**  
+```js
+cursor.background('black');
+cursor.background('#AABBCC');
+cursor.background('rgb(0, 200, 255)');
+cursor.background(false); // disables background filling
+```
 <a name="Cursor+bold"></a>
 
 ### cursor.bold([isBold]) ⇒ <code>[Cursor](#Cursor)</code>
@@ -625,6 +698,11 @@ Toggle bold display mode.
 | --- | --- | --- | --- |
 | [isBold] | <code>Boolean</code> | <code>true</code> | If false, disables bold mode |
 
+**Example**  
+```js
+cursor.bold(); // enables bold mode
+cursor.bold(false); // disables bold mode
+```
 <a name="Cursor+dim"></a>
 
 ### cursor.dim([isDim]) ⇒ <code>[Cursor](#Cursor)</code>
@@ -636,6 +714,11 @@ Toggle dim display mode.
 | --- | --- | --- | --- |
 | [isDim] | <code>Boolean</code> | <code>true</code> | If false, disables dim mode |
 
+**Example**  
+```js
+cursor.dim(); // enables dim mode
+cursor.dim(false); // disables dim mode
+```
 <a name="Cursor+underlined"></a>
 
 ### cursor.underlined([isUnderlined]) ⇒ <code>[Cursor](#Cursor)</code>
@@ -647,6 +730,11 @@ Toggle underlined display mode.
 | --- | --- | --- | --- |
 | [isUnderlined] | <code>Boolean</code> | <code>true</code> | If false, disables underlined mode |
 
+**Example**  
+```js
+cursor.underlined(); // enables underlined mode
+cursor.underlined(false); // disables underlined mode
+```
 <a name="Cursor+blink"></a>
 
 ### cursor.blink([isBlink]) ⇒ <code>[Cursor](#Cursor)</code>
@@ -658,6 +746,11 @@ Toggle blink display mode.
 | --- | --- | --- | --- |
 | [isBlink] | <code>Boolean</code> | <code>true</code> | If false, disables blink mode |
 
+**Example**  
+```js
+cursor.blink(); // enables blink mode
+cursor.blink(false); // disables blink mode
+```
 <a name="Cursor+reverse"></a>
 
 ### cursor.reverse([isReverse]) ⇒ <code>[Cursor](#Cursor)</code>
@@ -669,6 +762,11 @@ Toggle reverse display mode.
 | --- | --- | --- | --- |
 | [isReverse] | <code>Boolean</code> | <code>true</code> | If false, disables reverse display mode |
 
+**Example**  
+```js
+cursor.reverse(); // enables reverse mode
+cursor.reverse(false); // disables reverse mode
+```
 <a name="Cursor+hidden"></a>
 
 ### cursor.hidden([isHidden]) ⇒ <code>[Cursor](#Cursor)</code>
@@ -680,6 +778,11 @@ Toggle hidden display mode.
 | --- | --- | --- | --- |
 | [isHidden] | <code>Boolean</code> | <code>true</code> | If false, disables hidden display mode |
 
+**Example**  
+```js
+cursor.hidden(); // enables hidden mode
+cursor.hidden(false); // disables hidden mode
+```
 <a name="Cursor+erase"></a>
 
 ### cursor.erase(x1, y1, x2, y2) ⇒ <code>[Cursor](#Cursor)</code>
@@ -695,42 +798,70 @@ The region describes the rectangle shape which need to erase.
 | x2 | <code>Number</code> | 
 | y2 | <code>Number</code> | 
 
+**Example**  
+```js
+cursor.erase(0, 0, 5, 5); // erase the specified rectangle (0, 0, 5, 5)
+```
 <a name="Cursor+eraseToEnd"></a>
 
 ### cursor.eraseToEnd() ⇒ <code>[Cursor](#Cursor)</code>
 Erase from current position to end of the line.
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.eraseToEnd();
+```
 <a name="Cursor+eraseToStart"></a>
 
 ### cursor.eraseToStart() ⇒ <code>[Cursor](#Cursor)</code>
 Erase from current position to start of the line.
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.eraseToStart();
+```
 <a name="Cursor+eraseToDown"></a>
 
 ### cursor.eraseToDown() ⇒ <code>[Cursor](#Cursor)</code>
 Erase from current line to down.
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.eraseToDown();
+```
 <a name="Cursor+eraseToUp"></a>
 
 ### cursor.eraseToUp() ⇒ <code>[Cursor](#Cursor)</code>
 Erase from current line to up.
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.eraseToUp();
+```
 <a name="Cursor+eraseLine"></a>
 
 ### cursor.eraseLine() ⇒ <code>[Cursor](#Cursor)</code>
 Erase current line.
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.eraseLine();
+```
 <a name="Cursor+eraseScreen"></a>
 
 ### cursor.eraseScreen() ⇒ <code>[Cursor](#Cursor)</code>
 Erase the entire screen.
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.eraseScreen();
+```
 <a name="Cursor+saveScreen"></a>
 
 ### cursor.saveScreen() ⇒ <code>[Cursor](#Cursor)</code>
@@ -738,6 +869,10 @@ Save current terminal contents into the buffer.
 Applies immediately without calling [flush](flush).
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.saveScreen();
+```
 <a name="Cursor+restoreScreen"></a>
 
 ### cursor.restoreScreen() ⇒ <code>[Cursor](#Cursor)</code>
@@ -745,6 +880,10 @@ Restore terminal contents to previously saved via [saveScreen](saveScreen).
 Applies immediately without calling [flush](flush).
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.restoreScreen();
+```
 <a name="Cursor+hideCursor"></a>
 
 ### cursor.hideCursor() ⇒ <code>[Cursor](#Cursor)</code>
@@ -752,6 +891,10 @@ Set the terminal cursor invisible.
 Applies immediately without calling [flush](flush).
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.hideCursor();
+```
 <a name="Cursor+showCursor"></a>
 
 ### cursor.showCursor() ⇒ <code>[Cursor](#Cursor)</code>
@@ -759,6 +902,10 @@ Set the terminal cursor visible.
 Applies immediately without calling [flush](flush).
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.showCursor();
+```
 <a name="Cursor+reset"></a>
 
 ### cursor.reset() ⇒ <code>[Cursor](#Cursor)</code>
@@ -766,6 +913,10 @@ Reset all terminal settings.
 Applies immediately without calling [flush](flush).
 
 **Kind**: instance method of <code>[Cursor](#Cursor)</code>  
+**Example**  
+```js
+cursor.reset();
+```
 <a name="Cursor.create"></a>
 
 ### Cursor.create() ⇒ <code>[Cursor](#Cursor)</code>
@@ -781,19 +932,19 @@ Dictionary of colors which can be used for instantiating the [Color](#Color) ins
 <a name="DISPLAY_MODES"></a>
 
 ## DISPLAY_MODES : <code>Object</code>
-Map of the display modes that can be used in Cursor API.
+Dictionary of the display modes and VT100 control sequences.
 There are the most commonly supported control sequences for formatting text and their resetting.
 
 **Kind**: global constant  
 <a name="encodeToVT100"></a>
 
 ## encodeToVT100 ⇒ <code>String</code>
-Bytes to encode to VT100 control sequence.
+Encode control sequence to VT100 compatible control sequence.
 
 **Kind**: global constant  
 **Returns**: <code>String</code> - Returns encoded string  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| code | <code>String</code> | Control code that you want to encode |
+| code | <code>String</code> | Control sequence that you want to encode |
 

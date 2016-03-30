@@ -5,17 +5,17 @@
 <dd><p>Base class for creating other shapes.
 Each custom shape must extends from this class.</p>
 </dd>
-<dt><a href="#FigText">FigText</a></dt>
-<dd></dd>
-<dt><a href="#Image">Image</a></dt>
+<dt><a href="#FigText">FigText</a> ⇐ <code><a href="#Shape">Shape</a></code></dt>
+<dd><p>Implements ASCII art text via Figlet fonts.</p>
+</dd>
+<dt><a href="#Image">Image</a> ⇐ <code><a href="#Shape">Shape</a></code></dt>
 <dd><p>Implements support for Image drawing in terminal.</p>
 </dd>
-<dt><a href="#Rectangle">Rectangle</a></dt>
+<dt><a href="#Rectangle">Rectangle</a> ⇐ <code><a href="#Shape">Shape</a></code></dt>
 <dd><p>Implements rectangle shape with text support.</p>
 </dd>
-<dt><a href="#Text">Text</a></dt>
-<dd><p>Implements Text shape which is rendering the text at specified point.
-Supports different styles kinda bold, dim, underlined, etc...</p>
+<dt><a href="#Text">Text</a> ⇐ <code><a href="#Shape">Shape</a></code></dt>
+<dd><p>Implements Text shape which renders the text at specified point.</p>
 </dd>
 </dl>
 
@@ -60,18 +60,21 @@ Each custom shape must extends from this class.
 <a name="new_Shape_new"></a>
 
 ### new Shape(cursor, [options])
+Create basic Shape instance.
+This shape renders nothing, but throws an exception that you need to implement this shape in childes.
+
 
 | Param | Type | Description |
 | --- | --- | --- |
 | cursor | <code>Cursor</code> | Cursor instance used for render the shape |
-| [options] | <code>Object</code> |  |
+| [options] | <code>Object</code> | Options object |
 | [options.text] | <code>String</code> | Text that will be rendered in the shape |
 | [options.width] | <code>Number</code> &#124; <code>String</code> | Shape width can be 100 (cells) or 100% |
 | [options.height] | <code>Number</code> &#124; <code>String</code> | Shape height can be 100 (cells) or 100% |
 | [options.x] | <code>Number</code> &#124; <code>String</code> | Absolute coordinate X can be 100 (cells), left, center, right or percents |
 | [options.y] | <code>Number</code> &#124; <code>String</code> | Absolute coordinate Y can be 100 (cells), top, middle, bottom or percents |
-| [options.background] | <code>String</code> | Background color can be color name, rgb or hex |
-| [options.foreground] | <code>String</code> | Foreground color can be color name, rgb or hex |
+| [options.background] | <code>String</code> &#124; <code>Boolean</code> | Background color can be color name, rgb, hex or false it you want to disable |
+| [options.foreground] | <code>String</code> &#124; <code>Boolean</code> | Foreground color can be color name, rgb, hex or false it you want to disable |
 
 **Example**  
 ```js
@@ -95,6 +98,10 @@ Get option value.
 | --- | --- | --- |
 | path | <code>String</code> | Path can be set with dot-notation |
 
+**Example**  
+```js
+shape.get('my.options.object.value');
+```
 <a name="Shape+set"></a>
 
 ### shape.set(path, value) ⇒ <code>[Shape](#Shape)</code>
@@ -107,6 +114,10 @@ Set new option value.
 | path | <code>String</code> | Path can be set with dot-notation |
 | value | <code>\*</code> | Value that need to be written to the options object |
 
+**Example**  
+```js
+shape.set('my.options.object.value', 'value');
+```
 <a name="Shape+getCursor"></a>
 
 ### shape.getCursor() ⇒ <code>Cursor</code>
@@ -158,6 +169,11 @@ Set new shape width.
 | --- | --- | --- | --- |
 | [width] | <code>Number</code> &#124; <code>String</code> | <code>15</code> | Shape width |
 
+**Example**  
+```js
+shape.setWidth(15); // shape width is equal to 15 cells in the terminal
+shape.setWidth('20%'); // shape width is equal to 20% of total viewport width
+```
 <a name="Shape+getHeight"></a>
 
 ### shape.getHeight() ⇒ <code>Number</code>
@@ -175,6 +191,11 @@ Set new shape height.
 | --- | --- | --- | --- |
 | [height] | <code>Number</code> &#124; <code>String</code> | <code>5</code> | Shape height |
 
+**Example**  
+```js
+shape.setHeight(15); // shape height is equal to 15 cells in the terminal
+shape.setHeight('20%'); // shape height is equal to 20% of total viewport height
+```
 <a name="Shape+getX"></a>
 
 ### shape.getX() ⇒ <code>Number</code>
@@ -192,6 +213,14 @@ Set X coordinate.
 | --- | --- | --- |
 | [x] | <code>Number</code> &#124; <code>String</code> | <code>10</code> | 
 
+**Example**  
+```js
+shape.setX(2); // move shape to third cell by X axis
+shape.setX('left'); // align shape to the left
+shape.setX('center'); // align shape in the center
+shape.setX('right'); // align shape to the right
+shape.setX('50%'); // move shape to 50% by X axis
+```
 <a name="Shape+getY"></a>
 
 ### shape.getY() ⇒ <code>Number</code>
@@ -209,6 +238,14 @@ Set Y coordinate.
 | --- | --- | --- |
 | [y] | <code>Number</code> &#124; <code>String</code> | <code>10</code> | 
 
+**Example**  
+```js
+shape.setY(2); // move shape to third cell by Y axis
+shape.setY('top'); // align shape to the top
+shape.setY('middle'); // align shape in the middle
+shape.setY('bottom'); // align shape to the bottom
+shape.setY('50%'); // move shape to 50% by Y axis
+```
 <a name="Shape+getBackground"></a>
 
 ### shape.getBackground() ⇒ <code>String</code> &#124; <code>Boolean</code>
@@ -226,6 +263,13 @@ Set new background color.
 | --- | --- | --- | --- |
 | [background] | <code>String</code> &#124; <code>Boolean</code> | <code>false</code> | Color name, rgb, hex or false if you want to disable background |
 
+**Example**  
+```js
+shape.setBackground('black');
+shape.setBackground('#AABBCC');
+shape.setBackground('rgb(0, 100, 200)');
+shape.setBackground(false);
+```
 <a name="Shape+getForeground"></a>
 
 ### shape.getForeground() ⇒ <code>String</code> &#124; <code>Boolean</code>
@@ -243,6 +287,13 @@ Set new foreground color.
 | --- | --- | --- | --- |
 | [foreground] | <code>String</code> &#124; <code>Boolean</code> | <code>false</code> | Color name, rgb, hex or false if you want to disable foreground |
 
+**Example**  
+```js
+shape.setForeground('black');
+shape.setForeground('#AABBCC');
+shape.setForeground('rgb(0, 100, 200)');
+shape.setForeground(false);
+```
 <a name="Shape+render"></a>
 
 ### *shape.render()*
@@ -251,13 +302,13 @@ Base render method that must be implemented in childes.
 **Kind**: instance abstract method of <code>[Shape](#Shape)</code>  
 **Throws**:
 
-- <code>Error</code> Throws error if method will not be overridden
+- <code>Error</code> Throws error if method is not overridden
 
 <a name="Shape+toObject"></a>
 
 ### shape.toObject() ⇒ <code>Object</code>
 Returns Object representation of the shape.
-This representation consists of all options fields.
+This representation consists of all options fields that you can pass in the constructor.
 
 **Kind**: instance method of <code>[Shape](#Shape)</code>  
 <a name="Shape+toJSON"></a>
@@ -285,6 +336,10 @@ You can ignore cursor param and create only Shape representation.
 Though, you can add cursor in the runtime via [setCursor](setCursor) method.
 
 **Kind**: static method of <code>[Shape](#Shape)</code>  
+**Throws**:
+
+- <code>Error</code> Throws an error if object is not a representation of the shape
+
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -307,13 +362,15 @@ Though, you can add cursor in the runtime via [setCursor](setCursor) method.
 
 <a name="FigText"></a>
 
-## FigText
-**Kind**: global class  
+## FigText ⇐ <code>[Shape](#Shape)</code>
+Implements ASCII art text via Figlet fonts.
 
-* [FigText](#FigText)
+**Kind**: global class  
+**Extends:** <code>[Shape](#Shape)</code>  
+**Since**: 1.0.0  
+
+* [FigText](#FigText) ⇐ <code>[Shape](#Shape)</code>
     * [new FigText(cursor, [options])](#new_FigText_new)
-    * [.getWidth()](#FigText+getWidth) ⇒ <code>Number</code>
-    * [.getHeight()](#FigText+getHeight) ⇒ <code>Number</code>
     * [.getFont()](#FigText+getFont) ⇒ <code>String</code>
     * [.setFont([font])](#FigText+setFont) ⇒ <code>[FigText](#FigText)</code>
     * [.getHorizontalLayout()](#FigText+getHorizontalLayout) ⇒ <code>String</code>
@@ -321,7 +378,26 @@ Though, you can add cursor in the runtime via [setCursor](setCursor) method.
     * [.getVerticalLayout()](#FigText+getVerticalLayout) ⇒ <code>String</code>
     * [.setVerticalLayout([layout])](#FigText+setVerticalLayout) ⇒ <code>[FigText](#FigText)</code>
     * [.render()](#FigText+render) ⇒ <code>[FigText](#FigText)</code>
-    * [.toObject()](#FigText+toObject) ⇒ <code>Object</code> &#124; <code>\*</code>
+    * [.toObject()](#FigText+toObject) ⇒ <code>Object</code>
+    * [.get(path)](#Shape+get) ⇒ <code>\*</code>
+    * [.set(path, value)](#Shape+set) ⇒ <code>[Shape](#Shape)</code>
+    * [.getCursor()](#Shape+getCursor) ⇒ <code>Cursor</code>
+    * [.setCursor(cursor)](#Shape+setCursor) ⇒ <code>[Shape](#Shape)</code>
+    * [.getText()](#Shape+getText) ⇒ <code>String</code>
+    * [.setText([text])](#Shape+setText) ⇒ <code>[Shape](#Shape)</code>
+    * [.getWidth()](#Shape+getWidth) ⇒ <code>Number</code>
+    * [.setWidth([width])](#Shape+setWidth) ⇒ <code>[Shape](#Shape)</code>
+    * [.getHeight()](#Shape+getHeight) ⇒ <code>Number</code>
+    * [.setHeight([height])](#Shape+setHeight) ⇒ <code>[Shape](#Shape)</code>
+    * [.getX()](#Shape+getX) ⇒ <code>Number</code>
+    * [.setX([x])](#Shape+setX) ⇒ <code>[Shape](#Shape)</code>
+    * [.getY()](#Shape+getY) ⇒ <code>Number</code>
+    * [.setY([y])](#Shape+setY) ⇒ <code>[Shape](#Shape)</code>
+    * [.getBackground()](#Shape+getBackground) ⇒ <code>String</code> &#124; <code>Boolean</code>
+    * [.setBackground([background])](#Shape+setBackground) ⇒ <code>[Shape](#Shape)</code>
+    * [.getForeground()](#Shape+getForeground) ⇒ <code>String</code> &#124; <code>Boolean</code>
+    * [.setForeground([foreground])](#Shape+setForeground) ⇒ <code>[Shape](#Shape)</code>
+    * [.toJSON()](#Shape+toJSON) ⇒ <code>JSON</code>
 
 <a name="new_FigText_new"></a>
 
@@ -332,23 +408,22 @@ Create ASCII-art shape.
 | Param | Type | Description |
 | --- | --- | --- |
 | cursor | <code>Cursor</code> | Cursor instance |
-| [options] | <code>Object</code> |  |
-| [options.font] | <code>String</code> |  |
-| [options.horizontalLayout] | <code>String</code> |  |
-| [options.verticalLayout] | <code>String</code> |  |
+| [options] | <code>Object</code> | Options object |
+| [options.font] | <code>String</code> | Figlet font that you want to use |
+| [options.horizontalLayout] | <code>String</code> | A string value that indicates the horizontal layout to use |
+| [options.verticalLayout] | <code>String</code> | A string value that indicates the vertical layout to use |
 
-<a name="FigText+getWidth"></a>
-
-### figText.getWidth() ⇒ <code>Number</code>
-Get actual width of the shape.
-
-**Kind**: instance method of <code>[FigText](#FigText)</code>  
-<a name="FigText+getHeight"></a>
-
-### figText.getHeight() ⇒ <code>Number</code>
-Get actual height of the shape.
-
-**Kind**: instance method of <code>[FigText](#FigText)</code>  
+**Example**  
+```js
+FigText.create(cursor, {
+  text: 'Hello, World',
+  x: 'center',
+  y: 'middle',
+  font: 'Ghost',
+  horizontalLayout: 'full',
+  verticalLayout: 'full'
+});
+```
 <a name="FigText+getFont"></a>
 
 ### figText.getFont() ⇒ <code>String</code>
@@ -364,7 +439,7 @@ Set font that will be used for rendering the text.
 
 | Param | Type | Default |
 | --- | --- | --- |
-| [font] | <code>String</code> | <code>Standard</code> | 
+| [font] | <code>String</code> | <code>&#x27;Standard&#x27;</code> | 
 
 <a name="FigText+getHorizontalLayout"></a>
 
@@ -379,9 +454,9 @@ Set horizontal layout.
 
 **Kind**: instance method of <code>[FigText](#FigText)</code>  
 
-| Param | Type | Default |
-| --- | --- | --- |
-| [layout] | <code>String</code> | <code>default</code> | 
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [layout] | <code>String</code> | <code>&#x27;default&#x27;</code> | Can be default, full or fitted |
 
 <a name="FigText+getVerticalLayout"></a>
 
@@ -396,39 +471,276 @@ Set vertical layout.
 
 **Kind**: instance method of <code>[FigText](#FigText)</code>  
 
-| Param | Type | Default |
-| --- | --- | --- |
-| [layout] | <code>String</code> | <code>default</code> | 
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [layout] | <code>String</code> | <code>&#x27;default&#x27;</code> | Can be default, full or fitted |
 
 <a name="FigText+render"></a>
 
 ### figText.render() ⇒ <code>[FigText](#FigText)</code>
-Render the shape.
+Renders the shape.
 
 **Kind**: instance method of <code>[FigText](#FigText)</code>  
+**Overrides:** <code>[render](#Shape+render)</code>  
 <a name="FigText+toObject"></a>
 
-### figText.toObject() ⇒ <code>Object</code> &#124; <code>\*</code>
+### figText.toObject() ⇒ <code>Object</code>
 Serialize shape to object representation.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+**Overrides:** <code>[toObject](#Shape+toObject)</code>  
+<a name="Shape+get"></a>
+
+### figText.get(path) ⇒ <code>\*</code>
+Get option value.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| path | <code>String</code> | Path can be set with dot-notation |
+
+**Example**  
+```js
+shape.get('my.options.object.value');
+```
+<a name="Shape+set"></a>
+
+### figText.set(path, value) ⇒ <code>[Shape](#Shape)</code>
+Set new option value.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| path | <code>String</code> | Path can be set with dot-notation |
+| value | <code>\*</code> | Value that need to be written to the options object |
+
+**Example**  
+```js
+shape.set('my.options.object.value', 'value');
+```
+<a name="Shape+getCursor"></a>
+
+### figText.getCursor() ⇒ <code>Cursor</code>
+Get cursor that used for render this shape.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+<a name="Shape+setCursor"></a>
+
+### figText.setCursor(cursor) ⇒ <code>[Shape](#Shape)</code>
+Assign cursor to the shape which will be used for render this shape.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+
+| Param | Type |
+| --- | --- |
+| cursor | <code>Cursor</code> | 
+
+<a name="Shape+getText"></a>
+
+### figText.getText() ⇒ <code>String</code>
+Get text content from this shape.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+<a name="Shape+setText"></a>
+
+### figText.setText([text]) ⇒ <code>[Shape](#Shape)</code>
+Set new text content to this shape.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [text] | <code>String</code> | <code>&#x27;&#x27;</code> | New text |
+
+<a name="Shape+getWidth"></a>
+
+### figText.getWidth() ⇒ <code>Number</code>
+Get shape width.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+**Overrides:** <code>[getWidth](#Shape+getWidth)</code>  
+<a name="Shape+setWidth"></a>
+
+### figText.setWidth([width]) ⇒ <code>[Shape](#Shape)</code>
+Set new shape width.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [width] | <code>Number</code> &#124; <code>String</code> | <code>15</code> | Shape width |
+
+**Example**  
+```js
+shape.setWidth(15); // shape width is equal to 15 cells in the terminal
+shape.setWidth('20%'); // shape width is equal to 20% of total viewport width
+```
+<a name="Shape+getHeight"></a>
+
+### figText.getHeight() ⇒ <code>Number</code>
+Get shape height.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+**Overrides:** <code>[getHeight](#Shape+getHeight)</code>  
+<a name="Shape+setHeight"></a>
+
+### figText.setHeight([height]) ⇒ <code>[Shape](#Shape)</code>
+Set new shape height.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [height] | <code>Number</code> &#124; <code>String</code> | <code>5</code> | Shape height |
+
+**Example**  
+```js
+shape.setHeight(15); // shape height is equal to 15 cells in the terminal
+shape.setHeight('20%'); // shape height is equal to 20% of total viewport height
+```
+<a name="Shape+getX"></a>
+
+### figText.getX() ⇒ <code>Number</code>
+Get X coordinate.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+<a name="Shape+setX"></a>
+
+### figText.setX([x]) ⇒ <code>[Shape](#Shape)</code>
+Set X coordinate.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| [x] | <code>Number</code> &#124; <code>String</code> | <code>10</code> | 
+
+**Example**  
+```js
+shape.setX(2); // move shape to third cell by X axis
+shape.setX('left'); // align shape to the left
+shape.setX('center'); // align shape in the center
+shape.setX('right'); // align shape to the right
+shape.setX('50%'); // move shape to 50% by X axis
+```
+<a name="Shape+getY"></a>
+
+### figText.getY() ⇒ <code>Number</code>
+Get Y coordinate.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+<a name="Shape+setY"></a>
+
+### figText.setY([y]) ⇒ <code>[Shape](#Shape)</code>
+Set Y coordinate.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| [y] | <code>Number</code> &#124; <code>String</code> | <code>10</code> | 
+
+**Example**  
+```js
+shape.setY(2); // move shape to third cell by Y axis
+shape.setY('top'); // align shape to the top
+shape.setY('middle'); // align shape in the middle
+shape.setY('bottom'); // align shape to the bottom
+shape.setY('50%'); // move shape to 50% by Y axis
+```
+<a name="Shape+getBackground"></a>
+
+### figText.getBackground() ⇒ <code>String</code> &#124; <code>Boolean</code>
+Get background color.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+<a name="Shape+setBackground"></a>
+
+### figText.setBackground([background]) ⇒ <code>[Shape](#Shape)</code>
+Set new background color.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [background] | <code>String</code> &#124; <code>Boolean</code> | <code>false</code> | Color name, rgb, hex or false if you want to disable background |
+
+**Example**  
+```js
+shape.setBackground('black');
+shape.setBackground('#AABBCC');
+shape.setBackground('rgb(0, 100, 200)');
+shape.setBackground(false);
+```
+<a name="Shape+getForeground"></a>
+
+### figText.getForeground() ⇒ <code>String</code> &#124; <code>Boolean</code>
+Get foreground color.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+<a name="Shape+setForeground"></a>
+
+### figText.setForeground([foreground]) ⇒ <code>[Shape](#Shape)</code>
+Set new foreground color.
+
+**Kind**: instance method of <code>[FigText](#FigText)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [foreground] | <code>String</code> &#124; <code>Boolean</code> | <code>false</code> | Color name, rgb, hex or false if you want to disable foreground |
+
+**Example**  
+```js
+shape.setForeground('black');
+shape.setForeground('#AABBCC');
+shape.setForeground('rgb(0, 100, 200)');
+shape.setForeground(false);
+```
+<a name="Shape+toJSON"></a>
+
+### figText.toJSON() ⇒ <code>JSON</code>
+Returns JSON representation of the shape.
 
 **Kind**: instance method of <code>[FigText](#FigText)</code>  
 <a name="Image"></a>
 
-## Image
+## Image ⇐ <code>[Shape](#Shape)</code>
 Implements support for Image drawing in terminal.
 
 **Kind**: global class  
+**Extends:** <code>[Shape](#Shape)</code>  
 **Since**: 1.0.0  
 
-* [Image](#Image)
+* [Image](#Image) ⇐ <code>[Shape](#Shape)</code>
     * [new Image(cursor, [options])](#new_Image_new)
     * _instance_
         * [.getImage()](#Image+getImage) ⇒ <code>String</code>
-        * [.setImage(image)](#Image+setImage) ⇒ <code>[Shape](#Shape)</code>
+        * [.setImage(image)](#Image+setImage) ⇒ <code>[Image](#Image)</code>
         * [.isPreserveAspectRatio()](#Image+isPreserveAspectRatio) ⇒ <code>Boolean</code>
-        * [.setPreserveAspectRatio([isPreserveAspectRatio])](#Image+setPreserveAspectRatio) ⇒ <code>[Shape](#Shape)</code>
-        * [.render()](#Image+render) ⇒ <code>[Image](#Image)</code>
-        * [.toObject()](#Image+toObject) ⇒ <code>Object</code> &#124; <code>\*</code>
+        * [.setPreserveAspectRatio([isPreserveAspectRatio])](#Image+setPreserveAspectRatio) ⇒ <code>[Image](#Image)</code>
+        * [.toObject()](#Image+toObject) ⇒ <code>Object</code>
+        * [.get(path)](#Shape+get) ⇒ <code>\*</code>
+        * [.set(path, value)](#Shape+set) ⇒ <code>[Shape](#Shape)</code>
+        * [.getCursor()](#Shape+getCursor) ⇒ <code>Cursor</code>
+        * [.setCursor(cursor)](#Shape+setCursor) ⇒ <code>[Shape](#Shape)</code>
+        * [.getText()](#Shape+getText) ⇒ <code>String</code>
+        * [.setText([text])](#Shape+setText) ⇒ <code>[Shape](#Shape)</code>
+        * [.getWidth()](#Shape+getWidth) ⇒ <code>Number</code>
+        * [.setWidth([width])](#Shape+setWidth) ⇒ <code>[Shape](#Shape)</code>
+        * [.getHeight()](#Shape+getHeight) ⇒ <code>Number</code>
+        * [.setHeight([height])](#Shape+setHeight) ⇒ <code>[Shape](#Shape)</code>
+        * [.getX()](#Shape+getX) ⇒ <code>Number</code>
+        * [.setX([x])](#Shape+setX) ⇒ <code>[Shape](#Shape)</code>
+        * [.getY()](#Shape+getY) ⇒ <code>Number</code>
+        * [.setY([y])](#Shape+setY) ⇒ <code>[Shape](#Shape)</code>
+        * [.getBackground()](#Shape+getBackground) ⇒ <code>String</code> &#124; <code>Boolean</code>
+        * [.setBackground([background])](#Shape+setBackground) ⇒ <code>[Shape](#Shape)</code>
+        * [.getForeground()](#Shape+getForeground) ⇒ <code>String</code> &#124; <code>Boolean</code>
+        * [.setForeground([foreground])](#Shape+setForeground) ⇒ <code>[Shape](#Shape)</code>
+        * [.render()](#Shape+render)
+        * [.toJSON()](#Shape+toJSON) ⇒ <code>JSON</code>
     * _static_
         * [.isBase64(string)](#Image.isBase64) ⇒ <code>Boolean</code>
 
@@ -436,15 +748,26 @@ Implements support for Image drawing in terminal.
 
 ### new Image(cursor, [options])
 Creates new Image instance.
+Worth noting, that Image can be rendered only in iTerm 3.
+Applies immediately, without caching in virtual terminal in [Cursor](Cursor).
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | cursor | <code>Cursor</code> | Cursor instance |
-| [options] | <code>Object</code> |  |
+| [options] | <code>Object</code> | Options object |
 | [options.image] | <code>String</code> | Base64 encoded file or path to image |
 | [options.preserveAspectRatio] | <code>Boolean</code> | If true, preserve aspect ratio |
 
+**Example**  
+```js
+Image.create(cursor, {
+  x: 'center',
+  y: 'middle',
+  image: 'my-image.png',
+  preserveAspectRatio: true
+});
+```
 <a name="Image+getImage"></a>
 
 ### image.getImage() ⇒ <code>String</code>
@@ -453,7 +776,7 @@ Get base64 encoded image.
 **Kind**: instance method of <code>[Image](#Image)</code>  
 <a name="Image+setImage"></a>
 
-### image.setImage(image) ⇒ <code>[Shape](#Shape)</code>
+### image.setImage(image) ⇒ <code>[Image](#Image)</code>
 Set image to the shape.
 
 **Kind**: instance method of <code>[Image](#Image)</code>  
@@ -462,6 +785,11 @@ Set image to the shape.
 | --- | --- | --- |
 | image | <code>String</code> | Can be path to the image or base64 encoded image |
 
+**Example**  
+```js
+image.setShape('base64');
+image.setShape('./my-image.png');
+```
 <a name="Image+isPreserveAspectRatio"></a>
 
 ### image.isPreserveAspectRatio() ⇒ <code>Boolean</code>
@@ -470,7 +798,7 @@ Check if image is preserve aspect ratio.
 **Kind**: instance method of <code>[Image](#Image)</code>  
 <a name="Image+setPreserveAspectRatio"></a>
 
-### image.setPreserveAspectRatio([isPreserveAspectRatio]) ⇒ <code>[Shape](#Shape)</code>
+### image.setPreserveAspectRatio([isPreserveAspectRatio]) ⇒ <code>[Image](#Image)</code>
 Set preserve aspect ratio.
 
 **Kind**: instance method of <code>[Image](#Image)</code>  
@@ -479,16 +807,235 @@ Set preserve aspect ratio.
 | --- | --- | --- | --- |
 | [isPreserveAspectRatio] | <code>Boolean</code> | <code>true</code> | If false, not preserves aspect ratio in the image |
 
-<a name="Image+render"></a>
-
-### image.render() ⇒ <code>[Image](#Image)</code>
-Renders the shape.
-
-**Kind**: instance method of <code>[Image](#Image)</code>  
 <a name="Image+toObject"></a>
 
-### image.toObject() ⇒ <code>Object</code> &#124; <code>\*</code>
+### image.toObject() ⇒ <code>Object</code>
 Serializes shape to the object representation.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+**Overrides:** <code>[toObject](#Shape+toObject)</code>  
+<a name="Shape+get"></a>
+
+### image.get(path) ⇒ <code>\*</code>
+Get option value.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| path | <code>String</code> | Path can be set with dot-notation |
+
+**Example**  
+```js
+shape.get('my.options.object.value');
+```
+<a name="Shape+set"></a>
+
+### image.set(path, value) ⇒ <code>[Shape](#Shape)</code>
+Set new option value.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| path | <code>String</code> | Path can be set with dot-notation |
+| value | <code>\*</code> | Value that need to be written to the options object |
+
+**Example**  
+```js
+shape.set('my.options.object.value', 'value');
+```
+<a name="Shape+getCursor"></a>
+
+### image.getCursor() ⇒ <code>Cursor</code>
+Get cursor that used for render this shape.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+<a name="Shape+setCursor"></a>
+
+### image.setCursor(cursor) ⇒ <code>[Shape](#Shape)</code>
+Assign cursor to the shape which will be used for render this shape.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type |
+| --- | --- |
+| cursor | <code>Cursor</code> | 
+
+<a name="Shape+getText"></a>
+
+### image.getText() ⇒ <code>String</code>
+Get text content from this shape.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+<a name="Shape+setText"></a>
+
+### image.setText([text]) ⇒ <code>[Shape](#Shape)</code>
+Set new text content to this shape.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [text] | <code>String</code> | <code>&#x27;&#x27;</code> | New text |
+
+<a name="Shape+getWidth"></a>
+
+### image.getWidth() ⇒ <code>Number</code>
+Get shape width.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+<a name="Shape+setWidth"></a>
+
+### image.setWidth([width]) ⇒ <code>[Shape](#Shape)</code>
+Set new shape width.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [width] | <code>Number</code> &#124; <code>String</code> | <code>15</code> | Shape width |
+
+**Example**  
+```js
+shape.setWidth(15); // shape width is equal to 15 cells in the terminal
+shape.setWidth('20%'); // shape width is equal to 20% of total viewport width
+```
+<a name="Shape+getHeight"></a>
+
+### image.getHeight() ⇒ <code>Number</code>
+Get shape height.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+<a name="Shape+setHeight"></a>
+
+### image.setHeight([height]) ⇒ <code>[Shape](#Shape)</code>
+Set new shape height.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [height] | <code>Number</code> &#124; <code>String</code> | <code>5</code> | Shape height |
+
+**Example**  
+```js
+shape.setHeight(15); // shape height is equal to 15 cells in the terminal
+shape.setHeight('20%'); // shape height is equal to 20% of total viewport height
+```
+<a name="Shape+getX"></a>
+
+### image.getX() ⇒ <code>Number</code>
+Get X coordinate.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+<a name="Shape+setX"></a>
+
+### image.setX([x]) ⇒ <code>[Shape](#Shape)</code>
+Set X coordinate.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| [x] | <code>Number</code> &#124; <code>String</code> | <code>10</code> | 
+
+**Example**  
+```js
+shape.setX(2); // move shape to third cell by X axis
+shape.setX('left'); // align shape to the left
+shape.setX('center'); // align shape in the center
+shape.setX('right'); // align shape to the right
+shape.setX('50%'); // move shape to 50% by X axis
+```
+<a name="Shape+getY"></a>
+
+### image.getY() ⇒ <code>Number</code>
+Get Y coordinate.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+<a name="Shape+setY"></a>
+
+### image.setY([y]) ⇒ <code>[Shape](#Shape)</code>
+Set Y coordinate.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| [y] | <code>Number</code> &#124; <code>String</code> | <code>10</code> | 
+
+**Example**  
+```js
+shape.setY(2); // move shape to third cell by Y axis
+shape.setY('top'); // align shape to the top
+shape.setY('middle'); // align shape in the middle
+shape.setY('bottom'); // align shape to the bottom
+shape.setY('50%'); // move shape to 50% by Y axis
+```
+<a name="Shape+getBackground"></a>
+
+### image.getBackground() ⇒ <code>String</code> &#124; <code>Boolean</code>
+Get background color.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+<a name="Shape+setBackground"></a>
+
+### image.setBackground([background]) ⇒ <code>[Shape](#Shape)</code>
+Set new background color.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [background] | <code>String</code> &#124; <code>Boolean</code> | <code>false</code> | Color name, rgb, hex or false if you want to disable background |
+
+**Example**  
+```js
+shape.setBackground('black');
+shape.setBackground('#AABBCC');
+shape.setBackground('rgb(0, 100, 200)');
+shape.setBackground(false);
+```
+<a name="Shape+getForeground"></a>
+
+### image.getForeground() ⇒ <code>String</code> &#124; <code>Boolean</code>
+Get foreground color.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+<a name="Shape+setForeground"></a>
+
+### image.setForeground([foreground]) ⇒ <code>[Shape](#Shape)</code>
+Set new foreground color.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [foreground] | <code>String</code> &#124; <code>Boolean</code> | <code>false</code> | Color name, rgb, hex or false if you want to disable foreground |
+
+**Example**  
+```js
+shape.setForeground('black');
+shape.setForeground('#AABBCC');
+shape.setForeground('rgb(0, 100, 200)');
+shape.setForeground(false);
+```
+<a name="Shape+render"></a>
+
+### image.render()
+Base render method that must be implemented in childes.
+
+**Kind**: instance method of <code>[Image](#Image)</code>  
+**Overrides:** <code>[render](#Shape+render)</code>  
+**Throws**:
+
+- <code>Error</code> Throws error if method is not overridden
+
+<a name="Shape+toJSON"></a>
+
+### image.toJSON() ⇒ <code>JSON</code>
+Returns JSON representation of the shape.
 
 **Kind**: instance method of <code>[Image](#Image)</code>  
 <a name="Image.isBase64"></a>
@@ -504,40 +1051,337 @@ Check if string is base64 encoded string.
 
 <a name="Rectangle"></a>
 
-## Rectangle
+## Rectangle ⇐ <code>[Shape](#Shape)</code>
 Implements rectangle shape with text support.
 
 **Kind**: global class  
+**Extends:** <code>[Shape](#Shape)</code>  
 **Since**: 1.0.0  
+
+* [Rectangle](#Rectangle) ⇐ <code>[Shape](#Shape)</code>
+    * [new Rectangle(cursor, [options])](#new_Rectangle_new)
+    * [.get(path)](#Shape+get) ⇒ <code>\*</code>
+    * [.set(path, value)](#Shape+set) ⇒ <code>[Shape](#Shape)</code>
+    * [.getCursor()](#Shape+getCursor) ⇒ <code>Cursor</code>
+    * [.setCursor(cursor)](#Shape+setCursor) ⇒ <code>[Shape](#Shape)</code>
+    * [.getText()](#Shape+getText) ⇒ <code>String</code>
+    * [.setText([text])](#Shape+setText) ⇒ <code>[Shape](#Shape)</code>
+    * [.getWidth()](#Shape+getWidth) ⇒ <code>Number</code>
+    * [.setWidth([width])](#Shape+setWidth) ⇒ <code>[Shape](#Shape)</code>
+    * [.getHeight()](#Shape+getHeight) ⇒ <code>Number</code>
+    * [.setHeight([height])](#Shape+setHeight) ⇒ <code>[Shape](#Shape)</code>
+    * [.getX()](#Shape+getX) ⇒ <code>Number</code>
+    * [.setX([x])](#Shape+setX) ⇒ <code>[Shape](#Shape)</code>
+    * [.getY()](#Shape+getY) ⇒ <code>Number</code>
+    * [.setY([y])](#Shape+setY) ⇒ <code>[Shape](#Shape)</code>
+    * [.getBackground()](#Shape+getBackground) ⇒ <code>String</code> &#124; <code>Boolean</code>
+    * [.setBackground([background])](#Shape+setBackground) ⇒ <code>[Shape](#Shape)</code>
+    * [.getForeground()](#Shape+getForeground) ⇒ <code>String</code> &#124; <code>Boolean</code>
+    * [.setForeground([foreground])](#Shape+setForeground) ⇒ <code>[Shape](#Shape)</code>
+    * [.render()](#Shape+render)
+    * [.toObject()](#Shape+toObject) ⇒ <code>Object</code>
+    * [.toJSON()](#Shape+toJSON) ⇒ <code>JSON</code>
+
+<a name="new_Rectangle_new"></a>
+
+### new Rectangle(cursor, [options])
+Create Rectangle shape instance.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| cursor | <code>Cursor</code> | Cursor instance |
+| [options] | <code>Object</code> | Options object |
+
+**Example**  
+```js
+Rectangle.create(cursor, {
+  text: 'Hello, World',
+  width: 20,
+  height: '50%',
+  x: 'center',
+  y: 'middle',
+  background: 'black',
+  foreground: 'white'
+});
+```
+<a name="Shape+get"></a>
+
+### rectangle.get(path) ⇒ <code>\*</code>
+Get option value.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| path | <code>String</code> | Path can be set with dot-notation |
+
+**Example**  
+```js
+shape.get('my.options.object.value');
+```
+<a name="Shape+set"></a>
+
+### rectangle.set(path, value) ⇒ <code>[Shape](#Shape)</code>
+Set new option value.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| path | <code>String</code> | Path can be set with dot-notation |
+| value | <code>\*</code> | Value that need to be written to the options object |
+
+**Example**  
+```js
+shape.set('my.options.object.value', 'value');
+```
+<a name="Shape+getCursor"></a>
+
+### rectangle.getCursor() ⇒ <code>Cursor</code>
+Get cursor that used for render this shape.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+<a name="Shape+setCursor"></a>
+
+### rectangle.setCursor(cursor) ⇒ <code>[Shape](#Shape)</code>
+Assign cursor to the shape which will be used for render this shape.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+
+| Param | Type |
+| --- | --- |
+| cursor | <code>Cursor</code> | 
+
+<a name="Shape+getText"></a>
+
+### rectangle.getText() ⇒ <code>String</code>
+Get text content from this shape.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+<a name="Shape+setText"></a>
+
+### rectangle.setText([text]) ⇒ <code>[Shape](#Shape)</code>
+Set new text content to this shape.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [text] | <code>String</code> | <code>&#x27;&#x27;</code> | New text |
+
+<a name="Shape+getWidth"></a>
+
+### rectangle.getWidth() ⇒ <code>Number</code>
+Get shape width.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+<a name="Shape+setWidth"></a>
+
+### rectangle.setWidth([width]) ⇒ <code>[Shape](#Shape)</code>
+Set new shape width.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [width] | <code>Number</code> &#124; <code>String</code> | <code>15</code> | Shape width |
+
+**Example**  
+```js
+shape.setWidth(15); // shape width is equal to 15 cells in the terminal
+shape.setWidth('20%'); // shape width is equal to 20% of total viewport width
+```
+<a name="Shape+getHeight"></a>
+
+### rectangle.getHeight() ⇒ <code>Number</code>
+Get shape height.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+<a name="Shape+setHeight"></a>
+
+### rectangle.setHeight([height]) ⇒ <code>[Shape](#Shape)</code>
+Set new shape height.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [height] | <code>Number</code> &#124; <code>String</code> | <code>5</code> | Shape height |
+
+**Example**  
+```js
+shape.setHeight(15); // shape height is equal to 15 cells in the terminal
+shape.setHeight('20%'); // shape height is equal to 20% of total viewport height
+```
+<a name="Shape+getX"></a>
+
+### rectangle.getX() ⇒ <code>Number</code>
+Get X coordinate.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+<a name="Shape+setX"></a>
+
+### rectangle.setX([x]) ⇒ <code>[Shape](#Shape)</code>
+Set X coordinate.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| [x] | <code>Number</code> &#124; <code>String</code> | <code>10</code> | 
+
+**Example**  
+```js
+shape.setX(2); // move shape to third cell by X axis
+shape.setX('left'); // align shape to the left
+shape.setX('center'); // align shape in the center
+shape.setX('right'); // align shape to the right
+shape.setX('50%'); // move shape to 50% by X axis
+```
+<a name="Shape+getY"></a>
+
+### rectangle.getY() ⇒ <code>Number</code>
+Get Y coordinate.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+<a name="Shape+setY"></a>
+
+### rectangle.setY([y]) ⇒ <code>[Shape](#Shape)</code>
+Set Y coordinate.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| [y] | <code>Number</code> &#124; <code>String</code> | <code>10</code> | 
+
+**Example**  
+```js
+shape.setY(2); // move shape to third cell by Y axis
+shape.setY('top'); // align shape to the top
+shape.setY('middle'); // align shape in the middle
+shape.setY('bottom'); // align shape to the bottom
+shape.setY('50%'); // move shape to 50% by Y axis
+```
+<a name="Shape+getBackground"></a>
+
+### rectangle.getBackground() ⇒ <code>String</code> &#124; <code>Boolean</code>
+Get background color.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+<a name="Shape+setBackground"></a>
+
+### rectangle.setBackground([background]) ⇒ <code>[Shape](#Shape)</code>
+Set new background color.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [background] | <code>String</code> &#124; <code>Boolean</code> | <code>false</code> | Color name, rgb, hex or false if you want to disable background |
+
+**Example**  
+```js
+shape.setBackground('black');
+shape.setBackground('#AABBCC');
+shape.setBackground('rgb(0, 100, 200)');
+shape.setBackground(false);
+```
+<a name="Shape+getForeground"></a>
+
+### rectangle.getForeground() ⇒ <code>String</code> &#124; <code>Boolean</code>
+Get foreground color.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+<a name="Shape+setForeground"></a>
+
+### rectangle.setForeground([foreground]) ⇒ <code>[Shape](#Shape)</code>
+Set new foreground color.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [foreground] | <code>String</code> &#124; <code>Boolean</code> | <code>false</code> | Color name, rgb, hex or false if you want to disable foreground |
+
+**Example**  
+```js
+shape.setForeground('black');
+shape.setForeground('#AABBCC');
+shape.setForeground('rgb(0, 100, 200)');
+shape.setForeground(false);
+```
+<a name="Shape+render"></a>
+
+### rectangle.render()
+Base render method that must be implemented in childes.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+**Overrides:** <code>[render](#Shape+render)</code>  
+**Throws**:
+
+- <code>Error</code> Throws error if method is not overridden
+
+<a name="Shape+toObject"></a>
+
+### rectangle.toObject() ⇒ <code>Object</code>
+Returns Object representation of the shape.
+This representation consists of all options fields that you can pass in the constructor.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
+<a name="Shape+toJSON"></a>
+
+### rectangle.toJSON() ⇒ <code>JSON</code>
+Returns JSON representation of the shape.
+
+**Kind**: instance method of <code>[Rectangle](#Rectangle)</code>  
 <a name="Text"></a>
 
-## Text
-Implements Text shape which is rendering the text at specified point.
-Supports different styles kinda bold, dim, underlined, etc...
+## Text ⇐ <code>[Shape](#Shape)</code>
+Implements Text shape which renders the text at specified point.
 
 **Kind**: global class  
+**Extends:** <code>[Shape](#Shape)</code>  
 **Since**: 1.0.0  
 
-* [Text](#Text)
+* [Text](#Text) ⇐ <code>[Shape](#Shape)</code>
     * [new Text(cursor, [options])](#new_Text_new)
-    * [.getWidth()](#Text+getWidth) ⇒ <code>Number</code>
-    * [.getHeight()](#Text+getHeight) ⇒ <code>Number</code>
     * [.isBold()](#Text+isBold) ⇒ <code>Boolean</code>
-    * [.setBold([bold])](#Text+setBold) ⇒ <code>[Shape](#Shape)</code>
+    * [.setBold([bold])](#Text+setBold) ⇒ <code>[Text](#Text)</code>
     * [.isDim()](#Text+isDim) ⇒ <code>Boolean</code>
-    * [.setDim([dim])](#Text+setDim) ⇒ <code>[Shape](#Shape)</code>
+    * [.setDim([dim])](#Text+setDim) ⇒ <code>[Text](#Text)</code>
     * [.isUnderlined()](#Text+isUnderlined) ⇒ <code>Boolean</code>
-    * [.setUnderlined([underlined])](#Text+setUnderlined) ⇒ <code>[Shape](#Shape)</code>
+    * [.setUnderlined([underlined])](#Text+setUnderlined) ⇒ <code>[Text](#Text)</code>
     * [.isBlink()](#Text+isBlink) ⇒ <code>Boolean</code>
-    * [.setBlink([blink])](#Text+setBlink) ⇒ <code>[Shape](#Shape)</code>
+    * [.setBlink([blink])](#Text+setBlink) ⇒ <code>[Text](#Text)</code>
     * [.isReverse()](#Text+isReverse) ⇒ <code>Boolean</code>
-    * [.setReverse([reverse])](#Text+setReverse) ⇒ <code>[Shape](#Shape)</code>
+    * [.setReverse([reverse])](#Text+setReverse) ⇒ <code>[Text](#Text)</code>
     * [.isHidden()](#Text+isHidden) ⇒ <code>Boolean</code>
-    * [.setHidden([hidden])](#Text+setHidden) ⇒ <code>[Shape](#Shape)</code>
+    * [.setHidden([hidden])](#Text+setHidden) ⇒ <code>[Text](#Text)</code>
     * [.getAlign()](#Text+getAlign) ⇒ <code>String</code>
-    * [.setAlign(align)](#Text+setAlign) ⇒ <code>[Shape](#Shape)</code>
-    * [.render()](#Text+render) ⇒ <code>[Text](#Text)</code>
-    * [.toObject()](#Text+toObject) ⇒ <code>Object</code>
+    * [.setAlign([align])](#Text+setAlign) ⇒ <code>[Text](#Text)</code>
+    * [.get(path)](#Shape+get) ⇒ <code>\*</code>
+    * [.set(path, value)](#Shape+set) ⇒ <code>[Shape](#Shape)</code>
+    * [.getCursor()](#Shape+getCursor) ⇒ <code>Cursor</code>
+    * [.setCursor(cursor)](#Shape+setCursor) ⇒ <code>[Shape](#Shape)</code>
+    * [.getText()](#Shape+getText) ⇒ <code>String</code>
+    * [.setText([text])](#Shape+setText) ⇒ <code>[Shape](#Shape)</code>
+    * [.getWidth()](#Shape+getWidth) ⇒ <code>Number</code>
+    * [.setWidth([width])](#Shape+setWidth) ⇒ <code>[Shape](#Shape)</code>
+    * [.getHeight()](#Shape+getHeight) ⇒ <code>Number</code>
+    * [.setHeight([height])](#Shape+setHeight) ⇒ <code>[Shape](#Shape)</code>
+    * [.getX()](#Shape+getX) ⇒ <code>Number</code>
+    * [.setX([x])](#Shape+setX) ⇒ <code>[Shape](#Shape)</code>
+    * [.getY()](#Shape+getY) ⇒ <code>Number</code>
+    * [.setY([y])](#Shape+setY) ⇒ <code>[Shape](#Shape)</code>
+    * [.getBackground()](#Shape+getBackground) ⇒ <code>String</code> &#124; <code>Boolean</code>
+    * [.setBackground([background])](#Shape+setBackground) ⇒ <code>[Shape](#Shape)</code>
+    * [.getForeground()](#Shape+getForeground) ⇒ <code>String</code> &#124; <code>Boolean</code>
+    * [.setForeground([foreground])](#Shape+setForeground) ⇒ <code>[Shape](#Shape)</code>
+    * [.render()](#Shape+render)
+    * [.toObject()](#Shape+toObject) ⇒ <code>Object</code>
+    * [.toJSON()](#Shape+toJSON) ⇒ <code>JSON</code>
 
 <a name="new_Text_new"></a>
 
@@ -548,27 +1392,27 @@ Create Text shape.
 | Param | Type | Description |
 | --- | --- | --- |
 | cursor | <code>Cursor</code> | Cursor instance |
-| [options] | <code>Object</code> |  |
-| [options.bold] | <code>Boolean</code> |  |
-| [options.dim] | <code>Boolean</code> |  |
-| [options.underlined] | <code>Boolean</code> |  |
-| [options.blink] | <code>Boolean</code> |  |
-| [options.reverse] | <code>Boolean</code> |  |
-| [options.hidden] | <code>Boolean</code> |  |
-| [options.align] | <code>String</code> |  |
+| [options] | <code>Object</code> | Options object |
+| [options.bold] | <code>Boolean</code> | Bold styling |
+| [options.dim] | <code>Boolean</code> | Dim styling |
+| [options.underlined] | <code>Boolean</code> | Underlined styling |
+| [options.blink] | <code>Boolean</code> | Blink styling |
+| [options.reverse] | <code>Boolean</code> | Reverse styling |
+| [options.hidden] | <code>Boolean</code> | Hidden styling |
+| [options.align] | <code>String</code> | Align text in the shape (left, center, right) |
 
-<a name="Text+getWidth"></a>
-
-### text.getWidth() ⇒ <code>Number</code>
-Returns actual width of the shape.
-
-**Kind**: instance method of <code>[Text](#Text)</code>  
-<a name="Text+getHeight"></a>
-
-### text.getHeight() ⇒ <code>Number</code>
-Returns actual height of the shape.
-
-**Kind**: instance method of <code>[Text](#Text)</code>  
+**Example**  
+```js
+Text.create(cursor, {
+  bold: true,
+  dim: false,
+  underlined: true,
+  blink: false,
+  reverse: false,
+  hidden: false,
+  align: 'center'
+});
+```
 <a name="Text+isBold"></a>
 
 ### text.isBold() ⇒ <code>Boolean</code>
@@ -577,7 +1421,7 @@ Check if text should be rendered as bold.
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+setBold"></a>
 
-### text.setBold([bold]) ⇒ <code>[Shape](#Shape)</code>
+### text.setBold([bold]) ⇒ <code>[Text](#Text)</code>
 Toggle bold mode.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
@@ -594,7 +1438,7 @@ Check if text should be rendered as dim.
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+setDim"></a>
 
-### text.setDim([dim]) ⇒ <code>[Shape](#Shape)</code>
+### text.setDim([dim]) ⇒ <code>[Text](#Text)</code>
 Toggle dim mode.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
@@ -611,7 +1455,7 @@ Check if text should be rendered as underlined.
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+setUnderlined"></a>
 
-### text.setUnderlined([underlined]) ⇒ <code>[Shape](#Shape)</code>
+### text.setUnderlined([underlined]) ⇒ <code>[Text](#Text)</code>
 Toggle underlined mode.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
@@ -628,7 +1472,7 @@ Check if text should be rendered as blink.
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+setBlink"></a>
 
-### text.setBlink([blink]) ⇒ <code>[Shape](#Shape)</code>
+### text.setBlink([blink]) ⇒ <code>[Text](#Text)</code>
 Toggle blink mode.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
@@ -645,7 +1489,7 @@ Check if text should be rendered with reversed colors.
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+setReverse"></a>
 
-### text.setReverse([reverse]) ⇒ <code>[Shape](#Shape)</code>
+### text.setReverse([reverse]) ⇒ <code>[Text](#Text)</code>
 Toggle reverse mode.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
@@ -662,7 +1506,7 @@ Check if text should be rendered as hidden text.
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+setHidden"></a>
 
-### text.setHidden([hidden]) ⇒ <code>[Shape](#Shape)</code>
+### text.setHidden([hidden]) ⇒ <code>[Text](#Text)</code>
 Toggle hidden mode.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
@@ -679,24 +1523,247 @@ Get text align.
 **Kind**: instance method of <code>[Text](#Text)</code>  
 <a name="Text+setAlign"></a>
 
-### text.setAlign(align) ⇒ <code>[Shape](#Shape)</code>
+### text.setAlign([align]) ⇒ <code>[Text](#Text)</code>
 Set text align.
+Aligns text in the shape by anchors to the left, center or to the right.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [align] | <code>String</code> | <code>&#x27;center&#x27;</code> | Align value can be left, center or right |
+
+<a name="Shape+get"></a>
+
+### text.get(path) ⇒ <code>\*</code>
+Get option value.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| path | <code>String</code> | Path can be set with dot-notation |
+
+**Example**  
+```js
+shape.get('my.options.object.value');
+```
+<a name="Shape+set"></a>
+
+### text.set(path, value) ⇒ <code>[Shape](#Shape)</code>
+Set new option value.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| path | <code>String</code> | Path can be set with dot-notation |
+| value | <code>\*</code> | Value that need to be written to the options object |
+
+**Example**  
+```js
+shape.set('my.options.object.value', 'value');
+```
+<a name="Shape+getCursor"></a>
+
+### text.getCursor() ⇒ <code>Cursor</code>
+Get cursor that used for render this shape.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+<a name="Shape+setCursor"></a>
+
+### text.setCursor(cursor) ⇒ <code>[Shape](#Shape)</code>
+Assign cursor to the shape which will be used for render this shape.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
 
 | Param | Type |
 | --- | --- |
-| align | <code>String</code> | 
+| cursor | <code>Cursor</code> | 
 
-<a name="Text+render"></a>
+<a name="Shape+getText"></a>
 
-### text.render() ⇒ <code>[Text](#Text)</code>
-Render the shape based on options.
+### text.getText() ⇒ <code>String</code>
+Get text content from this shape.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
-<a name="Text+toObject"></a>
+<a name="Shape+setText"></a>
+
+### text.setText([text]) ⇒ <code>[Shape](#Shape)</code>
+Set new text content to this shape.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [text] | <code>String</code> | <code>&#x27;&#x27;</code> | New text |
+
+<a name="Shape+getWidth"></a>
+
+### text.getWidth() ⇒ <code>Number</code>
+Get shape width.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+**Overrides:** <code>[getWidth](#Shape+getWidth)</code>  
+<a name="Shape+setWidth"></a>
+
+### text.setWidth([width]) ⇒ <code>[Shape](#Shape)</code>
+Set new shape width.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [width] | <code>Number</code> &#124; <code>String</code> | <code>15</code> | Shape width |
+
+**Example**  
+```js
+shape.setWidth(15); // shape width is equal to 15 cells in the terminal
+shape.setWidth('20%'); // shape width is equal to 20% of total viewport width
+```
+<a name="Shape+getHeight"></a>
+
+### text.getHeight() ⇒ <code>Number</code>
+Get shape height.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+**Overrides:** <code>[getHeight](#Shape+getHeight)</code>  
+<a name="Shape+setHeight"></a>
+
+### text.setHeight([height]) ⇒ <code>[Shape](#Shape)</code>
+Set new shape height.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [height] | <code>Number</code> &#124; <code>String</code> | <code>5</code> | Shape height |
+
+**Example**  
+```js
+shape.setHeight(15); // shape height is equal to 15 cells in the terminal
+shape.setHeight('20%'); // shape height is equal to 20% of total viewport height
+```
+<a name="Shape+getX"></a>
+
+### text.getX() ⇒ <code>Number</code>
+Get X coordinate.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+<a name="Shape+setX"></a>
+
+### text.setX([x]) ⇒ <code>[Shape](#Shape)</code>
+Set X coordinate.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| [x] | <code>Number</code> &#124; <code>String</code> | <code>10</code> | 
+
+**Example**  
+```js
+shape.setX(2); // move shape to third cell by X axis
+shape.setX('left'); // align shape to the left
+shape.setX('center'); // align shape in the center
+shape.setX('right'); // align shape to the right
+shape.setX('50%'); // move shape to 50% by X axis
+```
+<a name="Shape+getY"></a>
+
+### text.getY() ⇒ <code>Number</code>
+Get Y coordinate.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+<a name="Shape+setY"></a>
+
+### text.setY([y]) ⇒ <code>[Shape](#Shape)</code>
+Set Y coordinate.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| [y] | <code>Number</code> &#124; <code>String</code> | <code>10</code> | 
+
+**Example**  
+```js
+shape.setY(2); // move shape to third cell by Y axis
+shape.setY('top'); // align shape to the top
+shape.setY('middle'); // align shape in the middle
+shape.setY('bottom'); // align shape to the bottom
+shape.setY('50%'); // move shape to 50% by Y axis
+```
+<a name="Shape+getBackground"></a>
+
+### text.getBackground() ⇒ <code>String</code> &#124; <code>Boolean</code>
+Get background color.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+<a name="Shape+setBackground"></a>
+
+### text.setBackground([background]) ⇒ <code>[Shape](#Shape)</code>
+Set new background color.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [background] | <code>String</code> &#124; <code>Boolean</code> | <code>false</code> | Color name, rgb, hex or false if you want to disable background |
+
+**Example**  
+```js
+shape.setBackground('black');
+shape.setBackground('#AABBCC');
+shape.setBackground('rgb(0, 100, 200)');
+shape.setBackground(false);
+```
+<a name="Shape+getForeground"></a>
+
+### text.getForeground() ⇒ <code>String</code> &#124; <code>Boolean</code>
+Get foreground color.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+<a name="Shape+setForeground"></a>
+
+### text.setForeground([foreground]) ⇒ <code>[Shape](#Shape)</code>
+Set new foreground color.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [foreground] | <code>String</code> &#124; <code>Boolean</code> | <code>false</code> | Color name, rgb, hex or false if you want to disable foreground |
+
+**Example**  
+```js
+shape.setForeground('black');
+shape.setForeground('#AABBCC');
+shape.setForeground('rgb(0, 100, 200)');
+shape.setForeground(false);
+```
+<a name="Shape+render"></a>
+
+### text.render()
+Base render method that must be implemented in childes.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+**Overrides:** <code>[render](#Shape+render)</code>  
+**Throws**:
+
+- <code>Error</code> Throws error if method is not overridden
+
+<a name="Shape+toObject"></a>
 
 ### text.toObject() ⇒ <code>Object</code>
-Overrides default toObject() method because we have new fields here.
+Returns Object representation of the shape.
+This representation consists of all options fields that you can pass in the constructor.
+
+**Kind**: instance method of <code>[Text](#Text)</code>  
+**Overrides:** <code>[toObject](#Shape+toObject)</code>  
+<a name="Shape+toJSON"></a>
+
+### text.toJSON() ⇒ <code>JSON</code>
+Returns JSON representation of the shape.
 
 **Kind**: instance method of <code>[Text](#Text)</code>  
