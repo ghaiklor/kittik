@@ -99,27 +99,40 @@ export default class Slide {
   }
 
   /**
+   * Render the array of shapes.
+   * Clears the entire screen -> renders each shape from the array -> flush the changes.
+   *
+   * @param {Array<Shape>} shapes Array of Shape instances
+   * @returns {Slide}
+   */
+  renderShapes(shapes) {
+    this._cursor.eraseScreen();
+    shapes.forEach(shape => shape.render());
+    this._cursor.flush();
+
+    return this;
+  }
+
+  /**
    * Renders the slide.
    *
    * @returns {Promise} Promise will be fulfilled when slide has been rendered
    */
   render() {
-    const renderShape = shape => () => shape.render() && shape.getCursor().flush();
-    const renderShapes = shapes => shapes.map(shape => renderShape(shape));
-    const animateShape = (shape, animation) => () => animation.animate(shape);
+    const shapesToRender = [];
     const promises = [];
+
+    for (let animation of Object.keys(this._animations)) {
+      this._animations[animation].on('tick', () => this.renderShapes(shapesToRender));
+    }
 
     for (let i = 0; i < this._order.length; i++) {
       const shape = this._shapes[this._order[i].shape];
       const animations = this._order[i].animations.map(item => this._animations[item]);
-      const renderedShapes = this._order.slice(0, i).map(order => this._shapes[order.shape]);
 
-      animations.forEach(animation => {
-        animation.on('tick', shape => renderShapes(renderedShapes) && renderShape(shape)());
-        promises.push(animateShape(shape, animation));
-      });
-
-      promises.push(...renderShapes(renderedShapes.concat([shape])));
+      promises.push(() => shapesToRender.push(shape));
+      animations.forEach(animation => promises.push(() => animation.animate(shape)));
+      promises.push(() => this.renderShapes(shapesToRender));
     }
 
     return promises.reduce((promise, item) => promise.then(item), Promise.resolve());
