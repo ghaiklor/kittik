@@ -92,51 +92,37 @@ export default class Slide {
     return declaration.map(item => {
       const parsed = item.split('::');
       const shape = parsed[0];
-      const animations = parsed[1] && parsed[1].split('->');
+      const animations = (parsed[1] && parsed[1].split('->')) || [];
 
       return {shape, animations};
     });
   }
 
-  renderShape(shape, cursor) {
-    shape.setCursor(cursor).render();
-    cursor.flush();
-    return this;
-  }
-
-  renderShapes(shapes, cursor) {
-    cursor.eraseScreen();
-    shapes.map(shape => this.renderShape(shape, cursor));
-    cursor.flush();
-    return this;
-  }
-
   /**
-   * Render the slide.
+   * Renders the slide.
    *
-   * @param {Cursor} cursor Cursor instance which is using for rendering the slide
-   * @returns {Promise} Promise will be fulfilled when slide has rendered
+   * @returns {Promise} Promise will be fulfilled when slide has been rendered
    */
-  render(cursor) {
-    const renderShape = (shape, cursor) => () => this.renderShape(shape, cursor);
-    const renderShapes = (shapes, cursor) => () => this.renderShapes(shapes, cursor);
-    const animateShape = (shape, animation, cursor) => () => animation.animate(shape, cursor);
+  render() {
+    const renderShape = shape => () => shape.render() && shape.getCursor().flush();
+    const renderShapes = shapes => shapes.map(shape => renderShape(shape));
+    const animateShape = (shape, animation) => () => animation.animate(shape);
     const promises = [];
 
     for (let i = 0; i < this._order.length; i++) {
       const shape = this._shapes[this._order[i].shape];
+      const animations = this._order[i].animations.map(item => this._animations[item]);
       const renderedShapes = this._order.slice(0, i).map(order => this._shapes[order.shape]);
-      const animations = (this._order[i].animations || []).map(item => this._animations[item]);
 
       animations.forEach(animation => {
-        animation.on('tick', shape => this.renderShapes(renderedShapes, cursor) && this.renderShape(shape, cursor));
-        promises.push(animateShape(shape, animation, cursor));
+        animation.on('tick', shape => renderShapes(renderedShapes) && renderShape(shape)());
+        promises.push(animateShape(shape, animation));
       });
 
-      promises.push(renderShapes(renderedShapes.concat([shape]), cursor));
+      promises.push(...renderShapes(renderedShapes.concat([shape])));
     }
 
-    return promises.reduce((promise, i) => promise.then(i), Promise.resolve());
+    return promises.reduce((promise, item) => promise.then(item), Promise.resolve());
   }
 
   /**
