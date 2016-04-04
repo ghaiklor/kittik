@@ -100,6 +100,7 @@ export default class Slide {
 
   /**
    * Render the array of shapes.
+   * Applies immediately in the terminal.
    * Clears the entire screen -> renders each shape from the array -> flush the changes.
    *
    * @param {Array<Shape>} shapes Array of Shape instances
@@ -115,6 +116,7 @@ export default class Slide {
 
   /**
    * Renders the slide.
+   * It builds the sequence of promises that responsible for sequentially rendering the slide as in order.
    *
    * @returns {Promise} Promise will be fulfilled when slide has been rendered
    */
@@ -122,9 +124,7 @@ export default class Slide {
     const shapesToRender = [];
     const promises = [];
 
-    for (let animation of Object.keys(this._animations)) {
-      this._animations[animation].on('tick', () => this.renderShapes(shapesToRender));
-    }
+    Object.keys(this._animations).forEach(key => this._animations[key].on('tick', () => this.renderShapes(shapesToRender)));
 
     for (let i = 0; i < this._order.length; i++) {
       const shape = this._shapes[this._order[i].shape];
@@ -134,6 +134,8 @@ export default class Slide {
       animations.forEach(animation => promises.push(() => animation.animate(shape)));
       promises.push(() => this.renderShapes(shapesToRender));
     }
+
+    promises.push(() => Object.keys(this._animations).forEach(key => this._animations[key].removeAllListeners()));
 
     return promises.reduce((promise, item) => promise.then(item), Promise.resolve());
   }
