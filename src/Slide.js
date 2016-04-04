@@ -11,7 +11,7 @@ const SHAPES = {FigText: FigTextShape, Image: ImageShape, Rectangle: RectangleSh
 const ANIMATIONS = {Focus: FocusAnimation, Print: PrintAnimation, Slide: SlideAnimation};
 
 /**
- * Creates a new slide which can be rendered using kittik-cursor.
+ * Slide instance is responsible for rendering the slide.
  *
  * @since 1.0.0
  */
@@ -19,20 +19,83 @@ export default class Slide {
   /**
    * Creates new Slide instance.
    *
+   * @constructor
    * @param {Cursor} cursor Cursor instance
-   * @param {Object} [declaration]
+   * @param {Object} [declaration] Declaration of the slide
    * @param {Array<Object>} [declaration.shapes] Array of shapes to render
    * @param {Array<Object>} [declaration.animations] Array of animations to create in this slide
    * @param {Array<String>} [declaration.order] Order for rendering shapes for this slide
-   * @constructor
+   * @example
+   * Slide.create(cursor, {
+   *   shapes: [{
+   *     name: 'Your shape name', // custom name of your shape
+   *     type: 'Text', // what is the type of this shape
+   *     options: { // Additional options will be passed to shape constructor
+   *       text: 'Hello, World',
+   *       x: 'center',
+   *       y: 'middle'
+   *     }
+   *   }],
+   *   animations: [{
+   *     name: 'Your animation name', // custom name of your animation
+   *     type: 'Slide', // what is the type of this animation
+   *     options: { // Additional options will be passed to animation constructor
+   *       duration: 2000
+   *     }
+   *   }],
+   *   order: [
+   *     'Your shape name', // renders the specified shape immediately
+   *     'Your shape name::Your animation name', // renders the specified shape with specified animation
+   *     'Your shape name::Your animation name->Your animation name' // you can chain animations in sequence
+   *   ]
+   * });
    */
   constructor(cursor, declaration = {}) {
     const {shapes = [], animations = [], order = []} = declaration;
 
     this._cursor = cursor;
-    this._shapes = Slide.parseShapes(shapes);
-    this._animations = Slide.parseAnimations(animations);
-    this._order = Slide.parseOrder(order);
+    this._shapes = this._buildShapes(shapes);
+    this._animations = this._buildAnimations(animations);
+    this._order = this._buildOrder(order);
+  }
+
+  /**
+   * Parse shapes declaration and return object with references to the created shapes.
+   *
+   * @private
+   * @param {Array<Object>} declaration Array of shapes declaration
+   * @returns {Object} Returns object with created Shape instances
+   */
+  _buildShapes(declaration) {
+    return declaration.reduce((obj, shape) => (obj[shape.name] = SHAPES[shape.type].fromObject(shape, this._cursor)) && obj, {});
+  }
+
+  /**
+   * Parse animations declaration and return object with references to the created animations.
+   *
+   * @private
+   * @param {Array<Object>} declaration Array of animations declaration
+   * @returns {Object} Returns object with created Animation instances
+   */
+  _buildAnimations(declaration) {
+    return declaration.reduce((obj, animation) => (obj[animation.name] = ANIMATIONS[animation.type].fromObject(animation)) && obj, {});
+  }
+
+  /**
+   * Parse order declaration and return object with shape reference and its animations references.
+   *
+   * @private
+   * @param {Array<String>} declaration Array of order declaration
+   * @returns {{shape: String, animations: Array<String>}} Returns object with references to shape and animations, assigned to this shape
+   */
+  _buildOrder(declaration) {
+    return declaration.map(item => {
+      const parsed = item.split('::');
+      const shape = parsed[0];
+      const animations = parsed[1] && parsed[1].split('->');
+
+      return {shape, animations};
+    });
   }
 
   renderShape(shape, cursor) {
@@ -96,45 +159,6 @@ export default class Slide {
    */
   toJSON() {
     return JSON.stringify(this.toObject());
-  }
-
-  /**
-   * Parse shapes array and return object with references to the shapes.
-   *
-   * @static
-   * @param {Array<Object>} shapes Array of shapes declaration
-   * @returns {Object} Returns Object with created Shape instances
-   */
-  static parseShapes(shapes) {
-    return shapes.reduce((obj, shape) => (obj[shape.name] = SHAPES[shape.type].fromObject(shape)) && obj, {});
-  }
-
-  /**
-   * Parse animations array and return object with references to the animations.
-   *
-   * @param {Array<Object>} animations Array of animations declaration
-   * @returns {Object}
-   * @static
-   */
-  static parseAnimations(animations) {
-    return animations.reduce((obj, animation) => (obj[animation.name] = ANIMATIONS[animation.type].fromObject(animation)) && obj, {});
-  }
-
-  /**
-   * Parse array with order settings and return array with shape reference and its animations references.
-   *
-   * @param {Array<String>} order
-   * @returns {Array<Object>}
-   * @static
-   */
-  static parseOrder(order) {
-    return order.map(item => {
-      const parsed = item.split('::');
-      const shape = parsed[0];
-      const animations = parsed[1] && parsed[1].split('->');
-
-      return {shape, animations};
-    });
   }
 
   /**
