@@ -1,187 +1,217 @@
-## Functions
+## Classes
 
 <dl>
-<dt><a href="#run">run()</a> ⇒ <code>Deck</code></dt>
-<dd><p>Run the presentation.</p>
+<dt><a href="#Deck">Deck</a></dt>
+<dd><p>Implements Presentation class.
+Responsible for switching slide and running the presentation.</p>
 </dd>
-<dt><a href="#renderSlide">renderSlide([index])</a> ⇒ <code>Deck</code></dt>
-<dd><p>Renders specified slide.</p>
-</dd>
-<dt><a href="#nextSlide">nextSlide()</a> ⇒ <code>Deck</code></dt>
-<dd><p>Renders the next slide.</p>
-</dd>
-<dt><a href="#prevSlide">prevSlide()</a> ⇒ <code>Deck</code></dt>
-<dd><p>Renders the previous slide.</p>
-</dd>
-<dt><a href="#exit">exit()</a></dt>
-<dd><p>Closes the presentation and returns to terminal.</p>
-</dd>
-<dt><a href="#create">create(...args)</a> ⇒ <code>Deck</code></dt>
-<dd><p>Wrapper around <code>new Presentation()</code>.</p>
-</dd>
-<dt><a href="#render">render(cursor)</a> ⇒ <code>Promise</code></dt>
-<dd><p>Render the slide.</p>
-</dd>
-<dt><a href="#toObject">toObject()</a> ⇒ <code>Object</code></dt>
-<dd><p>Serialize Slide state to Object representation.</p>
-</dd>
-<dt><a href="#toJSON">toJSON()</a> ⇒ <code>JSON</code></dt>
-<dd><p>Serialize Slide state to JSON representation.</p>
-</dd>
-<dt><a href="#parseShapes">parseShapes(shapes)</a> ⇒ <code>Object</code></dt>
-<dd><p>Parse shapes array and return object with references to the shapes.</p>
-</dd>
-<dt><a href="#parseAnimations">parseAnimations(animations)</a> ⇒ <code>Object</code></dt>
-<dd><p>Parse animations array and return object with references to the animations.</p>
-</dd>
-<dt><a href="#parseOrder">parseOrder(order)</a> ⇒ <code>Array.&lt;Object&gt;</code></dt>
-<dd><p>Parse array with order settings and return array with shape reference and its animations references.</p>
-</dd>
-<dt><a href="#create">create(...args)</a> ⇒ <code>Slide</code></dt>
-<dd><p>Wrapper around <code>new Slide()</code>.</p>
-</dd>
-<dt><a href="#fromObject">fromObject(obj)</a> ⇒ <code>Slide</code></dt>
-<dd><p>Create Slide instance from Object representation.</p>
-</dd>
-<dt><a href="#fromJSON">fromJSON(json)</a> ⇒ <code>Slide</code></dt>
-<dd><p>Create Slide instance from JSON representation.</p>
+<dt><a href="#Slide">Slide</a></dt>
+<dd><p>Slide instance is responsible for rendering the slide.</p>
 </dd>
 </dl>
 
-<a name="run"></a>
+<a name="Deck"></a>
 
-## run() ⇒ <code>Deck</code>
+## Deck
+Implements Presentation class.
+Responsible for switching slide and running the presentation.
+
+**Kind**: global class  
+**Since**: 1.0.0  
+**Version**: 1.0.0  
+
+* [Deck](#Deck)
+    * [new Deck(declaration)](#new_Deck_new)
+    * _instance_
+        * [.run()](#Deck+run) ⇒ <code>[Deck](#Deck)</code>
+        * [.renderSlide([index])](#Deck+renderSlide) ⇒ <code>[Deck](#Deck)</code>
+        * [.nextSlide()](#Deck+nextSlide) ⇒ <code>[Deck](#Deck)</code>
+        * [.prevSlide()](#Deck+prevSlide) ⇒ <code>[Deck](#Deck)</code>
+        * [.exit()](#Deck+exit)
+    * _static_
+        * [.create(args)](#Deck.create) ⇒ <code>[Deck](#Deck)</code>
+
+<a name="new_Deck_new"></a>
+
+### new Deck(declaration)
+Creates presentation instance with slides.
+
+
+| Param | Type |
+| --- | --- |
+| declaration | <code>Array.&lt;Array.&lt;Object&gt;&gt;</code> | 
+
+<a name="Deck+run"></a>
+
+### deck.run() ⇒ <code>[Deck](#Deck)</code>
 Run the presentation.
 
-**Kind**: global function  
-<a name="renderSlide"></a>
+**Kind**: instance method of <code>[Deck](#Deck)</code>  
+<a name="Deck+renderSlide"></a>
 
-## renderSlide([index]) ⇒ <code>Deck</code>
+### deck.renderSlide([index]) ⇒ <code>[Deck](#Deck)</code>
 Renders specified slide.
 
-**Kind**: global function  
+**Kind**: instance method of <code>[Deck](#Deck)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | [index] | <code>Number</code> | Slide index in presentation |
 
-<a name="nextSlide"></a>
+<a name="Deck+nextSlide"></a>
 
-## nextSlide() ⇒ <code>Deck</code>
+### deck.nextSlide() ⇒ <code>[Deck](#Deck)</code>
 Renders the next slide.
 
-**Kind**: global function  
-<a name="prevSlide"></a>
+**Kind**: instance method of <code>[Deck](#Deck)</code>  
+<a name="Deck+prevSlide"></a>
 
-## prevSlide() ⇒ <code>Deck</code>
+### deck.prevSlide() ⇒ <code>[Deck](#Deck)</code>
 Renders the previous slide.
 
-**Kind**: global function  
-<a name="exit"></a>
+**Kind**: instance method of <code>[Deck](#Deck)</code>  
+<a name="Deck+exit"></a>
 
-## exit()
+### deck.exit()
 Closes the presentation and returns to terminal.
 
-**Kind**: global function  
-<a name="create"></a>
+**Kind**: instance method of <code>[Deck](#Deck)</code>  
+<a name="Deck.create"></a>
 
-## create(...args) ⇒ <code>Deck</code>
+### Deck.create(args) ⇒ <code>[Deck](#Deck)</code>
 Wrapper around `new Presentation()`.
 
-**Kind**: global function  
+**Kind**: static method of <code>[Deck](#Deck)</code>  
 
 | Param | Type |
 | --- | --- |
-| ...args | <code>\*</code> | 
+| args | <code>\*</code> | 
 
-<a name="render"></a>
+<a name="Slide"></a>
 
-## render(cursor) ⇒ <code>Promise</code>
-Render the slide.
+## Slide
+Slide instance is responsible for rendering the slide.
 
-**Kind**: global function  
-**Returns**: <code>Promise</code> - Promise will be fulfilled when slide has rendered  
+**Kind**: global class  
+**Since**: 1.0.0  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| cursor | <code>Cursor</code> | Cursor instance which is using for rendering the slide |
+* [Slide](#Slide)
+    * [new Slide(cursor, [declaration])](#new_Slide_new)
+    * _instance_
+        * [.renderShapes(shapes)](#Slide+renderShapes) ⇒ <code>[Slide](#Slide)</code>
+        * [.render()](#Slide+render) ⇒ <code>Promise</code>
+        * [.toObject()](#Slide+toObject) ⇒ <code>Object</code>
+        * [.toJSON()](#Slide+toJSON) ⇒ <code>JSON</code>
+    * _static_
+        * [.create(args)](#Slide.create) ⇒ <code>[Slide](#Slide)</code>
+        * [.fromObject(obj, [cursor])](#Slide.fromObject) ⇒ <code>[Slide](#Slide)</code>
+        * [.fromJSON(json, [cursor])](#Slide.fromJSON) ⇒ <code>[Slide](#Slide)</code>
 
-<a name="toObject"></a>
+<a name="new_Slide_new"></a>
 
-## toObject() ⇒ <code>Object</code>
-Serialize Slide state to Object representation.
+### new Slide(cursor, [declaration])
+Creates new Slide instance.
 
-**Kind**: global function  
-<a name="toJSON"></a>
-
-## toJSON() ⇒ <code>JSON</code>
-Serialize Slide state to JSON representation.
-
-**Kind**: global function  
-<a name="parseShapes"></a>
-
-## parseShapes(shapes) ⇒ <code>Object</code>
-Parse shapes array and return object with references to the shapes.
-
-**Kind**: global function  
-**Returns**: <code>Object</code> - Returns Object with created Shape instances  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| shapes | <code>Array.&lt;Object&gt;</code> | Array of shapes declaration |
+| cursor | <code>Cursor</code> | Cursor instance |
+| [declaration] | <code>Object</code> | Declaration of the slide |
+| [declaration.shapes] | <code>Array.&lt;Object&gt;</code> | Array of shapes to render |
+| [declaration.animations] | <code>Array.&lt;Object&gt;</code> | Array of animations to create in this slide |
+| [declaration.order] | <code>Array.&lt;String&gt;</code> | Order for rendering shapes for this slide |
 
-<a name="parseAnimations"></a>
+**Example**  
+```js
+Slide.create(cursor, {
+  shapes: [{
+    name: 'Your shape name', // custom name of your shape
+    type: 'Text', // what is the type of this shape
+    options: { // Additional options will be passed to shape constructor
+      text: 'Hello, World',
+      x: 'center',
+      y: 'middle'
+    }
+  }],
+  animations: [{
+    name: 'Your animation name', // custom name of your animation
+    type: 'Slide', // what is the type of this animation
+    options: { // Additional options will be passed to animation constructor
+      duration: 2000
+    }
+  }],
+  order: [
+    'Your shape name', // renders the specified shape immediately
+    'Your shape name::Your animation name', // renders the specified shape with specified animation
+    'Your shape name::Your animation name->Your animation name' // you can chain animations in sequence
+  ]
+});
+```
+<a name="Slide+renderShapes"></a>
 
-## parseAnimations(animations) ⇒ <code>Object</code>
-Parse animations array and return object with references to the animations.
+### slide.renderShapes(shapes) ⇒ <code>[Slide](#Slide)</code>
+Render the array of shapes.
+Applies immediately in the terminal.
+Clears the entire screen -> renders each shape from the array -> flush the changes.
 
-**Kind**: global function  
+**Kind**: instance method of <code>[Slide](#Slide)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| animations | <code>Array.&lt;Object&gt;</code> | Array of animations declaration |
+| shapes | <code>Array.&lt;Shape&gt;</code> | Array of Shape instances |
 
-<a name="parseOrder"></a>
+<a name="Slide+render"></a>
 
-## parseOrder(order) ⇒ <code>Array.&lt;Object&gt;</code>
-Parse array with order settings and return array with shape reference and its animations references.
+### slide.render() ⇒ <code>Promise</code>
+Renders the slide.
+It builds the sequence of promises that responsible for sequentially rendering the slide as in order.
 
-**Kind**: global function  
+**Kind**: instance method of <code>[Slide](#Slide)</code>  
+**Returns**: <code>Promise</code> - Promise will be fulfilled when slide has been rendered  
+<a name="Slide+toObject"></a>
 
-| Param | Type |
-| --- | --- |
-| order | <code>Array.&lt;String&gt;</code> | 
+### slide.toObject() ⇒ <code>Object</code>
+Serialize Slide to Object representation.
 
-<a name="create"></a>
+**Kind**: instance method of <code>[Slide](#Slide)</code>  
+<a name="Slide+toJSON"></a>
 
-## create(...args) ⇒ <code>Slide</code>
+### slide.toJSON() ⇒ <code>JSON</code>
+Serialize Slide to JSON representation.
+
+**Kind**: instance method of <code>[Slide](#Slide)</code>  
+<a name="Slide.create"></a>
+
+### Slide.create(args) ⇒ <code>[Slide](#Slide)</code>
 Wrapper around `new Slide()`.
 
-**Kind**: global function  
+**Kind**: static method of <code>[Slide](#Slide)</code>  
 
 | Param | Type |
 | --- | --- |
-| ...args | <code>\*</code> | 
+| args | <code>\*</code> | 
 
-<a name="fromObject"></a>
+<a name="Slide.fromObject"></a>
 
-## fromObject(obj) ⇒ <code>Slide</code>
+### Slide.fromObject(obj, [cursor]) ⇒ <code>[Slide](#Slide)</code>
 Create Slide instance from Object representation.
 
-**Kind**: global function  
+**Kind**: static method of <code>[Slide](#Slide)</code>  
 
-| Param | Type |
-| --- | --- |
-| obj | <code>Object</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| obj | <code>Object</code> | Object representation from [toObject](toObject) method |
+| [cursor] | <code>Cursor</code> | Cursor instance |
 
-<a name="fromJSON"></a>
+<a name="Slide.fromJSON"></a>
 
-## fromJSON(json) ⇒ <code>Slide</code>
+### Slide.fromJSON(json, [cursor]) ⇒ <code>[Slide](#Slide)</code>
 Create Slide instance from JSON representation.
 
-**Kind**: global function  
+**Kind**: static method of <code>[Slide](#Slide)</code>  
 
-| Param | Type |
-| --- | --- |
-| json | <code>JSON</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| json | <code>JSON</code> | JSON representation from [toJSON](toJSON) method |
+| [cursor] | <code>Cursor</code> | Cursor instance |
 
