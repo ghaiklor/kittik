@@ -141,20 +141,20 @@ export default class Slide {
   }
 
   /**
-   * Serialize Slide state to Object representation.
+   * Serialize Slide to Object representation.
    *
    * @returns {Object}
    */
   toObject() {
     return {
-      shapes: this._shapes.map(shape => shape.toObject()),
-      animations: this._animations.map(animation => animation.toObject()),
+      shapes: Object.keys(this._shapes).map(name => Object.assign(this._shapes[name].toObject(), {name})),
+      animations: Object.keys(this._animations).map(name => Object.assign(this._animations[name].toObject(), {name})),
       order: this._order.map(order => `${order.shape}::${order.animations.join('->')}`)
     }
   }
 
   /**
-   * Serialize Slide state to JSON representation.
+   * Serialize Slide to JSON representation.
    *
    * @returns {JSON}
    */
@@ -176,20 +176,22 @@ export default class Slide {
   /**
    * Create Slide instance from Object representation.
    *
-   * @param {Object} obj
+   * @param {Object} obj Object representation from {@link toObject} method
+   * @param {Cursor} [cursor] Cursor instance
    * @returns {Slide}
    */
-  static fromObject(obj) {
-    return this.create({shapes: obj.shapes, animations: obj.animations, order: obj.order});
+  static fromObject(obj, cursor) {
+    return this.create(cursor, {shapes: obj.shapes, animations: obj.animations, order: obj.order});
   }
 
   /**
    * Create Slide instance from JSON representation.
    *
-   * @param {JSON} json
+   * @param {JSON} json JSON representation from {@link toJSON} method
+   * @param {Cursor} [cursor] Cursor instance
    * @returns {Slide}
    */
-  static fromJSON(json) {
-    return this.fromObject(JSON.parse(json));
+  static fromJSON(json, cursor) {
+    return this.fromObject(JSON.parse(json), cursor);
   }
 }
