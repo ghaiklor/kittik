@@ -22,9 +22,16 @@ module.exports = {
     options: {
       duration: 2000
     }
+  }, {
+    name: 'Attention',
+    type: 'Focus',
+    options: {
+      direction: 'shakeX',
+      duration: 1000
+    }
   }],
   order: [
-    'Print Effect::Print',
+    'Print Effect::Print->Attention',
     'Print Effect 2::Print'
   ]
 };
