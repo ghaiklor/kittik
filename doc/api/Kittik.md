@@ -98,7 +98,6 @@ Slide instance is responsible for rendering the slide.
 * [Slide](#Slide)
     * [new Slide(cursor, [declaration])](#new_Slide_new)
     * _instance_
-        * [.renderShapes(shapes)](#Slide+renderShapes) ⇒ <code>[Slide](#Slide)</code>
         * [.render()](#Slide+render) ⇒ <code>Promise</code>
         * [.toObject()](#Slide+toObject) ⇒ <code>Object</code>
         * [.toJSON()](#Slide+toJSON) ⇒ <code>JSON</code>
@@ -147,19 +146,6 @@ Slide.create(cursor, {
   ]
 });
 ```
-<a name="Slide+renderShapes"></a>
-
-### slide.renderShapes(shapes) ⇒ <code>[Slide](#Slide)</code>
-Render the array of shapes.
-Applies immediately in the terminal.
-Clears the entire screen -> renders each shape from the array -> flush the changes.
-
-**Kind**: instance method of <code>[Slide](#Slide)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| shapes | <code>Array.&lt;Shape&gt;</code> | Array of Shape instances |
-
 <a name="Slide+render"></a>
 
 ### slide.render() ⇒ <code>Promise</code>
