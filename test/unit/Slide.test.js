@@ -62,7 +62,16 @@ const SERIALIZED_SLIDE_DECLARATION = {
 };
 
 describe('kittik::Slide', () => {
-  it('Should properly create slide instance', () => {
+  it('Should properly create slide instance with default options', () => {
+    const slide = Slide.create(cursor);
+
+    assert.instanceOf(slide._cursor, Cursor);
+    assert.deepEqual(slide._shapes, {});
+    assert.deepEqual(slide._animations, {});
+    assert.deepEqual(slide._order, []);
+  });
+
+  it('Should properly create slide instance with custom slide declaration', () => {
     const slide = Slide.create(cursor, SLIDE_DECLARATION);
 
     assert.instanceOf(slide._cursor, Cursor);
@@ -85,7 +94,13 @@ describe('kittik::Slide', () => {
     assert.instanceOf(slide._animations['Print'], Print);
   });
 
-  it('Should properly build order from declaration', () => {
+  it('Should properly build order from declaration without animations', () => {
+    const slide = Slide.create(cursor, {order: ['Hello']});
+
+    assert.deepEqual(slide._order, [{shape: 'Hello', animations: []}]);
+  });
+
+  it('Should properly build order from declaration with animations', () => {
     const slide = Slide.create(cursor, SLIDE_DECLARATION);
 
     assert.deepEqual(slide._order, [{shape: 'Hello', animations: ['Print', 'Print']}]);
