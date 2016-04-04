@@ -103,10 +103,11 @@ export default class Slide {
    * Applies immediately in the terminal.
    * Clears the entire screen -> renders each shape from the array -> flush the changes.
    *
+   * @private
    * @param {Array<Shape>} shapes Array of Shape instances
    * @returns {Slide}
    */
-  renderShapes(shapes) {
+  _renderShapes(shapes) {
     this._cursor.eraseScreen();
     shapes.forEach(shape => shape.render());
     this._cursor.flush();
@@ -124,7 +125,7 @@ export default class Slide {
     const shapesToRender = [];
     const promises = [];
 
-    Object.keys(this._animations).forEach(key => this._animations[key].on('tick', () => this.renderShapes(shapesToRender)));
+    Object.keys(this._animations).forEach(key => this._animations[key].on('tick', () => this._renderShapes(shapesToRender)));
 
     for (let i = 0; i < this._order.length; i++) {
       const shape = this._shapes[this._order[i].shape];
@@ -132,7 +133,7 @@ export default class Slide {
 
       promises.push(() => shapesToRender.push(shape));
       animations.forEach(animation => promises.push(() => animation.animate(shape)));
-      promises.push(() => this.renderShapes(shapesToRender));
+      promises.push(() => this._renderShapes(shapesToRender));
     }
 
     promises.push(() => Object.keys(this._animations).forEach(key => this._animations[key].removeAllListeners()));
