@@ -2,8 +2,7 @@
 
 <dl>
 <dt><a href="#Deck">Deck</a></dt>
-<dd><p>Implements Presentation class.
-Responsible for switching slide and running the presentation.</p>
+<dd><p>Deck class is responsible for managing slides and their rendering.</p>
 </dd>
 <dt><a href="#Slide">Slide</a></dt>
 <dd><p>Slide instance is responsible for rendering the slide.</p>
@@ -13,12 +12,10 @@ Responsible for switching slide and running the presentation.</p>
 <a name="Deck"></a>
 
 ## Deck
-Implements Presentation class.
-Responsible for switching slide and running the presentation.
+Deck class is responsible for managing slides and their rendering.
 
 **Kind**: global class  
 **Since**: 1.0.0  
-**Version**: 1.0.0  
 
 * [Deck](#Deck)
     * [new Deck(declaration)](#new_Deck_new)
@@ -34,13 +31,43 @@ Responsible for switching slide and running the presentation.
 <a name="new_Deck_new"></a>
 
 ### new Deck(declaration)
-Creates presentation instance with slides.
+Creates deck instance.
+You can declare shapes\animations\etc at the root of the declaration.
+It will automatically merges to each instance of the slide.
+Also, Deck is responsible for creating http server, so you can curl the presentation.
 
 
-| Param | Type |
-| --- | --- |
-| declaration | <code>Array.&lt;Array.&lt;Object&gt;&gt;</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| declaration | <code>Object</code> | Declaration for the deck, also consists of additional parameters to the deck |
 
+**Example**  
+```js
+Deck.create({
+  cursor: Cursor.create(), // custom instance of the cursor
+  port: 3000, // custom port where http will listen
+  shapes: [{ // global shapes will be merged into each slide and will be available there by name
+    name: 'Global Shape',
+    type: 'Text',
+    options: {
+      text: 'Hello, World'
+    }
+  }],
+  animations: [{
+    name: 'Global Animation',
+    type: 'Print',
+    options: {
+      duration: 3000,
+      easing: 'inOutElastic'
+    }
+  }],
+  slides: [{ // declaration for each slide
+    shapes: [], // local shapes applied only to current slide
+    animations: [], // local animations applied only to current slide
+    order: [] // order of the current slide
+  }]
+});
+```
 <a name="Deck+run"></a>
 
 ### deck.run() ⇒ <code>[Deck](#Deck)</code>

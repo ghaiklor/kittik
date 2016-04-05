@@ -3,22 +3,52 @@ import Cursor from 'kittik-cursor';
 import Slide from './Slide';
 
 /**
- * Implements Presentation class.
- * Responsible for switching slide and running the presentation.
+ * Deck class is responsible for managing slides and their rendering.
  *
  * @since 1.0.0
- * @version 1.0.0
  */
 export default class Deck {
   /**
-   * Creates presentation instance with slides.
+   * Creates deck instance.
+   * You can declare shapes\animations\etc at the root of the declaration.
+   * It will automatically merges to each instance of the slide.
+   * Also, Deck is responsible for creating http server, so you can curl the presentation.
    *
-   * @param {Array<Array<Object>>} declaration
+   * @constructor
+   * @param {Object} declaration Declaration for the deck, also consists of additional parameters to the deck
+   * @example
+   * Deck.create({
+   *   cursor: Cursor.create(), // custom instance of the cursor
+   *   port: 3000, // custom port where http will listen
+   *   shapes: [{ // global shapes will be merged into each slide and will be available there by name
+   *     name: 'Global Shape',
+   *     type: 'Text',
+   *     options: {
+   *       text: 'Hello, World'
+   *     }
+   *   }],
+   *   animations: [{
+   *     name: 'Global Animation',
+   *     type: 'Print',
+   *     options: {
+   *       duration: 3000,
+   *       easing: 'inOutElastic'
+   *     }
+   *   }],
+   *   slides: [{ // declaration for each slide
+   *     shapes: [], // local shapes applied only to current slide
+   *     animations: [], // local animations applied only to current slide
+   *     order: [] // order of the current slide
+   *   }]
+   * });
    */
   constructor(declaration) {
-    this._cursor = Cursor.create().reset().hideCursor();
+    const {cursor = Cursor.create().reset().hideCursor(), port = 3000} = declaration;
+    const {shapes = [], animations = [], slides = []} = declaration;
+
+    this._cursor = cursor;
     this._currentSlideIndex = 0;
-    this._slides = declaration.slides.map(slide => Slide.create(this._cursor, slide));
+    this._slides = slides.map(slide => Slide.create(this._cursor, slide));
 
     keypress(process.stdin);
     process.stdin.setRawMode(true);
