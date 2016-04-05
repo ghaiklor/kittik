@@ -61,6 +61,7 @@ export default class Slide {
 
   /**
    * Parse shapes declaration and return object with references to the created shapes.
+   * It creates object with the name of the shape as a key and instance as a value.
    *
    * @private
    * @param {Array<Object>} declaration Array of shapes declaration
@@ -72,6 +73,7 @@ export default class Slide {
 
   /**
    * Parse animations declaration and return object with references to the created animations.
+   * It creates object with the name of the animation as a key and instance as a value.
    *
    * @private
    * @param {Array<Object>} declaration Array of animations declaration
@@ -82,11 +84,11 @@ export default class Slide {
   }
 
   /**
-   * Parse order declaration and return object with shape reference and its animations references.
+   * Parse order declaration and return array with shape name and its animations names.
    *
    * @private
    * @param {Array<String>} declaration Array of order declaration
-   * @returns {{shape: String, animations: Array<String>}} Returns object with references to shape and animations, assigned to this shape
+   * @returns {Array<{shape: String, animations: Array<String>}>} Returns an array with shapes and animations names
    */
   _buildOrder(declaration) {
     return declaration.map(item => {
@@ -122,23 +124,27 @@ export default class Slide {
    * @returns {Promise} Promise will be fulfilled when slide has been rendered
    */
   render() {
+    const shapes = this._shapes;
+    const animations = this._animations;
+    const order = this._order;
+
     const shapesToRender = [];
-    const promises = [];
+    const sequence = [];
 
-    Object.keys(this._animations).forEach(key => this._animations[key].on('tick', () => this._renderShapes(shapesToRender)));
+    Object.keys(animations).forEach(key => animations[key].on('tick', () => this._renderShapes(shapesToRender)));
 
-    for (let i = 0; i < this._order.length; i++) {
-      const shape = this._shapes[this._order[i].shape];
-      const animations = this._order[i].animations.map(item => this._animations[item]);
+    for (let i = 0; i < order.length; i++) {
+      const shape = shapes[order[i].shape];
+      const shapeAnimations = order[i].animations.map(item => animations[item]);
 
-      promises.push(() => shapesToRender.push(shape));
-      animations.forEach(animation => promises.push(() => animation.animate(shape)));
-      promises.push(() => this._renderShapes(shapesToRender));
+      sequence.push(() => shapesToRender.push(shape));
+      shapeAnimations.forEach(animation => sequence.push(() => animation.animate(shape)));
+      sequence.push(() => this._renderShapes(shapesToRender));
     }
 
-    promises.push(() => Object.keys(this._animations).forEach(key => this._animations[key].removeAllListeners()));
+    sequence.push(() => Object.keys(animations).forEach(key => animations[key].removeAllListeners()));
 
-    return promises.reduce((promise, item) => promise.then(item), Promise.resolve());
+    return sequence.reduce((promise, item) => promise.then(item), Promise.resolve());
   }
 
   /**
@@ -177,12 +183,13 @@ export default class Slide {
   /**
    * Create Slide instance from Object representation.
    *
+   * @static
    * @param {Object} obj Object representation from {@link toObject} method
    * @param {Cursor} [cursor] Cursor instance
    * @returns {Slide}
    */
   static fromObject(obj, cursor) {
-    return this.create(cursor, {shapes: obj.shapes, animations: obj.animations, order: obj.order});
+    return this.create(cursor, obj);
   }
 
   /**
