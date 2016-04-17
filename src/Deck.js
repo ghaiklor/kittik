@@ -19,7 +19,6 @@ export default class Deck {
    * @example
    * Deck.create({
    *   cursor: Cursor.create(), // custom instance of the cursor
-   *   port: 3000, // custom port where http will listen
    *   shapes: [{ // global shapes will be merged into each slide and will be available there by name
    *     name: 'Global Shape',
    *     type: 'Text',
@@ -43,11 +42,10 @@ export default class Deck {
    * });
    */
   constructor(declaration) {
-    const {cursor = Cursor.create().reset().hideCursor(), port = 3000} = declaration;
+    const {cursor = Cursor.create().reset().hideCursor().saveScreen()} = declaration;
     const {shapes = [], animations = [], slides = []} = declaration;
 
     this._cursor = cursor;
-    this._port = port;
     this._slides = slides.map(slide => {
       const slideShapes = slide.shapes && slide.shapes.concat(shapes);
       const slideAnimations = slide.animations && slide.animations.concat(animations);
@@ -81,7 +79,7 @@ export default class Deck {
   renderSlide(index = this._currentSlideIndex) {
     if (!this._slides[index]) return this;
 
-    this._cursor.reset().hideCursor();
+    this._cursor.eraseScreen();
     this._slides[index].render();
 
     return this;
@@ -115,7 +113,7 @@ export default class Deck {
    * Closes the presentation and returns to terminal.
    */
   exit() {
-    this._cursor.reset().showCursor();
+    this._cursor.reset().showCursor().restoreScreen();
     process.exit(0);
   }
 
