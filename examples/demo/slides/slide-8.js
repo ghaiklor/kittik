@@ -17,12 +17,6 @@ module.exports = {
     }
   }],
   animations: [{
-    name: 'Print',
-    type: 'Print',
-    options: {
-      duration: 2000
-    }
-  }, {
     name: 'Attention',
     type: 'Focus',
     options: {

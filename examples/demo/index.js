@@ -13,4 +13,13 @@ const SLIDES = [
   require('./slides/slide-9')
 ];
 
-Deck.create({slides: SLIDES}).run();
+Deck.create({
+  animations: [{
+    name: 'Print',
+    type: 'Print',
+    options: {
+      duration: 4000
+    }
+  }],
+  slides: SLIDES
+}).run();

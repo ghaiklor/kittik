@@ -49,7 +49,6 @@ export default class Deck {
     this._cursor = cursor;
     this._port = port;
     this._slides = slides.map(slide => {
-      console.log(slide);
       const slideShapes = slide.shapes && slide.shapes.concat(shapes);
       const slideAnimations = slide.animations && slide.animations.concat(animations);
       return Slide.create(this._cursor, Object.assign(slide, {shapes: slideShapes, animations: slideAnimations}));
