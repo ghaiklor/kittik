@@ -47,13 +47,19 @@ export default class Deck {
     const {shapes = [], animations = [], slides = []} = declaration;
 
     this._cursor = cursor;
+    this._port = port;
+    this._slides = slides.map(slide => {
+      console.log(slide);
+      const slideShapes = slide.shapes && slide.shapes.concat(shapes);
+      const slideAnimations = slide.animations && slide.animations.concat(animations);
+      return Slide.create(this._cursor, Object.assign(slide, {shapes: slideShapes, animations: slideAnimations}));
+    });
+
     this._currentSlideIndex = 0;
-    this._slides = slides.map(slide => Slide.create(this._cursor, slide));
 
     keypress(process.stdin);
     process.stdin.setRawMode(true);
     process.stdin.setEncoding('utf8');
-
     process.stdin.on('keypress', this._onKeyPress.bind(this));
   }
 
