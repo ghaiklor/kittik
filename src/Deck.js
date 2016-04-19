@@ -12,10 +12,13 @@ export default class Deck {
    * Creates deck instance.
    * You can declare shapes\animations\etc at the root of the declaration.
    * It will automatically merges to each instance of the slide.
-   * Also, Deck is responsible for creating http server, so you can curl the presentation.
    *
    * @constructor
    * @param {Object} declaration Declaration for the deck, also consists of additional parameters to the deck
+   * @param {Cursor} [declaration.cursor] Cursor instance that you want to use when rendering slides
+   * @param {Array<Object>} [declaration.shapes] Array of shapes declaration will be merged into each slide
+   * @param {Array<Object>} [declaration.animations] Array of animations declaration will be merged into each slide
+   * @param {Array<Object>} declaration.slides Array of slides declaration
    * @example
    * Deck.create({
    *   cursor: Cursor.create(), // custom instance of the cursor
@@ -42,22 +45,49 @@ export default class Deck {
    * });
    */
   constructor(declaration) {
-    const {cursor = Cursor.create().reset().hideCursor().saveScreen()} = declaration;
+    const {cursor = Cursor.create().reset().saveScreen().hideCursor()} = declaration;
     const {shapes = [], animations = [], slides = []} = declaration;
 
+    this._currentSlideIndex = 0;
     this._cursor = cursor;
     this._slides = slides.map(slide => {
-      const slideShapes = slide.shapes && slide.shapes.concat(shapes);
-      const slideAnimations = slide.animations && slide.animations.concat(animations);
+      const slideShapes = shapes.concat(slide.shapes || []);
+      const slideAnimations = animations.concat(slide.animations || []);
       return Slide.create(this._cursor, Object.assign(slide, {shapes: slideShapes, animations: slideAnimations}));
     });
 
-    this._currentSlideIndex = 0;
+    this._initKeyboard();
+  }
 
-    keypress(process.stdin);
-    process.stdin.setRawMode(true);
-    process.stdin.setEncoding('utf8');
-    process.stdin.on('keypress', this._onKeyPress.bind(this));
+  /**
+   * Init keyboard and bind EventEmitter to the stdin stream.
+   *
+   * @private
+   */
+  _initKeyboard() {
+    if (this._cursor._stream === process.stdin) {
+      keypress(process.stdin);
+      process.stdin.setRawMode(true);
+      process.stdin.setEncoding('utf8');
+      process.stdin.on('keypress', this._onKeyPress.bind(this));
+    }
+
+    return this;
+  }
+
+  /**
+   * Triggers when user is pressing the key.
+   *
+   * @param {String} ch
+   * @param {Object} key
+   * @private
+   */
+  _onKeyPress(ch, key) {
+    if (key.name == 'left') this.prevSlide();
+    if (key.name == 'right' || key.name == 'space') this.nextSlide();
+    if (key.ctrl && key.name == 'c') this.exit();
+
+    return this;
   }
 
   /**
@@ -113,23 +143,8 @@ export default class Deck {
    * Closes the presentation and returns to terminal.
    */
   exit() {
-    this._cursor.reset().showCursor().restoreScreen();
+    this._cursor.restoreScreen().showCursor();
     process.exit(0);
-  }
-
-  /**
-   * Triggers when user is pressing the key.
-   *
-   * @param {String} ch
-   * @param {Object} key
-   * @private
-   */
-  _onKeyPress(ch, key) {
-    if (key.name == 'left') this.prevSlide();
-    if (key.name == 'right') this.nextSlide();
-    if (key.ctrl && key.name == 'c') this.exit();
-
-    return this;
   }
 
   /**
