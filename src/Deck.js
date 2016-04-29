@@ -45,7 +45,7 @@ export default class Deck {
    * });
    */
   constructor(declaration) {
-    const {cursor = Cursor.create().reset().saveScreen().hideCursor()} = declaration;
+    const {cursor = Cursor.create().saveScreen().reset().hideCursor()} = declaration;
     const {shapes = [], animations = [], slides = []} = declaration;
 
     this._currentSlideIndex = 0;
@@ -143,7 +143,7 @@ export default class Deck {
    * Closes the presentation and returns to terminal.
    */
   exit() {
-    this._cursor.restoreScreen().showCursor();
+    this._cursor.showCursor().restoreScreen().reset();
     process.exit(0);
   }
 
