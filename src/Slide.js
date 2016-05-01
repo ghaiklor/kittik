@@ -157,7 +157,7 @@ export default class Slide {
       shapes: Object.keys(this._shapes).map(name => Object.assign(this._shapes[name].toObject(), {name})),
       animations: Object.keys(this._animations).map(name => Object.assign(this._animations[name].toObject(), {name})),
       order: this._order.map(order => `${order.shape}::${order.animations.join('->')}`)
-    }
+    };
   }
 
   /**
