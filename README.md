@@ -13,6 +13,10 @@
 ![dependencies](https://img.shields.io/david/kittikjs/kittik.svg)
 ![dev dependencies](https://img.shields.io/david/dev/kittikjs/kittik.svg)
 
+## Demo
+
+[![asciicast](https://asciinema.org/a/44542.png)](https://asciinema.org/a/44542)
+
 ## Getting Started
 
 Install it via npm:
