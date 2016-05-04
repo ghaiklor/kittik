@@ -26,7 +26,7 @@ Import in your project and create new Deck:
 ```javascript
 "use strict";
 
-const Deck = require('../lib/Deck');
+const Deck = require('kittik');
 
 Deck.create({
   slides: [{
