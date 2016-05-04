@@ -13,6 +13,18 @@ Slide.create(cursor, {
       y: 'middle',
       font: 'Star Wars'
     }
+  }, {
+    name: 'Shape',
+    type: 'Rectangle',
+    options: {
+      text: 'Rectangle example',
+      x: 'center',
+      y: 'middle',
+      width: '50%',
+      height: '10%',
+      background: 'white',
+      foreground: 'black'
+    }
   }],
   animations: [{
     name: 'Print',
@@ -31,6 +43,7 @@ Slide.create(cursor, {
     }
   }],
   order: [
-    'Hello::Print->Slide X'
+    'Hello::Print->Slide X',
+    'Shape::Print->Slide X'
   ]
 }).render().then(() => cursor.reset().showCursor());
