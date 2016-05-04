@@ -1,6 +1,7 @@
 import keypress from 'keypress';
 import Cursor from 'kittik-cursor';
 import Slide from './Slide';
+import tty from 'tty';
 
 /**
  * Deck class is responsible for managing slides and their rendering.
@@ -60,12 +61,12 @@ export default class Deck {
   }
 
   /**
-   * Init keyboard and bind EventEmitter to the stdin stream.
+   * Init keyboard and binds EventEmitter to the stdin stream.
    *
    * @private
    */
   _initKeyboard() {
-    if (this._cursor._stream === process.stdin) {
+    if (tty.isatty(this._cursor._stream)) {
       keypress(process.stdin);
       process.stdin.setRawMode(true);
       process.stdin.setEncoding('utf8');
@@ -109,7 +110,6 @@ export default class Deck {
   renderSlide(index = this._currentSlideIndex) {
     if (!this._slides[index]) return this;
 
-    this._cursor.eraseScreen();
     this._slides[index].render();
 
     return this;
