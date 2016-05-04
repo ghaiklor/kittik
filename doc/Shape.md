@@ -48,7 +48,7 @@ import Shape from 'kittik-shape-basic';
 
 export default class HelloWorld extends Shape {
   render() {
-    returns this;
+    return this;
   }
 }
 ```
@@ -167,8 +167,8 @@ I think that's it.
 Everything is simple.
 If you want to see more examples, just look at the shape-* repositories in the KittikJS organization.
 
-All implemented methods in `kittik-shape-basic` are described [here](./API.md#Shape).
-
 ## API
+
+All implemented methods in `kittik-shape-basic` are described [here](./api/Shape.md#Shape).
 
 Each implemented shape has its own API declaration that you can read [here](./API.md).

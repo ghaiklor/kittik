@@ -119,4 +119,4 @@ BTW, if I remove Throttle stream, I'm getting 120 FPS :smiley:
 
 ## API
 
-API declaration you can find [here](./API.md#Cursor).
+API declaration you can find [here](./api/Cursor.md).
