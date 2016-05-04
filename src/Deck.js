@@ -45,7 +45,7 @@ export default class Deck {
    *   }]
    * });
    */
-  constructor(declaration) {
+  constructor(declaration = {}) {
     const {cursor = Cursor.create().saveScreen().reset().hideCursor()} = declaration;
     const {shapes = [], animations = [], slides = []} = declaration;
 
