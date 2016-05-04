@@ -171,4 +171,4 @@ If you want to see more examples, just look at the shape-* repositories in the K
 
 All implemented methods in `kittik-shape-basic` are described [here](./api/Shape.md#Shape).
 
-Each implemented shape has its own API declaration that you can read [here](./API.md).
+Each implemented shape has its own API declaration that you can read [here](./api/Shape.md).
