@@ -34,18 +34,20 @@ Deck class is responsible for managing slides and their rendering.
 Creates deck instance.
 You can declare shapes\animations\etc at the root of the declaration.
 It will automatically merges to each instance of the slide.
-Also, Deck is responsible for creating http server, so you can curl the presentation.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
 | declaration | <code>Object</code> | Declaration for the deck, also consists of additional parameters to the deck |
+| [declaration.cursor] | <code>Cursor</code> | Cursor instance that you want to use when rendering slides |
+| [declaration.shapes] | <code>Array.&lt;Object&gt;</code> | Array of shapes declaration will be merged into each slide |
+| [declaration.animations] | <code>Array.&lt;Object&gt;</code> | Array of animations declaration will be merged into each slide |
+| declaration.slides | <code>Array.&lt;Object&gt;</code> | Array of slides declaration |
 
 **Example**  
 ```js
 Deck.create({
   cursor: Cursor.create(), // custom instance of the cursor
-  port: 3000, // custom port where http will listen
   shapes: [{ // global shapes will be merged into each slide and will be available there by name
     name: 'Global Shape',
     type: 'Text',
