@@ -21,6 +21,45 @@ Install it via npm:
 npm install kittik
 ```
 
+Import in your project and create new Deck:
+
+```javascript
+"use strict";
+
+const Deck = require('../lib/Deck');
+
+Deck.create({
+  slides: [{
+    shapes: [{
+      name: 'Shape',
+      type: 'Rectangle',
+      options: {
+        text: 'This shape is available only in current slide',
+        width: '50%',
+        height: 5,
+        background: 'white',
+        foreground: 'black',
+        x: 'center',
+        y: 6
+      }
+    }],
+    animations: [{
+      name: 'Animation',
+      type: 'Focus',
+      options: {
+        direction: 'shakeY',
+        duration: 500
+      }
+    }],
+    order: [
+      'Shape::Animation'
+    ]
+  }]
+}).run();
+```
+
+All documentation is available [here](./doc).
+
 ## License
 
 The MIT License (MIT)
