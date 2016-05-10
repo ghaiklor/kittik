@@ -105,7 +105,7 @@ Deck.create({
     ]
   }, {
     order: [
-      'Code'
+      'Code::Slide In'
     ]
   }, {
     shapes: [{
