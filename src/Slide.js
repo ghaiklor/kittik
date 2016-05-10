@@ -1,3 +1,4 @@
+import CodeShape from 'kittik-shape-code';
 import FigTextShape from 'kittik-shape-fig-text';
 import ImageShape from 'kittik-shape-image';
 import RectangleShape from 'kittik-shape-rectangle';
@@ -7,7 +8,7 @@ import FocusAnimation from 'kittik-animation-focus';
 import PrintAnimation from 'kittik-animation-print';
 import SlideAnimation from 'kittik-animation-slide';
 
-const SHAPES = {FigText: FigTextShape, Image: ImageShape, Rectangle: RectangleShape, Text: TextShape};
+const SHAPES = {Code: CodeShape, FigText: FigTextShape, Image: ImageShape, Rectangle: RectangleShape, Text: TextShape};
 const ANIMATIONS = {Focus: FocusAnimation, Print: PrintAnimation, Slide: SlideAnimation};
 
 /**

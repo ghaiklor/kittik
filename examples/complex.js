@@ -32,6 +32,14 @@ Deck.create({
       y: 'middle',
       font: 'Star Wars'
     }
+  }, {
+    name: 'Code',
+    type: 'Code',
+    options: {
+      code: `const sentence = 'You can embed your code here';\nconsole.log(sentence);`,
+      x: 'center',
+      y: 'middle'
+    }
   }],
   animations: [{
     name: 'Print',
@@ -94,6 +102,10 @@ Deck.create({
   }, {
     order: [
       'FigText::Slide In->Focus'
+    ]
+  }, {
+    order: [
+      'Code'
     ]
   }, {
     shapes: [{
