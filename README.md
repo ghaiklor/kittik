@@ -15,7 +15,7 @@
 
 ## Demo
 
-[![asciicast](https://asciinema.org/a/44542.png)](https://asciinema.org/a/44542)
+[![asciicast](https://asciinema.org/a/45410.png)](https://asciinema.org/a/45410)
 
 ## Getting Started
 
