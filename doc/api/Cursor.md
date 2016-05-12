@@ -4,9 +4,6 @@
 <dt><a href="#Cell">Cell</a></dt>
 <dd><p>Cell responsible for mapping separate cells in the real terminal to the virtual one.</p>
 </dd>
-<dt><a href="#Color">Color</a></dt>
-<dd><p>Color class responsible for converting colors between rgb and hex.</p>
-</dd>
 <dt><a href="#Cursor">Cursor</a></dt>
 <dd><p>Cursor implements low-level API to terminal cursor.</p>
 </dd>
@@ -16,7 +13,7 @@
 
 <dl>
 <dt><a href="#COLORS">COLORS</a> : <code>Object</code></dt>
-<dd><p>Dictionary of colors which can be used for instantiating the <a href="#Color">Color</a> instance.</p>
+<dd><p>Dictionary of colors which can be used in cursor.</p>
 </dd>
 <dt><a href="#DISPLAY_MODES">DISPLAY_MODES</a> : <code>Object</code></dt>
 <dd><p>Dictionary of the display modes and VT100 control sequences.
@@ -44,10 +41,10 @@ Cell responsible for mapping separate cells in the real terminal to the virtual 
         * [.setX([x])](#Cell+setX) ⇒ <code>[Cell](#Cell)</code>
         * [.getY()](#Cell+getY) ⇒ <code>Number</code>
         * [.setY([y])](#Cell+setY) ⇒ <code>[Cell](#Cell)</code>
-        * [.getBackground()](#Cell+getBackground) ⇒ <code>Object</code>
-        * [.setBackground([r], [g], [b])](#Cell+setBackground) ⇒ <code>[Cell](#Cell)</code>
-        * [.getForeground()](#Cell+getForeground) ⇒ <code>Object</code>
-        * [.setForeground([r], [g], [b])](#Cell+setForeground) ⇒ <code>[Cell](#Cell)</code>
+        * [.getBackground()](#Cell+getBackground) ⇒ <code>String</code>
+        * [.setBackground([colorName])](#Cell+setBackground) ⇒ <code>[Cell](#Cell)</code>
+        * [.getForeground()](#Cell+getForeground) ⇒ <code>String</code>
+        * [.setForeground([colorName])](#Cell+setForeground) ⇒ <code>[Cell](#Cell)</code>
         * [.getDisplay()](#Cell+getDisplay) ⇒ <code>Object</code>
         * [.setDisplay([bold], [dim], [underlined], [blink], [reverse], [hidden])](#Cell+setDisplay) ⇒ <code>[Cell](#Cell)</code>
         * [.setModified([isModified])](#Cell+setModified) ⇒ <code>[Cell](#Cell)</code>
@@ -69,14 +66,8 @@ Create Cell instance which are able to convert itself to ASCII control sequence.
 | [options] | <code>Object</code> | Options object where you can set additional style to char |
 | [options.x] | <code>Number</code> | X coordinate |
 | [options.y] | <code>Number</code> | Y coordinate |
-| [options.background] | <code>Object</code> | Background color, fill with -1 if you don't want to use background |
-| [options.background.r] | <code>Number</code> | Red channel |
-| [options.background.g] | <code>Number</code> | Green channel |
-| [options.background.b] | <code>Number</code> | Blue channel |
-| [options.foreground] | <code>Object</code> | Foreground color, fill with -1 if you don't want to use foreground |
-| [options.foreground.r] | <code>Number</code> | Red channel |
-| [options.foreground.g] | <code>Number</code> | Green channel |
-| [options.foreground.b] | <code>Number</code> | Blue channel |
+| [options.background] | <code>String</code> | Background color name, `none` to disable color |
+| [options.foreground] | <code>String</code> | Foreground color name, `none` to disable color |
 | [options.display] | <code>Object</code> | Object with display modes |
 | [options.display.bold] | <code>Boolean</code> | Bold style |
 | [options.display.dim] | <code>Boolean</code> | Dim style |
@@ -139,41 +130,37 @@ Set new Y coordinate for cell.
 
 <a name="Cell+getBackground"></a>
 
-### cell.getBackground() ⇒ <code>Object</code>
+### cell.getBackground() ⇒ <code>String</code>
 Get current background color.
 
 **Kind**: instance method of <code>[Cell](#Cell)</code>  
 <a name="Cell+setBackground"></a>
 
-### cell.setBackground([r], [g], [b]) ⇒ <code>[Cell](#Cell)</code>
+### cell.setBackground([colorName]) ⇒ <code>[Cell](#Cell)</code>
 Set new background color.
 
 **Kind**: instance method of <code>[Cell](#Cell)</code>  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [r] | <code>Number</code> | <code>-1</code> | Red channel |
-| [g] | <code>Number</code> | <code>-1</code> | Green channel |
-| [b] | <code>Number</code> | <code>-1</code> | Blue channel |
+| [colorName] | <code>String</code> | <code>none</code> | Color name from [COLORS](#COLORS) dictionary. |
 
 <a name="Cell+getForeground"></a>
 
-### cell.getForeground() ⇒ <code>Object</code>
+### cell.getForeground() ⇒ <code>String</code>
 Get current foreground color.
 
 **Kind**: instance method of <code>[Cell](#Cell)</code>  
 <a name="Cell+setForeground"></a>
 
-### cell.setForeground([r], [g], [b]) ⇒ <code>[Cell](#Cell)</code>
+### cell.setForeground([colorName]) ⇒ <code>[Cell](#Cell)</code>
 Set new foreground color.
 
 **Kind**: instance method of <code>[Cell](#Cell)</code>  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
-| [r] | <code>Number</code> | <code>-1</code> | Red channel |
-| [g] | <code>Number</code> | <code>-1</code> | Green channel |
-| [b] | <code>Number</code> | <code>-1</code> | Blue channel |
+| [colorName] | <code>String</code> | <code>none</code> | Color name from [COLORS](#COLORS) dictionary. |
 
 <a name="Cell+getDisplay"></a>
 
@@ -233,179 +220,6 @@ Convert cell to VT100 compatible control sequence.
 Wrapper around `new Cell()`.
 
 **Kind**: static method of <code>[Cell](#Cell)</code>  
-<a name="Color"></a>
-
-## Color
-Color class responsible for converting colors between rgb and hex.
-
-**Kind**: global class  
-**Since**: 3.1.0  
-
-* [Color](#Color)
-    * [new Color(color)](#new_Color_new)
-    * _instance_
-        * [.getR()](#Color+getR) ⇒ <code>Number</code>
-        * [.setR(value)](#Color+setR) ⇒ <code>[Color](#Color)</code>
-        * [.getG()](#Color+getG) ⇒ <code>Number</code>
-        * [.setG(value)](#Color+setG) ⇒ <code>[Color](#Color)</code>
-        * [.getB()](#Color+getB) ⇒ <code>Number</code>
-        * [.setB(value)](#Color+setB) ⇒ <code>[Color](#Color)</code>
-        * [.toRgb()](#Color+toRgb) ⇒ <code>Object</code>
-        * [.toHex()](#Color+toHex) ⇒ <code>String</code>
-    * _static_
-        * [.isNamed(color)](#Color.isNamed) ⇒ <code>Boolean</code>
-        * [.isRgb(rgb)](#Color.isRgb) ⇒ <code>Boolean</code>
-        * [.isHex(hex)](#Color.isHex) ⇒ <code>Boolean</code>
-        * [.fromRgb(rgb)](#Color.fromRgb) ⇒ <code>[Color](#Color)</code>
-        * [.fromHex(hex)](#Color.fromHex) ⇒ <code>[Color](#Color)</code>
-        * [.create()](#Color.create) ⇒ <code>[Color](#Color)</code>
-
-<a name="new_Color_new"></a>
-
-### new Color(color)
-Create new Color instance.
-You can use different formats of color: named, rgb or hex.
-[Color](#Color) will try to parse your provided color, otherwise throws an error.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| color | <code>String</code> &#124; <code>Object</code> | String with named color, rgb, hex or object with {r, g, b} properties |
-| [color.r] | <code>Number</code> | Red channel |
-| [color.g] | <code>Number</code> | Green channel |
-| [color.b] | <code>Number</code> | Blue channel |
-
-**Example**  
-```js
-Color.create('black');
-Color.create('rgb(0, 10, 20)');
-Color.create('#AABBCC');
-Color.create({r: 0, g: 10, b: 20});
-```
-<a name="Color+getR"></a>
-
-### color.getR() ⇒ <code>Number</code>
-Get rounded value of red channel.
-
-**Kind**: instance method of <code>[Color](#Color)</code>  
-<a name="Color+setR"></a>
-
-### color.setR(value) ⇒ <code>[Color](#Color)</code>
-Set clamped value of red channel.
-
-**Kind**: instance method of <code>[Color](#Color)</code>  
-
-| Param | Type |
-| --- | --- |
-| value | <code>Number</code> | 
-
-<a name="Color+getG"></a>
-
-### color.getG() ⇒ <code>Number</code>
-Get rounded value of green channel.
-
-**Kind**: instance method of <code>[Color](#Color)</code>  
-<a name="Color+setG"></a>
-
-### color.setG(value) ⇒ <code>[Color](#Color)</code>
-Set clamped value of green channel.
-
-**Kind**: instance method of <code>[Color](#Color)</code>  
-
-| Param | Type |
-| --- | --- |
-| value | <code>Number</code> | 
-
-<a name="Color+getB"></a>
-
-### color.getB() ⇒ <code>Number</code>
-Get rounded value of blue channel.
-
-**Kind**: instance method of <code>[Color](#Color)</code>  
-<a name="Color+setB"></a>
-
-### color.setB(value) ⇒ <code>[Color](#Color)</code>
-Set clamped value of blue channel.
-
-**Kind**: instance method of <code>[Color](#Color)</code>  
-
-| Param | Type |
-| --- | --- |
-| value | <code>Number</code> | 
-
-<a name="Color+toRgb"></a>
-
-### color.toRgb() ⇒ <code>Object</code>
-Convert color to RGB representation.
-
-**Kind**: instance method of <code>[Color](#Color)</code>  
-<a name="Color+toHex"></a>
-
-### color.toHex() ⇒ <code>String</code>
-Convert color to HEX representation.
-
-**Kind**: instance method of <code>[Color](#Color)</code>  
-<a name="Color.isNamed"></a>
-
-### Color.isNamed(color) ⇒ <code>Boolean</code>
-Check if provided color is named color.
-
-**Kind**: static method of <code>[Color](#Color)</code>  
-
-| Param | Type |
-| --- | --- |
-| color | <code>String</code> | 
-
-<a name="Color.isRgb"></a>
-
-### Color.isRgb(rgb) ⇒ <code>Boolean</code>
-Check if provided color is written in RGB representation.
-
-**Kind**: static method of <code>[Color](#Color)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| rgb | <code>String</code> | RGB color |
-
-<a name="Color.isHex"></a>
-
-### Color.isHex(hex) ⇒ <code>Boolean</code>
-Check if provided color is written in HEX representation.
-
-**Kind**: static method of <code>[Color](#Color)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| hex | <code>String</code> | HEX color |
-
-<a name="Color.fromRgb"></a>
-
-### Color.fromRgb(rgb) ⇒ <code>[Color](#Color)</code>
-Parse RGB color and return Color instance.
-
-**Kind**: static method of <code>[Color](#Color)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| rgb | <code>String</code> | RGB color |
-
-<a name="Color.fromHex"></a>
-
-### Color.fromHex(hex) ⇒ <code>[Color](#Color)</code>
-Parse HEX color and return Color instance.
-
-**Kind**: static method of <code>[Color](#Color)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| hex | <code>String</code> | HEX color |
-
-<a name="Color.create"></a>
-
-### Color.create() ⇒ <code>[Color](#Color)</code>
-Wrapper around `new Color()`.
-
-**Kind**: static method of <code>[Color](#Color)</code>  
 <a name="Cursor"></a>
 
 ## Cursor
@@ -659,14 +473,12 @@ This color is used when text is rendering.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| color | <code>String</code> &#124; <code>Boolean</code> | Color name or false if you want to disable foreground filling |
+| color | <code>String</code> | Color name or `none` if you want to disable foreground filling |
 
 **Example**  
 ```js
 cursor.foreground('black');
-cursor.foreground('#AABBCC');
-cursor.foreground('rgb(0, 200, 255)');
-cursor.foreground(false); // disables foreground filling
+cursor.foreground('none');
 ```
 <a name="Cursor+background"></a>
 
@@ -678,14 +490,12 @@ This color is used for filling the whole cell in the TTY.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| color | <code>String</code> &#124; <code>Boolean</code> | Color name or false if you want to disable background filling |
+| color | <code>String</code> | Color name or `none` if you want to disable background filling |
 
 **Example**  
 ```js
 cursor.background('black');
-cursor.background('#AABBCC');
-cursor.background('rgb(0, 200, 255)');
-cursor.background(false); // disables background filling
+cursor.background('none');
 ```
 <a name="Cursor+bold"></a>
 
@@ -926,7 +736,7 @@ Wrapper around `new Cursor()`.
 <a name="COLORS"></a>
 
 ## COLORS : <code>Object</code>
-Dictionary of colors which can be used for instantiating the [Color](#Color) instance.
+Dictionary of colors which can be used in cursor.
 
 **Kind**: global constant  
 <a name="DISPLAY_MODES"></a>
