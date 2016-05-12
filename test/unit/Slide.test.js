@@ -31,11 +31,11 @@ const SERIALIZED_SLIDE_DECLARATION = {
     type: 'Text',
     options: {
       align: 'center',
-      background: false,
+      background: 'none',
       blink: false,
       bold: false,
       dim: false,
-      foreground: false,
+      foreground: 'none',
       height: 5,
       hidden: false,
       reverse: false,
