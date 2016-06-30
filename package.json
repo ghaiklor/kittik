@@ -25,7 +25,7 @@
   "dependencies": {
     "keypress": "0.2.1",
     "kittik-animation-focus": "2.1.0",
-    "kittik-animation-print": "3.1.0",
+    "kittik-animation-print": "3.1.1",
     "kittik-animation-slide": "2.1.0",
     "kittik-cursor": "5.0.0",
     "kittik-shape-code": "3.0.0",
