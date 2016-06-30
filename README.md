@@ -26,6 +26,7 @@ Even better to close this tab and open [kittik-cli](https://github.com/kittikjs/
 
 If you want to contribute to this project, examine the [doc folder](./doc).
 Feel free to open an issue, get in touch with me via [@ghaiklor](https://twitter.com/ghaiklor) and I'll try to help you out with that.
+Also, there is a [Gitter channel](https://gitter.im/kittikjs/kittik) where you can ask a question.
 
 ## License
 
