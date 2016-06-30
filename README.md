@@ -19,50 +19,11 @@
 
 ## Getting Started
 
-Install it via npm:
+If you want to start using Kittik right away without knowing the internals, go to [this guide](./doc/guides/how-to-create-a-presentation.md).
+Even better to close this tab and open [kittik-cli](https://github.com/kittikjs/cli) package for more information (_after reading the guide, of course_).
 
-```shell
-npm install kittik
-```
-
-Import in your project and create new Deck:
-
-```javascript
-"use strict";
-
-const Deck = require('kittik');
-
-Deck.create({
-  slides: [{
-    shapes: [{
-      name: 'Shape',
-      type: 'Rectangle',
-      options: {
-        text: 'This shape is available only in current slide',
-        width: '50%',
-        height: 5,
-        background: 'white',
-        foreground: 'black',
-        x: 'center',
-        y: 6
-      }
-    }],
-    animations: [{
-      name: 'Animation',
-      type: 'Focus',
-      options: {
-        direction: 'shakeY',
-        duration: 500
-      }
-    }],
-    order: [
-      'Shape::Animation'
-    ]
-  }]
-}).run();
-```
-
-All documentation is available [here](./doc).
+If you want to contribute to this project, examine the [doc folder](./doc).
+Feel free to open an issue, get in touch with me via [@ghaiklor](https://twitter.com/ghaiklor) and I'll try to help you out with that.
 
 ## License
 
