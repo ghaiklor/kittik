@@ -1,4 +1,4 @@
-# Animation
+# How to create your own animation?
 
 Animation are classes that can animate your shapes.
 
@@ -129,7 +129,3 @@ export default class HelloWorld extends Animation {
 ```
 
 More examples you can find in `animation-*` repositories in KittikJS organization.
-
-## API
-
-Animations API you can find [here](./api/Animation.md).

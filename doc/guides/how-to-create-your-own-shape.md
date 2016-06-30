@@ -1,6 +1,6 @@
-# Shape
+# How to create your own shape?
 
-Shapes are classes, that contains all needed logic for rendering itself via [Cursor](./Cursor.md).
+Shapes are classes, that contains all needed logic for rendering itself via `kittik-cursor`.
 
 ## Getting Started
 
@@ -166,9 +166,3 @@ export default class HelloWorld extends Shape {
 I think that's it.
 Everything is simple.
 If you want to see more examples, just look at the shape-* repositories in the KittikJS organization.
-
-## API
-
-All implemented methods in `kittik-shape-basic` are described [here](./api/Shape.md#Shape).
-
-Each implemented shape has its own API declaration that you can read [here](./api/Shape.md).

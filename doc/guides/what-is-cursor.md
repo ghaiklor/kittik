@@ -1,4 +1,4 @@
-# Cursor
+# What is Cursor?
 
 Cursor is a low-lever wrapper around VT100 control sequences.
 
@@ -116,7 +116,3 @@ After some time, you decide to flush changes. When flush() method is called it d
 That's how I made it possible to render videos in the terminal at 30 FPS.
 
 BTW, if I remove Throttle stream, I'm getting 120 FPS :smiley:
-
-## API
-
-API declaration you can find [here](./api/Cursor.md).
