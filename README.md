@@ -1,5 +1,7 @@
 # kittik
 
+[![Gitter](https://badges.gitter.im/kittikjs/kittik.svg)](https://gitter.im/kittikjs/kittik?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 ![Build Status](https://img.shields.io/travis/kittikjs/kittik.svg)
 ![Coverage](https://img.shields.io/coveralls/kittikjs/kittik.svg)
 
