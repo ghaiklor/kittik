@@ -2,6 +2,10 @@
 
 In this guide, I'm going to describe the process of creating a presentation.
 
+There is 2 ways you can do this: via `kittik` API and `kittik-cli` CLI.
+First, let me describe the way via [Kittik API](#via-kittik-api).
+Afterwards, you will be able to create presentations [via YAML and CLI](#via-kittik-cli).
+
 ## via Kittik API
 
 _If you are creating a presentation using `kittik` package and its API._
@@ -193,11 +197,23 @@ I hope you got the idea.
 
 _If you are creating a presentation using `kittik-cli` package._
 
-The whole idea remains the same as with Kittik API.
+The whole idea remains the same as with [Kittik API](#via-kittik-api).
 The main difference here is - you can write these declarations in YAML.
-I'm not going to describe all again, you easily can lead the idea from Kittik API.
+I'm not going to describe all again, you easily can lead the idea from Kittik API section.
 
-Create a YAML file with declaration like this:
+Install `kittik-cli` package:
+
+```shell
+npm -g install kittik-cli
+```
+
+Create a new presentation file:
+
+```shell
+kittik create presentation-name
+```
+
+Update a generated `presentation-name.yml` YAML file with declaration like this:
 
 ```yaml
 shapes:
@@ -218,6 +234,12 @@ animations:
 slides:
   - order:
     - "Hello, Kittik::Print"
+```
+
+Run the presentation:
+
+```shell
+kittik start presentation-name.yml
 ```
 
 You see? The declaration totally equals to declaration in Kittik API, just in YAML.
