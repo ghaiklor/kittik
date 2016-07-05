@@ -191,6 +191,18 @@ Here is a demo of what we got here:
 
 ![kittik](https://cloud.githubusercontent.com/assets/3625244/16487609/b5ae9740-3ed4-11e6-8862-c47c913b2e82.gif)
 
+__How do you know what options you can pass in in animations\shapes?__
+
+Well, very simple. Each shape and animation has API declarations.
+You can find them at [doc folder](../api).
+
+For instance, you want to know what options you can pass in in Text shape.
+Open [api/shapes/Text.md](../api/shapes/Text.md) file and look at the `constructor`.
+You will find declaration and example of using for this shape.
+The same for other shapes and animations.
+
+_NOTE:_ Don't forgot, that shapes and animations extended from basic classes, which can accept basic options as well.
+
 I hope you got the idea.
 
 ## via Kittik CLI
