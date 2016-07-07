@@ -39,6 +39,8 @@ If you want to contribute to this project, examine the [doc folder](./doc).
 Feel free to open an issue, get in touch with me via [@ghaiklor](https://twitter.com/ghaiklor) and I'll try to help you out with that.
 Also, there is a [Gitter channel](https://gitter.im/kittikjs/kittik) where you can ask a question.
 
+In case, I forgot something to add here, ask me on Twitter or create an issue, thanks :+1:
+
 ## License
 
 The MIT License (MIT)
