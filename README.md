@@ -22,9 +22,13 @@ Take a look at few demos below and read [Getting Started](#getting-started) sect
 
 ## Demo
 
-| Complex Example | Shapes List | Animations List |
-| --------------- | ----------- | --------------- |
-| [![asciicast](https://asciinema.org/a/45410.png)](https://asciinema.org/a/45410) | ![kittik](https://cloud.githubusercontent.com/assets/3625244/16652398/21907702-4453-11e6-9303-753d4d12dc95.gif) | ![kittik](https://cloud.githubusercontent.com/assets/3625244/16652649/94f37ad6-4454-11e6-8722-41997d53cc6b.gif) |
+| Shapes List | Animations List |
+| ----------- | --------------- |
+| ![kittik](https://cloud.githubusercontent.com/assets/3625244/16652398/21907702-4453-11e6-9303-753d4d12dc95.gif) | ![kittik](https://cloud.githubusercontent.com/assets/3625244/16652649/94f37ad6-4454-11e6-8722-41997d53cc6b.gif) |
+
+| Complex Example |
+| --------------- |
+| [![asciicast](https://asciinema.org/a/45413.png)](https://asciinema.org/a/45413) |
 
 ## Getting Started
 
