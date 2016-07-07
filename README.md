@@ -15,9 +15,16 @@
 ![dependencies](https://img.shields.io/david/kittikjs/kittik.svg)
 ![dev dependencies](https://img.shields.io/david/dev/kittikjs/kittik.svg)
 
+KittikJS is a collection of modules, which are combined in this repository and available for you as SDK you can use.
+It allows to you create ASCII presentations in a terminal with animations, embedding code, etc...
+
+Take a look at few demos below and read [Getting Started](#getting-started) section for your next steps.
+
 ## Demo
 
-[![asciicast](https://asciinema.org/a/45410.png)](https://asciinema.org/a/45410)
+| Complex Example | Shapes List | Animations List |
+| --------------- | ----------- | --------------- |
+| [![asciicast](https://asciinema.org/a/45410.png)](https://asciinema.org/a/45410) | ![kittik](https://cloud.githubusercontent.com/assets/3625244/16652398/21907702-4453-11e6-9303-753d4d12dc95.gif) | ![kittik](https://cloud.githubusercontent.com/assets/3625244/16652649/94f37ad6-4454-11e6-8722-41997d53cc6b.gif) |
 
 ## Getting Started
 
