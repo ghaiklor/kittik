@@ -1,7 +1,6 @@
-import {assert} from 'chai';
-import sinon from 'sinon';
-import Rectangle from 'kittik-shape-rectangle';
-import Print from '../../src/Print';
+const sinon = require('sinon');
+const Rectangle = require('kittik-shape-rectangle');
+const Print = require('../src/index');
 
 describe('Animation::Print', () => {
   it('Should properly call the animate() method', done => {
@@ -18,7 +17,7 @@ describe('Animation::Print', () => {
   });
 
   it('Should properly animate property', done => {
-    const animation = new Print({duration: 1});
+    const animation = new Print({ duration: 1 });
     const shape = new Rectangle();
     const mock = sinon.mock(animation);
 

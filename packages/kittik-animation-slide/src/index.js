@@ -1,4 +1,4 @@
-import Animation from 'kittik-animation-basic';
+const Animation = require('kittik-animation-basic');
 
 /**
  * Dictionary of all available directions, that you can use in animation.
@@ -14,7 +14,7 @@ const AVAILABLE_DIRECTIONS = ['inUp', 'inDown', 'inLeft', 'inRight', 'outUp', 'o
  * @extends {Animation}
  * @since 1.0.0
  */
-export default class Slide extends Animation {
+class Slide extends Animation {
   /**
    * Create Slide animation instance.
    *
@@ -73,7 +73,7 @@ export default class Slide extends Animation {
     };
 
     const [startX, startY, endX, endY] = directions[this.getDirection()]();
-    return {startX, startY, endX, endY};
+    return { startX, startY, endX, endY };
   }
 
   /**
@@ -85,11 +85,11 @@ export default class Slide extends Animation {
    * @fulfil {Shape} When animation is done, fulfils with the Shape instance
    */
   animate(shape) {
-    const {startX, startY, endX, endY} = this._parseCoordinates(shape);
+    const { startX, startY, endX, endY } = this._parseCoordinates(shape);
 
     return Promise.all([
-      this.animateProperty({shape: shape, property: 'x', startValue: startX, endValue: endX}),
-      this.animateProperty({shape: shape, property: 'y', startValue: startY, endValue: endY})
+      this.animateProperty({ shape: shape, property: 'x', startValue: startX, endValue: endX }),
+      this.animateProperty({ shape: shape, property: 'y', startValue: startY, endValue: endY })
     ]).then(() => Promise.resolve(shape));
   }
 
@@ -109,3 +109,5 @@ export default class Slide extends Animation {
     return obj;
   }
 }
+
+module.exports = Slide;

@@ -1,5 +1,5 @@
-import EventEmitter from 'events';
-import {EASING} from './easing';
+const { EventEmitter } = require('events');
+const EASING = require('./easing');
 
 /**
  * Base class for creating other animations.
@@ -8,7 +8,7 @@ import {EASING} from './easing';
  * @extends {EventEmitter}
  * @since 1.0.0
  */
-export default class Animation extends EventEmitter {
+class Animation extends EventEmitter {
   /**
    * Creates animation class that has {@link animate} method for animating properties in the shape.
    *
@@ -47,7 +47,7 @@ export default class Animation extends EventEmitter {
    *
    * @param {String} path Path can be set with dot-notation
    * @param {*} value Value that need to be written to the options object
-   * @returns {Animation}
+   * @returns {Index}
    * @example
    * animation.set('my.value.from.object', 'value');
    */
@@ -79,7 +79,7 @@ export default class Animation extends EventEmitter {
    * Set new animation duration in ms.
    *
    * @param {Number} [duration=1000] Duration of the animation in ms
-   * @returns {Animation}
+   * @returns {Index}
    */
   setDuration(duration = 1000) {
     return this.set('duration', duration);
@@ -98,7 +98,7 @@ export default class Animation extends EventEmitter {
    * Set new easing for animation.
    *
    * @param {String} [easing='outQuad'] Easing name from {@link EASING} dictionary
-   * @returns {Animation}
+   * @returns {Index}
    */
   setEasing(easing = 'outQuad') {
     if (typeof EASING[easing] !== 'function') throw new Error(`Unknown easing: ${easing}`);
@@ -121,7 +121,7 @@ export default class Animation extends EventEmitter {
    * @param {Shape} shape Shape instance
    * @param {String} property Property name of the shape
    * @param {Number} value New value of the specified property
-   * @returns {Animation}
+   * @returns {Index}
    */
   onTick(shape, property, value) {
     shape.set(property, value);
@@ -226,7 +226,7 @@ export default class Animation extends EventEmitter {
    *
    * @static
    * @param args
-   * @returns {Animation}
+   * @returns {Index}
    */
   static create(...args) {
     return new this(...args);
@@ -237,8 +237,8 @@ export default class Animation extends EventEmitter {
    *
    * @static
    * @param {Object} obj Object from {@link toObject} method
-   * @returns {Animation}
-   * @throws {Error} If object is not a representation of {@link Animation}
+   * @returns {Index}
+   * @throws {Error} If object is not a representation of {@link Index}
    */
   static fromObject(obj) {
     if (!obj.type || !obj.options) throw new Error(`It looks like the object is not a representation of the Animation`);
@@ -252,9 +252,11 @@ export default class Animation extends EventEmitter {
    *
    * @static
    * @param {JSON} json JSON from {@link toJSON} method
-   * @returns {Animation}
+   * @returns {Index}
    */
   static fromJSON(json) {
     return this.fromObject(JSON.parse(json));
   }
 }
+
+module.exports = Animation;

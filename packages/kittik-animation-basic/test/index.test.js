@@ -1,11 +1,11 @@
-import {assert} from 'chai';
-import sinon from 'sinon';
-import Rectangle from 'kittik-shape-rectangle';
-import Animation from '../../src/Animation';
+const { assert } = require('chai');
+const sinon = require('sinon');
+const Rectangle = require('kittik-shape-rectangle');
+const Animation = require('../src/index');
 
 describe('Animation::Basic', () => {
   it('Should properly create animation with custom options', () => {
-    const animation = new Animation({duration: 2000, easing: 'outExpo'});
+    const animation = new Animation({ duration: 2000, easing: 'outExpo' });
     assert.equal(animation.getDuration(), 2000);
     assert.equal(animation.getEasing(), 'outExpo');
   });
@@ -52,7 +52,7 @@ describe('Animation::Basic', () => {
 
     mock.expects('emit').atLeast(1).withArgs('tick');
 
-    animation.animateProperty({shape: shape, property: 'x', duration: 1}).then(() => {
+    animation.animateProperty({ shape: shape, property: 'x', duration: 1 }).then(() => {
       mock.verify();
       done();
     });
@@ -65,7 +65,7 @@ describe('Animation::Basic', () => {
 
     mock.expects('onEasing').atLeast(1);
 
-    animation.animateProperty({shape: shape, property: 'x', duration: 1}).then(() => {
+    animation.animateProperty({ shape: shape, property: 'x', duration: 1 }).then(() => {
       mock.verify();
       done();
     });
@@ -82,13 +82,13 @@ describe('Animation::Basic', () => {
   });
 
   it('Should properly animate property in shape', done => {
-    const animation = new Animation({duration: 1});
+    const animation = new Animation({ duration: 1 });
     const shape = new Rectangle();
     const mock = sinon.mock(shape);
 
     mock.expects('set').atLeast(1);
 
-    animation.animateProperty({shape: shape, property: 'x'}).then(() => {
+    animation.animateProperty({ shape: shape, property: 'x' }).then(() => {
       mock.verify();
       done();
     });
@@ -112,7 +112,7 @@ describe('Animation::Basic', () => {
   });
 
   it('Should properly create Animation instance from static create()', () => {
-    const animation = Animation.create({duration: 1});
+    const animation = Animation.create({ duration: 1 });
     assert.equal(animation.get('duration'), 1);
     assert.instanceOf(animation, Animation);
   });
@@ -122,7 +122,7 @@ describe('Animation::Basic', () => {
   });
 
   it('Should properly throw exception if object representation is not from this animation', () => {
-    const obj = {type: 'Slide', options: {}};
+    const obj = { type: 'Slide', options: {} };
     assert.throws(() => Animation.fromObject(obj), Error, 'Slide is not an object representation of the Animation');
   });
 

@@ -1,4 +1,4 @@
-import Animation from 'kittik-animation-basic';
+const Animation = require('kittik-animation-basic');
 
 /**
  * Animation that simulates text typing.
@@ -6,7 +6,7 @@ import Animation from 'kittik-animation-basic';
  * @extends {Animation}
  * @since 1.0.0
  */
-export default class Print extends Animation {
+class Print extends Animation {
   /**
    * Creates Print animation instance.
    *
@@ -30,7 +30,7 @@ export default class Print extends Animation {
    * @fulfil {Shape} When animation is done, fulfils with the Shape instance
    */
   animate(shape) {
-    return this.animateProperty({shape: shape, property: 'text', startValue: '', endValue: shape.getText()});
+    return this.animateProperty({ shape: shape, property: 'text', startValue: '', endValue: shape.getText() });
   }
 
   /**
@@ -74,3 +74,5 @@ export default class Print extends Animation {
     return new Promise(tick);
   }
 }
+
+module.exports = Print;

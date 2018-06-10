@@ -1,14 +1,14 @@
-import {assert} from 'chai';
-import sinon from 'sinon';
-import Cursor from 'kittik-cursor';
-import Rectangle from 'kittik-shape-rectangle';
-import Slide from '../../src/Slide';
+const { assert } = require('chai');
+const sinon = require('sinon');
+const Cursor = require('terminal-canvas');
+const Rectangle = require('kittik-shape-rectangle');
+const Slide = require('../src/index');
 
 const cursor = Cursor.create();
 
 describe('Animation::Slide', () => {
   it('Should properly get/set direction', () => {
-    const animation = new Slide({direction: 'inLeft'});
+    const animation = new Slide({ direction: 'inLeft' });
     assert.equal(animation.getDirection(), 'inLeft');
     assert.instanceOf(animation.setDirection('inRight'), Slide);
     assert.equal(animation.getDirection(), 'inRight');
@@ -24,7 +24,7 @@ describe('Animation::Slide', () => {
     const shape = new Rectangle(cursor);
 
     assert.instanceOf(animation.setDirection('inUp'), Slide);
-    assert.deepEqual(animation._parseCoordinates(shape), {startX: 10, startY: -5, endX: 10, endY: 10});
+    assert.deepEqual(animation._parseCoordinates(shape), { startX: 10, startY: -5, endX: 10, endY: 10 });
 
     assert.instanceOf(animation.setDirection('inDown'), Slide);
     assert.deepEqual(animation._parseCoordinates(shape), {
@@ -35,7 +35,7 @@ describe('Animation::Slide', () => {
     });
 
     assert.instanceOf(animation.setDirection('inLeft'), Slide);
-    assert.deepEqual(animation._parseCoordinates(shape), {startX: -15, startY: 10, endX: 10, endY: 10});
+    assert.deepEqual(animation._parseCoordinates(shape), { startX: -15, startY: 10, endX: 10, endY: 10 });
 
     assert.instanceOf(animation.setDirection('inRight'), Slide);
     assert.deepEqual(animation._parseCoordinates(shape), {
@@ -46,7 +46,7 @@ describe('Animation::Slide', () => {
     });
 
     assert.instanceOf(animation.setDirection('outUp'), Slide);
-    assert.deepEqual(animation._parseCoordinates(shape), {startX: 10, startY: 10, endX: 10, endY: -5});
+    assert.deepEqual(animation._parseCoordinates(shape), { startX: 10, startY: 10, endX: 10, endY: -5 });
 
     assert.instanceOf(animation.setDirection('outDown'), Slide);
     assert.deepEqual(animation._parseCoordinates(shape), {
@@ -57,7 +57,7 @@ describe('Animation::Slide', () => {
     });
 
     assert.instanceOf(animation.setDirection('outLeft'), Slide);
-    assert.deepEqual(animation._parseCoordinates(shape), {startX: 10, startY: 10, endX: -15, endY: 10});
+    assert.deepEqual(animation._parseCoordinates(shape), { startX: 10, startY: 10, endX: -15, endY: 10 });
 
     assert.instanceOf(animation.setDirection('outRight'), Slide);
     assert.deepEqual(animation._parseCoordinates(shape), {

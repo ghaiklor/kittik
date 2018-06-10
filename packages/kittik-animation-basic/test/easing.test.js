@@ -1,5 +1,5 @@
-import {assert} from 'chai';
-import {EASING} from '../../src/easing';
+const { assert } = require('chai');
+const EASING = require('../src/easing');
 
 describe('Animation::easing', () => {
   it('Should properly export easing', () => {

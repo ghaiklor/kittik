@@ -4,7 +4,7 @@
  *
  * @type {Object}
  */
-export const EASING = {
+module.exports = {
   inQuad: (t, b, c, d) => c * (t /= d) * t + b,
 
   outQuad: (t, b, c, d) => -c * (t /= d) * (t - 2) + b,

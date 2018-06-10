@@ -1,4 +1,4 @@
-import Animation from 'kittik-animation-basic';
+const Animation = require('kittik-animation-basic');
 
 /**
  * Dictionary of all available directions that you can use.
@@ -14,7 +14,7 @@ const AVAILABLE_DIRECTIONS = ['bounceUp', 'bounceRight', 'bounceDown', 'bounceLe
  * @extends {Animation}
  * @since 1.0.0
  */
-export default class Focus extends Animation {
+class Focus extends Animation {
   /**
    * Create Focus animation instance.
    *
@@ -125,9 +125,9 @@ export default class Focus extends Animation {
 
     const [startValue, endValue, property] = directions[direction]();
     const length = this.getRepeat();
-    const firstStep = () => this.animateProperty({shape, property, startValue, endValue});
-    const secondStep = () => this.animateProperty({shape, property, startValue: endValue, endValue: startValue});
-    const promise = Array.from({length}).reduce(promise => promise.then(firstStep).then(secondStep), Promise.resolve(shape));
+    const firstStep = () => this.animateProperty({ shape, property, startValue, endValue });
+    const secondStep = () => this.animateProperty({ shape, property, startValue: endValue, endValue: startValue });
+    const promise = Array.from({ length }).reduce(promise => promise.then(firstStep).then(secondStep), Promise.resolve(shape));
 
     return promise;
   }
@@ -149,10 +149,10 @@ export default class Focus extends Animation {
 
     const [startValue, leftValue, rightValue, property] = directions[direction]();
     const length = this.getRepeat();
-    const firstStep = () => this.animateProperty({shape, property, startValue, endValue: leftValue});
-    const secondStep = () => this.animateProperty({shape, property, startValue: leftValue, endValue: rightValue});
-    const thirdStep = () => this.animateProperty({shape, property, startValue: rightValue, endValue: startValue});
-    const promise = Array.from({length}).reduce(promise => promise.then(firstStep).then(secondStep).then(thirdStep), Promise.resolve(shape));
+    const firstStep = () => this.animateProperty({ shape, property, startValue, endValue: leftValue });
+    const secondStep = () => this.animateProperty({ shape, property, startValue: leftValue, endValue: rightValue });
+    const thirdStep = () => this.animateProperty({ shape, property, startValue: rightValue, endValue: startValue });
+    const promise = Array.from({ length }).reduce(promise => promise.then(firstStep).then(secondStep).then(thirdStep), Promise.resolve(shape));
 
     return promise;
   }
@@ -193,3 +193,5 @@ export default class Focus extends Animation {
     return obj;
   }
 }
+
+module.exports = Focus;
