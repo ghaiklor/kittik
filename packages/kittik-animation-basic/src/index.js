@@ -47,7 +47,7 @@ class Animation extends EventEmitter {
    *
    * @param {String} path Path can be set with dot-notation
    * @param {*} value Value that need to be written to the options object
-   * @returns {Index}
+   * @returns {Animation}
    * @example
    * animation.set('my.value.from.object', 'value');
    */
@@ -79,7 +79,7 @@ class Animation extends EventEmitter {
    * Set new animation duration in ms.
    *
    * @param {Number} [duration=1000] Duration of the animation in ms
-   * @returns {Index}
+   * @returns {Animation}
    */
   setDuration(duration = 1000) {
     return this.set('duration', duration);
@@ -98,7 +98,7 @@ class Animation extends EventEmitter {
    * Set new easing for animation.
    *
    * @param {String} [easing='outQuad'] Easing name from {@link EASING} dictionary
-   * @returns {Index}
+   * @returns {Animation}
    */
   setEasing(easing = 'outQuad') {
     if (typeof EASING[easing] !== 'function') throw new Error(`Unknown easing: ${easing}`);
@@ -121,7 +121,7 @@ class Animation extends EventEmitter {
    * @param {Shape} shape Shape instance
    * @param {String} property Property name of the shape
    * @param {Number} value New value of the specified property
-   * @returns {Index}
+   * @returns {Animation}
    */
   onTick(shape, property, value) {
     shape.set(property, value);
@@ -147,12 +147,11 @@ class Animation extends EventEmitter {
    * This method must return Promise that fulfills with shape instance that has been animated.
    *
    * @abstract
-   * @param {Shape} shape Shape instance that need to be animated
    * @returns {Promise} Returns Promise that fulfills with shape instance when animation is done
    * @fulfil {Shape} If method is implemented, it should fulfil the Promise with a Shape instance
    * @reject {Error} If method is not overridden rejects the Promise with an Error
    */
-  animate(shape) {
+  animate() {
     return Promise.reject(new Error('You must implement animate() method'));
   }
 
@@ -226,7 +225,7 @@ class Animation extends EventEmitter {
    *
    * @static
    * @param args
-   * @returns {Index}
+   * @returns {Animation}
    */
   static create(...args) {
     return new this(...args);
@@ -237,8 +236,8 @@ class Animation extends EventEmitter {
    *
    * @static
    * @param {Object} obj Object from {@link toObject} method
-   * @returns {Index}
-   * @throws {Error} If object is not a representation of {@link Index}
+   * @returns {Animation}
+   * @throws {Error} If object is not a representation of {@link Animation}
    */
   static fromObject(obj) {
     if (!obj.type || !obj.options) throw new Error(`It looks like the object is not a representation of the Animation`);
@@ -252,7 +251,7 @@ class Animation extends EventEmitter {
    *
    * @static
    * @param {JSON} json JSON from {@link toJSON} method
-   * @returns {Index}
+   * @returns {Animation}
    */
   static fromJSON(json) {
     return this.fromObject(JSON.parse(json));

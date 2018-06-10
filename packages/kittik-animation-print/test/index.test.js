@@ -4,7 +4,7 @@ const Print = require('../src/index');
 
 describe('Animation::Print', () => {
   it('Should properly call the animate() method', done => {
-    const animation = new Print();
+    const animation = new Print({ duration: 1 });
     const shape = new Rectangle();
     const mock = sinon.mock(animation);
 
