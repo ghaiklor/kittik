@@ -1,66 +1,28 @@
-# kittik
+# Kittik
 
-[![Gitter](https://badges.gitter.im/kittikjs/kittik.svg)](https://gitter.im/kittikjs/kittik?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+**Kittik is under heavy development!**
 
-![Build Status](https://img.shields.io/travis/kittikjs/kittik.svg)
-![Coverage](https://img.shields.io/coveralls/kittikjs/kittik.svg)
+_If you want to try the old version, refer to [v2.1.2](https://github.com/ghaiklor/kittik/releases/tag/v2.1.2)_
 
-![Downloads](https://img.shields.io/npm/dm/kittik.svg)
-![Downloads](https://img.shields.io/npm/dt/kittik.svg)
-![npm version](https://img.shields.io/npm/v/kittik.svg)
-![License](https://img.shields.io/npm/l/kittik.svg)
+## Announcement
 
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-![dependencies](https://img.shields.io/david/kittikjs/kittik.svg)
-![dev dependencies](https://img.shields.io/david/dev/kittikjs/kittik.svg)
+**Kittik will be totally rebooted from scratch**
 
-KittikJS is a collection of modules, which are combined in this repository and available for you as SDK you can use.
-It allows to you create ASCII presentations in a terminal with animations, embedding code, etc...
+During last few years I've learned a lot and got a lot of new expertise in different areas.
+So I believe, that the new version of kittik will be better then before.
 
-Take a look at few demos below and read [Getting Started](#getting-started) section for your next steps.
+Here is my roadmap:
 
-## Demo
+1) First of all, I've moved the old kittik's cursor for rendering in terminal to separate repository - [@ghaiklor/terminal-canvas](https://github.com/ghaiklor/terminal-canvas). I made a lot of job there in optimizations, so it can render faster than before. I've managed to decrease the most of deoptimization in TurboFan, thanks to [turbolizer](https://github.com/thlorenz/turbolizer) and built-in profiler in Node.
 
-| Shapes List | Animations List |
-| ----------- | --------------- |
-| ![kittik](https://cloud.githubusercontent.com/assets/3625244/16652398/21907702-4453-11e6-9303-753d4d12dc95.gif) | ![kittik](https://cloud.githubusercontent.com/assets/3625244/16652649/94f37ad6-4454-11e6-8722-41997d53cc6b.gif) |
+2) I understood that handling different npm packages in separate repositories is a big headache, so the old repositories will be all moved in this repo and managed by lerna.
 
-| Complex Example |
-| --------------- |
-| [![asciicast](https://asciinema.org/a/45413.png)](https://asciinema.org/a/45413) |
+3) The core functionality of Kittik (_slides, decks, etc_) will be rewritten from scratch without Babel and using the latest features of JavaScript.
 
-## Getting Started
+4) Many of you told me that creating slides in YAML or via API is another headache. So, I'm planning to develop a separate language and compiler toolset, so Kittik can have its own DSL for creating presentations.
 
-If you want to start using Kittik right away without knowing the internals, go to [this guide](./doc/guides/how-to-create-a-presentation.md).
-Even better to close this tab and open [kittik-cli](https://github.com/kittikjs/cli) package for more information (_after reading the guide, of course_).
-
-If you want to contribute to this project, examine the [doc folder](./doc).
-Feel free to open an issue, get in touch with me via [@ghaiklor](https://twitter.com/ghaiklor) and I'll try to help you out with that.
-Also, there is a [Gitter channel](https://gitter.im/kittikjs/kittik) where you can ask a question.
-
-In case, I forgot something to add here, ask me on Twitter or create an issue, thanks :+1:
+Stay in touch by starring this repository or even better, watch it or subscribe to my twitter - [@ghaiklor](https://twitter.com/ghaiklor).
 
 ## License
 
-The MIT License (MIT)
-
-Copyright (c) 2015-2016 Eugene Obrezkov
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+[MIT](./LICENSE)
