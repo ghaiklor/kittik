@@ -12,7 +12,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "kittik-shape-basic": "4.0.0"
+    "kittik-shape-basic": "0.0.0"
   },
   "devDependencies": {
     "chai": "4.1.2",

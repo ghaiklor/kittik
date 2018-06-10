@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 const sinon = require('sinon');
-const Text = require('../src/index');
 const Cursor = require('terminal-canvas');
+const Text = require('../src/index');
 
 const cursor = Cursor.create();
 

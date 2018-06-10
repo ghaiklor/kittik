@@ -12,9 +12,6 @@ describe('Shape::Image', () => {
     assert.notOk(image.getImage());
     assert.instanceOf(image.setImage('dGVzdA=='), Image);
     assert.equal(image.getImage(), 'dGVzdA==');
-
-    assert.instanceOf(image.setImage('./examples/nodejs.png'), Image);
-    assert.ok(Image.isBase64(image.getImage()));
   });
 
   it('Should properly get/set preserveAspectRatio', () => {

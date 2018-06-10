@@ -11,8 +11,8 @@
     "test": "mocha"
   },
   "dependencies": {
-    "figlet": "1.1.2",
-    "kittik-shape-basic": "4.0.0"
+    "figlet": "1.2.0",
+    "kittik-shape-basic": "0.0.0"
   },
   "devDependencies": {
     "chai": "4.1.2",
