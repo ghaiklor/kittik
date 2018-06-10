@@ -3,7 +3,7 @@
  *
  * @private
  */
-export const DEFAULT_THEME = {
+module.exports = {
   'Boolean': {
     'true': undefined,
     'false': undefined,

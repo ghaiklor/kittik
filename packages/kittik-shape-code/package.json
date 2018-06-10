@@ -1,26 +1,14 @@
 {
   "name": "kittik-shape-code",
-  "version": "0.0.0-semantic-release",
+  "version": "0.0.0",
   "description": "Shape for displaying code snippets in a Kittik",
-  "main": "lib/Code.js",
+  "main": "src/index.js",
   "author": "ghaiklor",
-  "homepage": "https://github.com/kittikjs/shape-code#readme",
-  "bugs": {
-    "url": "https://github.com/kittikjs/shape-code/issues"
+  "engines": {
+    "node": ">=8.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kittikjs/shape-code.git"
-  },
-  "license": "MIT",
   "scripts": {
-    "clean": "rm -rf ./lib",
-    "compile": "npm run clean; babel src --out-dir lib",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "docs": "npm run compile; jsdoc2md \"lib/**/*.js\" > API.md",
-    "prepublish": "npm run compile",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "test": "babel-node ./node_modules/.bin/isparta cover _mocha"
+    "test": "mocha"
   },
   "dependencies": {
     "js-beautify": "1.6.3",
@@ -28,28 +16,9 @@
     "redeyed": "0.6.0"
   },
   "devDependencies": {
-    "babel-cli": "6.10.1",
-    "babel-plugin-add-module-exports": "0.2.1",
-    "babel-preset-es2015-node4": "2.1.0",
-    "chai": "3.5.0",
-    "coveralls": "2.11.9",
-    "cz-conventional-changelog": "1.1.6",
-    "isparta": "4.0.0",
-    "jsdoc-to-markdown": "1.3.6",
-    "kittik-cursor": "5.0.0",
-    "mocha": "2.5.3",
-    "semantic-release": "4.3.5",
-    "sinon": "1.17.4"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "publishConfig": {
-    "tag": "latest"
-  },
-  "release": {
-    "branch": "master"
+    "chai": "4.1.2",
+    "mocha": "5.2.0",
+    "sinon": "5.1.1",
+    "terminal-canvas": "2.1.0"
   }
 }
