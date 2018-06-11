@@ -1,6 +1,6 @@
 import keypress from 'keypress';
 import Cursor from 'kittik-cursor';
-import Slide from './Slide';
+import Slide from '../../kittik-slide/src/Slide';
 import tty from 'tty';
 
 /**

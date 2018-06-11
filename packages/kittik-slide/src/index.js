@@ -1,22 +1,33 @@
-import CodeShape from 'kittik-shape-code';
-import FigTextShape from 'kittik-shape-fig-text';
-import ImageShape from 'kittik-shape-image';
-import RectangleShape from 'kittik-shape-rectangle';
-import TextShape from 'kittik-shape-text';
+const FocusAnimation = require('kittik-animation-focus');
+const PrintAnimation = require('kittik-animation-print');
+const SlideAnimation = require('kittik-animation-slide');
 
-import FocusAnimation from 'kittik-animation-focus';
-import PrintAnimation from 'kittik-animation-print';
-import SlideAnimation from 'kittik-animation-slide';
+const CodeShape = require('kittik-shape-code');
+const FigTextShape = require('kittik-shape-fig-text');
+const ImageShape = require('kittik-shape-image');
+const RectangleShape = require('kittik-shape-rectangle');
+const TextShape = require('kittik-shape-text');
 
-const SHAPES = {Code: CodeShape, FigText: FigTextShape, Image: ImageShape, Rectangle: RectangleShape, Text: TextShape};
-const ANIMATIONS = {Focus: FocusAnimation, Print: PrintAnimation, Slide: SlideAnimation};
+const ANIMATIONS = {
+  Focus: FocusAnimation,
+  Print: PrintAnimation,
+  Slide: SlideAnimation
+};
+
+const SHAPES = {
+  Code: CodeShape,
+  FigText: FigTextShape,
+  Image: ImageShape,
+  Rectangle: RectangleShape,
+  Text: TextShape
+};
 
 /**
  * Slide instance is responsible for rendering the slide.
  *
  * @since 1.0.0
  */
-export default class Slide {
+class Slide {
   /**
    * Creates new Slide instance.
    *
@@ -52,7 +63,7 @@ export default class Slide {
    * });
    */
   constructor(cursor, declaration = {}) {
-    const {shapes = [], animations = [], order = []} = declaration;
+    const { shapes = [], animations = [], order = [] } = declaration;
 
     this._cursor = cursor;
     this._shapes = this._buildShapes(shapes);
@@ -97,7 +108,7 @@ export default class Slide {
       const shape = parsed[0];
       const animations = (parsed[1] && parsed[1].split('->')) || [];
 
-      return {shape, animations};
+      return { shape, animations };
     });
   }
 
@@ -155,8 +166,8 @@ export default class Slide {
    */
   toObject() {
     return {
-      shapes: Object.keys(this._shapes).map(name => Object.assign(this._shapes[name].toObject(), {name})),
-      animations: Object.keys(this._animations).map(name => Object.assign(this._animations[name].toObject(), {name})),
+      shapes: Object.keys(this._shapes).map(name => Object.assign(this._shapes[name].toObject(), { name })),
+      animations: Object.keys(this._animations).map(name => Object.assign(this._animations[name].toObject(), { name })),
       order: this._order.map(order => `${order.shape}::${order.animations.join('->')}`)
     };
   }
@@ -204,3 +215,5 @@ export default class Slide {
     return this.fromObject(JSON.parse(json), cursor);
   }
 }
+
+module.exports = Slide;

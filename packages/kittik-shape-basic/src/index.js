@@ -252,13 +252,13 @@ class Shape {
   /**
    * Set new background color.
    *
-   * @param {String} [background = none] Color name or `none` if you want to disable background
+   * @param {String|Boolean} [background = false] Color name or false if you want to disable background
    * @returns {Shape}
    * @example
    * shape.setBackground('black');
-   * shape.setBackground('none');
+   * shape.setBackground(false);
    */
-  setBackground(background = 'none') {
+  setBackground(background = false) {
     return this.set('background', background);
   }
 
@@ -274,13 +274,13 @@ class Shape {
   /**
    * Set new foreground color.
    *
-   * @param {String} [foreground = none] Color name or `none` if you want to disable foreground
+   * @param {String|Boolean} [foreground = false] Color name or false if you want to disable foreground
    * @returns {Shape}
    * @example
    * shape.setForeground('black');
-   * shape.setForeground('none');
+   * shape.setForeground(false);
    */
-  setForeground(foreground = 'none') {
+  setForeground(foreground = false) {
     return this.set('foreground', foreground);
   }
 

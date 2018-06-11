@@ -1,9 +1,9 @@
-import {assert} from 'chai';
-import sinon from 'sinon';
-import Cursor from 'kittik-cursor';
-import Text from 'kittik-shape-text';
-import Print from 'kittik-animation-print';
-import Slide from '../../src/Slide';
+const { assert } = require('chai');
+const sinon = require('sinon');
+const Cursor = require('terminal-canvas');
+const Text = require('kittik-shape-text');
+const Print = require('kittik-animation-print');
+const Slide = require('../src/index');
 
 const SLIDE_DECLARATION = {
   shapes: [{
@@ -31,11 +31,11 @@ const SERIALIZED_SLIDE_DECLARATION = {
     type: 'Text',
     options: {
       align: 'center',
-      background: 'none',
+      background: false,
       blink: false,
       bold: false,
       dim: false,
-      foreground: 'none',
+      foreground: false,
       height: 5,
       hidden: false,
       reverse: false,
@@ -59,7 +59,7 @@ const SERIALIZED_SLIDE_DECLARATION = {
   ]
 };
 
-describe('kittik::Slide', () => {
+describe('Core::Slide', () => {
   it('Should properly create slide instance with default options', () => {
     const cursor = Cursor.create();
     const slide = Slide.create(cursor);
@@ -80,7 +80,7 @@ describe('kittik::Slide', () => {
     assert.isUndefined(slide._shapes['NON_EXISTS']);
     assert.isUndefined(slide._animations['NON_EXISTS']);
     assert.equal(slide._order.length, 1);
-    assert.deepEqual(slide._order, [{shape: 'Hello', animations: ['Print', 'Print']}]);
+    assert.deepEqual(slide._order, [{ shape: 'Hello', animations: ['Print', 'Print'] }]);
   });
 
   it('Should properly build shapes from declaration', () => {
@@ -103,16 +103,16 @@ describe('kittik::Slide', () => {
 
   it('Should properly build order from declaration without animations', () => {
     const cursor = Cursor.create();
-    const slide = Slide.create(cursor, {order: ['Hello']});
+    const slide = Slide.create(cursor, { order: ['Hello'] });
 
-    assert.deepEqual(slide._order, [{shape: 'Hello', animations: []}]);
+    assert.deepEqual(slide._order, [{ shape: 'Hello', animations: [] }]);
   });
 
   it('Should properly build order from declaration with animations', () => {
     const cursor = Cursor.create();
     const slide = Slide.create(cursor, SLIDE_DECLARATION);
 
-    assert.deepEqual(slide._order, [{shape: 'Hello', animations: ['Print', 'Print']}]);
+    assert.deepEqual(slide._order, [{ shape: 'Hello', animations: ['Print', 'Print'] }]);
   });
 
   it('Should properly render the specified shapes', () => {
@@ -168,7 +168,7 @@ describe('kittik::Slide', () => {
     assert.instanceOf(slide._animations, Object);
     assert.instanceOf(slide._animations['Print'], Print);
     assert.instanceOf(slide._order, Array);
-    assert.deepEqual(slide._order, [{shape: 'Hello', animations: ['Print', 'Print']}]);
+    assert.deepEqual(slide._order, [{ shape: 'Hello', animations: ['Print', 'Print'] }]);
   });
 
   it('Should properly create Slide instance from Object representation', () => {
@@ -178,7 +178,7 @@ describe('kittik::Slide', () => {
     assert.instanceOf(slide._cursor, Cursor);
     assert.instanceOf(slide._shapes['Hello'], Text);
     assert.instanceOf(slide._animations['Print'], Print);
-    assert.deepEqual(slide._order[0], {shape: 'Hello', animations: ['Print', 'Print']});
+    assert.deepEqual(slide._order[0], { shape: 'Hello', animations: ['Print', 'Print'] });
   });
 
   it('Should properly create Slide instance from JSON representation', () => {
@@ -188,6 +188,6 @@ describe('kittik::Slide', () => {
     assert.instanceOf(slide._cursor, Cursor);
     assert.instanceOf(slide._shapes['Hello'], Text);
     assert.instanceOf(slide._animations['Print'], Print);
-    assert.deepEqual(slide._order[0], {shape: 'Hello', animations: ['Print', 'Print']});
+    assert.deepEqual(slide._order[0], { shape: 'Hello', animations: ['Print', 'Print'] });
   });
 });
