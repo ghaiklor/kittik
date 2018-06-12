@@ -112,7 +112,7 @@ class Animation extends EventEmitter {
    * @returns {Promise} Returns Promise that fulfills when delay is over
    */
   delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, isFinite(ms) ? ms : 1));
   }
 
   /**
