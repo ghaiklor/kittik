@@ -1,4 +1,3 @@
-const tty = require('tty');
 const keypress = require('keypress');
 const Cursor = require('terminal-canvas');
 const Slide = require('kittik-slide');
@@ -66,7 +65,7 @@ class Deck {
    * @private
    */
   _initKeyboard() {
-    if (tty.isatty(this._cursor._stream)) {
+    if (this._cursor._stream.isTTY === true) {
       keypress(process.stdin);
       process.stdin.setRawMode(true);
       process.stdin.setEncoding('utf8');
@@ -83,9 +82,9 @@ class Deck {
    * @param {Object} key
    * @private
    */
-  _onKeyPress(ch, key) {
-    if (key.name === 'left') this.prevSlide();
-    if (key.name === 'right' || key.name === 'space') this.nextSlide();
+  async _onKeyPress(ch, key) {
+    if (key.name === 'left') return await this.prevSlide();
+    if (key.name === 'right' || key.name === 'space') return await this.nextSlide();
     if (key.ctrl && key.name === 'c') this.exit();
 
     return this;
@@ -96,8 +95,9 @@ class Deck {
    *
    * @returns {Deck}
    */
-  run() {
-    this.renderSlide();
+  async run() {
+    await this.renderSlide();
+
     return this;
   }
 
@@ -107,10 +107,10 @@ class Deck {
    * @param {Number} [index] Slide index in presentation
    * @returns {Deck}
    */
-  renderSlide(index = this._currentSlideIndex) {
+  async renderSlide(index = this._currentSlideIndex) {
     if (!this._slides[index]) return this;
 
-    this._slides[index].render();
+    await this._slides[index].render();
 
     return this;
   }
@@ -120,10 +120,10 @@ class Deck {
    *
    * @returns {Deck}
    */
-  nextSlide() {
+  async nextSlide() {
     if (this._currentSlideIndex + 1 > this._slides.length - 1) return this;
 
-    this.renderSlide(++this._currentSlideIndex);
+    await this.renderSlide(++this._currentSlideIndex);
     return this;
   }
 
@@ -132,10 +132,10 @@ class Deck {
    *
    * @returns {Deck}
    */
-  prevSlide() {
+  async prevSlide() {
     if (this._currentSlideIndex - 1 < 0) return this;
 
-    this.renderSlide(--this._currentSlideIndex);
+    await this.renderSlide(--this._currentSlideIndex);
     return this;
   }
 
