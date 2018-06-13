@@ -1,14 +1,14 @@
-import keypress from 'keypress';
-import Cursor from 'kittik-cursor';
-import Slide from '../../kittik-slide/src/Slide';
-import tty from 'tty';
+const tty = require('tty');
+const keypress = require('keypress');
+const Cursor = require('terminal-canvas');
+const Slide = require('kittik-slide');
 
 /**
  * Deck class is responsible for managing slides and their rendering.
  *
  * @since 1.0.0
  */
-export default class Deck {
+class Deck {
   /**
    * Creates deck instance.
    * You can declare shapes\animations\etc at the root of the declaration.
@@ -46,15 +46,15 @@ export default class Deck {
    * });
    */
   constructor(declaration = {}) {
-    const {cursor = Cursor.create().saveScreen().reset().hideCursor()} = declaration;
-    const {shapes = [], animations = [], slides = []} = declaration;
+    const { cursor = Cursor.create().saveScreen().reset().hideCursor() } = declaration;
+    const { shapes = [], animations = [], slides = [] } = declaration;
 
     this._currentSlideIndex = 0;
     this._cursor = cursor;
     this._slides = slides.map(slide => {
       const slideShapes = shapes.concat(slide.shapes || []);
       const slideAnimations = animations.concat(slide.animations || []);
-      return Slide.create(this._cursor, Object.assign(slide, {shapes: slideShapes, animations: slideAnimations}));
+      return Slide.create(this._cursor, Object.assign(slide, { shapes: slideShapes, animations: slideAnimations }));
     });
 
     this._initKeyboard();
@@ -84,9 +84,9 @@ export default class Deck {
    * @private
    */
   _onKeyPress(ch, key) {
-    if (key.name == 'left') this.prevSlide();
-    if (key.name == 'right' || key.name == 'space') this.nextSlide();
-    if (key.ctrl && key.name == 'c') this.exit();
+    if (key.name === 'left') this.prevSlide();
+    if (key.name === 'right' || key.name === 'space') this.nextSlide();
+    if (key.ctrl && key.name === 'c') this.exit();
 
     return this;
   }
@@ -144,6 +144,8 @@ export default class Deck {
    */
   exit() {
     this._cursor.showCursor().restoreScreen().reset();
+
+    /* eslint no-process-exit: "OFF" */
     process.exit(0);
   }
 
@@ -157,3 +159,5 @@ export default class Deck {
     return new this(...args);
   }
 }
+
+module.exports = Deck;

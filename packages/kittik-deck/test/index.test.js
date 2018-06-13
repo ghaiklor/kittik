@@ -1,12 +1,12 @@
-import {assert} from 'chai';
-import sinon from 'sinon';
-import Text from 'kittik-shape-text';
-import Print from 'kittik-animation-print';
-import Cursor from 'kittik-cursor';
-import Deck from '../../src/Deck';
+const { assert } = require('chai');
+const sinon = require('sinon');
+const Text = require('kittik-shape-text');
+const Print = require('kittik-animation-print');
+const Cursor = require('terminal-canvas');
+const Deck = require('../src/index');
 
 const DECK_DECLARATION = {
-  cursor: Cursor.create({stream: {write: () => true}}),
+  cursor: Cursor.create({ stream: { write: () => true } }),
   shapes: [{
     name: 'Global Shape',
     type: 'Text',
@@ -28,9 +28,9 @@ const DECK_DECLARATION = {
   }]
 };
 
-describe('kittik::Deck', () => {
+describe('Core::Deck', () => {
   it('Should properly create deck with default arguments', () => {
-    const deck = new Deck({cursor: DECK_DECLARATION.cursor});
+    const deck = new Deck({ cursor: DECK_DECLARATION.cursor });
 
     assert.equal(deck._currentSlideIndex, 0);
     assert.instanceOf(deck._cursor, Cursor);
@@ -55,9 +55,9 @@ describe('kittik::Deck', () => {
     mock.expects('nextSlide').once();
     mock.expects('exit').once();
 
-    deck._onKeyPress('', {name: 'left'});
-    deck._onKeyPress('', {name: 'right'});
-    deck._onKeyPress('', {ctrl: true, name: 'c'});
+    deck._onKeyPress('', { name: 'left' });
+    deck._onKeyPress('', { name: 'right' });
+    deck._onKeyPress('', { ctrl: true, name: 'c' });
 
     mock.verify();
   });
