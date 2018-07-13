@@ -1,7 +1,7 @@
 const parser = require('../src');
 
 describe('Parser', () => {
-  it('Should properly parse the basic expression', () => {
-    console.log('parser :', parser('200').results);
+  it('Should properly parse the option', () => {
+    console.log('parser :', parser('text hello').results);
   });
 });

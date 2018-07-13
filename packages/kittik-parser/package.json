@@ -12,6 +12,7 @@
     "build": "npm run build:grammar && npm run build:railroad",
     "build:grammar": "nearleyc src/grammar/grammar.ne -o src/grammar/grammar.js",
     "build:railroad": "nearley-railroad src/grammar/grammar.ne -o RAILROAD.html",
+    "pretest": "npm run build",
     "test": "mocha"
   },
   "devDependencies": {
@@ -19,6 +20,7 @@
     "mocha": "5.2.0"
   },
   "dependencies": {
+    "moo": "0.4.3",
     "nearley": "2.13.0"
   }
 }
