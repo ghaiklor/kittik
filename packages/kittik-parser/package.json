@@ -9,10 +9,16 @@
     "node": ">=8.0.0"
   },
   "scripts": {
+    "build": "npm run build:grammar && npm run build:railroad",
+    "build:grammar": "nearleyc src/grammar/grammar.ne -o src/grammar/grammar.js",
+    "build:railroad": "nearley-railroad src/grammar/grammar.ne -o RAILROAD.html",
     "test": "mocha"
   },
   "devDependencies": {
     "chai": "4.1.2",
     "mocha": "5.2.0"
+  },
+  "dependencies": {
+    "nearley": "2.13.0"
   }
 }
