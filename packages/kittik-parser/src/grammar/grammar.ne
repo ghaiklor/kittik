@@ -1,33 +1,44 @@
 @{%
   const moo = require('moo');
   const lexer = moo.compile({
-    any: /.+/,
-    lineBreaks: /[\n|\r\n]/,
-    whitespace: /\s+/,
-    numeric: /[0-9]+/,
-    alpha: /[a-zA-Z]+/,
-    alphaNumeric: /[a-zA-Z0-9]+/,
-    leftParenthesis: /\(/,
-    rightParenthesis: /\)/,
-    colon: /:/,
-    shape: /shape/,
-    animation: /animation/
+    whitespace: { match: /\s+/, lineBreaks: true },
+    comment: { match: /#.*?$/ },
+    number: { match: /[0-9]+/ },
+    string: { match: /".*?"/ },
+    identifier: { match: /[a-zA-Z]+/, keywords: {
+      shape: 'shape',
+      animation: 'animation',
+      slide: 'slide'
+    }},
+    leftParenthesis: '(',
+    rightParenthesis: ')',
+    colon: ':'
   });
 %}
 
 @lexer lexer
 
-# production rule for deck declaration itself, that consists of animation, shapes, order of rendering, etc...
-deck -> shape | animation
+# the whole declaration of kittik deck
+deck ->
+    %whitespace {% () => null %}
+  | %comment {% () => null %}
+  | shape
+  | animation
 
-# production rule for shape declarations, that parses into an options for shape constructor
-shape -> shapeType %leftParenthesis option %rightParenthesis
-shapeType -> %shape %colon %any
+# rule matches against shape declarations
+# i.e. shape:rectangle (key value)
+shape -> shapeType optionDecl
+shapeType -> %shape %colon %identifier
 
-# production rule for animation declaration, that parses into an options for animation constructor
-animation -> animationType %leftParenthesis option %rightParenthesis
-animationType -> %animation %colon %any
+# rule matches against animation declarations
+# i.e. animation:slide (key value)
+animation -> animationType optionDecl
+animationType -> %animation %colon %identifier
 
-# production rule for option structure, that parses into simple key: value structure
-optionList -> null | optionList option
-option -> %alphaNumeric %whitespace %any {% ([key, _, value]) => ({key: value}) %}
+# rule matches against (key-value) option
+# i.e. (name "Hello, World") or (duration 20)
+optionDecl -> %leftParenthesis optionList %rightParenthesis
+optionList -> option optionList | null
+option ->
+    %identifier %whitespace %string {% ([key, _, value]) => ({[key]: value.value}) %}
+  | %identifier %whitespace %number {% ([key, _, value]) => ({[key]: parseInt(value.value)}) %}
