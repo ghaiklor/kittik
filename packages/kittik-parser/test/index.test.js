@@ -1,9 +1,9 @@
-const parser = require('../src');
+const parse = require('../src');
 
 describe('Core::DSL', () => {
   describe('Shape Declarations', () => {
     it('Should properly parse a simple declaration', () => {
-      const declaration = parser(`
+      const declaration = parse(`
         shape:rectangle (
           name "My Shape"
           x 20
@@ -15,7 +15,7 @@ describe('Core::DSL', () => {
 
   describe('Animation Declarations', () => {
     it('Should properly parse a simple declaration', () => {
-      const declaration = parser(`
+      const declaration = parse(`
         animation:slide (
           name "Slide"
           duration 20
