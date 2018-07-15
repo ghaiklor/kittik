@@ -25,9 +25,9 @@ var grammar = {
     ParserRules: [
     {"name": "deck", "symbols": ["wso", "shapeDecl", "wso"]},
     {"name": "deck", "symbols": ["wso", "animationDecl", "wso"]},
-    {"name": "shapeDecl", "symbols": ["shapeType", "wso", "optionDecl"], "postprocess": ([type, options]) => ({name: options.name, type, options})},
+    {"name": "shapeDecl", "symbols": ["shapeType", "wso", "optionDecl"], "postprocess": ([type, _, options]) => ({name: options.name, type, options})},
     {"name": "shapeType", "symbols": [(lexer.has("shape") ? {type: "shape"} : shape), (lexer.has("colon") ? {type: "colon"} : colon), (lexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": ([, , type]) => type.value},
-    {"name": "animationDecl", "symbols": ["animationType", "wso", "optionDecl"], "postprocess": ([type, options]) => ({name: options.name, type, options})},
+    {"name": "animationDecl", "symbols": ["animationType", "wso", "optionDecl"], "postprocess": ([type, _, options]) => ({name: options.name, type, options})},
     {"name": "animationType", "symbols": [(lexer.has("animation") ? {type: "animation"} : animation), (lexer.has("colon") ? {type: "colon"} : colon), (lexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": ([, , type]) => type.value},
     {"name": "optionDecl", "symbols": [(lexer.has("leftParenthesis") ? {type: "leftParenthesis"} : leftParenthesis), "wso", "optionList", "wso", (lexer.has("rightParenthesis") ? {type: "rightParenthesis"} : rightParenthesis)], "postprocess": ([, , options]) => options},
     {"name": "optionList", "symbols": ["option", "wsm", "optionList"], "postprocess": ([lhs, _, rhs]) => Object.assign(lhs, rhs)},

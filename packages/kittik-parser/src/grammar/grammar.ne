@@ -29,7 +29,7 @@ deck ->
 # rule, that parses the whole shape declaration into Deck compatible object
 # i.e. shape:rectangle (name "Hello, World" x 50) will be parsed into kittik-shape-rectangle object
 shapeDecl ->
-    shapeType wso optionDecl {% ([type, options]) => ({name: options.name, type, options}) %}
+    shapeType wso optionDecl {% ([type, _, options]) => ({name: options.name, type, options}) %}
 
 # rule, that parses type of shape
 # i.e. shape:rectangle is parsed into "rectangle"
@@ -39,7 +39,7 @@ shapeType ->
 # rule, that parses the whole animation declaration into Deck compatible object
 # i.e. animation:slide (duration 2000) will be parsed into kittik-animation-slide object
 animationDecl ->
-    animationType wso optionDecl {% ([type, options]) => ({name: options.name, type, options}) %}
+    animationType wso optionDecl {% ([type, _, options]) => ({name: options.name, type, options}) %}
 
 # rule, that parses type of animation
 # i.e. animation:slide is parsed into "slide"
