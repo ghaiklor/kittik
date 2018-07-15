@@ -26,6 +26,13 @@ describe('Core::DSL', () => {
     it('Should properly throw an error, if without parenthesis in options', () => {
       assert.throws(() => parse(`shape:rectangle name "Rectangle"`), 'Unexpected identifier token: "name"');
     });
+
+    it('Should properly parse few declarations in a row', () => {
+      const declaration = parse(`
+        shape:rectangle(name "Shape 1" text "Hello, World")
+        shape:text(name "Shape 2" text "Another World")
+      `);
+    });
   });
 
   describe('Animation Declarations', () => {
@@ -46,6 +53,25 @@ describe('Core::DSL', () => {
           direction: 'upLeft'
         }
       });
+    });
+
+    it('Should properly parse few declarations in a row', () => {
+      const declaration = parse(`
+        animation:slide (name "Slide 1")
+        animation:print (name "Print 1")
+      `);
+    });
+  });
+
+  describe('Shapes + Animations Declaration', () => {
+    it('Should properly parse mixed declarations of shapes and animations', () => {
+      const declaration = parse(`
+        shape:rectangle(name "My Shape 1")
+        animation:slide(name "My Animation 1")
+        animation:print(name "My Animation Print 2")
+        shape:text(name "My Shape 2")
+        animation:print(name "My Slow Animation Print 3" duration 10000)
+      `);
     });
   });
 });
