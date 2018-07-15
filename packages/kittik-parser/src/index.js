@@ -3,5 +3,5 @@ const grammar = require('./grammar/grammar');
 
 module.exports = function parse(input) {
   const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
-  return parser.feed(input).finish();
+  return parser.feed(input).finish()[0];
 };

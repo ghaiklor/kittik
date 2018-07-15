@@ -23,8 +23,8 @@ function id(x) { return x[0]; }
 var grammar = {
     Lexer: lexer,
     ParserRules: [
-    {"name": "deck", "symbols": ["wso", "shapeDecl", "wso"]},
-    {"name": "deck", "symbols": ["wso", "animationDecl", "wso"]},
+    {"name": "deck", "symbols": ["wso", "shapeDecl", "wso"], "postprocess": ([, shape]) => shape},
+    {"name": "deck", "symbols": ["wso", "animationDecl", "wso"], "postprocess": ([, animation]) => animation},
     {"name": "shapeDecl", "symbols": ["shapeType", "wso", "optionDecl"], "postprocess": ([type, _, options]) => ({name: options.name, type, options})},
     {"name": "shapeType", "symbols": [(lexer.has("shape") ? {type: "shape"} : shape), (lexer.has("colon") ? {type: "colon"} : colon), (lexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": ([, , type]) => type.value},
     {"name": "animationDecl", "symbols": ["animationType", "wso", "optionDecl"], "postprocess": ([type, _, options]) => ({name: options.name, type, options})},

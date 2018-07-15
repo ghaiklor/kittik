@@ -23,8 +23,8 @@
 # rule, that parses the whole input into Deck compatible object
 # the resulting object from this rule can be passed into kittik-deck as is
 deck ->
-    wso shapeDecl wso
-  | wso animationDecl wso
+    wso shapeDecl wso {% ([, shape]) => shape %}
+  | wso animationDecl wso {% ([, animation]) => animation %}
 
 # rule, that parses the whole shape declaration into Deck compatible object
 # i.e. shape:rectangle (name "Hello, World" x 50) will be parsed into kittik-shape-rectangle object
