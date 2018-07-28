@@ -16,6 +16,13 @@
     rightParenthesis: ')',
     colon: ':'
   });
+
+  // Set here is required to workaround duplicates when matching
+  // IDK how to fix that in a normal way, so...
+  // I made a Set with JSON.stringify-ied shapes\animations\slides
+  // Also, keep in mind, that these sets are cleared in `index.js`
+  const globalShapes = new Set();
+  const globalAnimations = new Set();
 %}
 
 @lexer lexer
@@ -23,13 +30,13 @@
 # rule, that parses the whole input into Deck compatible object
 # the resulting object from this rule can be passed into kittik-deck as is
 deck ->
-  declaration:* {% id %}
+  declaration:* {% () => ({shapes: globalShapes, animations: globalAnimations}) %}
 
 # rule, that consists of all possible declarations in the DSL
 # it was splitted to separate rules, so I can apply eBNF notation in deck rule
 declaration ->
-    wso shapeDecl wso {% ([_, shape]) => shape %}
-  | wso animationDecl wso {% ([_, animation]) => animation %}
+    wso shapeDecl wso {% ([_, shape]) => globalShapes.add(JSON.stringify(shape)) %}
+  | wso animationDecl wso {% ([_, animation]) => globalAnimations.add(JSON.stringify(animation)) %}
 
 # rule, that parses the whole shape declaration into Deck compatible object
 # i.e. shape:rectangle (name "Hello, World" x 50) will be parsed into kittik-shape-rectangle object

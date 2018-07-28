@@ -20,14 +20,21 @@ function id(x) { return x[0]; }
     rightParenthesis: ')',
     colon: ':'
   });
+
+  // Set here is required to workaround duplicates when matching
+  // IDK how to fix that in a normal way, so...
+  // I made a Set with JSON.stringify-ied shapes\animations\slides
+  // Also, keep in mind, that these sets are cleared in `index.js`
+  const globalShapes = new Set();
+  const globalAnimations = new Set();
 var grammar = {
     Lexer: lexer,
     ParserRules: [
     {"name": "deck$ebnf$1", "symbols": []},
     {"name": "deck$ebnf$1", "symbols": ["deck$ebnf$1", "declaration"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "deck", "symbols": ["deck$ebnf$1"], "postprocess": id},
-    {"name": "declaration", "symbols": ["wso", "shapeDecl", "wso"], "postprocess": ([_, shape]) => shape},
-    {"name": "declaration", "symbols": ["wso", "animationDecl", "wso"], "postprocess": ([_, animation]) => animation},
+    {"name": "deck", "symbols": ["deck$ebnf$1"], "postprocess": () => ({shapes: globalShapes, animations: globalAnimations})},
+    {"name": "declaration", "symbols": ["wso", "shapeDecl", "wso"], "postprocess": ([_, shape]) => globalShapes.add(JSON.stringify(shape))},
+    {"name": "declaration", "symbols": ["wso", "animationDecl", "wso"], "postprocess": ([_, animation]) => globalAnimations.add(JSON.stringify(animation))},
     {"name": "shapeDecl", "symbols": ["shapeType", "wso", "optionDecl"], "postprocess": ([type, _, options]) => ({name: options.name, type, options})},
     {"name": "shapeType", "symbols": [(lexer.has("shape") ? {type: "shape"} : shape), (lexer.has("colon") ? {type: "colon"} : colon), (lexer.has("identifier") ? {type: "identifier"} : identifier)], "postprocess": ([, , type]) => type.value},
     {"name": "animationDecl", "symbols": ["animationType", "wso", "optionDecl"], "postprocess": ([type, _, options]) => ({name: options.name, type, options})},

@@ -13,13 +13,12 @@ describe('Core::DSL', () => {
       `);
 
       assert.deepEqual(declaration, {
-        name: 'My Shape',
-        type: 'rectangle',
-        options: {
+        shapes: [{
           name: 'My Shape',
-          x: 20,
-          y: 'middle'
-        }
+          type: 'rectangle',
+          options: { name: 'My Shape', x: 20, y: 'middle' }
+        }],
+        animations: []
       });
     });
 
@@ -32,6 +31,19 @@ describe('Core::DSL', () => {
         shape:rectangle(name "Shape 1" text "Hello, World")
         shape:text(name "Shape 2" text "Another World")
       `);
+
+      assert.deepEqual(declaration, {
+        shapes: [{
+          name: 'Shape 1',
+          type: 'rectangle',
+          options: { name: 'Shape 1', text: 'Hello, World' }
+        }, {
+          name: 'Shape 2',
+          type: 'text',
+          options: { name: 'Shape 2', text: 'Another World' }
+        }],
+        animations: []
+      })
     });
   });
 
@@ -45,13 +57,12 @@ describe('Core::DSL', () => {
         )`);
 
       assert.deepEqual(declaration, {
-        name: 'Slide',
-        type: 'slide',
-        options: {
+        shapes: [],
+        animations: [{
           name: 'Slide',
-          duration: 20,
-          direction: 'upLeft'
-        }
+          type: 'slide',
+          options: { name: 'Slide', duration: 20, direction: 'upLeft' }
+        }]
       });
     });
 
@@ -60,6 +71,19 @@ describe('Core::DSL', () => {
         animation:slide (name "Slide 1")
         animation:print (name "Print 1")
       `);
+
+      assert.deepEqual(declaration, {
+        shapes: [],
+        animations: [{
+          name: 'Slide 1',
+          type: 'slide',
+          options: { name: 'Slide 1' }
+        }, {
+          name: 'Print 1',
+          type: 'print',
+          options: { name: 'Print 1' }
+        }]
+      });
     });
   });
 
@@ -72,6 +96,31 @@ describe('Core::DSL', () => {
         shape:text(name "My Shape 2")
         animation:print(name "My Slow Animation Print 3" duration 10000)
       `);
+
+      assert.deepEqual(declaration, {
+        shapes: [{
+          name: 'My Shape 1',
+          type: 'rectangle',
+          options: { name: 'My Shape 1' }
+        }, {
+          name: 'My Shape 2',
+          type: 'text',
+          options: { name: 'My Shape 2' }
+        }],
+        animations: [{
+          name: 'My Animation 1',
+          type: 'slide',
+          options: { name: 'My Animation 1' }
+        }, {
+          name: 'My Animation Print 2',
+          type: 'print',
+          options: { name: 'My Animation Print 2' }
+        }, {
+          name: 'My Slow Animation Print 3',
+          type: 'print',
+          options: { name: 'My Slow Animation Print 3', duration: 10000 }
+        }]
+      });
     });
   });
 });
