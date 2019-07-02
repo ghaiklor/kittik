@@ -1,8 +1,6 @@
 # Kittik
 
-**Kittik is under heavy development!**
-
-_If you want to try the old version, refer to [v2.1.2](https://github.com/ghaiklor/kittik/releases/tag/v2.1.2)_
+_You can find last stable release here [v2.1.2](https://github.com/ghaiklor/kittik/releases/tag/v2.1.2)_
 
 ## Announcement
 
