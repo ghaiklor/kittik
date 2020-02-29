@@ -21,12 +21,12 @@
     "all": "npm run clean && npm run build && npm run test && npm run lint",
     "bootstrap": "lerna bootstrap --hoist --strict",
     "build": "lerna run build --stream --parallel",
-    "clean": "lerna clean && rimraf node_modules",
+    "clean": "lerna run clean --stream --parallel",
     "commit": "git cz",
     "lint": "lerna run lint --stream --parallel",
-    "publish": "lerna publish",
-    "test": "lerna run test --stream --parallel",
-    "version": "lerna version --conventional-commits --exact --create-release github"
+    "postinstall": "npm run bootstrap",
+    "publish": "lerna version --conventional-commits --exact --create-release github && lerna publish",
+    "test": "lerna run test --stream --parallel"
   },
   "devDependencies": {
     "git-cz": "4.3.1",
