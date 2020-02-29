@@ -1,40 +1,36 @@
 {
   "name": "kittik",
   "version": "0.0.0",
-  "description": "Keynote in Terminal (KiT) allows to you create and show ASCII presentations in terminal",
-  "homepage": "https://github.com/ghaiklor/kittik#readme",
+  "description": "Show off your slides in terminal",
   "license": "MIT",
-  "keywords": [
-    "terminal",
-    "presentation",
-    "slides",
-    "ascii",
-    "animation"
-  ],
+  "homepage": "https://github.com/ghaiklor/kittik#readme",
+  "author": {
+    "name": "Eugene Obrezkov",
+    "email": "ghaiklor@gmail.com",
+    "url": "https://ghaiklor.com"
+  },
   "bugs": {
     "url": "https://github.com/ghaiklor/kittik/issues",
     "email": "ghaiklor@gmail.com"
   },
-  "author": {
-    "name": "Eugene Obrezkov",
-    "email": "ghaiklor@gmail.com",
-    "url": "http://ghaiklor.com"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ghaiklor/kittik.git"
-  },
-  "engines": {
-    "node": ">=8.0.0"
+    "url": "git+https://github.com/ghaiklor/kittik.git"
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "lint": "eslint .",
-    "test": "lerna run test"
+    "all": "npm run clean && npm run build && npm run test && npm run lint",
+    "bootstrap": "lerna bootstrap --hoist --strict",
+    "build": "lerna run build --stream --parallel",
+    "clean": "lerna clean && rimraf node_modules",
+    "commit": "git cz",
+    "lint": "lerna run lint --stream --parallel",
+    "publish": "lerna publish",
+    "test": "lerna run test --stream --parallel",
+    "version": "lerna version --conventional-commits --exact --create-release github"
   },
   "devDependencies": {
-    "eslint": "4.19.1",
-    "eslint-plugin-node": "6.0.1",
-    "lerna": "2.11.0"
+    "git-cz": "4.3.1",
+    "lerna": "3.20.2",
+    "rimraf": "3.0.2"
   }
 }

@@ -1,7 +1,17 @@
 {
-  "lerna": "2.11.0",
-  "version": "0.0.0",
+  "version": "5.0.0",
+  "npmClient": "npm",
+  "command": {
+    "version": {
+      "allowBranch": "master",
+      "message": "chore(release): publish %s"
+    },
+    "publish": {
+      "message": "chore(release): publish %s",
+      "registry": "https://registry.npmjs.org/"
+    }
+  },
   "packages": [
-    "packages/*"
+    "src/*"
   ]
 }
