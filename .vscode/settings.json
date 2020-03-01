@@ -4,6 +4,8 @@
         "Obrezkov",
         "downlevel",
         "ghaiklor",
+        "lcov",
+        "readonly",
         "tsbuildinfo",
         "turbolizer"
     ]
