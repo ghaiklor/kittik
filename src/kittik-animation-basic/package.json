@@ -5,17 +5,30 @@
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "homepage": "https://github.com/ghaiklor/kittik#readme",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "kittik",
+    "animation"
+  ],
   "author": {
     "name": "Eugene Obrezkov",
     "email": "ghaiklor@gmail.com",
     "url": "https://ghaiklor.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ghaiklor/kittik.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ghaiklor/kittik/issues",
+    "email": "ghaiklor@gmail.com"
+  },
   "engines": {
     "node": ">=12"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsc",
     "clean": "rimraf coverage dist tsconfig.tsbuildinfo",
