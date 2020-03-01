@@ -5,6 +5,7 @@
   },
   "include": [
     "./spec/**/*",
-    "./src/**/*"
+    "./src/**/*",
+    "jest.config.js"
   ]
 }

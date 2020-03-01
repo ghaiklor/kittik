@@ -5,6 +5,7 @@
         "downlevel",
         "ghaiklor",
         "lcov",
+        "paren",
         "readonly",
         "tsbuildinfo",
         "turbolizer"

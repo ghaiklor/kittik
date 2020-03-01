@@ -8,7 +8,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
   duration = 1000;
   easing: EASING.Easing = 'outQuad';
 
-  constructor (options?: AnimationOptions) {
+  constructor(options?: Partial<AnimationOptions>) {
     super()
 
     if (options?.duration !== undefined) {
@@ -19,20 +19,20 @@ export class Animation extends EventEmitter implements AnimationOptions {
       this.easing = options.easing
     }
 
-    this.on('tick', this.onTick)
+    this.on('tick', this.onTick.bind(this))
   }
 
-  get (path: string) {
-    return path.split('.').reduce((obj, key) => obj?.[key], this)
+  get(path: string): any {
+    return path.split('.').reduce((obj, key) => obj[key], this)
   }
 
-  set<T>(path: string, value: T) {
-    let obj = this
+  set<T>(path: string, value: T): Animation {
     const tags = path.split('.')
     const len = tags.length - 1
 
+    let obj = this
     for (let i = 0; i < len; i++) {
-      if (typeof obj.get(tags[i]) === 'undefined') obj[tags[i]] = {}
+      if (typeof obj[tags[i]] === 'undefined') obj[tags[i]] = {}
       obj = obj[tags[i]]
     }
 
@@ -41,24 +41,24 @@ export class Animation extends EventEmitter implements AnimationOptions {
     return this
   }
 
-  delay (ms = 1) {
+  delay(ms = 1): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
-  onTick (shape, property, value) {
+  onTick<S, V>(shape: S, property: string, value: V): Animation {
     shape.set(property, value)
     return this
   }
 
-  onEasing (easing: EASING.Easing, time: number, startValue: number, byValue: number, duration: number) {
+  onEasing(easing: EASING.Easing, time: number, startValue: number, byValue: number, duration: number) {
     return Math.round(EASING[easing](time, startValue, byValue, duration))
   }
 
-  animate () {
+  animate() {
     return Promise.reject(new Error('You must implement animate() method'))
   }
 
-  animateProperty (options) {
+  animateProperty(options) {
     const shape = options.shape
     const property = options.property
     const startValue = options.startValue
@@ -83,7 +83,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
     return new Promise(tick)
   }
 
-  toObject (): AnimationObject {
+  toObject(): AnimationObject {
     return {
       type: this.constructor.name,
       options: {
@@ -93,22 +93,21 @@ export class Animation extends EventEmitter implements AnimationOptions {
     }
   }
 
-  toJSON () {
+  toJSON(): string {
     return JSON.stringify(this.toObject())
   }
 
-  static create (options?: AnimationOptions) {
+  static create(options?: Partial<AnimationOptions>): Animation {
     return new this(options)
   }
 
-  static fromObject (obj: AnimationObject) {
-    if (!obj.type || !obj.options) throw new Error('It looks like the object is not a representation of the Animation')
+  static fromObject(obj: AnimationObject): Animation {
     if (obj.type !== this.name) throw new Error(`${obj.type} is not an object representation of the ${this.name}`)
 
     return this.create(obj.options)
   }
 
-  static fromJSON (json: string) {
+  static fromJSON(json: string): Animation {
     return this.fromObject(JSON.parse(json))
   }
 }

@@ -1,113 +1,58 @@
-const { assert } = require('chai')
-const sinon = require('sinon')
-const Rectangle = require('kittik-shape-rectangle')
-const Animation = require('../src/index')
+import { Animation } from '../src'
+import { AnimationObject } from '../src/AnimationObject'
 
 describe('Animation::Basic', () => {
   it('Should properly create animation with custom options', () => {
     const animation = new Animation({ duration: 2000, easing: 'outExpo' })
-    assert.equal(animation.getDuration(), 2000)
-    assert.equal(animation.getEasing(), 'outExpo')
+
+    expect(animation.duration).toEqual(2000)
+    expect(animation.easing).toEqual('outExpo')
   })
 
   it('Should properly get/set from options object', () => {
     const animation = new Animation()
-    assert.notOk(animation.get('enabled'))
-    assert.instanceOf(animation.set('foo.bar', true), Animation)
-    assert.ok(animation.get('foo.bar'))
-    assert.instanceOf(animation.set('foo.bar', false), Animation)
-    assert.notOk(animation.get('foo.bar'), false)
+
+    expect(animation.get('foo.bar')).toBeUndefined()
+    expect(animation.set('foo.bar', true)).toBeInstanceOf(Animation)
+    expect(animation.get('foo.bar')).toBeTruthy()
+    expect(animation.set('foo.bar', false)).toBeInstanceOf(Animation)
+    expect(animation.get('foo.bar')).toBeFalsy()
   })
 
-  it('Should properly get/set duration of the animation', () => {
+  it('Should properly trigger onTick method when animates', async () => {
     const animation = new Animation()
-    assert.equal(animation.getDuration(), 1000)
-    assert.instanceOf(animation.setDuration(2000), Animation)
-    assert.equal(animation.getDuration(), 2000)
+    const spy = jest.spyOn(animation, 'emit')
+
+    await animation.animateProperty({ shape: {}, property: 'x', duration: 1 })
+    expect(spy).toBeCalledTimes(1)
+    expect(spy.mock.calls[0]).toEqual(['tick'])
   })
 
-  it('Should properly get/set easing of the animation', () => {
+  it('Should properly trigger onEasing method when animates', async () => {
     const animation = new Animation()
-    assert.equal(animation.getEasing(), 'outQuad')
-    assert.instanceOf(animation.setEasing('inQuad'), Animation)
-    assert.equal(animation.getEasing(), 'inQuad')
-  })
+    const spy = jest.spyOn(animation, 'onEasing')
 
-  it('Should properly throw error if not supported easing', () => {
-    const animation = new Animation()
-    assert.throws(() => animation.setEasing('wrong'), Error, 'Unknown easing: wrong')
-  })
-
-  it('Should properly make delay', () => {
-    return new Promise(done => {
-      const animation = new Animation()
-      animation.delay(1).then(() => {
-        done()
-      })
-    })
-  })
-
-  it('Should properly trigger onTick method when animates', () => {
-    return new Promise(done => {
-      const animation = new Animation()
-      const shape = new Rectangle()
-      const mock = sinon.mock(animation)
-
-      mock.expects('emit').atLeast(1).withArgs('tick')
-
-      animation.animateProperty({ shape: shape, property: 'x', duration: 1 }).then(() => {
-        mock.verify()
-        done()
-      })
-    })
-  })
-
-  it('Should properly trigger onEasing method when animates', () => {
-    return new Promise(done => {
-      const animation = new Animation()
-      const shape = new Rectangle()
-      const mock = sinon.mock(animation)
-
-      mock.expects('onEasing').atLeast(1)
-
-      animation.animateProperty({ shape: shape, property: 'x', duration: 1 }).then(() => {
-        mock.verify()
-        done()
-      })
-    })
+    await animation.animateProperty({ shape: {}, property: 'x', duration: 1 })
+    expect(spy).toBeCalledTimes(1)
   })
 
   it('Should properly throw error when animate() is not implemented', () => {
-    return new Promise(done => {
-      const animation = new Animation()
-
-      animation.animate().catch(error => {
-        assert.instanceOf(error, Error)
-        assert.equal(error.message, 'You must implement animate() method')
-        done()
-      })
-    })
+    const animation = new Animation()
+    expect(async () => animation.animate()).toThrowError('You must implement animate() method')
   })
 
-  it('Should properly animate property in shape', () => {
-    return new Promise(done => {
-      const animation = new Animation({ duration: 1 })
-      const shape = new Rectangle()
-      const mock = sinon.mock(shape)
+  it('Should properly animate property in shape', async () => {
+    const animation = new Animation({ duration: 1 })
+    const shape = { set: jest.fn() }
 
-      mock.expects('set').atLeast(1)
-
-      animation.animateProperty({ shape: shape, property: 'x' }).then(() => {
-        mock.verify()
-        done()
-      })
-    })
+    await animation.animateProperty({ shape, property: 'x' })
+    expect(shape.set).toBeCalledTimes(1)
   })
 
   it('Should properly serialize animation to the object', () => {
     const animation = new Animation()
 
-    assert.deepEqual(animation.toObject(), {
+    expect(animation.toObject()).toEqual({
       type: 'Animation',
       options: {
         duration: 1000,
@@ -118,26 +63,23 @@ describe('Animation::Basic', () => {
 
   it('Should properly serialize animation to the JSON', () => {
     const animation = new Animation()
-    assert.equal(animation.toJSON(), '{"type":"Animation","options":{"duration":1000,"easing":"outQuad"}}')
+    expect(animation.toJSON()).toEqual('{"type":"Animation","options":{"duration":1000,"easing":"outQuad"}}')
   })
 
   it('Should properly create Animation instance from static create()', () => {
     const animation = Animation.create({ duration: 1 })
-    assert.equal(animation.get('duration'), 1)
-    assert.instanceOf(animation, Animation)
-  })
 
-  it('Should properly throw exception if object representation is not valid', () => {
-    assert.throws(() => Animation.fromObject({}), Error, 'It looks like the object is not a representation of the Animation')
+    expect(animation.get('duration')).toEqual(1)
+    expect(animation).toBeInstanceOf(Animation)
   })
 
   it('Should properly throw exception if object representation is not from this animation', () => {
     const obj = { type: 'Slide', options: {} }
-    assert.throws(() => Animation.fromObject(obj), Error, 'Slide is not an object representation of the Animation')
+    expect(() => Animation.fromObject(obj)).toThrow('Slide is not an object representation of the Animation')
   })
 
   it('Should properly create Animation instance from object representation', () => {
-    const obj = {
+    const obj: AnimationObject = {
       type: 'Animation',
       options: {
         duration: 1,
@@ -146,17 +88,17 @@ describe('Animation::Basic', () => {
     }
 
     const animation = Animation.fromObject(obj)
-    assert.instanceOf(animation, Animation)
-    assert.equal(animation.getDuration(), 1)
-    assert.equal(animation.getEasing(), 'inExpo')
+    expect(animation).toBeInstanceOf(Animation)
+    expect(animation.duration).toEqual(1)
+    expect(animation.easing).toEqual('inExpo')
   })
 
   it('Should properly create Animation instance from JSON representation', () => {
     const json = '{"type":"Animation","options":{"duration":1000,"easing":"outQuad"}}'
     const animation = Animation.fromJSON(json)
 
-    assert.instanceOf(animation, Animation)
-    assert.equal(animation.getDuration(), 1000)
-    assert.equal(animation.getEasing(), 'outQuad')
+    expect(animation).toBeInstanceOf(Animation)
+    expect(animation.duration).toEqual(1000)
+    expect(animation.easing).toEqual('outQuad')
   })
 })

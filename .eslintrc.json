@@ -35,5 +35,34 @@
     "standard",
     "jest"
   ],
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/space-before-function-paren": [
+      "error",
+      {
+        "named": "never"
+      }
+    ],
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      {
+        "ignores": [
+          "modules"
+        ]
+      }
+    ],
+    "node/no-missing-import": [
+      "error",
+      {
+        "tryExtensions": [
+          ".js",
+          ".ts",
+          ".json",
+          ".node"
+        ]
+      }
+    ],
+    "import/no-unresolved": [
+      "off"
+    ]
+  }
 }
