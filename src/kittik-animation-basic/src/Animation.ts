@@ -4,7 +4,6 @@ import { EventEmitter } from 'events'
 import * as EASING from './Easing'
 
 export class Animation extends EventEmitter implements AnimationOptions {
-  [key: string]: any;
   duration = 1000;
   easing: EASING.Easing = 'outQuad';
 
@@ -20,25 +19,6 @@ export class Animation extends EventEmitter implements AnimationOptions {
     }
 
     this.on('tick', this.onTick.bind(this))
-  }
-
-  get(path: string): any {
-    return path.split('.').reduce((obj, key) => obj[key], this)
-  }
-
-  set<T>(path: string, value: T): Animation {
-    const tags = path.split('.')
-    const len = tags.length - 1
-
-    let obj = this
-    for (let i = 0; i < len; i++) {
-      if (typeof obj[tags[i]] === 'undefined') obj[tags[i]] = {}
-      obj = obj[tags[i]]
-    }
-
-    obj[tags[len]] = value
-
-    return this
   }
 
   delay(ms = 1): Promise<void> {

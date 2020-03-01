@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "Basic class for creating other shapes in Kittik",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/Shape.js",
+  "types": "dist/Shape.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",
   "files": [
     "dist"
@@ -30,6 +30,7 @@
     "node": ">=12"
   },
   "scripts": {
+    "all": "npm run clean && npm run build && npm run test && npm run lint",
     "build": "tsc",
     "clean": "rimraf coverage dist tsconfig.tsbuildinfo",
     "lint": "eslint --fix --ext .js,.ts .",
@@ -44,13 +45,13 @@
     "eslint-config-standard": "14.1.0",
     "eslint-config-standard-with-typescript": "14.0.0",
     "eslint-plugin-import": "2.20.1",
-    "eslint-plugin-jest": "23.8.0",
+    "eslint-plugin-jest": "23.8.1",
     "eslint-plugin-node": "11.0.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "jest": "25.1.0",
     "rimraf": "3.0.2",
-    "terminal-canvas": "3.0.2",
+    "terminal-canvas": "3.0.3",
     "ts-jest": "25.2.1",
     "typescript": "3.8.3"
   }

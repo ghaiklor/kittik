@@ -1,9 +1,9 @@
 export interface ShapeOptions {
-  text: string,
-  x: number,
-  y: number,
-  width: number,
-  height: number,
-  background: string | false,
-  foreground: string | false
+  text: string
+  x: 'left' | 'center' | 'right' | string
+  y: 'top' | 'middle' | 'bottom' | string
+  width: string
+  height: string
+  background: 'none' | string
+  foreground: 'none' | string
 }
