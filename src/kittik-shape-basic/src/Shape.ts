@@ -1,44 +1,4 @@
-/**
- * Base class for creating other shapes.
- * Each custom shape must extends from this class.
- *
- * @since 1.0.0
- * @example
- * import Shape from 'kittik-shape-basic';
- *
- * export default class Rectangle extends Shape {
- *   render() {
- *     const cursor = this.getCursor();
- *     // Implement your logic here for rendering the shape
- *   }
- * }
- */
-class Shape {
-  /**
-   * Create basic Shape instance.
-   * This shape renders nothing, but throws an exception that you need to implement this shape in childes.
-   *
-   * @constructor
-   * @param {Cursor} cursor Cursor instance used for render the shape
-   * @param {Object} [options] Options object
-   * @param {String} [options.text] Text that will be rendered in the shape
-   * @param {Number|String} [options.width] Shape width can be 100 (cells) or 100%
-   * @param {Number|String} [options.height] Shape height can be 100 (cells) or 100%
-   * @param {Number|String} [options.x] Absolute coordinate X can be 100 (cells), left, center, right or percents
-   * @param {Number|String} [options.y] Absolute coordinate Y can be 100 (cells), top, middle, bottom or percents
-   * @param {String} [options.background] Background color can be only color name or `none` if you want to disable
-   * @param {String} [options.foreground] Foreground color can be only color name or `none` if you want to disable
-   * @example
-   * Shape.create(cursor, {
-   *   text: 'Hello, World',
-   *   width: '50%',
-   *   height: '50%',
-   *   x: 'center',
-   *   y: 'middle',
-   *   background: 'black',
-   *   foreground: 'none'
-   * });
-   */
+export class Shape {
   constructor(cursor, options = {}) {
     this.setCursor(cursor);
     this.setText(options.text);
@@ -367,5 +327,3 @@ class Shape {
     return this.fromObject(JSON.parse(json), cursor);
   }
 }
-
-module.exports = Shape;
