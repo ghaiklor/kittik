@@ -1,15 +1,17 @@
-import { Canvas } from "terminal-canvas";
-import { CodeObject } from "./CodeObject";
-import { CodeOptions } from "./CodeOptions";
+import { Canvas } from 'terminal-canvas';
+import { CodeObject } from './CodeObject';
+import { CodeOptions } from './CodeOptions';
 import { DEFAULT_THEME } from './themes/default';
-import { Shape } from "kittik-shape-basic";
-import beautify from "js-beautify";
+import { Shape } from 'kittik-shape-basic';
+import beautify from 'js-beautify';
 
+// TODO: think about typings for redeyed @ghaiklor
+// eslint-disable-next-line
 // @ts-ignore
-import redeyed from "redeyed";
+import redeyed from 'redeyed';
 
 export class Code extends Shape implements CodeOptions {
-  private _code: string = '';
+  private _code = '';
 
   constructor(cursor: Canvas, options?: Partial<CodeOptions>) {
     super(cursor, options);
@@ -19,7 +21,7 @@ export class Code extends Shape implements CodeOptions {
     }
   }
 
-  get code() {
+  get code(): string {
     return this._code;
   }
 
@@ -27,31 +29,31 @@ export class Code extends Shape implements CodeOptions {
     this._code = beautify(code, { indent_size: 2 });
   }
 
-  get width() {
+  get width(): string {
     const code = this.code.split('\n').map(item => item.length);
     return Math.max(...code).toString();
   }
 
-  get height() {
+  get height(): string {
     return this.code.split('\n').length.toString();
   }
 
-  render() {
+  render(): this {
     const cursor = this.cursor;
     const codeSplits = redeyed(this.code, DEFAULT_THEME).splits;
-    const x = parseInt(this.x)
-    const y = parseInt(this.y)
+    const x = parseInt(this.x);
+    const y = parseInt(this.y);
 
     cursor.moveTo(x, y);
 
     codeSplits.forEach((split: string) => {
       const code = split.replace(/__.*__/, '');
-      const color = split.match(/__(.*)__/);
+      const color = /__(.*)__/.exec(split);
 
-      if (code.match(/\n/)) {
-        cursor.moveTo(x, cursor.cursorY + 1).write(code.replace('\n', ''))
+      if (/\n/.exec(code) !== null) {
+        cursor.moveTo(x, cursor.cursorY + 1).write(code.replace('\n', ''));
       } else {
-        cursor.foreground(color ? color[1] : 'none');
+        cursor.foreground(color !== null ? color[1] : 'none');
         cursor.write(code);
       }
     });
@@ -59,10 +61,10 @@ export class Code extends Shape implements CodeOptions {
     return this;
   }
 
-  toObject(): CodeObject {
+  toObject<T extends CodeObject>(): T {
     const obj: CodeObject = super.toObject();
     obj.options = { ...obj.options, code: this._code };
 
-    return obj;
+    return obj as T;
   }
 }

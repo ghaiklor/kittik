@@ -130,12 +130,12 @@ export class Shape implements ShapeOptions {
     this._foreground = foreground;
   }
 
-  render(): Shape {
+  render(): void {
     throw new Error('render() method must be implemented');
   }
 
-  toObject(): ShapeObject {
-    return {
+  toObject<T extends ShapeObject>(): T {
+    const obj = {
       type: this.constructor.name,
       options: {
         text: this._text,
@@ -147,23 +147,32 @@ export class Shape implements ShapeOptions {
         foreground: this._foreground
       }
     };
+
+    return obj as T;
   }
 
   toJSON(): string {
     return JSON.stringify(this.toObject());
   }
 
-  static create(cursor: Canvas, options?: Partial<ShapeOptions>): Shape {
-    return new this(cursor, options);
+  static create<T extends Shape>(cursor: Canvas, options?: Partial<ShapeOptions>): T
+  static create<T extends Shape, O extends ShapeOptions>(cursor: Canvas, options?: Partial<O>): T
+  static create<T extends Shape, O extends ShapeOptions, C extends Canvas>(cursor: C, options?: Partial<O>): T {
+    return (new this(cursor, options)) as T;
   }
 
-  static fromObject(obj: ShapeObject, cursor: Canvas): Shape {
+  static fromObject(obj: ShapeObject, cursor: Canvas): Shape
+  static fromObject<T extends Shape>(obj: ShapeObject, cursor: Canvas): T
+  static fromObject<T extends Shape, O extends ShapeObject>(obj: O, cursor: Canvas): T
+  static fromObject<T extends Shape, O extends ShapeObject, C extends Canvas>(obj: O, cursor: C): T {
     if (obj.type !== this.name) throw new Error(`${obj.type} is not an Object representation of the ${this.name}`);
 
     return this.create(cursor, obj.options);
   }
 
-  static fromJSON(json: string, cursor: Canvas): Shape {
+  static fromJSON(json: string, cursor: Canvas): Shape
+  static fromJSON<T extends Shape>(json: string, cursor: Canvas): T
+  static fromJSON<T extends Shape, C extends Canvas>(json: string, cursor: C): T {
     return this.fromObject(JSON.parse(json), cursor);
   }
 }
