@@ -1,9 +1,4 @@
-/**
- * Dictionary of tokens and their colors for the code coloring.
- *
- * @private
- */
-module.exports = {
+export const DEFAULT_THEME = {
   'Boolean': {
     'true': undefined,
     'false': undefined,

@@ -23,7 +23,7 @@ describe('Shape::Basic', () => {
     expect(shape.width).toEqual('5');
 
     shape.width = '50%';
-    expect(shape.width).toEqual(Math.ceil(cursor.width / 2).toString());
+    expect(shape.width).toEqual(Math.ceil(shape.cursor.width / 2).toString());
   });
 
   it('Should properly get/set height', () => {
@@ -36,7 +36,7 @@ describe('Shape::Basic', () => {
     expect(shape.height).toEqual('15');
 
     shape.height = '50%';
-    expect(shape.height).toEqual(Math.floor(cursor.height / 2).toString());
+    expect(shape.height).toEqual(Math.floor(shape.cursor.height / 2).toString());
   });
 
   it('Should properly get/set x coordinate', () => {
@@ -52,13 +52,13 @@ describe('Shape::Basic', () => {
     expect(shape.x).toEqual('0');
 
     shape.x = 'center';
-    expect(shape.x).toEqual(Math.floor(cursor.width / 2 - parseInt(shape.width) / 2).toString());
+    expect(shape.x).toEqual(Math.floor(shape.cursor.width / 2 - parseInt(shape.width) / 2).toString());
 
     shape.x = 'right';
-    expect(shape.x).toEqual(Math.floor(cursor.width - parseInt(shape.width)).toString());
+    expect(shape.x).toEqual(Math.floor(shape.cursor.width - parseInt(shape.width)).toString());
 
     shape.x = '50%';
-    expect(shape.x).toEqual(Math.floor(cursor.width / 2).toString());
+    expect(shape.x).toEqual(Math.floor(shape.cursor.width / 2).toString());
   });
 
   it('Should properly get/set y coordinate', () => {
@@ -74,13 +74,13 @@ describe('Shape::Basic', () => {
     expect(shape.y).toEqual('0');
 
     shape.y = 'middle';
-    expect(shape.y).toEqual(Math.floor(cursor.height / 2 - parseInt(shape.height) / 2).toString());
+    expect(shape.y).toEqual(Math.floor(shape.cursor.height / 2 - parseInt(shape.height) / 2).toString());
 
     shape.y = 'bottom';
-    expect(shape.y).toEqual(Math.floor(cursor.height - parseInt(shape.height)).toString());
+    expect(shape.y).toEqual(Math.floor(shape.cursor.height - parseInt(shape.height)).toString());
 
     shape.y = '50%';
-    expect(shape.y).toEqual(Math.floor(cursor.height / 2).toString());
+    expect(shape.y).toEqual(Math.floor(shape.cursor.height / 2).toString());
   });
 
   it('Should properly get/set background', () => {

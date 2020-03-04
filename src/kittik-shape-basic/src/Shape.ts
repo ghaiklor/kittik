@@ -44,6 +44,10 @@ export class Shape implements ShapeOptions {
     }
   }
 
+  get cursor(): Canvas {
+    return this._cursor;
+  }
+
   get text(): string {
     return this._text;
   }
@@ -126,7 +130,7 @@ export class Shape implements ShapeOptions {
     this._foreground = foreground;
   }
 
-  render(): never {
+  render(): Shape {
     throw new Error('render() method must be implemented');
   }
 

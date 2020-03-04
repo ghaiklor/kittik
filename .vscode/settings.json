@@ -2,12 +2,18 @@
     "cSpell.words": [
         "Kittik",
         "Obrezkov",
+        "Punctuator",
+        "dedupe",
         "downlevel",
         "ghaiklor",
         "lcov",
+        "lernaupdate",
+        "maxdepth",
         "paren",
         "readonly",
+        "redeyed",
         "tsbuildinfo",
-        "turbolizer"
+        "turbolizer",
+        "xargs"
     ]
 }
