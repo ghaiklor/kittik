@@ -30,7 +30,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "all": "npm run clean && npm run build && npm run test && npm run lint",
+    "all": "npm run build && npm run test && npm run lint",
     "build": "tsc",
     "clean": "rimraf coverage dist tsconfig.tsbuildinfo",
     "lint": "eslint --fix --ext .js,.ts .",

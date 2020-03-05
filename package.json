@@ -18,7 +18,7 @@
     "url": "git+https://github.com/ghaiklor/kittik.git"
   },
   "scripts": {
-    "all": "npm run clean && npm run build && npm run test && npm run lint",
+    "all": "npm run build && npm run test && npm run lint",
     "bootstrap": "lerna bootstrap --hoist --strict",
     "build": "lerna run build --stream --parallel",
     "clean": "lerna run clean --stream --parallel",
