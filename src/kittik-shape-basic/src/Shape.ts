@@ -3,14 +3,14 @@ import { ShapeObject } from './ShapeObject';
 import { ShapeOptions } from './ShapeOptions';
 
 export class Shape implements ShapeOptions {
-  private readonly _cursor: Canvas;
-  private _text = '';
-  private _x = 'left';
-  private _y = 'top';
-  private _width = '50%';
-  private _height = '25%';
-  private _background = 'none';
-  private _foreground = 'none';
+  protected readonly _cursor: Canvas;
+  protected _text = '';
+  protected _x = 'left';
+  protected _y = 'top';
+  protected _width = '50%';
+  protected _height = '25%';
+  protected _background = 'none';
+  protected _foreground = 'none';
 
   constructor(cursor: Canvas, options?: Partial<ShapeOptions>) {
     this._cursor = cursor;

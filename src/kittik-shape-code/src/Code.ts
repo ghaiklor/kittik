@@ -1,46 +1,32 @@
-import { Canvas } from 'terminal-canvas';
-import { CodeObject } from './CodeObject';
-import { CodeOptions } from './CodeOptions';
-import { DEFAULT_THEME } from './themes/default';
-import { Shape } from 'kittik-shape-basic';
-import beautify from 'js-beautify';
-
 // TODO: think about typings for redeyed @ghaiklor
 // eslint-disable-next-line
 // @ts-ignore
 import redeyed from 'redeyed';
+import { DEFAULT_THEME } from './themes/default';
+import { Shape } from 'kittik-shape-basic';
+import beautify from 'js-beautify';
 
-export class Code extends Shape implements CodeOptions {
-  private _code = '';
-
-  constructor(cursor: Canvas, options?: Partial<CodeOptions>) {
-    super(cursor, options);
-
-    if (options?.code !== undefined) {
-      this.code = options.code;
-    }
+export class Code extends Shape {
+  get text(): string {
+    return this._text;
   }
 
-  get code(): string {
-    return this._code;
-  }
-
-  set code(code: string) {
-    this._code = beautify(code, { indent_size: 2 });
+  set text(code: string) {
+    this._text = beautify(code, { indent_size: 2 });
   }
 
   get width(): string {
-    const code = this.code.split('\n').map(item => item.length);
+    const code = this.text.split('\n').map(item => item.length);
     return Math.max(...code).toString();
   }
 
   get height(): string {
-    return this.code.split('\n').length.toString();
+    return this.text.split('\n').length.toString();
   }
 
   render(): this {
     const cursor = this.cursor;
-    const codeSplits = redeyed(this.code, DEFAULT_THEME).splits;
+    const codeSplits = redeyed(this.text, DEFAULT_THEME).splits;
     const x = parseInt(this.x);
     const y = parseInt(this.y);
 
@@ -59,12 +45,5 @@ export class Code extends Shape implements CodeOptions {
     });
 
     return this;
-  }
-
-  toObject<T extends CodeObject>(): T {
-    const obj: CodeObject = super.toObject();
-    obj.options = { ...obj.options, code: this._code };
-
-    return obj as T;
   }
 }

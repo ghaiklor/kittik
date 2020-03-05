@@ -30,7 +30,7 @@ export const DEFAULT_THEME = {
   Keyword: {
     break: undefined,
     case: undefined,
-    catch: '__CYAN_1__',
+    catch: '__CYAN__',
     class: undefined,
     const: undefined,
     continue: undefined,
@@ -42,7 +42,7 @@ export const DEFAULT_THEME = {
     enum: undefined,
     export: undefined,
     extends: undefined,
-    finally: '__CYAN_1__',
+    finally: '__CYAN__',
     for: undefined,
     function: undefined,
     if: undefined,
@@ -62,14 +62,14 @@ export const DEFAULT_THEME = {
     switch: undefined,
     this: '__INDIAN_RED__',
     throw: undefined,
-    try: '__CYAN_1__',
+    try: '__CYAN__',
     typeof: undefined,
     var: '__GREEN__',
     void: undefined,
     while: undefined,
     with: undefined,
     yield: undefined,
-    _default: '__SKY_BLUE_2__'
+    _default: '__SKY_BLUE__'
   },
 
   Punctuator: {
@@ -122,7 +122,7 @@ export const DEFAULT_THEME = {
     '>>=': undefined,
     '...': undefined,
     '>>>=': undefined,
-    _default: '__LIGHT_YELLOW_3__'
+    _default: '__LIGHT_YELLOW__'
   },
 
   Line: {
