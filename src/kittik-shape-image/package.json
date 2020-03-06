@@ -1,0 +1,62 @@
+{
+  "name": "kittik-shape-image",
+  "version": "0.0.0",
+  "description": "Shape for rendering png/jpg/other images in Kittik",
+  "license": "MIT",
+  "main": "dist/Image.js",
+  "types": "dist/Image.d.ts",
+  "homepage": "https://github.com/ghaiklor/kittik#readme",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "kittik",
+    "shape",
+    "image"
+  ],
+  "author": {
+    "name": "Eugene Obrezkov",
+    "email": "ghaiklor@gmail.com",
+    "url": "https://ghaiklor.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ghaiklor/kittik.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ghaiklor/kittik/issues",
+    "email": "ghaiklor@gmail.com"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "all": "npm run build && npm run test && npm run lint",
+    "build": "tsc",
+    "clean": "rimraf coverage dist tsconfig.tsbuildinfo",
+    "lint": "eslint --fix --ext .js,.ts .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "kittik-shape-basic": "0.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "25.1.3",
+    "@types/node": "13.7.7",
+    "@typescript-eslint/eslint-plugin": "2.22.0",
+    "@typescript-eslint/parser": "2.22.0",
+    "eslint": "6.8.0",
+    "eslint-config-standard": "14.1.0",
+    "eslint-config-standard-with-typescript": "14.0.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-jest": "23.8.1",
+    "eslint-plugin-node": "11.0.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1",
+    "jest": "25.1.0",
+    "rimraf": "3.0.2",
+    "terminal-canvas": "3.1.0",
+    "ts-jest": "25.2.1",
+    "typescript": "3.8.3"
+  }
+}
