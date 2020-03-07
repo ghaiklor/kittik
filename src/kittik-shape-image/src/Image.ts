@@ -2,7 +2,6 @@ import { Canvas } from 'terminal-canvas';
 import { ImageObject } from './ImageObject';
 import { ImageOptions } from './ImageOptions';
 import { Shape } from 'kittik-shape-basic';
-import { ShapeObject } from 'kittik-shape-basic/dist/ShapeObject';
 import fs from 'fs';
 import path from 'path';
 
@@ -60,7 +59,7 @@ export class Image extends Shape implements ImageOptions {
     return this;
   }
 
-  toObject<T extends ShapeObject>(): T {
+  toObject<T extends ImageObject>(): T {
     const obj: ImageObject = super.toObject();
     obj.options = {
       ...obj.options,

@@ -2,7 +2,6 @@ import { Canvas } from 'terminal-canvas';
 import { FigTextObject } from './FigTextObject';
 import { FigTextOptions } from './FigTextOptions';
 import { Shape } from 'kittik-shape-basic';
-import { ShapeObject } from 'kittik-shape-basic/dist/ShapeObject';
 import figlet, { KerningMethods, PrintDirection, Fonts } from 'figlet';
 
 export class FigText extends Shape implements FigTextOptions {
@@ -73,7 +72,7 @@ export class FigText extends Shape implements FigTextOptions {
     return this;
   }
 
-  toObject<T extends ShapeObject>(): T {
+  toObject<T extends FigTextObject>(): T {
     const obj: FigTextObject = super.toObject();
     obj.options = {
       ...obj.options,
