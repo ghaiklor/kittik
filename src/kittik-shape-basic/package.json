@@ -32,7 +32,7 @@
   "scripts": {
     "all": "npm run build && npm run test && npm run lint",
     "build": "tsc",
-    "clean": "rimraf coverage dist tsconfig.tsbuildinfo",
+    "clean": "rimraf coverage dist node_modules tsconfig.tsbuildinfo",
     "lint": "eslint --fix --ext .js,.ts .",
     "test": "jest"
   },
