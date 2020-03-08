@@ -1,5 +1,13 @@
 # Kittik
 
+![Travis (.com)](https://img.shields.io/travis/com/ghaiklor/kittik?style=for-the-badge)
+![Codecov](https://img.shields.io/codecov/c/gh/ghaiklor/kittik?style=for-the-badge)
+![Snyk Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/ghaiklor/kittik?style=for-the-badge)
+![GitHub Commits](https://img.shields.io/github/commits-since/ghaiklor/kittik/latest/master?style=for-the-badge)
+
+![GitHub Followers](https://img.shields.io/github/followers/ghaiklor?label=Follow&style=social)
+![Twitter Follow](https://img.shields.io/twitter/follow/ghaiklor?style=social)
+
 _This branch is in active development. If you want to use kittik right now, you can find last stable release here [v2.1.2](https://github.com/ghaiklor/kittik/releases/tag/v2.1.2)_
 
 ## Announcement
