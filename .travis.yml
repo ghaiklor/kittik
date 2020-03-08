@@ -6,3 +6,5 @@ install:
   - npm install
 script:
   - npm run all
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
