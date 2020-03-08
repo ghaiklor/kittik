@@ -5,7 +5,7 @@ import { ShapeObject } from 'kittik-shape-basic/dist/ShapeObject';
 describe('Shape::Rectangle', () => {
   it('Should properly render with default options', () => {
     const cursor = Canvas.create();
-    const rectangle = new Rectangle(cursor);
+    const rectangle = new Rectangle(cursor, { x: '0', y: '0', height: '2', width: '5' });
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
@@ -17,8 +17,11 @@ describe('Shape::Rectangle', () => {
     expect(backgroundSpy).toBeCalledWith('none');
     expect(foregroundSpy).toBeCalledTimes(1);
     expect(foregroundSpy).toBeCalledWith('none');
-    expect(moveToSpy).toBeCalledTimes(6);
-    expect(writeSpy).toBeCalledTimes(5);
+    expect(moveToSpy).toBeCalledTimes(5);
+    expect(moveToSpy).toBeCalledWith(0, 0);
+    expect(moveToSpy).toBeCalledWith(0, 1);
+    expect(writeSpy).toBeCalledTimes(4);
+    expect(writeSpy).toBeCalledWith('     ');
   });
 
   it('Should properly render with custom options', () => {
