@@ -1,3 +1,45 @@
+coverage:
+  status:
+    project:
+      kittik-animation-basic:
+        flags:
+          - kittik-animation-basic
+      kittik-animation-focus:
+        flags:
+          - kittik-animation-focus
+      kittik-animation-print:
+        flags:
+          - kittik-animation-print
+      kittik-animation-slide:
+        flags:
+          - kittik-animation-slide
+      kittik-deck:
+        flags:
+          - kittik-deck
+      kittik-parser:
+        flags:
+          - kittik-parser
+      kittik-shape-basic:
+        flags:
+          - kittik-shape-basic
+      kittik-shape-code:
+        flags:
+          - kittik-shape-code
+      kittik-shape-fig-text:
+        flags:
+          - kittik-shape-fig-text
+      kittik-shape-image:
+        flags:
+          - kittik-shape-image
+      kittik-shape-rectangle:
+        flags:
+          - kittik-shape-rectangle
+      kittik-shape-text:
+        flags:
+          - kittik-shape-text
+      kittik-slide:
+        flags:
+          - kittik-slide
 flags:
   kittik-animation-basic:
     paths:
