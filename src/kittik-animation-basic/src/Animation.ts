@@ -31,7 +31,14 @@ export class Animation extends EventEmitter implements AnimationOptions {
     return Math.round(EASING[easing](time, startValue, byValue, duration));
   }
 
-  animate(): void {
+  // TODO: this was done a long time ago when kittik was written in JavaScript
+  // Now, we need to think about abstract classes maybe, or something else
+  // that we can use to abstract implementation from the signature
+  // For now, I left it till I'm done with porting it to TypeScript
+  // eslint-disable-next-line
+  // @ts-ignore
+  // eslint-disable-next-line
+  async animate<T extends Shape>(shape: T): Promise<T> {
     throw new Error('You must implement animate() method');
   }
 
