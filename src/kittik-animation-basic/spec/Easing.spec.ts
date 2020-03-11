@@ -1,7 +1,7 @@
 import * as EASING from '../src/Easing';
 
 describe('Animation::Easing', () => {
-  it('Should properly export easing', () => {
+  it('Should properly calculate all the easing functions', () => {
     expect(EASING.inQuad(100, 1000, 20, 1000)).toBeCloseTo(1000.2);
     expect(EASING.outQuad(100, 1000, 20, 1000)).toBeCloseTo(1003.8);
     expect(EASING.inOutQuad(100, 1000, 20, 1000)).toBeCloseTo(1000.4);

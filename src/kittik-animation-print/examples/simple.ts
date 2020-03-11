@@ -19,7 +19,8 @@ const shape = new Rectangle(cursor, {
 });
 
 (async function animate() {
-  shape.render().cursor.flush();
+  shape.render();
+  cursor.flush();
 
   await print.animate(shape);
 

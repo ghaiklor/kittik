@@ -16,7 +16,8 @@ const bounceLeft = new Focus({ direction: 'bounceLeft' }).on('tick', onTick);
 const bounceRight = new Focus({ direction: 'bounceRight' }).on('tick', onTick);
 
 (async function animate() {
-  shape.render().cursor.flush();
+  shape.render();
+  cursor.flush();
 
   await bounceUp.animate(shape);
   await bounceDown.animate(shape);

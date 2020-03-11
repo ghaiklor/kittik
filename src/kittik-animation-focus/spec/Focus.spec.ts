@@ -1,7 +1,7 @@
 import { Canvas } from 'terminal-canvas';
 import { Focus } from '../src/Focus';
-import { Shape } from 'kittik-shape-basic';
 import { FocusObject } from '../src/FocusObject';
+import { Shape } from 'kittik-shape-basic';
 
 describe('Animation::Focus', () => {
   it('Should properly get duration with different repeat count', () => {

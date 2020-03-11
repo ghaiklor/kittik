@@ -1,9 +1,9 @@
-import { Animation } from 'kittik-animation-basic';
-import { SlideOptions, Direction } from './SlideOptions';
-import { Shape } from 'kittik-shape-basic/dist/Shape';
+import { Animation, Animationable } from 'kittik-animation-basic';
+import { Shape } from 'kittik-shape-basic';
 import { SlideObject } from './SlideObject';
+import { SlideOptions, Direction } from './SlideOptions';
 
-export class Slide extends Animation implements SlideOptions {
+export class Slide extends Animation implements SlideOptions, Animationable {
   direction: Direction = 'inRight';
 
   constructor(options?: Partial<SlideOptions>) {

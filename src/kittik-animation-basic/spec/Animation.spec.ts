@@ -35,14 +35,6 @@ describe('Animation::Basic', () => {
     expect(emitSpy).toBeCalledWith('tick', expect.any(Shape), 'x', expect.any(Number));
   });
 
-  it('Should properly throw error when animate() is not implemented', async () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
-    const animation = new Animation();
-
-    await expect(animation.animate(shape)).rejects.toThrowError('You must implement animate() method');
-  });
-
   it('Should properly serialize animation to the object', () => {
     const animation = new Animation();
 

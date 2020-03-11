@@ -1,7 +1,7 @@
-import { Animation } from 'kittik-animation-basic';
-import { Shape } from 'kittik-shape-basic/dist/Shape';
+import { Animation, Animationable } from 'kittik-animation-basic';
+import { Shape } from 'kittik-shape-basic';
 
-export class Print extends Animation {
+export class Print extends Animation implements Animationable {
   private originalText = '';
 
   onTick<S extends Shape, P extends keyof S, V extends S[P]>(shape: S, _property: P, value: V): void {

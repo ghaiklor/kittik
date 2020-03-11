@@ -13,7 +13,8 @@ const shape = new Rectangle(cursor, { x: 'center', y: 'middle', background: 'whi
 const inLeft = new Slide({ direction: 'inLeft' }).on('tick', onTick);
 
 (async function animate() {
-  shape.render().cursor.flush();
+  shape.render();
+  cursor.flush();
 
   await inLeft.animate(shape);
 

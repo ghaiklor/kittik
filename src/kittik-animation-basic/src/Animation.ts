@@ -5,6 +5,11 @@ import { EventEmitter } from 'events';
 import { Shape } from 'kittik-shape-basic';
 import * as EASING from './Easing';
 
+export { Animationable } from './Animationable';
+export { AnimationObject } from './AnimationObject';
+export { AnimationOptions } from './AnimationOptions';
+export { AnimationPropertyOptions } from './AnimationPropertyOptions';
+
 export class Animation extends EventEmitter implements AnimationOptions {
   duration = 1000;
   easing: EASING.Easing = 'outQuad';
@@ -29,17 +34,6 @@ export class Animation extends EventEmitter implements AnimationOptions {
 
   onEasing(easing: EASING.Easing, time: number, startValue: number, byValue: number, duration: number): number {
     return Math.round(EASING[easing](time, startValue, byValue, duration));
-  }
-
-  // TODO: this was done a long time ago when kittik was written in JavaScript
-  // Now, we need to think about abstract classes maybe, or something else
-  // that we can use to abstract implementation from the signature
-  // For now, I left it till I'm done with porting it to TypeScript
-  // eslint-disable-next-line
-  // @ts-ignore
-  // eslint-disable-next-line
-  async animate<T extends Shape>(shape: T): Promise<T> {
-    throw new Error('You must implement animate() method');
   }
 
   async delay(ms: number): Promise<void> {

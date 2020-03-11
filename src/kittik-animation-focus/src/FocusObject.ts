@@ -1,4 +1,4 @@
-import { AnimationObject } from 'kittik-animation-basic/dist/AnimationObject';
+import { AnimationObject } from 'kittik-animation-basic';
 import { FocusOptions } from './FocusOptions';
 
 export interface FocusObject extends AnimationObject {
