@@ -1,9 +1,9 @@
 import { Canvas } from 'terminal-canvas';
-import { Shape } from 'kittik-shape-basic';
-import { TextOptions } from './TextOptions';
+import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { TextObject } from './TextObject';
+import { TextOptions } from './TextOptions';
 
-export class Text extends Shape implements TextOptions {
+export class Text extends Shape implements TextOptions, ShapeRenderable {
   align: 'left' | 'center' | 'right' = 'center';
   blink = false;
   bold = false;
@@ -53,7 +53,7 @@ export class Text extends Shape implements TextOptions {
     return this.text.split('\n').length.toString();
   }
 
-  render(): this {
+  render(): void {
     const cursor = this.cursor;
     const text = this.text.split('\n');
     const x = parseInt(this.x);
@@ -83,8 +83,6 @@ export class Text extends Shape implements TextOptions {
           break;
       }
     });
-
-    return this;
   }
 
   toObject<T extends TextObject>(): T {

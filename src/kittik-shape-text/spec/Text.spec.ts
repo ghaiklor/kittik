@@ -1,7 +1,7 @@
 import { Canvas } from 'terminal-canvas';
 import { Text } from '../src/Text';
-import { TextOptions } from '../src/TextOptions';
 import { TextObject } from '../src/TextObject';
+import { TextOptions } from '../src/TextOptions';
 
 describe('Shape::Text', () => {
   it('Should properly get actual width of the shape', () => {

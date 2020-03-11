@@ -1,4 +1,4 @@
-import { ShapeObject } from 'kittik-shape-basic/dist/ShapeObject';
+import { ShapeObject } from 'kittik-shape-basic';
 import { TextOptions } from './TextOptions';
 
 export interface TextObject extends ShapeObject {
