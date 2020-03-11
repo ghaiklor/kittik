@@ -1,11 +1,11 @@
 import { Canvas } from 'terminal-canvas';
 import { ImageObject } from './ImageObject';
 import { ImageOptions } from './ImageOptions';
-import { Shape } from 'kittik-shape-basic';
+import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import fs from 'fs';
 import path from 'path';
 
-export class Image extends Shape implements ImageOptions {
+export class Image extends Shape implements ImageOptions, ShapeRenderable {
   private _image = 'R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=';
   private _preserveAspectRatio = true;
 
@@ -43,7 +43,7 @@ export class Image extends Shape implements ImageOptions {
     this._preserveAspectRatio = preserve;
   }
 
-  render(): this {
+  render(): void {
     const cursor = this.cursor;
     const width = this.width;
     const height = this.height;
@@ -55,8 +55,6 @@ export class Image extends Shape implements ImageOptions {
     const args = `size=${size};width=${width};height=${height};preserveAspectRatio=${preserveAspectRatio ? 1 : 0};inline=1`;
 
     cursor.stream.write(`\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}^G`);
-
-    return this;
   }
 
   toObject<T extends ImageObject>(): T {

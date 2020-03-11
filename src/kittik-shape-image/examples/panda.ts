@@ -10,3 +10,4 @@ const shape = new Image(canvas, {
 });
 
 shape.render();
+canvas.flush();

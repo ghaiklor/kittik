@@ -3,4 +3,6 @@ import { Image } from '..';
 
 const canvas = new Canvas().reset();
 const shape = new Image(canvas);
-shape.render().cursor.flush();
+
+shape.render();
+canvas.flush();
