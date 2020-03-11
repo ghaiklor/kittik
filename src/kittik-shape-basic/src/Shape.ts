@@ -2,6 +2,8 @@ import { Canvas } from 'terminal-canvas';
 import { ShapeObject } from './ShapeObject';
 import { ShapeOptions } from './ShapeOptions';
 
+export { ShapeObject } from './ShapeObject';
+export { ShapeOptions } from './ShapeOptions'
 export { ShapeRenderable } from './ShapeRenderable';
 
 export class Shape implements ShapeOptions {

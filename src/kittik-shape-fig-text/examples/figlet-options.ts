@@ -11,4 +11,5 @@ const shape = new FigText(canvas, {
   showHardBlanks: false
 });
 
-shape.render().cursor.flush();
+shape.render();
+canvas.flush();

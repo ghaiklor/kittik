@@ -1,10 +1,10 @@
 import { Canvas } from 'terminal-canvas';
 import { FigTextObject } from './FigTextObject';
 import { FigTextOptions } from './FigTextOptions';
-import { Shape } from 'kittik-shape-basic';
+import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import figlet, { KerningMethods, PrintDirection, Fonts } from 'figlet';
 
-export class FigText extends Shape implements FigTextOptions {
+export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
   font: Fonts = 'Standard';
   horizontalLayout: KerningMethods = 'default';
   verticalLayout: KerningMethods = 'default'
@@ -58,7 +58,7 @@ export class FigText extends Shape implements FigTextOptions {
     });
   }
 
-  render(): this {
+  render(): void {
     const cursor = this.cursor;
     const text = this.text.split('\n');
     const x = parseInt(this.x);
@@ -68,8 +68,6 @@ export class FigText extends Shape implements FigTextOptions {
 
     cursor.background(background).foreground(foreground);
     text.forEach((line, index) => cursor.moveTo(x, y + index).write(line));
-
-    return this;
   }
 
   toObject<T extends FigTextObject>(): T {
