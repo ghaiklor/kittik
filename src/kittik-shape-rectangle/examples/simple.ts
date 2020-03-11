@@ -3,4 +3,6 @@ import { Rectangle } from '..';
 
 const canvas = new Canvas().reset();
 const shape = new Rectangle(canvas, { text: 'Hello, World!' });
-shape.render().cursor.flush();
+
+shape.render();
+canvas.flush();

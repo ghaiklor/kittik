@@ -1,7 +1,7 @@
-import { Shape } from 'kittik-shape-basic';
+import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 
-export class Rectangle extends Shape {
-  render(): this {
+export class Rectangle extends Shape implements ShapeRenderable {
+  render(): void {
     const cursor = this.cursor;
     const text = this.text;
     const width = parseInt(this.width);
@@ -18,7 +18,5 @@ export class Rectangle extends Shape {
     for (let y = y1; y <= y2; y++) cursor.write(filler).moveTo(x1, y);
 
     cursor.moveTo(x1 + (width / 2 - text.length / 2), y1 + (height / 2)).write(text);
-
-    return this;
   }
 }

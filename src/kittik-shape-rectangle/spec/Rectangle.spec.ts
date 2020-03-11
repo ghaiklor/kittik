@@ -1,6 +1,6 @@
 import { Canvas } from 'terminal-canvas';
 import { Rectangle } from '../src/Rectangle';
-import { ShapeObject } from 'kittik-shape-basic/dist/ShapeObject';
+import { ShapeObject } from 'kittik-shape-basic';
 
 describe('Shape::Rectangle', () => {
   it('Should properly render with default options', () => {

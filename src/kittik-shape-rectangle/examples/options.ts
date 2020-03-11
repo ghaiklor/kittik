@@ -12,4 +12,5 @@ const shape = new Rectangle(canvas, {
   foreground: 'blue'
 });
 
-shape.render().cursor.flush();
+shape.render();
+canvas.flush();
