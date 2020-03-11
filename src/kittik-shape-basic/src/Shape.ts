@@ -2,6 +2,8 @@ import { Canvas } from 'terminal-canvas';
 import { ShapeObject } from './ShapeObject';
 import { ShapeOptions } from './ShapeOptions';
 
+export { ShapeRenderable } from './ShapeRenderable';
+
 export class Shape implements ShapeOptions {
   protected readonly _cursor: Canvas;
   protected _text = '';
@@ -128,10 +130,6 @@ export class Shape implements ShapeOptions {
 
   set foreground(foreground) {
     this._foreground = foreground;
-  }
-
-  render(): void {
-    throw new Error('render() method must be implemented');
   }
 
   toObject<T extends ShapeObject>(): T {

@@ -103,13 +103,6 @@ describe('Shape::Basic', () => {
     expect(shape.foreground).toEqual('yellow');
   });
 
-  it('Should properly throw exception if render is not overridden', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
-
-    expect(() => shape.render()).toThrowError('render() method must be implemented');
-  });
-
   it('Should properly serialize shape to object', () => {
     const cursor = new Canvas();
     const shape = new Shape(cursor, { x: '10', y: '10' });
