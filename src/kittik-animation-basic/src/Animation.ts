@@ -10,6 +10,11 @@ export { AnimationObject } from './AnimationObject';
 export { AnimationOptions } from './AnimationOptions';
 export { AnimationPropertyOptions } from './AnimationPropertyOptions';
 
+export declare interface Animation {
+  on<S extends Shape, P extends keyof S, V extends number>(event: 'tick', listener: (shape: S, property: P, value: V) => void): this
+  emit<S extends Shape, P extends keyof S, V extends number>(event: 'tick', shape: S, property: P, value: V): boolean
+}
+
 export class Animation extends EventEmitter implements AnimationOptions {
   duration = 1000;
   easing: EASING.Easing = 'outQuad';
@@ -28,8 +33,8 @@ export class Animation extends EventEmitter implements AnimationOptions {
     this.on('tick', this.onTick.bind(this));
   }
 
-  onTick<S extends Shape, P extends keyof S, V extends S[P]>(shape: S, property: P, value: V): void {
-    shape[property] = value;
+  onTick<S extends Shape, P extends keyof S, V extends number>(shape: S, property: P, value: V): void {
+    Object.assign(shape, { [property]: value });
   }
 
   onEasing(easing: EASING.Easing, time: number, startValue: number, byValue: number, duration: number): number {
