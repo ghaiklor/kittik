@@ -43,7 +43,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
   }
 
   async delay(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, isFinite(ms) ? ms : 1));
   }
 
   async animateProperty<S extends Shape, P extends keyof S>(options: AnimationPropertyOptions<S, P>): Promise<S> {
