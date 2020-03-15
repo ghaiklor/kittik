@@ -3,6 +3,9 @@ import { Shape } from 'kittik-shape-basic';
 import { SlideObject } from './SlideObject';
 import { SlideOptions, Direction } from './SlideOptions';
 
+export { SlideObject } from './SlideObject';
+export { SlideOptions, Direction } from './SlideOptions';
+
 export class Slide extends Animation implements SlideOptions, Animationable {
   direction: Direction = 'inRight';
 

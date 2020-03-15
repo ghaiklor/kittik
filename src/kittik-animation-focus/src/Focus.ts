@@ -3,6 +3,9 @@ import { FocusObject } from './FocusObject';
 import { FocusOptions, Direction } from './FocusOptions';
 import { Shape } from 'kittik-shape-basic';
 
+export { FocusObject } from './FocusObject';
+export { FocusOptions, Direction } from './FocusOptions';
+
 export class Focus extends Animation implements FocusOptions, Animationable {
   private _duration = 1000;
   direction: Direction = 'shakeX';

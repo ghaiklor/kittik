@@ -1,10 +1,9 @@
-import { Canvas } from 'terminal-canvas';
-import { Slide } from '..';
-import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
-import { FigTextOptions } from 'kittik-shape-fig-text/dist/FigTextOptions';
-import { Easing } from 'kittik-animation-basic/dist/Easing';
-import { Direction, SlideOptions } from 'kittik-animation-slide/dist/SlideOptions';
 import { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
+import { Canvas } from 'terminal-canvas';
+import { FigTextOptions } from 'kittik-shape-fig-text';
+import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
+import { Slide } from '..';
+import { SlideOptions } from 'kittik-animation-slide';
 
 const cursor = Canvas.create().reset();
 
@@ -26,13 +25,13 @@ const PrintAnimationDeclaration: AnimationDeclaration = {
   type: 'Print',
   options: {
     duration: 5000,
-    easing: 'inQuad' as Easing
+    easing: 'inQuad'
   }
 };
 
 const SlideOutDownAnimationOptions: Partial<SlideOptions> = {
-  direction: 'outDown' as Direction,
-  easing: 'inBounce' as Easing
+  direction: 'outDown',
+  easing: 'inBounce'
 };
 
 const SlideOutDownAnimationDeclaration: AnimationDeclaration = {

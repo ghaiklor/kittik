@@ -1,11 +1,11 @@
-import { AnimationDeclaration } from '../dist/animation/AnimationDeclaration';
+import { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
 import { AnimationObject } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
-import { OrderDeclaration } from '../dist/slide/OrderDeclaration';
-import { ShapeDeclaration } from '../dist/shape/ShapeDeclaration';
+import { OrderDeclaration } from '../src/slide/OrderDeclaration';
+import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
 import { Slide } from '../src/slide/Slide';
 import { SlideDeclaration } from '../src/slide/SlideDeclaration';
-import { TextObject } from 'kittik-shape-text/dist/TextObject';
+import { TextObject } from 'kittik-shape-text';
 
 const SLIDE_DECLARATION: SlideDeclaration = {
   shapes: [{

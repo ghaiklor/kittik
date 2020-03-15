@@ -4,6 +4,9 @@ import { FigTextOptions } from './FigTextOptions';
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import figlet, { KerningMethods, PrintDirection, Fonts } from 'figlet';
 
+export { FigTextObject } from './FigTextObject';
+export { FigTextOptions } from './FigTextOptions';
+
 export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
   font: Fonts = 'Standard';
   horizontalLayout: KerningMethods = 'default';

@@ -3,6 +3,9 @@ import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { TextObject } from './TextObject';
 import { TextOptions } from './TextOptions';
 
+export { TextObject } from './TextObject';
+export { TextOptions } from './TextOptions';
+
 export class Text extends Shape implements TextOptions, ShapeRenderable {
   align: 'left' | 'center' | 'right' = 'center';
   blink = false;

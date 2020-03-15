@@ -9,6 +9,7 @@ export { Animationable } from './Animationable';
 export { AnimationObject } from './AnimationObject';
 export { AnimationOptions } from './AnimationOptions';
 export { AnimationPropertyOptions } from './AnimationPropertyOptions';
+export { Easing } from './Easing';
 
 export declare interface Animation {
   on<S extends Shape, P extends keyof S, V extends number>(event: 'tick', listener: (shape: S, property: P, value: V) => void): this
@@ -93,7 +94,12 @@ export class Animation extends EventEmitter implements AnimationOptions {
 
   static fromObject<T extends Animation>(obj: AnimationObject): T
   static fromObject<T extends Animation, O extends AnimationObject>(obj: O): T {
-    if (obj.type !== this.name) throw new Error(`${obj.type} is not an object representation of the ${this.name}`);
+    if (obj.type !== this.name) {
+      throw new Error(
+        `${obj.type} is not an object representation of the ${this.name}.` +
+        `Did you mean to set ${this.name} as a type of animation?`
+      );
+    }
 
     return this.create(obj.options);
   }

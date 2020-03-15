@@ -5,6 +5,9 @@ import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import fs from 'fs';
 import path from 'path';
 
+export { ImageObject } from './ImageObject';
+export { ImageOptions } from './ImageOptions';
+
 export class Image extends Shape implements ImageOptions, ShapeRenderable {
   private _image = 'R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=';
   private _preserveAspectRatio = true;
