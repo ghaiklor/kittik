@@ -4,6 +4,6 @@ import { ShapeDeclaration } from '../shape/ShapeDeclaration';
 
 export interface SlideDeclaration {
   shapes: ShapeDeclaration[]
-  animations: AnimationDeclaration[]
+  animations?: AnimationDeclaration[]
   order: OrderDeclaration[]
 }

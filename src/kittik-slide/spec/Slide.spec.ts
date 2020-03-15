@@ -76,6 +76,27 @@ const SERIALIZED_SLIDE_DECLARATION: SlideDeclaration = {
 };
 
 describe('Core::Slide', () => {
+  it('Should properly throw an error if shape type is unknown', () => {
+    const cursor = new Canvas();
+
+    expect(() => new Slide(cursor, { shapes: [{ name: 'Test', type: 'unknown' }], order: [{ shape: 'Test' }] }))
+      .toThrowError('Shape "Test" (unknown) is unknown for me, maybe you made a typo?');
+  });
+
+  it('Should properly throw an error if animation type is unknown', () => {
+    const cursor = new Canvas();
+
+    expect(() => new Slide(cursor, { shapes: [{ name: 'Test', type: 'Text' }], animations: [{ name: 'Test', type: 'unknown' }], order: [{ shape: 'Test' }] }))
+      .toThrowError('Animation "Test" (unknown) is unknown for me, maybe you made a typo?');
+  });
+
+  it('Should properly throw an error if trying to use shape name in ordering that does not exist', async () => {
+    const cursor = new Canvas();
+    const slide = new Slide(cursor, { shapes: [], order: [{ shape: 'Not Exists' }] });
+
+    await expect(slide.render()).rejects.toThrowError('You specified shape "Not Exists" as part of ordering, but it does not exist in shapes declaration.');
+  });
+
   it('Should properly render the whole slide', async () => {
     const cursor = new Canvas();
     const slide = Slide.create(cursor, SLIDE_DECLARATION);
@@ -83,11 +104,25 @@ describe('Core::Slide', () => {
     const eraseScreenSpy = jest.spyOn(cursor, 'eraseScreen').mockReturnThis();
     const flushSpy = jest.spyOn(cursor, 'flush').mockReturnThis();
 
-    await slide.render();
+    await expect(slide.render()).resolves.toBeUndefined();
 
     expect(writeSpy.mock.calls.length).toBeGreaterThanOrEqual(3);
     expect(eraseScreenSpy.mock.calls.length).toBeGreaterThanOrEqual(3);
     expect(flushSpy.mock.calls.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it('Should render the slide without animations', async () => {
+    const cursor = new Canvas();
+    const slide = Slide.create(cursor, { shapes: [{ name: 'Test', type: 'Text' }], order: [{ shape: 'Test' }] });
+
+    await expect(slide.render()).resolves.toBeUndefined();
+  });
+
+  it('Should render the slide with unknown animation in ordering', async () => {
+    const cursor = new Canvas();
+    const slide = Slide.create(cursor, { shapes: [{ name: 'Test', type: 'Text' }], order: [{ shape: 'Test', animations: ['Not Exists'] }] });
+
+    await expect(slide.render()).resolves.toBeUndefined();
   });
 
   it('Should properly serialize slide to the object representation', () => {
@@ -102,5 +137,19 @@ describe('Core::Slide', () => {
     const slide = Slide.create(cursor, SLIDE_DECLARATION);
 
     expect(JSON.parse(slide.toJSON())).toEqual(SERIALIZED_SLIDE_DECLARATION);
+  });
+
+  it('Should properly create slide from object representation', async () => {
+    const cursor = new Canvas();
+    const slide = Slide.fromObject(SLIDE_DECLARATION, cursor);
+
+    await expect(slide.render()).resolves.toBeUndefined();
+  });
+
+  it('Should properly create slide from json representation', async () => {
+    const cursor = new Canvas();
+    const slide = Slide.fromJSON(JSON.stringify(SLIDE_DECLARATION), cursor);
+
+    await expect(slide.render()).resolves.toBeUndefined();
   });
 });
