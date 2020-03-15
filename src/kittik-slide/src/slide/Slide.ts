@@ -25,13 +25,13 @@ export class Slide {
     const map = new Map<string, ShapeRenderable>();
 
     declaration.forEach(shape => {
-      const Ctor = SHAPES.get(shape.type);
+      const ctor = SHAPES.get(shape.type);
 
-      if (Ctor === undefined) {
+      if (ctor === undefined) {
         throw new Error(`Shape ${shape.type} is unknown for me, maybe you made a typo?`);
       }
 
-      map.set(shape.name, new Ctor(this.cursor, shape));
+      map.set(shape.name, ctor.fromObject(shape, this.cursor));
     });
 
     return map;
@@ -41,13 +41,13 @@ export class Slide {
     const map = new Map<string, Animationable>();
 
     declaration.forEach(animation => {
-      const Ctor = ANIMATIONS.get(animation.type);
+      const ctor = ANIMATIONS.get(animation.type);
 
-      if (Ctor === undefined) {
+      if (ctor === undefined) {
         throw new Error(`Animation ${animation.type} is unknown for me, maybe you made a typo?`);
       }
 
-      map.set(animation.name, new Ctor(animation));
+      map.set(animation.name, ctor.fromObject(animation));
     });
 
     return map;

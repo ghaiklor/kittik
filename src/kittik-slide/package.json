@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "Slide package that combines all shapes and animations in one package and provides abstraction over real slide in Kittik",
   "license": "MIT",
-  "main": "dist/Slide.js",
-  "types": "dist/Slide.d.ts",
+  "main": "dist/slide/Slide.js",
+  "types": "dist/slide/Slide.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",
   "files": [
     "dist"
