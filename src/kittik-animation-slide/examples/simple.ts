@@ -10,7 +10,7 @@ const onTick = (shape: Rectangle): void => {
 
 const cursor = new Canvas().reset().hideCursor();
 const shape = new Rectangle(cursor, { x: 'center', y: 'middle', background: 'white', foreground: 'black', text: 'Sliding' });
-const inLeft = new Slide({ direction: 'inLeft' }).on('tick', onTick);
+const inLeft = new Slide({ direction: 'inLeft', duration: 5000, easing: 'outBounce' }).on('tick', onTick);
 
 (async function animate() {
   shape.render();
