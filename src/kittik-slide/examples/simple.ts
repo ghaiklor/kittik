@@ -1,31 +1,29 @@
 import { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
 import { Canvas } from 'terminal-canvas';
-import { FigTextOptions } from 'kittik-shape-fig-text';
 import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
 import { Slide } from '..';
 import { SlideOptions } from 'kittik-animation-slide';
 
-const cursor = Canvas.create().reset();
-
-const HelloShapeOptions: Partial<FigTextOptions> = {
-  x: 'center',
-  y: 'middle',
-  text: 'Hello, World',
-  font: 'Dr Pepper'
-};
+const cursor = Canvas.create().reset().hideCursor();
 
 const HelloShapeDeclaration: ShapeDeclaration = {
   name: 'Hello',
-  type: 'FigText',
-  options: HelloShapeOptions
+  type: 'Rectangle',
+  options: {
+    x: 'center',
+    y: 'middle',
+    background: 'aqua',
+    foreground: 'black',
+    text: 'Hello, World!'
+  }
 };
 
 const PrintAnimationDeclaration: AnimationDeclaration = {
   name: 'Print',
   type: 'Print',
   options: {
-    duration: 5000,
-    easing: 'inQuad'
+    duration: 3000,
+    easing: 'outBounce'
   }
 };
 
@@ -52,4 +50,4 @@ const slide = new Slide(cursor, {
   }]
 });
 
-slide.render().then(() => true).catch(e => console.error(e));
+slide.render().then(() => cursor.showCursor()).catch(e => console.error(e));
