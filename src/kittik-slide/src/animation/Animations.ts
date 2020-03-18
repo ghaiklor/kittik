@@ -3,7 +3,9 @@ import { Focus } from 'kittik-animation-focus';
 import { Print } from 'kittik-animation-print';
 import { Slide } from 'kittik-animation-slide';
 
-export const ANIMATIONS = new Map<string, { fromObject<T extends AnimationObject>(obj: T): Animationable }>([
+export type AnimationType = 'Focus' | 'Print' | 'Slide';
+
+export const ANIMATIONS = new Map<AnimationType, { fromObject<T extends AnimationObject>(obj: T): Animationable }>([
   ['Focus', Focus],
   ['Print', Print],
   ['Slide', Slide]

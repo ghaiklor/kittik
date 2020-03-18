@@ -1,12 +1,19 @@
 import { Animationable } from 'kittik-animation-basic';
 import { AnimationDeclaration } from '../animation/AnimationDeclaration';
-import { ANIMATIONS } from '../animation/Animations';
+import { ANIMATIONS, AnimationType } from '../animation/Animations';
 import { Canvas } from 'terminal-canvas';
 import { OrderDeclaration } from './OrderDeclaration';
 import { ShapeDeclaration } from '../shape/ShapeDeclaration';
 import { ShapeRenderable } from 'kittik-shape-basic';
-import { SHAPES } from '../shape/Shapes';
+import { SHAPES, ShapeType } from '../shape/Shapes';
 import { SlideDeclaration } from './SlideDeclaration';
+
+export { AnimationDeclaration } from '../animation/AnimationDeclaration';
+export { AnimationType } from '../animation/Animations';
+export { OrderDeclaration } from './OrderDeclaration';
+export { ShapeDeclaration } from '../shape/ShapeDeclaration';
+export { ShapeType } from '../shape/Shapes';
+export { SlideDeclaration } from './SlideDeclaration';
 
 export class Slide {
   private readonly cursor: Canvas;
@@ -25,7 +32,7 @@ export class Slide {
     const map = new Map<string, ShapeRenderable>();
 
     declaration.forEach(shapeDeclaration => {
-      const ctor = SHAPES.get(shapeDeclaration.type);
+      const ctor = SHAPES.get(shapeDeclaration.type as ShapeType);
 
       if (ctor === undefined) {
         throw new Error(`Shape "${shapeDeclaration.name}" (${shapeDeclaration.type}) is unknown for me, maybe you made a typo?`);
@@ -41,7 +48,7 @@ export class Slide {
     const map = new Map<string, Animationable>();
 
     declaration.forEach(animationDeclaration => {
-      const ctor = ANIMATIONS.get(animationDeclaration.type);
+      const ctor = ANIMATIONS.get(animationDeclaration.type as AnimationType);
 
       if (ctor === undefined) {
         throw new Error(`Animation "${animationDeclaration.name}" (${animationDeclaration.type}) is unknown for me, maybe you made a typo?`);

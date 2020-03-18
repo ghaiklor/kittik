@@ -6,7 +6,9 @@ import { Rectangle } from 'kittik-shape-rectangle';
 import { ShapeRenderable, ShapeObject } from 'kittik-shape-basic';
 import { Text } from 'kittik-shape-text';
 
-export const SHAPES = new Map<string, { fromObject<T extends ShapeObject>(obj: T, cursor: Canvas): ShapeRenderable }>([
+export type ShapeType = 'Code' | 'FigText' | 'Image' | 'Rectangle' | 'Text';
+
+export const SHAPES = new Map<ShapeType, { fromObject<T extends ShapeObject>(obj: T, cursor: Canvas): ShapeRenderable }>([
   ['Code', Code],
   ['FigText', FigText],
   ['Image', Image],
