@@ -4,6 +4,9 @@
     "noEmit": true
   },
   "include": [
-    "./**/*"
+    "./examples/**/*",
+    "./spec/**/*",
+    "./src/**/*",
+    "jest.config.js"
   ]
 }
