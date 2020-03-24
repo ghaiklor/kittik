@@ -18,7 +18,7 @@ const shape = new Rectangle(cursor, {
   text: 'The Longest Hello, World printing out'
 });
 
-(async function animate() {
+(async function animate () {
   shape.render();
   cursor.flush();
 

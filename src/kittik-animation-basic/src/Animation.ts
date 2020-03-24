@@ -20,7 +20,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
   duration = 1000;
   easing: EASING.Easing = 'outQuad';
 
-  constructor(options?: Partial<AnimationOptions>) {
+  constructor (options?: Partial<AnimationOptions>) {
     super();
 
     if (options?.duration !== undefined) {
@@ -38,12 +38,12 @@ export class Animation extends EventEmitter implements AnimationOptions {
     Object.assign(shape, { [property]: value });
   }
 
-  onEasing(easing: EASING.Easing, time: number, startValue: number, byValue: number, duration: number): number {
+  onEasing (easing: EASING.Easing, time: number, startValue: number, byValue: number, duration: number): number {
     return Math.round(EASING[easing](time, startValue, byValue, duration));
   }
 
-  async delay(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, isFinite(ms) ? ms : 1));
+  async delay (ms: number): Promise<void> {
+    return await new Promise(resolve => setTimeout(resolve, isFinite(ms) ? ms : 1));
   }
 
   async animateProperty<S extends Shape, P extends keyof S>(options: AnimationPropertyOptions<S, P>): Promise<S> {
@@ -68,7 +68,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
       }
     };
 
-    return new Promise(tick);
+    return await new Promise(tick);
   }
 
   toObject<T extends AnimationObject>(): T {
@@ -83,7 +83,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
     return obj as T;
   }
 
-  toJSON(): string {
+  toJSON (): string {
     return JSON.stringify(this.toObject());
   }
 

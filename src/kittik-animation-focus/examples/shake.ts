@@ -13,7 +13,7 @@ const shape = new Rectangle(cursor, { x: 'center', y: 'middle', background: 'whi
 const shakeX = new Focus({ direction: 'shakeX' }).on('tick', onTick);
 const shakeY = new Focus({ direction: 'shakeY' }).on('tick', onTick);
 
-(async function animate() {
+(async function animate () {
   shape.render();
   cursor.flush();
 

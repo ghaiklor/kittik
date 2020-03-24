@@ -10,9 +10,9 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:import/recommended",
+    "plugin:jest/recommended",
     "plugin:node/recommended",
     "plugin:promise/recommended",
-    "plugin:jest/recommended",
     "standard-with-typescript"
   ],
   "globals": {
@@ -23,25 +23,17 @@
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
-    "project": [
-      "./tsconfig.eslint.json"
-    ]
+    "project": "./tsconfig.eslint.json"
   },
   "plugins": [
     "@typescript-eslint",
     "import",
+    "jest",
     "node",
     "promise",
-    "standard",
-    "jest"
+    "standard"
   ],
   "rules": {
-    "@typescript-eslint/space-before-function-paren": [
-      "error",
-      {
-        "named": "never"
-      }
-    ],
     "node/no-unsupported-features/es-syntax": [
       "error",
       {
@@ -67,12 +59,6 @@
     "semi": [
       "error",
       "always"
-    ],
-    "@typescript-eslint/restrict-template-expressions": [
-      "error",
-      {
-        "allowNumber": true
-      }
     ]
   }
 }

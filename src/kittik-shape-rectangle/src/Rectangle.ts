@@ -1,7 +1,7 @@
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 
 export class Rectangle extends Shape implements ShapeRenderable {
-  render(): void {
+  render (): void {
     const cursor = this.cursor;
     const text = this.text;
     const width = parseInt(this.width);

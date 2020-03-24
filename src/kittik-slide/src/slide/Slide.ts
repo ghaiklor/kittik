@@ -21,14 +21,14 @@ export class Slide {
   private readonly animations: Map<string, Animationable>;
   private readonly order: OrderDeclaration[];
 
-  constructor(cursor: Canvas, declaration: SlideDeclaration) {
+  constructor (cursor: Canvas, declaration: SlideDeclaration) {
     this.cursor = cursor;
     this.shapes = this.initShapes(declaration.shapes);
     this.animations = this.initAnimations(declaration.animations ?? []);
     this.order = declaration.order;
   }
 
-  private initShapes(declaration: ShapeDeclaration[]): Map<string, ShapeRenderable> {
+  private initShapes (declaration: ShapeDeclaration[]): Map<string, ShapeRenderable> {
     const map = new Map<string, ShapeRenderable>();
 
     declaration.forEach(shapeDeclaration => {
@@ -44,7 +44,7 @@ export class Slide {
     return map;
   }
 
-  private initAnimations(declaration: AnimationDeclaration[]): Map<string, Animationable> {
+  private initAnimations (declaration: AnimationDeclaration[]): Map<string, Animationable> {
     const map = new Map<string, Animationable>();
 
     declaration.forEach(animationDeclaration => {
@@ -60,13 +60,13 @@ export class Slide {
     return map;
   }
 
-  private renderShapes(shapes: ShapeRenderable[]): void {
+  private renderShapes (shapes: ShapeRenderable[]): void {
     this.cursor.eraseScreen();
     shapes.forEach(shape => shape.render());
     this.cursor.flush();
   }
 
-  async render(): Promise<void> {
+  async render (): Promise<void> {
     const shapes = this.shapes;
     const animations = this.animations;
     const order = this.order;
@@ -103,10 +103,10 @@ export class Slide {
 
     // We can't allow Promise.all() here or anything that could render the shapes concurrently or parallel
     // Hence, we need to reduce the sequence to the chain of promises, so we can get waterfall rendering
-    return sequence.reduce(async (promise, item) => promise.then(item), Promise.resolve());
+    return await sequence.reduce(async (promise, item) => await promise.then(item), Promise.resolve());
   }
 
-  toObject(): SlideDeclaration {
+  toObject (): SlideDeclaration {
     const shapes = [...this.shapes.entries()].map(([name, shape]) => ({ ...shape.toObject(), name }));
     const animations = [...this.animations.entries()].map(([name, animation]) => ({ ...animation.toObject(), name }));
     const order = this.order;
@@ -114,19 +114,19 @@ export class Slide {
     return { shapes, animations, order };
   }
 
-  toJSON(): string {
+  toJSON (): string {
     return JSON.stringify(this.toObject());
   }
 
-  static create(cursor: Canvas, declaration: SlideDeclaration): Slide {
+  static create (cursor: Canvas, declaration: SlideDeclaration): Slide {
     return new this(cursor, declaration);
   }
 
-  static fromObject(obj: SlideDeclaration, cursor: Canvas): Slide {
+  static fromObject (obj: SlideDeclaration, cursor: Canvas): Slide {
     return this.create(cursor, obj);
   }
 
-  static fromJSON(json: string, cursor: Canvas): Slide {
+  static fromJSON (json: string, cursor: Canvas): Slide {
     return this.fromObject(JSON.parse(json), cursor);
   }
 }

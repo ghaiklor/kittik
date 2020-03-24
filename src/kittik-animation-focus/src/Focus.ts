@@ -12,7 +12,7 @@ export class Focus extends Animation implements FocusOptions, Animationable {
   offset = 5;
   repeat = 1;
 
-  constructor(options?: Partial<FocusOptions>) {
+  constructor (options?: Partial<FocusOptions>) {
     super(options);
 
     if (options?.duration !== undefined) {
@@ -32,11 +32,11 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     }
   }
 
-  get duration(): number {
+  get duration (): number {
     return this._duration / this.repeat;
   }
 
-  set duration(duration: number) {
+  set duration (duration: number) {
     this._duration = duration;
   }
 
@@ -72,10 +72,10 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     }
 
     const length = this.repeat;
-    const firstStep = async (): Promise<T> => this.animateProperty({ shape, property, startValue, endValue });
-    const secondStep = async (): Promise<T> => this.animateProperty({ shape, property, startValue: endValue, endValue: startValue });
+    const firstStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue, endValue });
+    const secondStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue: endValue, endValue: startValue });
 
-    return Array.from({ length }).reduce(async (promise: Promise<T>) => promise.then(firstStep).then(secondStep), Promise.resolve(shape));
+    return await Array.from({ length }).reduce(async (promise: Promise<T>) => await promise.then(firstStep).then(secondStep), Promise.resolve(shape));
   }
 
   private async animateShake<T extends Shape>(shape: T, direction: Direction): Promise<T> {
@@ -103,20 +103,20 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     }
 
     const length = this.repeat;
-    const firstStep = async (): Promise<T> => this.animateProperty({ shape, property, startValue, endValue: leftValue });
-    const secondStep = async (): Promise<T> => this.animateProperty({ shape, property, startValue: leftValue, endValue: rightValue });
-    const thirdStep = async (): Promise<T> => this.animateProperty({ shape, property, startValue: rightValue, endValue: startValue });
+    const firstStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue, endValue: leftValue });
+    const secondStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue: leftValue, endValue: rightValue });
+    const thirdStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue: rightValue, endValue: startValue });
 
-    return Array.from({ length }).reduce(async (promise: Promise<T>) => promise.then(firstStep).then(secondStep).then(thirdStep), Promise.resolve(shape));
+    return await Array.from({ length }).reduce(async (promise: Promise<T>) => await promise.then(firstStep).then(secondStep).then(thirdStep), Promise.resolve(shape));
   }
 
   async animate<T extends Shape>(shape: T): Promise<T> {
     const direction = this.direction;
 
     if (direction.includes('bounce')) {
-      return this.animateBounce(shape, direction);
+      return await this.animateBounce(shape, direction);
     } else {
-      return this.animateShake(shape, direction);
+      return await this.animateShake(shape, direction);
     }
   }
 

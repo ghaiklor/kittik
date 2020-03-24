@@ -4,24 +4,24 @@ import beautify from 'js-beautify';
 import redeyed from 'redeyed';
 
 export class Code extends Shape implements ShapeRenderable {
-  get text(): string {
+  get text (): string {
     return this._text;
   }
 
-  set text(code: string) {
+  set text (code: string) {
     this._text = beautify(code, { indent_size: 2 });
   }
 
-  get width(): string {
+  get width (): string {
     const lengths = this.text.split('\n').map(item => item.length);
     return Math.max(...lengths).toString();
   }
 
-  get height(): string {
+  get height (): string {
     return this.text.split('\n').length.toString();
   }
 
-  render(): void {
+  render (): void {
     const cursor = this.cursor;
     const codeSplits = redeyed(this.text, DEFAULT_THEME).splits;
     const x = parseInt(this.x);

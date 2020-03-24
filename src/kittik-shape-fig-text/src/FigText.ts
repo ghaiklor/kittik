@@ -14,7 +14,7 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
   printDirection: PrintDirection = 0;
   showHardBlanks = false;
 
-  constructor(cursor: Canvas, options?: Partial<FigTextOptions>) {
+  constructor (cursor: Canvas, options?: Partial<FigTextOptions>) {
     super(cursor, options);
 
     if (options?.font !== undefined) {
@@ -38,20 +38,20 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     }
   }
 
-  get width(): string {
+  get width (): string {
     const lengths = this.text.split('\n').map(item => item.length);
     return Math.max(...lengths).toString();
   }
 
-  get height(): string {
+  get height (): string {
     return this.text.split('\n').length.toString();
   }
 
-  set text(text: string) {
+  set text (text: string) {
     this._text = text;
   }
 
-  get text(): string {
+  get text (): string {
     return figlet.textSync(this._text, {
       font: this.font,
       horizontalLayout: this.horizontalLayout,
@@ -61,7 +61,7 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     });
   }
 
-  render(): void {
+  render (): void {
     const cursor = this.cursor;
     const text = this.text.split('\n');
     const x = parseInt(this.x);

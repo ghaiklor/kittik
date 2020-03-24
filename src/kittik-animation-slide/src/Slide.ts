@@ -9,7 +9,7 @@ export { SlideOptions, Direction } from './SlideOptions';
 export class Slide extends Animation implements SlideOptions, Animationable {
   direction: Direction = 'inRight';
 
-  constructor(options?: Partial<SlideOptions>) {
+  constructor (options?: Partial<SlideOptions>) {
     super(options);
 
     if (options?.direction !== undefined) {
@@ -42,10 +42,10 @@ export class Slide extends Animation implements SlideOptions, Animationable {
   async animate<T extends Shape>(shape: T): Promise<T> {
     const { startX, startY, endX, endY } = this.parseCoordinates(shape);
 
-    return Promise.all([
+    return await Promise.all([
       this.animateProperty({ shape, property: 'x', startValue: startX, endValue: endX }),
       this.animateProperty({ shape, property: 'y', startValue: startY, endValue: endY })
-    ]).then(async () => Promise.resolve(shape));
+    ]).then(async () => await Promise.resolve(shape));
   }
 
   toObject<T extends SlideObject>(): T {

@@ -12,7 +12,7 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
   private _image = 'R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=';
   private _preserveAspectRatio = true;
 
-  constructor(cursor: Canvas, options?: Partial<ImageOptions>) {
+  constructor (cursor: Canvas, options?: Partial<ImageOptions>) {
     super(cursor, options);
 
     if (options?.image !== undefined) {
@@ -24,7 +24,7 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     }
   }
 
-  get image(): string {
+  get image (): string {
     if (Image.isBase64(this._image)) {
       return this._image;
     } else if (fs.existsSync(path.resolve(process.cwd(), this._image))) {
@@ -34,19 +34,19 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     }
   }
 
-  set image(image: string) {
+  set image (image: string) {
     this._image = image;
   }
 
-  get preserveAspectRatio(): boolean {
+  get preserveAspectRatio (): boolean {
     return this._preserveAspectRatio;
   }
 
-  set preserveAspectRatio(preserve: boolean) {
+  set preserveAspectRatio (preserve: boolean) {
     this._preserveAspectRatio = preserve;
   }
 
-  render(): void {
+  render (): void {
     const cursor = this.cursor;
     const width = this.width;
     const height = this.height;
@@ -71,7 +71,7 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     return obj as T;
   }
 
-  static isBase64(string: string): boolean {
+  static isBase64 (string: string): boolean {
     return /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/.test(string);
   }
 }

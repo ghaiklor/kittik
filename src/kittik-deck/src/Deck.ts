@@ -11,7 +11,7 @@ export class Deck {
   private isRendering = false;
   private currentSlideIndex = 0;
 
-  constructor(declaration: DeckDeclaration) {
+  constructor (declaration: DeckDeclaration) {
     if (declaration.cursor !== undefined) {
       this.cursor = declaration.cursor;
     }
@@ -20,7 +20,7 @@ export class Deck {
     this.initKeyboard();
   }
 
-  private initSlides(declaration: DeckDeclaration): Slide[] {
+  private initSlides (declaration: DeckDeclaration): Slide[] {
     const globalShapes = declaration.shapes ?? [];
     const globalAnimations = declaration.animations ?? [];
 
@@ -31,7 +31,7 @@ export class Deck {
     }));
   }
 
-  private initKeyboard(): void {
+  private initKeyboard (): void {
     if (this.cursor.stream.isTTY) {
       readline.emitKeypressEvents(process.stdin);
 
@@ -41,7 +41,7 @@ export class Deck {
     }
   }
 
-  private onKeyPress(chunk: string): void {
+  private onKeyPress (chunk: string): void {
     if (this.isRendering) return;
 
     switch (chunk) {
@@ -57,7 +57,7 @@ export class Deck {
     }
   }
 
-  async renderSlide(index = this.currentSlideIndex): Promise<void> {
+  async renderSlide (index = this.currentSlideIndex): Promise<void> {
     if (this.isRendering) return;
 
     this.isRendering = true;
@@ -65,19 +65,19 @@ export class Deck {
     this.isRendering = false;
   }
 
-  async nextSlide(): Promise<void> {
+  async nextSlide (): Promise<void> {
     if (this.currentSlideIndex + 1 <= this.slides.length - 1) {
-      return this.renderSlide(++this.currentSlideIndex);
+      return await this.renderSlide(++this.currentSlideIndex);
     }
   }
 
-  async previousSlide(): Promise<void> {
+  async previousSlide (): Promise<void> {
     if (this.currentSlideIndex - 1 >= 0) {
-      return this.renderSlide(--this.currentSlideIndex);
+      return await this.renderSlide(--this.currentSlideIndex);
     }
   }
 
-  exit(): void {
+  exit (): void {
     process.stdin.pause();
 
     this.cursor.showCursor().restoreScreen().reset();

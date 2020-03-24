@@ -15,7 +15,7 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
   reverse = false;
   underlined = false;
 
-  constructor(cursor: Canvas, options?: Partial<TextOptions>) {
+  constructor (cursor: Canvas, options?: Partial<TextOptions>) {
     super(cursor, options);
 
     if (options?.align !== undefined) {
@@ -47,16 +47,16 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     }
   }
 
-  get width(): string {
+  get width (): string {
     const lengths = this.text.split('\n').map(item => item.length);
     return Math.max(...lengths).toString();
   }
 
-  get height(): string {
+  get height (): string {
     return this.text.split('\n').length.toString();
   }
 
-  render(): void {
+  render (): void {
     const cursor = this.cursor;
     const text = this.text.split('\n');
     const x = parseInt(this.x);

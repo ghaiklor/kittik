@@ -16,7 +16,7 @@ export class Shape implements ShapeOptions {
   protected _background = 'none';
   protected _foreground = 'none';
 
-  constructor(cursor: Canvas, options?: Partial<ShapeOptions>) {
+  constructor (cursor: Canvas, options?: Partial<ShapeOptions>) {
     this._cursor = cursor;
 
     if (options?.text !== undefined) {
@@ -48,19 +48,19 @@ export class Shape implements ShapeOptions {
     }
   }
 
-  get cursor(): Canvas {
+  get cursor (): Canvas {
     return this._cursor;
   }
 
-  get text(): string {
+  get text (): string {
     return this._text;
   }
 
-  set text(text) {
+  set text (text) {
     this._text = text;
   }
 
-  get width(): string {
+  get width (): string {
     const width = this._width;
 
     if (/\d+%$/.test(width)) {
@@ -70,11 +70,11 @@ export class Shape implements ShapeOptions {
     return width;
   }
 
-  set width(width) {
+  set width (width) {
     this._width = width;
   }
 
-  get height(): string {
+  get height (): string {
     const height = this._height;
 
     if (/\d+%$/.test(height)) {
@@ -84,11 +84,11 @@ export class Shape implements ShapeOptions {
     return height;
   }
 
-  set height(height) {
+  set height (height) {
     this._height = height;
   }
 
-  get x(): string {
+  get x (): string {
     const x = this._x;
 
     if (x === 'left') return '0';
@@ -99,11 +99,11 @@ export class Shape implements ShapeOptions {
     return x;
   }
 
-  set x(x) {
+  set x (x) {
     this._x = x;
   }
 
-  get y(): string {
+  get y (): string {
     const y = this._y;
 
     if (y === 'top') return '0';
@@ -114,23 +114,23 @@ export class Shape implements ShapeOptions {
     return y;
   }
 
-  set y(y) {
+  set y (y) {
     this._y = y;
   }
 
-  get background(): string {
+  get background (): string {
     return this._background;
   }
 
-  set background(background) {
+  set background (background) {
     this._background = background;
   }
 
-  get foreground(): string {
+  get foreground (): string {
     return this._foreground;
   }
 
-  set foreground(foreground) {
+  set foreground (foreground) {
     this._foreground = foreground;
   }
 
@@ -151,7 +151,7 @@ export class Shape implements ShapeOptions {
     return obj as T;
   }
 
-  toJSON(): string {
+  toJSON (): string {
     return JSON.stringify(this.toObject());
   }
 
