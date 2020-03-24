@@ -78,7 +78,8 @@ export class Deck {
   }
 
   exit(): void {
+    process.stdin.pause();
+
     this.cursor.showCursor().restoreScreen().reset();
-    process.stdin.removeAllListeners();
   }
 }
