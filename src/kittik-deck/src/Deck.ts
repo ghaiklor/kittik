@@ -32,18 +32,13 @@ export class Deck {
   }
 
   private initKeyboard (): void {
-    if (this.cursor.stream.isTTY) {
-      readline.emitKeypressEvents(process.stdin);
-
-      process.stdin.setRawMode(true);
-      process.stdin.setEncoding('utf8');
-      process.stdin.on('keypress', this.onKeyPress.bind(this));
-    }
+    readline.emitKeypressEvents(process.stdin);
+    process.stdin.setRawMode(true);
+    process.stdin.setEncoding('utf8');
+    process.stdin.on('keypress', this.onKeyPress.bind(this));
   }
 
   private onKeyPress (chunk: string): void {
-    if (this.isRendering) return;
-
     switch (chunk) {
       case 'p':
         this.previousSlide().catch(e => console.error(e));
@@ -58,11 +53,11 @@ export class Deck {
   }
 
   async renderSlide (index = this.currentSlideIndex): Promise<void> {
-    if (this.isRendering) return;
-
-    this.isRendering = true;
-    await this.slides[index].render();
-    this.isRendering = false;
+    if (!this.isRendering && this.slides[index] !== undefined) {
+      this.isRendering = true;
+      await this.slides[index].render();
+      this.isRendering = false;
+    }
   }
 
   async nextSlide (): Promise<void> {
@@ -79,7 +74,6 @@ export class Deck {
 
   exit (): void {
     process.stdin.pause();
-
     this.cursor.showCursor().restoreScreen().reset();
   }
 }
