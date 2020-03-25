@@ -2,6 +2,7 @@ import { Canvas } from 'terminal-canvas';
 import { DeckDeclaration } from './DeckDeclaration';
 import { Slide } from 'kittik-slide';
 import readline from 'readline';
+import tty from 'tty';
 
 export { DeckDeclaration } from './DeckDeclaration';
 
@@ -32,9 +33,12 @@ export class Deck {
   }
 
   private initKeyboard (): void {
+    if (process.stdin instanceof tty.ReadStream) {
+      process.stdin.setRawMode(true);
+      process.stdin.setEncoding('utf8');
+    }
+
     readline.emitKeypressEvents(process.stdin);
-    process.stdin.setRawMode(true);
-    process.stdin.setEncoding('utf8');
     process.stdin.on('keypress', this.onKeyPress.bind(this));
   }
 
