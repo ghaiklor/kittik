@@ -53,7 +53,7 @@
     "eslint-plugin-node": "11.0.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
-    "jest": "25.1.0",
+    "jest": "25.2.2",
     "kittik-animation-focus": "0.0.0",
     "kittik-animation-slide": "0.0.0",
     "kittik-shape-code": "0.0.0",
