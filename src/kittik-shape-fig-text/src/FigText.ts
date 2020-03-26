@@ -39,20 +39,16 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
   }
 
   get width (): string {
-    const lengths = this.text.split('\n').map(item => item.length);
+    const lengths = this.renderedText.split('\n').map(item => item.length);
     return Math.max(...lengths).toString();
   }
 
   get height (): string {
-    return this.text.split('\n').length.toString();
+    return this.renderedText.split('\n').length.toString();
   }
 
-  set text (text: string) {
-    this._text = text;
-  }
-
-  get text (): string {
-    return figlet.textSync(this._text, {
+  get renderedText (): string {
+    return figlet.textSync(this.text, {
       font: this.font,
       horizontalLayout: this.horizontalLayout,
       verticalLayout: this.verticalLayout,
@@ -63,7 +59,7 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
 
   render (): void {
     const cursor = this.cursor;
-    const text = this.text.split('\n');
+    const text = this.renderedText.split('\n');
     const x = parseInt(this.x);
     const y = parseInt(this.y);
     const background = this.background;

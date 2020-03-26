@@ -103,7 +103,8 @@ describe('Shape::FigText', () => {
 
     expect(shape).toBeInstanceOf(FigText);
     expect(shape.cursor).toBeInstanceOf(Canvas);
-    expect(shape.text.length).toEqual(386);
+    expect(shape.text).toEqual('test');
+    expect(shape.renderedText.length).toEqual(386);
     expect(shape.x).toEqual('0');
     expect(shape.y).toEqual('0');
     expect(shape.background).toEqual('red');
