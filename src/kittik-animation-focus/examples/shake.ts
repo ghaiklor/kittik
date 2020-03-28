@@ -4,17 +4,17 @@ import { Rectangle } from 'kittik-shape-rectangle';
 
 const onTick = (shape: Rectangle): void => {
   cursor.eraseScreen();
-  shape.render();
+  shape.render(cursor);
   cursor.flush();
 };
 
 const cursor = new Canvas().reset().hideCursor();
-const shape = new Rectangle(cursor, { x: 'center', y: 'middle', background: 'white', foreground: 'black', text: 'Shaking' });
+const shape = new Rectangle({ x: 'center', y: 'middle', background: 'white', foreground: 'black', text: 'Shaking' });
 const shakeX = new Focus({ direction: 'shakeX' }).on('tick', onTick);
 const shakeY = new Focus({ direction: 'shakeY' }).on('tick', onTick);
 
 (async function animate () {
-  shape.render();
+  shape.render(cursor);
   cursor.flush();
 
   await shakeX.animate(shape);

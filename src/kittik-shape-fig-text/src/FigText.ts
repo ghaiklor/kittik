@@ -14,8 +14,8 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
   printDirection: PrintDirection = 0;
   showHardBlanks = false;
 
-  constructor (cursor: Canvas, options?: Partial<FigTextOptions>) {
-    super(cursor, options);
+  constructor (options?: Partial<FigTextOptions>) {
+    super(options);
 
     if (options?.font !== undefined) {
       this.font = options.font;
@@ -57,8 +57,9 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     });
   }
 
-  render (): void {
-    const cursor = this.cursor;
+  render <T extends Canvas>(cursor: T): void {
+    super.render(cursor);
+
     const text = this.renderedText.split('\n');
     const x = parseInt(this.x);
     const y = parseInt(this.y);

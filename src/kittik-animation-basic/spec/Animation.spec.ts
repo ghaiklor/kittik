@@ -1,6 +1,5 @@
 import { Animation } from '../src/Animation';
 import { AnimationObject } from '../src/AnimationObject';
-import { Canvas } from 'terminal-canvas';
 import { Shape } from 'kittik-shape-basic';
 
 describe('Animation::Basic', () => {
@@ -12,8 +11,7 @@ describe('Animation::Basic', () => {
   });
 
   it('Should properly emit tick event when animation frame happened', async () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
     const animation = new Animation();
     const emitSpy = jest.spyOn(animation, 'emit');
 
@@ -24,8 +22,7 @@ describe('Animation::Basic', () => {
   });
 
   it('Should properly emit tick event with custom byValue, duration, easing', async () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
     const animation = new Animation();
     const emitSpy = jest.spyOn(animation, 'emit');
 

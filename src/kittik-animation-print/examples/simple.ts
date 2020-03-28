@@ -4,13 +4,13 @@ import { Print } from '..';
 
 const onTick = (shape: Rectangle): void => {
   cursor.eraseScreen();
-  shape.render();
+  shape.render(cursor);
   cursor.flush();
 };
 
 const cursor = new Canvas().reset().hideCursor();
 const print = new Print({ duration: 5000, easing: 'inOutSine' }).on('tick', onTick);
-const shape = new Rectangle(cursor, {
+const shape = new Rectangle({
   x: 'center',
   y: 'middle',
   background: 'white',
@@ -19,7 +19,7 @@ const shape = new Rectangle(cursor, {
 });
 
 (async function animate () {
-  shape.render();
+  shape.render(cursor);
   cursor.flush();
 
   await print.animate(shape);

@@ -3,8 +3,7 @@ import { Code } from '../src/Code';
 
 describe('Shape::Code', () => {
   it('Should properly get/set code', () => {
-    const cursor = new Canvas();
-    const shape = new Code(cursor);
+    const shape = new Code();
 
     expect(shape.text).toEqual('');
 
@@ -13,27 +12,25 @@ describe('Shape::Code', () => {
   });
 
   it('Should properly get actual width of the shape', () => {
-    const cursor = new Canvas();
-    const shape = new Code(cursor, { text: 'console.log(\'Test\')' });
+    const shape = new Code({ text: 'console.log(\'Test\')' });
 
     expect(shape.width).toEqual('19');
   });
 
   it('Should properly get actual height of the shape', () => {
-    const cursor = new Canvas();
-    const shape = new Code(cursor, { text: 'console.log(\'Test\')' });
+    const shape = new Code({ text: 'console.log(\'Test\')' });
 
     expect(shape.height).toEqual('1');
   });
 
   it('Should properly render the shape', () => {
-    const cursor = new Canvas();
-    const shape = new Code(cursor, { text: 'const b = 1234;\nprocess.exit()' });
+    const cursor = Canvas.create();
+    const shape = new Code({ text: 'const b = 1234;\nprocess.exit()' });
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    shape.render();
+    shape.render(cursor);
 
     expect(moveToSpy).toBeCalledTimes(2);
     expect(foregroundSpy).toBeCalledTimes(13);
@@ -41,8 +38,7 @@ describe('Shape::Code', () => {
   });
 
   it('Should properly serialize shape to Object representation', () => {
-    const cursor = new Canvas();
-    const shape = Code.create(cursor, { text: 'console.log()' });
+    const shape = Code.create({ text: 'console.log()' });
     const obj = shape.toObject();
 
     expect(obj).toEqual({
@@ -60,7 +56,6 @@ describe('Shape::Code', () => {
   });
 
   it('Should properly create code from Object representation', () => {
-    const cursor = new Canvas();
     const obj = {
       type: 'Code',
       options: {
@@ -70,10 +65,9 @@ describe('Shape::Code', () => {
       }
     };
 
-    const code = Code.fromObject(obj, cursor);
+    const code = Code.fromObject(obj);
 
     expect(code).toBeInstanceOf(Code);
-    expect(code.cursor).toBeInstanceOf(Canvas);
     expect(code.text).toEqual('console.log()');
     expect(code.width).toEqual('13');
     expect(code.height).toEqual('1');

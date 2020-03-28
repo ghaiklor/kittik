@@ -2,7 +2,7 @@ import { Canvas } from 'terminal-canvas';
 import { Text } from '..';
 
 const canvas = new Canvas().reset();
-const shape = new Text(canvas, { text: 'Hello, World!' });
+const shape = new Text({ text: 'Hello, World!' });
 
-shape.render();
+shape.render(canvas);
 canvas.flush();

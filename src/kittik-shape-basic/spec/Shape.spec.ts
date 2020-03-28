@@ -1,11 +1,10 @@
-import { Canvas } from 'terminal-canvas';
 import { Shape } from '../src/Shape';
 import { ShapeObject } from '../src/ShapeObject';
+import { Canvas } from 'terminal-canvas';
 
 describe('Shape::Basic', () => {
   it('Should properly get/set text', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
 
     expect(shape.text).toEqual('');
 
@@ -14,8 +13,7 @@ describe('Shape::Basic', () => {
   });
 
   it('Should properly get/set width', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor, { width: '15' });
+    const shape = new Shape({ width: '15' });
 
     expect(shape.width).toEqual('15');
 
@@ -23,12 +21,11 @@ describe('Shape::Basic', () => {
     expect(shape.width).toEqual('5');
 
     shape.width = '50%';
-    expect(shape.width).toEqual(Math.ceil(shape.cursor.width / 2).toString());
+    expect(parseInt(shape.width)).toBeGreaterThanOrEqual(Math.floor(process.stdout.columns / 2));
   });
 
   it('Should properly get/set height', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor, { height: '5' });
+    const shape = new Shape({ height: '5' });
 
     expect(shape.height).toEqual('5');
 
@@ -36,12 +33,11 @@ describe('Shape::Basic', () => {
     expect(shape.height).toEqual('15');
 
     shape.height = '50%';
-    expect(shape.height).toEqual(Math.floor(shape.cursor.height / 2).toString());
+    expect(shape.height).toEqual(Math.floor(process.stdout.rows / 2).toString());
   });
 
   it('Should properly get/set x coordinate', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor, { x: '10' });
+    const shape = new Shape({ x: '10' });
 
     expect(shape.x).toEqual('10');
 
@@ -52,18 +48,17 @@ describe('Shape::Basic', () => {
     expect(shape.x).toEqual('0');
 
     shape.x = 'center';
-    expect(shape.x).toEqual(Math.floor(shape.cursor.width / 2 - parseInt(shape.width) / 2).toString());
+    expect(shape.x).toEqual(Math.floor(process.stdout.columns / 2 - parseInt(shape.width) / 2).toString());
 
     shape.x = 'right';
-    expect(shape.x).toEqual(Math.floor(shape.cursor.width - parseInt(shape.width)).toString());
+    expect(shape.x).toEqual(Math.floor(process.stdout.columns - parseInt(shape.width)).toString());
 
     shape.x = '50%';
-    expect(shape.x).toEqual(Math.floor(shape.cursor.width / 2).toString());
+    expect(shape.x).toEqual(Math.floor(process.stdout.columns / 2).toString());
   });
 
   it('Should properly get/set y coordinate', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor, { y: '10' });
+    const shape = new Shape({ y: '10' });
 
     expect(shape.y).toEqual('10');
 
@@ -74,18 +69,17 @@ describe('Shape::Basic', () => {
     expect(shape.y).toEqual('0');
 
     shape.y = 'middle';
-    expect(shape.y).toEqual(Math.floor(shape.cursor.height / 2 - parseInt(shape.height) / 2).toString());
+    expect(shape.y).toEqual(Math.floor(process.stdout.rows / 2 - parseInt(shape.height) / 2).toString());
 
     shape.y = 'bottom';
-    expect(shape.y).toEqual(Math.floor(shape.cursor.height - parseInt(shape.height)).toString());
+    expect(shape.y).toEqual(Math.floor(process.stdout.rows - parseInt(shape.height)).toString());
 
     shape.y = '50%';
-    expect(shape.y).toEqual(Math.floor(shape.cursor.height / 2).toString());
+    expect(shape.y).toEqual(Math.floor(process.stdout.rows / 2).toString());
   });
 
   it('Should properly get/set background', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
 
     expect(shape.background).toEqual('none');
 
@@ -94,8 +88,7 @@ describe('Shape::Basic', () => {
   });
 
   it('Should properly get/set foreground', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
 
     expect(shape.foreground).toEqual('none');
 
@@ -103,9 +96,18 @@ describe('Shape::Basic', () => {
     expect(shape.foreground).toEqual('yellow');
   });
 
+  it('Should properly update the cursor when provided another one through render()', () => {
+    const cursor = new Canvas({ width: 10, height: 20 });
+    const shape = new Shape();
+
+    expect(parseInt(shape.width)).toBe(Math.floor(process.stdout.columns / 2));
+
+    shape.render(cursor);
+    expect(parseInt(shape.width)).toBe(Math.floor(10 / 2));
+  });
+
   it('Should properly serialize shape to object', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor, { x: '10', y: '10' });
+    const shape = new Shape({ x: '10', y: '10' });
     const obj = shape.toObject();
 
     expect(obj).toEqual({
@@ -123,8 +125,7 @@ describe('Shape::Basic', () => {
   });
 
   it('Should properly serialize shape to object with custom options', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor, {
+    const shape = new Shape({
       text: 'test',
       x: '0',
       y: '0',
@@ -150,37 +151,32 @@ describe('Shape::Basic', () => {
   });
 
   it('Should properly serialize shape to JSON', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
     const json = shape.toJSON();
 
     expect(json).toEqual('{"type":"Shape","options":{"text":"","width":"50%","height":"25%","x":"left","y":"top","background":"none","foreground":"none"}}');
   });
 
   it('Should properly serialize shape to JSON with custom options', () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor, { text: 'test', x: '0', y: '0', width: '30', height: '50' });
+    const shape = new Shape({ text: 'test', x: '0', y: '0', width: '30', height: '50' });
     const json = shape.toJSON();
 
     expect(json).toEqual('{"type":"Shape","options":{"text":"test","width":"30","height":"50","x":"0","y":"0","background":"none","foreground":"none"}}');
   });
 
   it('Should properly create Shape instance from static create()', () => {
-    const cursor = new Canvas();
-    const shape = Shape.create(cursor, { text: 'test' });
+    const shape = Shape.create({ text: 'test' });
 
     expect(shape.text).toEqual('test');
   });
 
   it('Should properly throw error if trying to create Shape not from its representation', () => {
-    const cursor = new Canvas();
     const obj = { type: 'Rectangle' };
 
-    expect(() => Shape.fromObject(obj, cursor)).toThrowError('Rectangle is not an Object representation of the Shape');
+    expect(() => Shape.fromObject(obj)).toThrowError('Rectangle is not an Object representation of the Shape');
   });
 
   it('Should properly create Shape instance from Object representation', () => {
-    const cursor = new Canvas();
     const obj: ShapeObject = {
       type: 'Shape',
       options: {
@@ -194,7 +190,7 @@ describe('Shape::Basic', () => {
       }
     };
 
-    const shape = Shape.fromObject(obj, cursor);
+    const shape = Shape.fromObject(obj);
     expect(shape.text).toEqual('test');
     expect(shape.width).toEqual('30');
     expect(shape.height).toEqual('50');
@@ -206,8 +202,7 @@ describe('Shape::Basic', () => {
 
   it('Should properly create Shape instance from JSON representation', () => {
     const json = '{"type":"Shape","options":{"text":"test","width":"30","height":"50","x":"1","y":"1"}}';
-    const cursor = new Canvas();
-    const shape = Shape.fromJSON(json, cursor);
+    const shape = Shape.fromJSON(json);
 
     expect(shape).toBeInstanceOf(Shape);
     expect(shape.text).toEqual('test');

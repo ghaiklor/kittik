@@ -5,13 +5,13 @@ import { ShapeObject } from 'kittik-shape-basic';
 describe('Shape::Rectangle', () => {
   it('Should properly render with default options', () => {
     const cursor = Canvas.create();
-    const rectangle = new Rectangle(cursor, { x: '0', y: '0', height: '2', width: '5' });
+    const rectangle = new Rectangle({ x: '0', y: '0', height: '2', width: '5' });
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    rectangle.render();
+    rectangle.render(cursor);
 
     expect(backgroundSpy).toBeCalledTimes(1);
     expect(backgroundSpy).toBeCalledWith('none');
@@ -26,7 +26,7 @@ describe('Shape::Rectangle', () => {
 
   it('Should properly render with custom options', () => {
     const cursor = Canvas.create();
-    const rectangle = new Rectangle(cursor, {
+    const rectangle = new Rectangle({
       text: 'test',
       width: '11',
       height: '11',
@@ -41,7 +41,7 @@ describe('Shape::Rectangle', () => {
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    rectangle.render();
+    rectangle.render(cursor);
 
     expect(backgroundSpy).toBeCalledTimes(1);
     expect(backgroundSpy).toBeCalledWith('yellow');
@@ -52,8 +52,7 @@ describe('Shape::Rectangle', () => {
   });
 
   it('Should properly serialize shape to Object representation', () => {
-    const cursor = new Canvas();
-    const rectangle = new Rectangle(cursor);
+    const rectangle = new Rectangle();
     const obj = rectangle.toObject();
 
     expect(obj).toEqual({
@@ -71,7 +70,6 @@ describe('Shape::Rectangle', () => {
   });
 
   it('Should properly create rectangle from Object representation', () => {
-    const cursor = new Canvas();
     const obj: ShapeObject = {
       type: 'Rectangle',
       options: {
@@ -83,10 +81,9 @@ describe('Shape::Rectangle', () => {
       }
     };
 
-    const rectangle = Rectangle.fromObject<Rectangle>(obj, cursor);
+    const rectangle = Rectangle.fromObject<Rectangle>(obj);
 
     expect(rectangle).toBeInstanceOf(Rectangle);
-    expect(rectangle.cursor).toBeInstanceOf(Canvas);
     expect(rectangle.text).toEqual('test');
     expect(rectangle.width).toEqual('30');
     expect(rectangle.height).toEqual('50');

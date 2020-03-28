@@ -10,7 +10,7 @@ if (somethingTrue) {
 `;
 
 const canvas = new Canvas().reset();
-const shape = new Code(canvas, { text: CODE });
+const shape = new Code({ text: CODE });
 
-shape.render();
+shape.render(canvas);
 canvas.flush();

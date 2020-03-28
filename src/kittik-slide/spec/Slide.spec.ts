@@ -175,7 +175,7 @@ describe('Core::Slide', () => {
   it('Should properly throw an error when trying to add shape that is already added', () => {
     const slide = new Slide(undefined, { shapes: [{ name: 'Test', type: 'Text' }], order: [] });
 
-    expect(() => slide.addShape('Test', Text.create(new Canvas()))).toThrowError('Shape "Test" already exists in slide');
+    expect(() => slide.addShape('Test', Text.create())).toThrowError('Shape "Test" already exists in slide');
   });
 
   it('Should properly throw an error when trying to add animation that is already added', () => {

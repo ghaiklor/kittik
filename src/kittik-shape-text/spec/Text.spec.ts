@@ -5,22 +5,20 @@ import { TextOptions } from '../src/TextOptions';
 
 describe('Shape::Text', () => {
   it('Should properly get actual width of the shape', () => {
-    const cursor = new Canvas();
-    const shape = new Text(cursor, { text: 'test' });
+    const shape = new Text({ text: 'test' });
 
     expect(shape.width).toEqual('4');
   });
 
   it('Should properly get actual height of the shape', () => {
-    const cursor = new Canvas();
-    const text = new Text(cursor, { text: 'test' });
+    const text = new Text({ text: 'test' });
 
     expect(text.height).toEqual('1');
   });
 
   it('Should properly render with default options', () => {
     const cursor = Canvas.create();
-    const text = new Text(cursor);
+    const text = new Text();
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
     const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
@@ -32,7 +30,7 @@ describe('Shape::Text', () => {
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    text.render();
+    text.render(cursor);
 
     expect(foregroundSpy).toBeCalledTimes(1);
     expect(foregroundSpy).toBeCalledWith('none');
@@ -58,7 +56,7 @@ describe('Shape::Text', () => {
 
   it('Should properly render with text align to left', () => {
     const cursor = Canvas.create();
-    const text = new Text(cursor, { text: 'test\nlongest', align: 'left' });
+    const text = new Text({ text: 'test\nlongest', align: 'left' });
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
     const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
@@ -70,7 +68,7 @@ describe('Shape::Text', () => {
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    text.render();
+    text.render(cursor);
 
     expect(foregroundSpy).toBeCalledTimes(1);
     expect(foregroundSpy).toBeCalledWith('none');
@@ -98,7 +96,7 @@ describe('Shape::Text', () => {
 
   it('Should properly render with text align to center', () => {
     const cursor = Canvas.create();
-    const text = new Text(cursor, { text: 'test\nlongest', align: 'center' });
+    const text = new Text({ text: 'test\nlongest', align: 'center' });
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
     const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
@@ -110,7 +108,7 @@ describe('Shape::Text', () => {
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    text.render();
+    text.render(cursor);
 
     expect(foregroundSpy).toBeCalledTimes(1);
     expect(foregroundSpy).toBeCalledWith('none');
@@ -138,7 +136,7 @@ describe('Shape::Text', () => {
 
   it('Should properly render with text align to right', () => {
     const cursor = Canvas.create();
-    const text = new Text(cursor, { text: 'test\nlongest', align: 'right' });
+    const text = new Text({ text: 'test\nlongest', align: 'right' });
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
     const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
@@ -150,7 +148,7 @@ describe('Shape::Text', () => {
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    text.render();
+    text.render(cursor);
 
     expect(foregroundSpy).toBeCalledTimes(1);
     expect(foregroundSpy).toBeCalledWith('none');
@@ -178,7 +176,7 @@ describe('Shape::Text', () => {
 
   it('Should properly render with custom options', () => {
     const cursor = Canvas.create();
-    const text = new Text(cursor, {
+    const text = new Text({
       text: 'Hello, World',
       x: 'left',
       y: '10',
@@ -204,7 +202,7 @@ describe('Shape::Text', () => {
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    text.render();
+    text.render(cursor);
 
     expect(foregroundSpy).toBeCalledTimes(1);
     expect(foregroundSpy).toBeCalledWith('black');
@@ -230,7 +228,7 @@ describe('Shape::Text', () => {
 
   it('Should properly render multi-lined text', () => {
     const cursor = Canvas.create();
-    const text = new Text(cursor, { text: 'Hello\nWorld' });
+    const text = new Text({ text: 'Hello\nWorld' });
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
     const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
@@ -242,7 +240,7 @@ describe('Shape::Text', () => {
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    text.render();
+    text.render(cursor);
 
     expect(foregroundSpy).toBeCalledTimes(1);
     expect(foregroundSpy).toBeCalledWith('none');
@@ -269,8 +267,7 @@ describe('Shape::Text', () => {
   });
 
   it('Should properly serialize shape to Object representation', () => {
-    const cursor = new Canvas();
-    const text = Text.create<Text, TextOptions>(cursor, { text: 'test', bold: true });
+    const text = Text.create({ text: 'test', bold: true } as TextOptions);
     const obj = text.toObject();
 
     expect(obj).toEqual({
@@ -295,7 +292,6 @@ describe('Shape::Text', () => {
   });
 
   it('Should properly create text from Object representation', () => {
-    const cursor = new Canvas();
     const obj: TextObject = {
       type: 'Text',
       options: {
@@ -308,10 +304,9 @@ describe('Shape::Text', () => {
       }
     };
 
-    const text = Text.fromObject<Text>(obj, cursor);
+    const text = Text.fromObject<Text>(obj);
 
     expect(text).toBeInstanceOf(Text);
-    expect(text.cursor).toBeInstanceOf(Canvas);
     expect(text.text).toEqual('test');
     expect(text.width).toEqual('4');
     expect(text.height).toEqual('1');

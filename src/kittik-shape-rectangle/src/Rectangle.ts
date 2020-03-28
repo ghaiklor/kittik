@@ -1,8 +1,10 @@
+import { Canvas } from 'terminal-canvas';
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 
 export class Rectangle extends Shape implements ShapeRenderable {
-  render (): void {
-    const cursor = this.cursor;
+  render <T extends Canvas>(cursor: T): void {
+    super.render(cursor);
+
     const text = this.text;
     const width = parseInt(this.width);
     const height = parseInt(this.height);

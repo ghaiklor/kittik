@@ -5,8 +5,7 @@ import path from 'path';
 
 describe('Shape::Image', () => {
   it('Should properly get/set image', () => {
-    const cursor = new Canvas();
-    const shape = new Image(cursor);
+    const shape = new Image();
 
     expect(shape.image).toEqual('R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=');
 
@@ -22,10 +21,10 @@ describe('Shape::Image', () => {
 
   it('Should properly render the shape', () => {
     const cursor = new Canvas();
-    const shape = new Image(cursor, { image: 'dGVzdA==', width: '15', height: '5', x: '10', y: '10' });
+    const shape = new Image({ image: 'dGVzdA==', width: '15', height: '5', x: '10', y: '10' });
     const writeSpy = jest.spyOn(cursor.stream, 'write').mockImplementation(() => true);
 
-    shape.render();
+    shape.render(cursor);
 
     expect(writeSpy).toBeCalledTimes(1);
     expect(writeSpy).toBeCalledWith('\u001b[11;11H\u001b]1337;File=size=6;width=15;height=5;preserveAspectRatio=1;inline=1:dGVzdA==^G');
@@ -33,18 +32,17 @@ describe('Shape::Image', () => {
 
   it('Should properly render the shape with disabled preserveAspectRatio', () => {
     const cursor = new Canvas();
-    const shape = new Image(cursor, { image: 'dGVzdA==', preserveAspectRatio: false, width: '15', height: '5', x: '10', y: '10' });
+    const shape = new Image({ image: 'dGVzdA==', preserveAspectRatio: false, width: '15', height: '5', x: '10', y: '10' });
     const writeSpy = jest.spyOn(cursor.stream, 'write').mockImplementation(() => true);
 
-    shape.render();
+    shape.render(cursor);
 
     expect(writeSpy).toBeCalledTimes(1);
     expect(writeSpy).toBeCalledWith('\u001b[11;11H\u001b]1337;File=size=6;width=15;height=5;preserveAspectRatio=0;inline=1:dGVzdA==^G');
   });
 
   it('Should properly serialize shape to object', () => {
-    const cursor = new Canvas();
-    const shape = new Image(cursor, { image: 'dGVzdA==' });
+    const shape = new Image({ image: 'dGVzdA==' });
     const obj = shape.toObject();
 
     expect(obj).toEqual({
@@ -64,7 +62,6 @@ describe('Shape::Image', () => {
   });
 
   it('Should properly create Image from object', () => {
-    const cursor = new Canvas();
     const obj: ImageObject = {
       type: 'Image',
       options: {
@@ -76,10 +73,9 @@ describe('Shape::Image', () => {
       }
     };
 
-    const image = Image.fromObject<Image>(obj, cursor);
+    const image = Image.fromObject<Image>(obj);
 
     expect(image).toBeInstanceOf(Image);
-    expect(image.cursor).toBeInstanceOf(Canvas);
     expect(image.text).toEqual('');
     expect(image.width).toEqual('10');
     expect(image.height).toEqual('20');

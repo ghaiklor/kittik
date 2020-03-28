@@ -50,7 +50,7 @@ export class Slide {
         throw new Error(`Shape "${shapeDeclaration.name}" (${shapeDeclaration.type}) is unknown for me, maybe you made a typo?`);
       }
 
-      this.addShape(shapeDeclaration.name, ctor.fromObject(shapeDeclaration, this.cursor));
+      this.addShape(shapeDeclaration.name, ctor.fromObject(shapeDeclaration));
     });
   }
 
@@ -68,7 +68,7 @@ export class Slide {
 
   private renderShapes (shapes: ShapeRenderable[]): void {
     this.cursor.eraseScreen();
-    shapes.forEach(shape => shape.render());
+    shapes.forEach(shape => shape.render(this.cursor));
     this.cursor.flush();
   }
 

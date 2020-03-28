@@ -15,8 +15,8 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
   reverse = false;
   underlined = false;
 
-  constructor (cursor: Canvas, options?: Partial<TextOptions>) {
-    super(cursor, options);
+  constructor (options?: Partial<TextOptions>) {
+    super(options);
 
     if (options?.align !== undefined) {
       this.align = options.align;
@@ -56,8 +56,9 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     return this.text.split('\n').length.toString();
   }
 
-  render (): void {
-    const cursor = this.cursor;
+  render <T extends Canvas>(cursor: T): void {
+    super.render(cursor);
+
     const text = this.text.split('\n');
     const x = parseInt(this.x);
     const y = parseInt(this.y);

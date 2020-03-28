@@ -1,30 +1,28 @@
 import { Canvas } from 'terminal-canvas';
-import { FigText } from '../src/FigText';
+import { FigText, FigTextOptions } from '../src/FigText';
 
 describe('Shape::FigText', () => {
   it('Should properly get actual width of the shape', () => {
-    const cursor = new Canvas();
-    const shape = new FigText(cursor, { text: 'test' });
+    const shape = new FigText({ text: 'test' });
 
     expect(shape.width).toEqual('19');
   });
 
   it('Should properly get actual height of the shape', () => {
-    const cursor = new Canvas();
-    const shape = new FigText(cursor, { text: 'test' });
+    const shape = new FigText({ text: 'test' });
 
     expect(shape.height).toEqual('6');
   });
 
   it('Should properly render with default options', () => {
     const cursor = new Canvas();
-    const shape = new FigText(cursor);
+    const shape = new FigText();
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    shape.render();
+    shape.render(cursor);
 
     expect(backgroundSpy).toBeCalledTimes(1);
     expect(backgroundSpy).toBeCalledWith('none');
@@ -36,13 +34,13 @@ describe('Shape::FigText', () => {
 
   it('Should properly render with custom options', () => {
     const cursor = new Canvas();
-    const shape = new FigText(cursor, { text: 'test', background: 'black', foreground: 'white' });
+    const shape = new FigText({ text: 'test', background: 'black', foreground: 'white' });
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
     const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
     const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
 
-    shape.render();
+    shape.render(cursor);
 
     expect(backgroundSpy).toBeCalledTimes(1);
     expect(backgroundSpy).toBeCalledWith('black');
@@ -53,8 +51,7 @@ describe('Shape::FigText', () => {
   });
 
   it('Should properly create Object representation', () => {
-    const cursor = new Canvas();
-    const shape = new FigText(cursor, {
+    const shape = new FigText({
       text: 'test',
       x: '10%',
       font: 'Ghost',
@@ -86,8 +83,7 @@ describe('Shape::FigText', () => {
   });
 
   it('Should properly create FigText instance from Object representation', () => {
-    const cursor = new Canvas();
-    const shape: FigText = FigText.fromObject({
+    const shape: FigText = FigText.fromObject<FigText>({
       type: 'FigText',
       options: {
         text: 'test',
@@ -98,11 +94,10 @@ describe('Shape::FigText', () => {
         font: 'Ghost',
         horizontalLayout: 'full',
         verticalLayout: 'fitted'
-      }
-    }, cursor);
+      } as FigTextOptions
+    });
 
     expect(shape).toBeInstanceOf(FigText);
-    expect(shape.cursor).toBeInstanceOf(Canvas);
     expect(shape.text).toEqual('test');
     expect(shape.renderedText.length).toEqual(386);
     expect(shape.x).toEqual('0');

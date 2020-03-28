@@ -1,11 +1,9 @@
 import { ShapeBuilder } from '../src/shape/ShapeBuilder';
-import { Canvas } from 'terminal-canvas';
 
 describe('ShapeBuilder', () => {
   it('Should properly build the shape via builder', () => {
     const shape = ShapeBuilder
       .start('Rectangle')
-      .withCursor(Canvas.create())
       .withType('Rectangle')
       .withText('Hello, World')
       .withX('10%')

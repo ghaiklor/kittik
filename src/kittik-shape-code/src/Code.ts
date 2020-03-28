@@ -1,3 +1,4 @@
+import { Canvas } from 'terminal-canvas';
 import { DEFAULT_THEME } from './themes/default';
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import beautify from 'js-beautify';
@@ -5,11 +6,11 @@ import redeyed from 'redeyed';
 
 export class Code extends Shape implements ShapeRenderable {
   get text (): string {
-    return this._text;
+    return beautify(this._text, { indent_size: 2 });
   }
 
   set text (code: string) {
-    this._text = beautify(code, { indent_size: 2 });
+    this._text = code;
   }
 
   get width (): string {
@@ -21,8 +22,9 @@ export class Code extends Shape implements ShapeRenderable {
     return this.text.split('\n').length.toString();
   }
 
-  render (): void {
-    const cursor = this.cursor;
+  render <T extends Canvas>(cursor: T): void {
+    super.render(cursor);
+
     const codeSplits = redeyed(this.text, DEFAULT_THEME).splits;
     const x = parseInt(this.x);
     const y = parseInt(this.y);

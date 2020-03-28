@@ -1,13 +1,14 @@
 import { Canvas } from 'terminal-canvas';
 import { ShapeObject } from './ShapeObject';
 import { ShapeOptions } from './ShapeOptions';
+import { ShapeRenderable } from './ShapeRenderable';
 
 export { ShapeObject } from './ShapeObject';
 export { ShapeOptions } from './ShapeOptions';
 export { ShapeRenderable } from './ShapeRenderable';
 
-export class Shape implements ShapeOptions {
-  protected readonly _cursor: Canvas;
+export class Shape implements ShapeOptions, ShapeRenderable {
+  protected _cursor = Canvas.create();
   protected _text = '';
   protected _x = 'left';
   protected _y = 'top';
@@ -16,19 +17,9 @@ export class Shape implements ShapeOptions {
   protected _background = 'none';
   protected _foreground = 'none';
 
-  constructor (cursor: Canvas, options?: Partial<ShapeOptions>) {
-    this._cursor = cursor;
-
+  constructor (options?: Partial<ShapeOptions>) {
     if (options?.text !== undefined) {
       this.text = options.text;
-    }
-
-    if (options?.width !== undefined) {
-      this.width = options.width;
-    }
-
-    if (options?.height !== undefined) {
-      this.height = options.height;
     }
 
     if (options?.x !== undefined) {
@@ -37,6 +28,14 @@ export class Shape implements ShapeOptions {
 
     if (options?.y !== undefined) {
       this.y = options.y;
+    }
+
+    if (options?.width !== undefined) {
+      this.width = options.width;
+    }
+
+    if (options?.height !== undefined) {
+      this.height = options.height;
     }
 
     if (options?.background !== undefined) {
@@ -58,34 +57,6 @@ export class Shape implements ShapeOptions {
 
   set text (text) {
     this._text = text;
-  }
-
-  get width (): string {
-    const width = this._width;
-
-    if (/\d+%$/.test(width)) {
-      return Math.floor(parseInt(width.slice(0, -1)) * this._cursor.width / 100).toString();
-    }
-
-    return width;
-  }
-
-  set width (width) {
-    this._width = width;
-  }
-
-  get height (): string {
-    const height = this._height;
-
-    if (/\d+%$/.test(height)) {
-      return Math.floor(parseInt(height.slice(0, -1)) * this._cursor.height / 100).toString();
-    }
-
-    return height;
-  }
-
-  set height (height) {
-    this._height = height;
   }
 
   get x (): string {
@@ -118,6 +89,34 @@ export class Shape implements ShapeOptions {
     this._y = y;
   }
 
+  get width (): string {
+    const width = this._width;
+
+    if (/\d+%$/.test(width)) {
+      return Math.floor(parseInt(width.slice(0, -1)) * this._cursor.width / 100).toString();
+    }
+
+    return width;
+  }
+
+  set width (width) {
+    this._width = width;
+  }
+
+  get height (): string {
+    const height = this._height;
+
+    if (/\d+%$/.test(height)) {
+      return Math.floor(parseInt(height.slice(0, -1)) * this._cursor.height / 100).toString();
+    }
+
+    return height;
+  }
+
+  set height (height) {
+    this._height = height;
+  }
+
   get background (): string {
     return this._background;
   }
@@ -132,6 +131,10 @@ export class Shape implements ShapeOptions {
 
   set foreground (foreground) {
     this._foreground = foreground;
+  }
+
+  render <T extends Canvas>(cursor: T): void {
+    this._cursor = cursor;
   }
 
   toObject<T extends ShapeObject>(): T {
@@ -155,24 +158,19 @@ export class Shape implements ShapeOptions {
     return JSON.stringify(this.toObject());
   }
 
-  static create<T extends Shape>(cursor: Canvas, options?: Partial<ShapeOptions>): T
-  static create<T extends Shape, O extends ShapeOptions>(cursor: Canvas, options?: Partial<O>): T
-  static create<T extends Shape, O extends ShapeOptions, C extends Canvas>(cursor: C, options?: Partial<O>): T {
-    return (new this(cursor, options)) as T;
+  static create<T extends Shape>(options?: Partial<ShapeOptions>): T
+  static create<T extends Shape, O extends ShapeOptions>(options?: Partial<O>): T {
+    return (new this(options)) as T;
   }
 
-  static fromObject(obj: ShapeObject, cursor: Canvas): Shape
-  static fromObject<T extends Shape>(obj: ShapeObject, cursor: Canvas): T
-  static fromObject<T extends Shape, O extends ShapeObject>(obj: O, cursor: Canvas): T
-  static fromObject<T extends Shape, O extends ShapeObject, C extends Canvas>(obj: O, cursor: C): T {
+  static fromObject<T extends Shape>(obj: ShapeObject): T
+  static fromObject<T extends Shape, O extends ShapeObject>(obj: O): T {
     if (obj.type !== this.name) throw new Error(`${obj.type} is not an Object representation of the ${this.name}`);
 
-    return this.create(cursor, obj.options);
+    return this.create(obj.options);
   }
 
-  static fromJSON(json: string, cursor: Canvas): Shape
-  static fromJSON<T extends Shape>(json: string, cursor: Canvas): T
-  static fromJSON<T extends Shape, C extends Canvas>(json: string, cursor: C): T {
-    return this.fromObject(JSON.parse(json), cursor);
+  static fromJSON<T extends Shape>(json: string): T {
+    return this.fromObject(JSON.parse(json));
   }
 }

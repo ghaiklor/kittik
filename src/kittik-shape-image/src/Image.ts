@@ -12,8 +12,8 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
   private _image = 'R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=';
   private _preserveAspectRatio = true;
 
-  constructor (cursor: Canvas, options?: Partial<ImageOptions>) {
-    super(cursor, options);
+  constructor (options?: Partial<ImageOptions>) {
+    super(options);
 
     if (options?.image !== undefined) {
       this.image = options.image;
@@ -46,8 +46,9 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     this._preserveAspectRatio = preserve;
   }
 
-  render (): void {
-    const cursor = this.cursor;
+  render <T extends Canvas>(cursor: T): void {
+    super.render(cursor);
+
     const width = this.width;
     const height = this.height;
     const x = parseInt(this.x);

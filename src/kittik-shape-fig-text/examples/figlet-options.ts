@@ -2,7 +2,7 @@ import { Canvas } from 'terminal-canvas';
 import { FigText } from '..';
 
 const canvas = new Canvas().reset();
-const shape = new FigText(canvas, {
+const shape = new FigText({
   text: 'Hello, World',
   font: 'Gothic',
   verticalLayout: 'full',
@@ -11,5 +11,5 @@ const shape = new FigText(canvas, {
   showHardBlanks: false
 });
 
-shape.render();
+shape.render(canvas);
 canvas.flush();

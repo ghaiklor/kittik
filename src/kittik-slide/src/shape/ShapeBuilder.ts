@@ -1,20 +1,12 @@
 import { ShapeObject, ShapeOptions, ShapeRenderable } from 'kittik-shape-basic';
 import { ShapeType, SHAPES } from './Shapes';
-import { Canvas } from 'terminal-canvas';
 
 export class ShapeBuilder implements ShapeObject {
-  cursor: Canvas = Canvas.create();
   type: ShapeType;
   options?: Partial<ShapeOptions>;
 
   constructor (type: ShapeType) {
     this.type = type;
-  }
-
-  withCursor (cursor: Canvas): this {
-    this.cursor = cursor;
-
-    return this;
   }
 
   withType (type: ShapeType): this {
@@ -77,7 +69,7 @@ export class ShapeBuilder implements ShapeObject {
       throw new Error(`Shape "${this.type}" you tried to build does not exist`);
     }
 
-    return ctr.fromObject(this, this.cursor);
+    return ctr.fromObject(this);
   }
 
   static start (type: ShapeType): ShapeBuilder {

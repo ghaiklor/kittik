@@ -5,8 +5,7 @@ import { SlideObject } from '../src/SlideObject';
 
 describe('Animation::Slide', () => {
   it('Should properly parse coordinates for inUp', async () => {
-    const cursor = new Canvas();
-    const shape = new Rectangle(cursor, { height: '5' });
+    const shape = new Rectangle({ height: '5' });
     const animation = new Slide({ direction: 'inUp' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -19,7 +18,7 @@ describe('Animation::Slide', () => {
 
   it('Should properly parse coordinates for inDown', async () => {
     const cursor = new Canvas();
-    const shape = new Rectangle(cursor, { height: '5' });
+    const shape = new Rectangle({ height: '5' });
     const animation = new Slide({ direction: 'inDown' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -31,8 +30,7 @@ describe('Animation::Slide', () => {
   });
 
   it('Should properly parse coordinates for inLeft', async () => {
-    const cursor = new Canvas();
-    const shape = new Rectangle(cursor, { width: '15' });
+    const shape = new Rectangle({ width: '15' });
     const animation = new Slide({ direction: 'inLeft' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -45,7 +43,7 @@ describe('Animation::Slide', () => {
 
   it('Should properly parse coordinates for inRight', async () => {
     const cursor = new Canvas();
-    const shape = new Rectangle(cursor, { width: '15' });
+    const shape = new Rectangle({ width: '15' });
     const animation = new Slide({ direction: 'inRight' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -57,8 +55,7 @@ describe('Animation::Slide', () => {
   });
 
   it('Should properly parse coordinates for outUp', async () => {
-    const cursor = new Canvas();
-    const shape = new Rectangle(cursor, { height: '5' });
+    const shape = new Rectangle({ height: '5' });
     const animation = new Slide({ direction: 'outUp' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -71,7 +68,7 @@ describe('Animation::Slide', () => {
 
   it('Should properly parse coordinates for outDown', async () => {
     const cursor = new Canvas();
-    const shape = new Rectangle(cursor, { height: '5' });
+    const shape = new Rectangle({ height: '5' });
     const animation = new Slide({ direction: 'outDown' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -83,8 +80,7 @@ describe('Animation::Slide', () => {
   });
 
   it('Should properly parse coordinates for outLeft', async () => {
-    const cursor = new Canvas();
-    const shape = new Rectangle(cursor, { width: '15' });
+    const shape = new Rectangle({ width: '15' });
     const animation = new Slide({ direction: 'outLeft' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -97,7 +93,7 @@ describe('Animation::Slide', () => {
 
   it('Should properly parse coordinates for outRight', async () => {
     const cursor = new Canvas();
-    const shape = new Rectangle(cursor);
+    const shape = new Rectangle();
     const animation = new Slide({ direction: 'outRight' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 

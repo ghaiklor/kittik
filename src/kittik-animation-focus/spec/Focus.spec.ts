@@ -1,4 +1,3 @@
-import { Canvas } from 'terminal-canvas';
 import { Focus } from '../src/Focus';
 import { FocusObject } from '../src/FocusObject';
 import { Shape } from 'kittik-shape-basic';
@@ -11,8 +10,7 @@ describe('Animation::Focus', () => {
   });
 
   it('Should properly call animateBounce() with bounceUp direction', async () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
     const animation = new Focus({ direction: 'bounceUp' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -24,8 +22,7 @@ describe('Animation::Focus', () => {
   });
 
   it('Should properly call animateBounce() with bounceRight direction', async () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
     const animation = new Focus({ direction: 'bounceRight' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -37,8 +34,7 @@ describe('Animation::Focus', () => {
   });
 
   it('Should properly call animateBounce() with bounceDown direction', async () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
     const animation = new Focus({ direction: 'bounceDown' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -50,8 +46,7 @@ describe('Animation::Focus', () => {
   });
 
   it('Should properly call animateBounce() with bounceLeft direction', async () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
     const animation = new Focus({ direction: 'bounceLeft' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -63,8 +58,7 @@ describe('Animation::Focus', () => {
   });
 
   it('Should properly call animateShake() with shakeX direction', async () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
     const animation = new Focus({ direction: 'shakeX' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -77,8 +71,7 @@ describe('Animation::Focus', () => {
   });
 
   it('Should properly call animateShake() with shakeY direction', async () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
     const animation = new Focus({ direction: 'shakeY' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
@@ -91,8 +84,7 @@ describe('Animation::Focus', () => {
   });
 
   it('Should properly call the animate() method with default type', async () => {
-    const cursor = new Canvas();
-    const shape = new Shape(cursor);
+    const shape = new Shape();
     const animation = new Focus();
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
