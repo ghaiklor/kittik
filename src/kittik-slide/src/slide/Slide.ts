@@ -19,10 +19,10 @@ export { SlideBuilder } from './SlideBuilder';
 export { SlideDeclaration } from './SlideDeclaration';
 
 export class Slide {
-  readonly cursor: Canvas = Canvas.create();
   readonly shapes: Map<string, ShapeRenderable> = new Map();
   readonly animations: Map<string, Animationable> = new Map();
   readonly order: OrderDeclaration[] = [];
+  cursor: Canvas = Canvas.create();
 
   constructor (cursor?: Canvas, declaration?: SlideDeclaration) {
     if (cursor !== undefined) {

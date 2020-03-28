@@ -1,9 +1,16 @@
 import { Animationable } from 'kittik-animation-basic';
+import { Canvas } from 'terminal-canvas';
 import { ShapeRenderable } from 'kittik-shape-basic';
 import { Slide } from './Slide';
 
 export class SlideBuilder {
   slide: Slide = new Slide();
+
+  withCursor (cursor: Canvas): this {
+    this.slide.cursor = cursor;
+
+    return this;
+  }
 
   withShape (name: string, shape: ShapeRenderable): this {
     this.slide.addShape(name, shape);

@@ -1,10 +1,12 @@
-import { SlideBuilder } from '../src/slide/SlideBuilder';
+import { Canvas } from 'terminal-canvas';
 import { ShapeBuilder, AnimationBuilder } from '../src/slide/Slide';
+import { SlideBuilder } from '../src/slide/SlideBuilder';
 
 describe('SlideBuilder', () => {
   it('Should properly instantiate slide via builder', () => {
     const slide = SlideBuilder
       .start()
+      .withCursor(Canvas.create())
       .withShape(
         'Hello, World',
         ShapeBuilder
