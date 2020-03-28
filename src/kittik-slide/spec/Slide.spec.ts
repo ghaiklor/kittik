@@ -5,7 +5,8 @@ import { OrderDeclaration } from '../src/slide/OrderDeclaration';
 import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
 import { Slide } from '../src/slide/Slide';
 import { SlideDeclaration } from '../src/slide/SlideDeclaration';
-import { TextObject } from 'kittik-shape-text';
+import { TextObject, Text } from 'kittik-shape-text';
+import { Print } from 'kittik-animation-print';
 
 const SLIDE_DECLARATION: SlideDeclaration = {
   shapes: [{
@@ -151,5 +152,53 @@ describe('Core::Slide', () => {
     const slide = Slide.fromJSON(JSON.stringify(SLIDE_DECLARATION), cursor);
 
     await expect(slide.render()).resolves.toBeUndefined();
+  });
+
+  it('Should properly instantiate an empty slide instance when no declaration nor cursor is passed', () => {
+    const slide = new Slide();
+
+    expect(slide.cursor).toBeInstanceOf(Canvas);
+    expect(slide.shapes.size).toBe(0);
+    expect(slide.animations.size).toBe(0);
+    expect(slide.order.length).toBe(0);
+  });
+
+  it('Should properly instantiate an empty slide instance when nothing is passed but an empty arrays', () => {
+    const slide = new Slide(undefined, { order: [], shapes: [] });
+
+    expect(slide.cursor).toBeInstanceOf(Canvas);
+    expect(slide.shapes.size).toBe(0);
+    expect(slide.animations.size).toBe(0);
+    expect(slide.order.length).toBe(0);
+  });
+
+  it('Should properly throw an error when trying to add shape that is already added', () => {
+    const slide = new Slide(undefined, { shapes: [{ name: 'Test', type: 'Text' }], order: [] });
+
+    expect(() => slide.addShape('Test', Text.create(new Canvas()))).toThrowError('Shape "Test" already exists in slide');
+  });
+
+  it('Should properly throw an error when trying to add animation that is already added', () => {
+    const slide = new Slide(undefined, { shapes: [], order: [], animations: [{ name: 'Test', type: 'Print' }] });
+
+    expect(() => slide.addAnimation('Test', Print.create())).toThrowError('Animation "Test" already exists in slide');
+  });
+
+  it('Should properly throw an error when trying to add ordering for the shape that is already added', () => {
+    const slide = new Slide(undefined, { shapes: [], order: [{ shape: 'Test' }] });
+
+    expect(() => slide.addOrder('Test')).toThrowError(
+      'You already have an ordering for "Test"\n' +
+      'Seems like it was defined somewhere before'
+    );
+  });
+
+  it('Should properly add order to the slide', () => {
+    const slide = new Slide();
+
+    slide.addOrder('Test');
+
+    expect(slide.order.length).toBe(1);
+    expect(slide.order[0]).toEqual({ shape: 'Test' });
   });
 });

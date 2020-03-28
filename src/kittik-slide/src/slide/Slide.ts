@@ -8,29 +8,41 @@ import { ShapeRenderable } from 'kittik-shape-basic';
 import { SHAPES, ShapeType } from '../shape/Shapes';
 import { SlideDeclaration } from './SlideDeclaration';
 
+export { AnimationBuilder } from '../animation/AnimationBuilder';
 export { AnimationDeclaration } from '../animation/AnimationDeclaration';
 export { AnimationType } from '../animation/Animations';
 export { OrderDeclaration } from './OrderDeclaration';
+export { ShapeBuilder } from '../shape/ShapeBuilder';
 export { ShapeDeclaration } from '../shape/ShapeDeclaration';
 export { ShapeType } from '../shape/Shapes';
+export { SlideBuilder } from './SlideBuilder';
 export { SlideDeclaration } from './SlideDeclaration';
 
 export class Slide {
-  private readonly cursor: Canvas;
-  private readonly shapes: Map<string, ShapeRenderable>;
-  private readonly animations: Map<string, Animationable>;
-  private readonly order: OrderDeclaration[];
+  readonly cursor: Canvas = Canvas.create();
+  readonly shapes: Map<string, ShapeRenderable> = new Map();
+  readonly animations: Map<string, Animationable> = new Map();
+  readonly order: OrderDeclaration[] = [];
 
-  constructor (cursor: Canvas, declaration: SlideDeclaration) {
-    this.cursor = cursor;
-    this.shapes = this.initShapes(declaration.shapes);
-    this.animations = this.initAnimations(declaration.animations ?? []);
-    this.order = declaration.order;
+  constructor (cursor?: Canvas, declaration?: SlideDeclaration) {
+    if (cursor !== undefined) {
+      this.cursor = cursor;
+    }
+
+    if (declaration?.shapes !== undefined) {
+      this.initShapes(declaration.shapes);
+    }
+
+    if (declaration?.animations !== undefined) {
+      this.initAnimations(declaration.animations);
+    }
+
+    if (declaration?.order !== undefined) {
+      this.order = declaration.order;
+    }
   }
 
-  private initShapes (declaration: ShapeDeclaration[]): Map<string, ShapeRenderable> {
-    const map = new Map<string, ShapeRenderable>();
-
+  private initShapes (declaration: ShapeDeclaration[]): void {
     declaration.forEach(shapeDeclaration => {
       const ctor = SHAPES.get(shapeDeclaration.type as ShapeType);
 
@@ -38,15 +50,11 @@ export class Slide {
         throw new Error(`Shape "${shapeDeclaration.name}" (${shapeDeclaration.type}) is unknown for me, maybe you made a typo?`);
       }
 
-      map.set(shapeDeclaration.name, ctor.fromObject(shapeDeclaration, this.cursor));
+      this.addShape(shapeDeclaration.name, ctor.fromObject(shapeDeclaration, this.cursor));
     });
-
-    return map;
   }
 
-  private initAnimations (declaration: AnimationDeclaration[]): Map<string, Animationable> {
-    const map = new Map<string, Animationable>();
-
+  private initAnimations (declaration: AnimationDeclaration[]): void {
     declaration.forEach(animationDeclaration => {
       const ctor = ANIMATIONS.get(animationDeclaration.type as AnimationType);
 
@@ -54,16 +62,41 @@ export class Slide {
         throw new Error(`Animation "${animationDeclaration.name}" (${animationDeclaration.type}) is unknown for me, maybe you made a typo?`);
       }
 
-      map.set(animationDeclaration.name, ctor.fromObject(animationDeclaration));
+      this.addAnimation(animationDeclaration.name, ctor.fromObject(animationDeclaration));
     });
-
-    return map;
   }
 
   private renderShapes (shapes: ShapeRenderable[]): void {
     this.cursor.eraseScreen();
     shapes.forEach(shape => shape.render());
     this.cursor.flush();
+  }
+
+  addShape (name: string, shape: ShapeRenderable, toOverride = false): void {
+    if (this.shapes.has(name) && !toOverride) {
+      throw new Error(`Shape "${name}" already exists in slide`);
+    }
+
+    this.shapes.set(name, shape);
+  }
+
+  addAnimation (name: string, animation: Animationable, toOverride = false): void {
+    if (this.animations.has(name) && !toOverride) {
+      throw new Error(`Animation "${name}" already exists in slide`);
+    }
+
+    this.animations.set(name, animation);
+  }
+
+  addOrder (shape: string, animations?: string[]): void {
+    if (this.order.findIndex(decl => decl.shape === shape) !== -1) {
+      throw new Error(
+        `You already have an ordering for "${shape}"\n` +
+        'Seems like it was defined somewhere before'
+      );
+    }
+
+    this.order.push({ shape, animations });
   }
 
   async render (): Promise<void> {
