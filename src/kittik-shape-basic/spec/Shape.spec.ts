@@ -191,6 +191,7 @@ describe('Shape::Basic', () => {
     };
 
     const shape = Shape.fromObject(obj);
+    expect(shape.cursor).toBeInstanceOf(Canvas);
     expect(shape.text).toEqual('test');
     expect(shape.width).toEqual('30');
     expect(shape.height).toEqual('50');
@@ -205,6 +206,7 @@ describe('Shape::Basic', () => {
     const shape = Shape.fromJSON(json);
 
     expect(shape).toBeInstanceOf(Shape);
+    expect(shape.cursor).toBeInstanceOf(Canvas);
     expect(shape.text).toEqual('test');
     expect(shape.width).toEqual('30');
     expect(shape.height).toEqual('50');
