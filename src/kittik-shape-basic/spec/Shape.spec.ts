@@ -21,7 +21,7 @@ describe('Shape::Basic', () => {
     expect(shape.width).toEqual('5');
 
     shape.width = '50%';
-    expect(parseInt(shape.width)).toBeGreaterThanOrEqual(Math.floor(process.stdout.columns / 2));
+    expect(parseInt(shape.width)).toBe(Math.floor(process.stdout.columns / 2));
   });
 
   it('Should properly get/set height', () => {
