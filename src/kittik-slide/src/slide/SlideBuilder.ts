@@ -4,7 +4,7 @@ import { ShapeRenderable } from 'kittik-shape-basic';
 import { Slide } from './Slide';
 
 export class SlideBuilder {
-  slide: Slide = new Slide();
+  private readonly slide: Slide = new Slide();
 
   withCursor (cursor: Canvas): this {
     this.slide.cursor = cursor;
