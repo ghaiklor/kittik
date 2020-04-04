@@ -1,7 +1,7 @@
 import { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
 import { Canvas } from 'terminal-canvas';
 import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
-import { Slide } from '../dist/slide/Slide';
+import { Slide } from '..';
 import { SlideOptions } from 'kittik-animation-slide';
 
 const cursor = Canvas.create().reset().hideCursor();
