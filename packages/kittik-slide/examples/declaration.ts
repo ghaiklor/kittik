@@ -52,6 +52,7 @@ const SlideOutRightAnimationDeclaration: AnimationDeclaration = {
 };
 
 const slide = new Slide(cursor, {
+  name: 'Hello, World!',
   shapes: [HelloShapeDeclaration],
   animations: [PrintAnimationDeclaration, SlideInLeftAnimationDeclaration, SlideOutRightAnimationDeclaration],
   order: [{
