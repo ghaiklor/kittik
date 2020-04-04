@@ -3,6 +3,7 @@
     "alwaysStrict": true,
     "composite": true,
     "declaration": true,
+    "declarationMap": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -22,6 +23,6 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "es6",
+    "target": "ES2019",
   }
 }
