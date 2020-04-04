@@ -27,7 +27,7 @@
     "postinstall": "npm run bootstrap",
     "publish": "lerna version --conventional-commits --exact --create-release github && lerna publish",
     "test": "lerna run test --stream --parallel",
-    "update": "find ./src -name package.json -maxdepth 2 -exec dirname {} \\; | xargs -o -L 1 npm-check --save-exact --update && lernaupdate --dedupe"
+    "update": "find ./packages -name package.json -maxdepth 2 -exec dirname {} \\; | xargs -o -L 1 npm-check --save-exact --update && lernaupdate --dedupe"
   },
   "devDependencies": {
     "git-cz": "4.3.1",

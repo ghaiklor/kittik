@@ -43,40 +43,40 @@ coverage:
 flags:
   kittik-animation-basic:
     paths:
-      - src/kittik-animation-basic
+      - packages/kittik-animation-basic
   kittik-animation-focus:
     paths:
-      - src/kittik-animation-focus
+      - packages/kittik-animation-focus
   kittik-animation-print:
     paths:
-      - src/kittik-animation-print
+      - packages/kittik-animation-print
   kittik-animation-slide:
     paths:
-      - src/kittik-animation-slide
+      - packages/kittik-animation-slide
   kittik-deck:
     paths:
-      - src/kittik-deck
+      - packages/kittik-deck
   kittik-parser:
     paths:
-      - src/kittik-parser
+      - packages/kittik-parser
   kittik-shape-basic:
     paths:
-      - src/kittik-shape-basic
+      - packages/kittik-shape-basic
   kittik-shape-code:
     paths:
-      - src/kittik-shape-code
+      - packages/kittik-shape-code
   kittik-shape-fig-text:
     paths:
-      - src/kittik-shape-fig-text
+      - packages/kittik-shape-fig-text
   kittik-shape-image:
     paths:
-      - src/kittik-shape-image
+      - packages/kittik-shape-image
   kittik-shape-rectangle:
     paths:
-      - src/kittik-shape-rectangle
+      - packages/kittik-shape-rectangle
   kittik-shape-text:
     paths:
-      - src/kittik-shape-text
+      - packages/kittik-shape-text
   kittik-slide:
     paths:
-      - src/kittik-slide
+      - packages/kittik-slide
