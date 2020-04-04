@@ -6,6 +6,7 @@ describe('SlideBuilder', () => {
   it('Should properly instantiate slide via builder', () => {
     const slide = SlideBuilder
       .start()
+      .withName('Hello, World')
       .withCursor(Canvas.create())
       .withShape(
         'Hello, World',
@@ -26,6 +27,7 @@ describe('SlideBuilder', () => {
       .withOrder('Hello, World', ['Print'])
       .end();
 
+    expect(slide.name).toBe('Hello, World');
     expect(slide.shapes.size).toBe(1);
     expect(slide.shapes.get('Hello, World')?.toObject()).toEqual({
       type: 'Text',

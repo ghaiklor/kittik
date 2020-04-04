@@ -6,6 +6,12 @@ import { Slide } from './Slide';
 export class SlideBuilder {
   private readonly slide: Slide = new Slide();
 
+  withName (name: string): this {
+    this.slide.name = name;
+
+    return this;
+  }
+
   withCursor (cursor: Canvas): this {
     this.slide.cursor = cursor;
 

@@ -23,10 +23,15 @@ export class Slide {
   readonly animations: Map<string, Animationable> = new Map();
   readonly order: OrderDeclaration[] = [];
   cursor: Canvas = Canvas.create();
+  name = 'Untitled Slide'
 
   constructor (cursor?: Canvas, declaration?: SlideDeclaration) {
     if (cursor !== undefined) {
       this.cursor = cursor;
+    }
+
+    if (declaration?.name !== undefined) {
+      this.name = declaration.name;
     }
 
     if (declaration?.shapes !== undefined) {
@@ -74,7 +79,7 @@ export class Slide {
 
   addShape (name: string, shape: ShapeRenderable, toOverride = false): void {
     if (this.shapes.has(name) && !toOverride) {
-      throw new Error(`Shape "${name}" already exists in slide`);
+      throw new Error(`Shape "${name}" already exists in slide "${this.name}"`);
     }
 
     this.shapes.set(name, shape);
@@ -82,18 +87,15 @@ export class Slide {
 
   addAnimation (name: string, animation: Animationable, toOverride = false): void {
     if (this.animations.has(name) && !toOverride) {
-      throw new Error(`Animation "${name}" already exists in slide`);
+      throw new Error(`Animation "${name}" already exists in slide "${this.name}"`);
     }
 
     this.animations.set(name, animation);
   }
 
   addOrder (shape: string, animations?: string[]): void {
-    if (this.order.findIndex(decl => decl.shape === shape) !== -1) {
-      throw new Error(
-        `You already have an ordering for "${shape}"\n` +
-        'Seems like it was defined somewhere before'
-      );
+    if (this.order.some(order => order.shape === shape)) {
+      throw new Error(`You already have an ordering for shape "${shape}" in slide "${this.name}"`);
     }
 
     this.order.push({ shape, animations });
@@ -114,7 +116,7 @@ export class Slide {
       const shapeToRender = shapes.get(order[i].shape);
       if (shapeToRender === undefined) {
         throw new Error(
-          `You specified shape "${order[i].shape}" as part of ordering, but it does not exist in shapes declaration.` +
+          `You specified shape "${order[i].shape}" in slide "${this.name}" as part of ordering, but it does not exist in shapes declaration.\n` +
           'Maybe you forgot to create a shape you want to order or it is a typo in ordering itself.'
         );
       }
@@ -140,11 +142,12 @@ export class Slide {
   }
 
   toObject (): SlideDeclaration {
+    const name = this.name;
     const shapes = [...this.shapes.entries()].map(([name, shape]) => ({ ...shape.toObject(), name }));
     const animations = [...this.animations.entries()].map(([name, animation]) => ({ ...animation.toObject(), name }));
     const order = this.order;
 
-    return { shapes, animations, order };
+    return { name, shapes, animations, order };
   }
 
   toJSON (): string {
