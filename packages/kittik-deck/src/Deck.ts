@@ -77,7 +77,7 @@ export class Deck {
   addAnimation (name: string, animation: Animationable): void {
     const slidesWithAnimation = this.slides.filter(slide => slide.animations.has(name)).map(slide => slide.name);
     if (slidesWithAnimation.length > 0) {
-      throw new Error(`Slides [${slidesWithAnimation.join(', ')}] already have an animation with the name "${name}`);
+      throw new Error(`Slides [${slidesWithAnimation.join(', ')}] already have an animation with the name "${name}"`);
     }
 
     this.slides.forEach(slide => slide.addAnimation(name, animation));
