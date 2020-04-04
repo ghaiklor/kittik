@@ -1,35 +1,44 @@
+import { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
 import { DeckDeclaration } from './DeckDeclaration';
+import { ShapeRenderable } from 'kittik-shape-basic';
 import { Slide } from 'kittik-slide';
 import readline from 'readline';
 import tty from 'tty';
 
+export { AnimationBuilder } from 'kittik-slide';
+export { DeckBuilder } from './DeckBuilder';
 export { DeckDeclaration } from './DeckDeclaration';
+export { ShapeBuilder } from 'kittik-slide';
+export { SlideBuilder } from 'kittik-slide';
 
 export class Deck {
-  private readonly cursor: Canvas = Canvas.create().saveScreen().reset().hideCursor()
-  private readonly slides: Slide[]
+  private readonly slides: Slide[] = []
   private isRendering = false;
   private currentSlideIndex = 0;
+  cursor: Canvas = Canvas.create().saveScreen().reset().hideCursor()
 
-  constructor (declaration: DeckDeclaration) {
-    if (declaration.cursor !== undefined) {
+  constructor (declaration?: DeckDeclaration) {
+    if (declaration?.cursor !== undefined) {
       this.cursor = declaration.cursor;
     }
 
-    this.slides = this.initSlides(declaration);
+    if (declaration !== undefined) {
+      this.initSlides(declaration);
+    }
+
     this.initKeyboard();
   }
 
-  private initSlides (declaration: DeckDeclaration): Slide[] {
+  private initSlides (declaration: DeckDeclaration): void {
     const globalShapes = declaration.shapes ?? [];
     const globalAnimations = declaration.animations ?? [];
 
-    return declaration.slides.map(slide => Slide.create(this.cursor, {
+    declaration.slides.forEach(slide => this.addSlide(Slide.create(this.cursor, {
       ...slide,
       shapes: globalShapes.concat(slide.shapes),
       animations: globalAnimations.concat(slide.animations ?? [])
-    }));
+    })));
   }
 
   private initKeyboard (): void {
@@ -54,6 +63,28 @@ export class Deck {
         this.exit();
         break;
     }
+  }
+
+  addShape (name: string, shape: ShapeRenderable): void {
+    const slidesWithShape = this.slides.filter(slide => slide.shapes.has(name)).map(slide => slide.name);
+    if (slidesWithShape.length > 0) {
+      throw new Error(`Slides [${slidesWithShape.join(', ')}] already have a shape with the name "${name}"`);
+    }
+
+    this.slides.forEach(slide => slide.addShape(name, shape));
+  }
+
+  addAnimation (name: string, animation: Animationable): void {
+    const slidesWithAnimation = this.slides.filter(slide => slide.animations.has(name)).map(slide => slide.name);
+    if (slidesWithAnimation.length > 0) {
+      throw new Error(`Slides [${slidesWithAnimation.join(', ')}] already have an animation with the name "${name}`);
+    }
+
+    this.slides.forEach(slide => slide.addAnimation(name, animation));
+  }
+
+  addSlide (slide: Slide): void {
+    this.slides.push(slide);
   }
 
   async renderSlide (index = this.currentSlideIndex): Promise<void> {

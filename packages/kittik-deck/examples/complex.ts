@@ -45,7 +45,7 @@ const ThanksArtShapeOptions: Partial<FigTextOptions> = {
 
 new Deck({
   shapes: [{
-    name: 'Text',
+    name: 'Shape: Text',
     type: 'Text',
     options: {
       text: 'Shape: Text',
@@ -93,6 +93,7 @@ new Deck({
     options: FocusAnimationOptions
   }],
   slides: [{
+    name: 'Hello, Kittik',
     shapes: [{
       name: 'Kittik',
       type: 'FigText',
@@ -103,6 +104,7 @@ new Deck({
       animations: ['Print']
     }]
   }, {
+    name: 'Demo #1',
     shapes: [{
       name: 'Demo',
       type: 'Text',
@@ -117,30 +119,35 @@ new Deck({
       animations: ['Print']
     }]
   }, {
+    name: 'Demo #2',
     shapes: [],
     order: [{
-      shape: 'Text',
+      shape: 'Shape: Text',
       animations: ['Print']
     }]
   }, {
+    name: 'Demo #3',
     shapes: [],
     order: [{
       shape: 'Rectangle',
       animations: ['Slide In', 'Focus']
     }]
   }, {
+    name: 'Demo #4',
     shapes: [],
     order: [{
       shape: 'FigText',
       animations: ['Slide In', 'Focus']
     }]
   }, {
+    name: 'Demo #5',
     shapes: [],
     order: [{
       shape: 'Code',
       animations: ['Slide In']
     }]
   }, {
+    name: 'Demo #6',
     shapes: [{
       name: 'Text',
       type: 'FigText',
@@ -151,6 +158,7 @@ new Deck({
       animations: ['Print']
     }]
   }, {
+    name: 'Demo #7',
     shapes: [{
       name: 'Text',
       type: 'Text',
@@ -165,6 +173,7 @@ new Deck({
       animations: ['Print']
     }]
   }, {
+    name: 'Demo #8',
     shapes: [{
       name: 'Text',
       type: 'Text',
@@ -179,6 +188,7 @@ new Deck({
       animations: ['Print']
     }]
   }, {
+    name: 'Demo #9',
     shapes: [{
       name: 'Text',
       type: 'Text',
@@ -193,6 +203,7 @@ new Deck({
       animations: ['Print']
     }]
   }, {
+    name: 'Demo #10',
     shapes: [{
       name: 'Text',
       type: 'FigText',
