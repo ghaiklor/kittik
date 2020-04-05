@@ -10,7 +10,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:import/recommended",
-    "plugin:jest/recommended",
+    "plugin:jest/all",
     "plugin:node/recommended",
     "plugin:promise/recommended",
     "standard-with-typescript"

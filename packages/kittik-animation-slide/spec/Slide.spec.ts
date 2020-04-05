@@ -3,20 +3,24 @@ import { Rectangle } from 'kittik-shape-rectangle';
 import { Slide } from '../src/Slide';
 import { SlideObject } from '../src/SlideObject';
 
-describe('Animation::Slide', () => {
-  it('Should properly parse coordinates for inUp', async () => {
+describe('slide animation', () => {
+  it('should properly parse coordinates for inUp', async () => {
+    expect.hasAssertions();
+
     const shape = new Rectangle({ height: '5' });
     const animation = new Slide({ direction: 'inUp' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
     await animation.animate(shape);
 
-    expect(spy).toBeCalledTimes(2);
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'y', startValue: -5, endValue: 0 }));
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: -5, endValue: 0 }));
   });
 
-  it('Should properly parse coordinates for inDown', async () => {
+  it('should properly parse coordinates for inDown', async () => {
+    expect.hasAssertions();
+
     const cursor = new Canvas();
     const shape = new Rectangle({ height: '5' });
     const animation = new Slide({ direction: 'inDown' });
@@ -24,24 +28,28 @@ describe('Animation::Slide', () => {
 
     await animation.animate(shape);
 
-    expect(spy).toBeCalledTimes(2);
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'y', startValue: cursor.height + 5, endValue: 0 }));
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: cursor.height + 5, endValue: 0 }));
   });
 
-  it('Should properly parse coordinates for inLeft', async () => {
+  it('should properly parse coordinates for inLeft', async () => {
+    expect.hasAssertions();
+
     const shape = new Rectangle({ width: '15' });
     const animation = new Slide({ direction: 'inLeft' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
     await animation.animate(shape);
 
-    expect(spy).toBeCalledTimes(2);
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'x', startValue: -15, endValue: 0 }));
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: -15, endValue: 0 }));
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
   });
 
-  it('Should properly parse coordinates for inRight', async () => {
+  it('should properly parse coordinates for inRight', async () => {
+    expect.hasAssertions();
+
     const cursor = new Canvas();
     const shape = new Rectangle({ width: '15' });
     const animation = new Slide({ direction: 'inRight' });
@@ -49,24 +57,28 @@ describe('Animation::Slide', () => {
 
     await animation.animate(shape);
 
-    expect(spy).toBeCalledTimes(2);
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'x', startValue: cursor.width + 15, endValue: 0 }));
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: cursor.width + 15, endValue: 0 }));
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
   });
 
-  it('Should properly parse coordinates for outUp', async () => {
+  it('should properly parse coordinates for outUp', async () => {
+    expect.hasAssertions();
+
     const shape = new Rectangle({ height: '5' });
     const animation = new Slide({ direction: 'outUp' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
     await animation.animate(shape);
 
-    expect(spy).toBeCalledTimes(2);
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: -5 }));
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: -5 }));
   });
 
-  it('Should properly parse coordinates for outDown', async () => {
+  it('should properly parse coordinates for outDown', async () => {
+    expect.hasAssertions();
+
     const cursor = new Canvas();
     const shape = new Rectangle({ height: '5' });
     const animation = new Slide({ direction: 'outDown' });
@@ -74,24 +86,28 @@ describe('Animation::Slide', () => {
 
     await animation.animate(shape);
 
-    expect(spy).toBeCalledTimes(2);
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: cursor.height + 5 }));
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: cursor.height + 5 }));
   });
 
-  it('Should properly parse coordinates for outLeft', async () => {
+  it('should properly parse coordinates for outLeft', async () => {
+    expect.hasAssertions();
+
     const shape = new Rectangle({ width: '15' });
     const animation = new Slide({ direction: 'outLeft' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
 
     await animation.animate(shape);
 
-    expect(spy).toBeCalledTimes(2);
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: -15 }));
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: -15 }));
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
   });
 
-  it('Should properly parse coordinates for outRight', async () => {
+  it('should properly parse coordinates for outRight', async () => {
+    expect.hasAssertions();
+
     const cursor = new Canvas();
     const shape = new Rectangle();
     const animation = new Slide({ direction: 'outRight' });
@@ -99,16 +115,18 @@ describe('Animation::Slide', () => {
 
     await animation.animate(shape);
 
-    expect(spy).toBeCalledTimes(2);
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: cursor.width + 1 }));
-    expect(spy).toBeCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
+    expect(spy).toHaveBeenCalledTimes(2);
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: cursor.width + 1 }));
+    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
   });
 
-  it('Should properly serialize animation to Object', () => {
+  it('should properly serialize animation to Object', () => {
+    expect.hasAssertions();
+
     const animation = new Slide();
     const obj = animation.toObject();
 
-    expect(obj).toEqual({
+    expect(obj).toStrictEqual({
       type: 'Slide',
       options: {
         duration: 1000,
@@ -118,7 +136,9 @@ describe('Animation::Slide', () => {
     });
   });
 
-  it('Should properly create Animation instance from object', () => {
+  it('should properly create Animation instance from object', () => {
+    expect.hasAssertions();
+
     const obj: SlideObject = {
       type: 'Slide',
       options: {

@@ -1,7 +1,9 @@
 import * as EASING from '../src/Easing';
 
-describe('Animation::Easing', () => {
-  it('Should properly calculate all the easing functions', () => {
+describe('easing', () => {
+  it('should properly calculate all the easing functions', () => {
+    expect.hasAssertions();
+
     expect(EASING.inQuad(100, 1000, 20, 1000)).toBeCloseTo(1000.2);
     expect(EASING.outQuad(100, 1000, 20, 1000)).toBeCloseTo(1003.8);
     expect(EASING.inOutQuad(100, 1000, 20, 1000)).toBeCloseTo(1000.4);

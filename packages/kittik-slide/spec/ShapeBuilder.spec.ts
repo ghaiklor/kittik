@@ -1,7 +1,9 @@
 import { ShapeBuilder } from '../src/shape/ShapeBuilder';
 
-describe('ShapeBuilder', () => {
-  it('Should properly build the shape via builder', () => {
+describe('shape builder', () => {
+  it('should properly build the shape via builder', () => {
+    expect.hasAssertions();
+
     const shape = ShapeBuilder
       .start('Rectangle')
       .withType('Rectangle')
@@ -14,7 +16,7 @@ describe('ShapeBuilder', () => {
       .withForeground('black')
       .end();
 
-    expect(shape.toObject()).toEqual({
+    expect(shape.toObject()).toStrictEqual({
       type: 'Rectangle',
       options: {
         background: 'white',
@@ -28,13 +30,15 @@ describe('ShapeBuilder', () => {
     });
   });
 
-  it('Should properly build the shape via withOptions()', () => {
+  it('should properly build the shape via withOptions()', () => {
+    expect.hasAssertions();
+
     const shape = ShapeBuilder
       .start('Rectangle')
       .withOptions({ text: 'Hello, World' })
       .end();
 
-    expect(shape.toObject()).toEqual({
+    expect(shape.toObject()).toStrictEqual({
       type: 'Rectangle',
       options: {
         background: 'none',
@@ -48,13 +52,15 @@ describe('ShapeBuilder', () => {
     });
   });
 
-  it('Should properly throw an error if shape is absent', () => {
+  it('should properly throw an error if shape is absent', () => {
+    expect.hasAssertions();
+
     expect(() => {
       // This is a corner case where I check if builder throws an error when providing wrong type
       // Since this case has been covered by type system of TypeScript, I need to disable it
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       ShapeBuilder.start('Nonsense').end();
-    }).toThrowError('Shape "Nonsense" you tried to build does not exist');
+    }).toThrow('Shape "Nonsense" you tried to build does not exist');
   });
 });

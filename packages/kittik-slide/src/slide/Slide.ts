@@ -93,7 +93,7 @@ export class Slide {
     this.animations.set(name, animation);
   }
 
-  addOrder (shape: string, animations?: string[]): void {
+  addOrder (shape: string, animations: string[] = []): void {
     if (this.order.some(order => order.shape === shape)) {
       throw new Error(`You already have an ordering for shape "${shape}" in slide "${this.name}"`);
     }

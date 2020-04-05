@@ -3,20 +3,24 @@ import { Text } from '../src/Text';
 import { TextObject } from '../src/TextObject';
 import { TextOptions } from '../src/TextOptions';
 
-describe('Shape::Text', () => {
-  it('Should properly get actual width of the shape', () => {
+describe('text shape', () => {
+  it('should properly get actual width of the shape', () => {
+    expect.hasAssertions();
+
     const shape = new Text({ text: 'test' });
-
-    expect(shape.width).toEqual('4');
+    expect(shape.width).toStrictEqual('4');
   });
 
-  it('Should properly get actual height of the shape', () => {
+  it('should properly get actual height of the shape', () => {
+    expect.hasAssertions();
+
     const text = new Text({ text: 'test' });
-
-    expect(text.height).toEqual('1');
+    expect(text.height).toStrictEqual('1');
   });
 
-  it('Should properly render with default options', () => {
+  it('should properly render with default options', () => {
+    expect.hasAssertions();
+
     const cursor = Canvas.create();
     const text = new Text();
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
@@ -32,29 +36,31 @@ describe('Shape::Text', () => {
 
     text.render(cursor);
 
-    expect(foregroundSpy).toBeCalledTimes(1);
-    expect(foregroundSpy).toBeCalledWith('none');
-    expect(backgroundSpy).toBeCalledTimes(1);
-    expect(backgroundSpy).toBeCalledWith('none');
-    expect(boldSpy).toBeCalledTimes(1);
-    expect(boldSpy).toBeCalledWith(false);
-    expect(dimSpy).toBeCalledTimes(1);
-    expect(dimSpy).toBeCalledWith(false);
-    expect(underlinedSpy).toBeCalledTimes(1);
-    expect(underlinedSpy).toBeCalledWith(false);
-    expect(blinkSpy).toBeCalledTimes(1);
-    expect(blinkSpy).toBeCalledWith(false);
-    expect(reverseSpy).toBeCalledTimes(1);
-    expect(reverseSpy).toBeCalledWith(false);
-    expect(hiddenSpy).toBeCalledTimes(1);
-    expect(hiddenSpy).toBeCalledWith(false);
-    expect(moveToSpy).toBeCalledTimes(1);
-    expect(moveToSpy).toBeCalledWith(0, 0);
-    expect(writeSpy).toBeCalledTimes(1);
-    expect(writeSpy).toBeCalledWith('');
+    expect(foregroundSpy).toHaveBeenCalledTimes(1);
+    expect(foregroundSpy).toHaveBeenCalledWith('none');
+    expect(backgroundSpy).toHaveBeenCalledTimes(1);
+    expect(backgroundSpy).toHaveBeenCalledWith('none');
+    expect(boldSpy).toHaveBeenCalledTimes(1);
+    expect(boldSpy).toHaveBeenCalledWith(false);
+    expect(dimSpy).toHaveBeenCalledTimes(1);
+    expect(dimSpy).toHaveBeenCalledWith(false);
+    expect(underlinedSpy).toHaveBeenCalledTimes(1);
+    expect(underlinedSpy).toHaveBeenCalledWith(false);
+    expect(blinkSpy).toHaveBeenCalledTimes(1);
+    expect(blinkSpy).toHaveBeenCalledWith(false);
+    expect(reverseSpy).toHaveBeenCalledTimes(1);
+    expect(reverseSpy).toHaveBeenCalledWith(false);
+    expect(hiddenSpy).toHaveBeenCalledTimes(1);
+    expect(hiddenSpy).toHaveBeenCalledWith(false);
+    expect(moveToSpy).toHaveBeenCalledTimes(1);
+    expect(moveToSpy).toHaveBeenCalledWith(0, 0);
+    expect(writeSpy).toHaveBeenCalledTimes(1);
+    expect(writeSpy).toHaveBeenCalledWith('');
   });
 
-  it('Should properly render with text align to left', () => {
+  it('should properly render with text align to left', () => {
+    expect.hasAssertions();
+
     const cursor = Canvas.create();
     const text = new Text({ text: 'test\nlongest', align: 'left' });
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
@@ -70,31 +76,33 @@ describe('Shape::Text', () => {
 
     text.render(cursor);
 
-    expect(foregroundSpy).toBeCalledTimes(1);
-    expect(foregroundSpy).toBeCalledWith('none');
-    expect(backgroundSpy).toBeCalledTimes(1);
-    expect(backgroundSpy).toBeCalledWith('none');
-    expect(boldSpy).toBeCalledTimes(1);
-    expect(boldSpy).toBeCalledWith(false);
-    expect(dimSpy).toBeCalledTimes(1);
-    expect(dimSpy).toBeCalledWith(false);
-    expect(underlinedSpy).toBeCalledTimes(1);
-    expect(underlinedSpy).toBeCalledWith(false);
-    expect(blinkSpy).toBeCalledTimes(1);
-    expect(blinkSpy).toBeCalledWith(false);
-    expect(reverseSpy).toBeCalledTimes(1);
-    expect(reverseSpy).toBeCalledWith(false);
-    expect(hiddenSpy).toBeCalledTimes(1);
-    expect(hiddenSpy).toBeCalledWith(false);
-    expect(moveToSpy).toBeCalledTimes(2);
-    expect(moveToSpy).toBeCalledWith(0, 0);
-    expect(moveToSpy).toBeCalledWith(0, 1);
-    expect(writeSpy).toBeCalledTimes(2);
-    expect(writeSpy).toBeCalledWith('test');
-    expect(writeSpy).toBeCalledWith('longest');
+    expect(foregroundSpy).toHaveBeenCalledTimes(1);
+    expect(foregroundSpy).toHaveBeenCalledWith('none');
+    expect(backgroundSpy).toHaveBeenCalledTimes(1);
+    expect(backgroundSpy).toHaveBeenCalledWith('none');
+    expect(boldSpy).toHaveBeenCalledTimes(1);
+    expect(boldSpy).toHaveBeenCalledWith(false);
+    expect(dimSpy).toHaveBeenCalledTimes(1);
+    expect(dimSpy).toHaveBeenCalledWith(false);
+    expect(underlinedSpy).toHaveBeenCalledTimes(1);
+    expect(underlinedSpy).toHaveBeenCalledWith(false);
+    expect(blinkSpy).toHaveBeenCalledTimes(1);
+    expect(blinkSpy).toHaveBeenCalledWith(false);
+    expect(reverseSpy).toHaveBeenCalledTimes(1);
+    expect(reverseSpy).toHaveBeenCalledWith(false);
+    expect(hiddenSpy).toHaveBeenCalledTimes(1);
+    expect(hiddenSpy).toHaveBeenCalledWith(false);
+    expect(moveToSpy).toHaveBeenCalledTimes(2);
+    expect(moveToSpy).toHaveBeenCalledWith(0, 0);
+    expect(moveToSpy).toHaveBeenCalledWith(0, 1);
+    expect(writeSpy).toHaveBeenCalledTimes(2);
+    expect(writeSpy).toHaveBeenCalledWith('test');
+    expect(writeSpy).toHaveBeenCalledWith('longest');
   });
 
-  it('Should properly render with text align to center', () => {
+  it('should properly render with text align to center', () => {
+    expect.hasAssertions();
+
     const cursor = Canvas.create();
     const text = new Text({ text: 'test\nlongest', align: 'center' });
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
@@ -110,31 +118,33 @@ describe('Shape::Text', () => {
 
     text.render(cursor);
 
-    expect(foregroundSpy).toBeCalledTimes(1);
-    expect(foregroundSpy).toBeCalledWith('none');
-    expect(backgroundSpy).toBeCalledTimes(1);
-    expect(backgroundSpy).toBeCalledWith('none');
-    expect(boldSpy).toBeCalledTimes(1);
-    expect(boldSpy).toBeCalledWith(false);
-    expect(dimSpy).toBeCalledTimes(1);
-    expect(dimSpy).toBeCalledWith(false);
-    expect(underlinedSpy).toBeCalledTimes(1);
-    expect(underlinedSpy).toBeCalledWith(false);
-    expect(blinkSpy).toBeCalledTimes(1);
-    expect(blinkSpy).toBeCalledWith(false);
-    expect(reverseSpy).toBeCalledTimes(1);
-    expect(reverseSpy).toBeCalledWith(false);
-    expect(hiddenSpy).toBeCalledTimes(1);
-    expect(hiddenSpy).toBeCalledWith(false);
-    expect(moveToSpy).toBeCalledTimes(2);
-    expect(moveToSpy).toBeCalledWith(1, 0);
-    expect(moveToSpy).toBeCalledWith(0, 1);
-    expect(writeSpy).toBeCalledTimes(2);
-    expect(writeSpy).toBeCalledWith('test');
-    expect(writeSpy).toBeCalledWith('longest');
+    expect(foregroundSpy).toHaveBeenCalledTimes(1);
+    expect(foregroundSpy).toHaveBeenCalledWith('none');
+    expect(backgroundSpy).toHaveBeenCalledTimes(1);
+    expect(backgroundSpy).toHaveBeenCalledWith('none');
+    expect(boldSpy).toHaveBeenCalledTimes(1);
+    expect(boldSpy).toHaveBeenCalledWith(false);
+    expect(dimSpy).toHaveBeenCalledTimes(1);
+    expect(dimSpy).toHaveBeenCalledWith(false);
+    expect(underlinedSpy).toHaveBeenCalledTimes(1);
+    expect(underlinedSpy).toHaveBeenCalledWith(false);
+    expect(blinkSpy).toHaveBeenCalledTimes(1);
+    expect(blinkSpy).toHaveBeenCalledWith(false);
+    expect(reverseSpy).toHaveBeenCalledTimes(1);
+    expect(reverseSpy).toHaveBeenCalledWith(false);
+    expect(hiddenSpy).toHaveBeenCalledTimes(1);
+    expect(hiddenSpy).toHaveBeenCalledWith(false);
+    expect(moveToSpy).toHaveBeenCalledTimes(2);
+    expect(moveToSpy).toHaveBeenCalledWith(1, 0);
+    expect(moveToSpy).toHaveBeenCalledWith(0, 1);
+    expect(writeSpy).toHaveBeenCalledTimes(2);
+    expect(writeSpy).toHaveBeenCalledWith('test');
+    expect(writeSpy).toHaveBeenCalledWith('longest');
   });
 
-  it('Should properly render with text align to right', () => {
+  it('should properly render with text align to right', () => {
+    expect.hasAssertions();
+
     const cursor = Canvas.create();
     const text = new Text({ text: 'test\nlongest', align: 'right' });
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
@@ -150,31 +160,33 @@ describe('Shape::Text', () => {
 
     text.render(cursor);
 
-    expect(foregroundSpy).toBeCalledTimes(1);
-    expect(foregroundSpy).toBeCalledWith('none');
-    expect(backgroundSpy).toBeCalledTimes(1);
-    expect(backgroundSpy).toBeCalledWith('none');
-    expect(boldSpy).toBeCalledTimes(1);
-    expect(boldSpy).toBeCalledWith(false);
-    expect(dimSpy).toBeCalledTimes(1);
-    expect(dimSpy).toBeCalledWith(false);
-    expect(underlinedSpy).toBeCalledTimes(1);
-    expect(underlinedSpy).toBeCalledWith(false);
-    expect(blinkSpy).toBeCalledTimes(1);
-    expect(blinkSpy).toBeCalledWith(false);
-    expect(reverseSpy).toBeCalledTimes(1);
-    expect(reverseSpy).toBeCalledWith(false);
-    expect(hiddenSpy).toBeCalledTimes(1);
-    expect(hiddenSpy).toBeCalledWith(false);
-    expect(moveToSpy).toBeCalledTimes(2);
-    expect(moveToSpy).toBeCalledWith(3, 0);
-    expect(moveToSpy).toBeCalledWith(0, 1);
-    expect(writeSpy).toBeCalledTimes(2);
-    expect(writeSpy).toBeCalledWith('test');
-    expect(writeSpy).toBeCalledWith('longest');
+    expect(foregroundSpy).toHaveBeenCalledTimes(1);
+    expect(foregroundSpy).toHaveBeenCalledWith('none');
+    expect(backgroundSpy).toHaveBeenCalledTimes(1);
+    expect(backgroundSpy).toHaveBeenCalledWith('none');
+    expect(boldSpy).toHaveBeenCalledTimes(1);
+    expect(boldSpy).toHaveBeenCalledWith(false);
+    expect(dimSpy).toHaveBeenCalledTimes(1);
+    expect(dimSpy).toHaveBeenCalledWith(false);
+    expect(underlinedSpy).toHaveBeenCalledTimes(1);
+    expect(underlinedSpy).toHaveBeenCalledWith(false);
+    expect(blinkSpy).toHaveBeenCalledTimes(1);
+    expect(blinkSpy).toHaveBeenCalledWith(false);
+    expect(reverseSpy).toHaveBeenCalledTimes(1);
+    expect(reverseSpy).toHaveBeenCalledWith(false);
+    expect(hiddenSpy).toHaveBeenCalledTimes(1);
+    expect(hiddenSpy).toHaveBeenCalledWith(false);
+    expect(moveToSpy).toHaveBeenCalledTimes(2);
+    expect(moveToSpy).toHaveBeenCalledWith(3, 0);
+    expect(moveToSpy).toHaveBeenCalledWith(0, 1);
+    expect(writeSpy).toHaveBeenCalledTimes(2);
+    expect(writeSpy).toHaveBeenCalledWith('test');
+    expect(writeSpy).toHaveBeenCalledWith('longest');
   });
 
-  it('Should properly render with custom options', () => {
+  it('should properly render with custom options', () => {
+    expect.hasAssertions();
+
     const cursor = Canvas.create();
     const text = new Text({
       text: 'Hello, World',
@@ -204,29 +216,31 @@ describe('Shape::Text', () => {
 
     text.render(cursor);
 
-    expect(foregroundSpy).toBeCalledTimes(1);
-    expect(foregroundSpy).toBeCalledWith('black');
-    expect(backgroundSpy).toBeCalledTimes(1);
-    expect(backgroundSpy).toBeCalledWith('yellow');
-    expect(boldSpy).toBeCalledTimes(1);
-    expect(boldSpy).toBeCalledWith(true);
-    expect(dimSpy).toBeCalledTimes(1);
-    expect(dimSpy).toBeCalledWith(true);
-    expect(underlinedSpy).toBeCalledTimes(1);
-    expect(underlinedSpy).toBeCalledWith(true);
-    expect(blinkSpy).toBeCalledTimes(1);
-    expect(blinkSpy).toBeCalledWith(true);
-    expect(reverseSpy).toBeCalledTimes(1);
-    expect(reverseSpy).toBeCalledWith(true);
-    expect(hiddenSpy).toBeCalledTimes(1);
-    expect(hiddenSpy).toBeCalledWith(true);
-    expect(moveToSpy).toBeCalledTimes(1);
-    expect(moveToSpy).toBeCalledWith(0, 10);
-    expect(writeSpy).toBeCalledTimes(1);
-    expect(writeSpy).toBeCalledWith('Hello, World');
+    expect(foregroundSpy).toHaveBeenCalledTimes(1);
+    expect(foregroundSpy).toHaveBeenCalledWith('black');
+    expect(backgroundSpy).toHaveBeenCalledTimes(1);
+    expect(backgroundSpy).toHaveBeenCalledWith('yellow');
+    expect(boldSpy).toHaveBeenCalledTimes(1);
+    expect(boldSpy).toHaveBeenCalledWith(true);
+    expect(dimSpy).toHaveBeenCalledTimes(1);
+    expect(dimSpy).toHaveBeenCalledWith(true);
+    expect(underlinedSpy).toHaveBeenCalledTimes(1);
+    expect(underlinedSpy).toHaveBeenCalledWith(true);
+    expect(blinkSpy).toHaveBeenCalledTimes(1);
+    expect(blinkSpy).toHaveBeenCalledWith(true);
+    expect(reverseSpy).toHaveBeenCalledTimes(1);
+    expect(reverseSpy).toHaveBeenCalledWith(true);
+    expect(hiddenSpy).toHaveBeenCalledTimes(1);
+    expect(hiddenSpy).toHaveBeenCalledWith(true);
+    expect(moveToSpy).toHaveBeenCalledTimes(1);
+    expect(moveToSpy).toHaveBeenCalledWith(0, 10);
+    expect(writeSpy).toHaveBeenCalledTimes(1);
+    expect(writeSpy).toHaveBeenCalledWith('Hello, World');
   });
 
-  it('Should properly render multi-lined text', () => {
+  it('should properly render multi-lined text', () => {
+    expect.hasAssertions();
+
     const cursor = Canvas.create();
     const text = new Text({ text: 'Hello\nWorld' });
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
@@ -242,35 +256,37 @@ describe('Shape::Text', () => {
 
     text.render(cursor);
 
-    expect(foregroundSpy).toBeCalledTimes(1);
-    expect(foregroundSpy).toBeCalledWith('none');
-    expect(backgroundSpy).toBeCalledTimes(1);
-    expect(backgroundSpy).toBeCalledWith('none');
-    expect(boldSpy).toBeCalledTimes(1);
-    expect(boldSpy).toBeCalledWith(false);
-    expect(dimSpy).toBeCalledTimes(1);
-    expect(dimSpy).toBeCalledWith(false);
-    expect(underlinedSpy).toBeCalledTimes(1);
-    expect(underlinedSpy).toBeCalledWith(false);
-    expect(blinkSpy).toBeCalledTimes(1);
-    expect(blinkSpy).toBeCalledWith(false);
-    expect(reverseSpy).toBeCalledTimes(1);
-    expect(reverseSpy).toBeCalledWith(false);
-    expect(hiddenSpy).toBeCalledTimes(1);
-    expect(hiddenSpy).toBeCalledWith(false);
-    expect(moveToSpy).toBeCalledTimes(2);
-    expect(moveToSpy).toBeCalledWith(0, 0);
-    expect(moveToSpy).toBeCalledWith(0, 1);
-    expect(writeSpy).toBeCalledTimes(2);
-    expect(writeSpy).toBeCalledWith('Hello');
-    expect(writeSpy).toBeCalledWith('World');
+    expect(foregroundSpy).toHaveBeenCalledTimes(1);
+    expect(foregroundSpy).toHaveBeenCalledWith('none');
+    expect(backgroundSpy).toHaveBeenCalledTimes(1);
+    expect(backgroundSpy).toHaveBeenCalledWith('none');
+    expect(boldSpy).toHaveBeenCalledTimes(1);
+    expect(boldSpy).toHaveBeenCalledWith(false);
+    expect(dimSpy).toHaveBeenCalledTimes(1);
+    expect(dimSpy).toHaveBeenCalledWith(false);
+    expect(underlinedSpy).toHaveBeenCalledTimes(1);
+    expect(underlinedSpy).toHaveBeenCalledWith(false);
+    expect(blinkSpy).toHaveBeenCalledTimes(1);
+    expect(blinkSpy).toHaveBeenCalledWith(false);
+    expect(reverseSpy).toHaveBeenCalledTimes(1);
+    expect(reverseSpy).toHaveBeenCalledWith(false);
+    expect(hiddenSpy).toHaveBeenCalledTimes(1);
+    expect(hiddenSpy).toHaveBeenCalledWith(false);
+    expect(moveToSpy).toHaveBeenCalledTimes(2);
+    expect(moveToSpy).toHaveBeenCalledWith(0, 0);
+    expect(moveToSpy).toHaveBeenCalledWith(0, 1);
+    expect(writeSpy).toHaveBeenCalledTimes(2);
+    expect(writeSpy).toHaveBeenCalledWith('Hello');
+    expect(writeSpy).toHaveBeenCalledWith('World');
   });
 
-  it('Should properly serialize shape to Object representation', () => {
+  it('should properly serialize shape to Object representation', () => {
+    expect.hasAssertions();
+
     const text = Text.create({ text: 'test', bold: true } as TextOptions);
     const obj = text.toObject();
 
-    expect(obj).toEqual({
+    expect(obj).toStrictEqual({
       type: 'Text',
       options: {
         align: 'center',
@@ -291,7 +307,9 @@ describe('Shape::Text', () => {
     });
   });
 
-  it('Should properly create text from Object representation', () => {
+  it('should properly create text from Object representation', () => {
+    expect.hasAssertions();
+
     const obj: TextObject = {
       type: 'Text',
       options: {
@@ -307,19 +325,19 @@ describe('Shape::Text', () => {
     const text = Text.fromObject<Text>(obj);
 
     expect(text).toBeInstanceOf(Text);
-    expect(text.text).toEqual('test');
-    expect(text.width).toEqual('4');
-    expect(text.height).toEqual('1');
-    expect(text.x).toEqual('0');
-    expect(text.y).toEqual('0');
-    expect(text.background).toEqual('none');
-    expect(text.foreground).toEqual('none');
-    expect(text.bold).toBeTruthy();
-    expect(text.dim).toBeFalsy();
-    expect(text.underlined).toBeTruthy();
-    expect(text.blink).toBeFalsy();
-    expect(text.reverse).toBeFalsy();
-    expect(text.hidden).toBeFalsy();
-    expect(text.align).toEqual('right');
+    expect(text.text).toStrictEqual('test');
+    expect(text.width).toStrictEqual('4');
+    expect(text.height).toStrictEqual('1');
+    expect(text.x).toStrictEqual('0');
+    expect(text.y).toStrictEqual('0');
+    expect(text.background).toStrictEqual('none');
+    expect(text.foreground).toStrictEqual('none');
+    expect(text.bold).toBe(true);
+    expect(text.dim).toBe(false);
+    expect(text.underlined).toBe(true);
+    expect(text.blink).toBe(false);
+    expect(text.reverse).toBe(false);
+    expect(text.hidden).toBe(false);
+    expect(text.align).toStrictEqual('right');
   });
 });

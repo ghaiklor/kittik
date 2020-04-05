@@ -1,20 +1,24 @@
 import { Canvas } from 'terminal-canvas';
 import { FigText, FigTextOptions } from '../src/FigText';
 
-describe('Shape::FigText', () => {
-  it('Should properly get actual width of the shape', () => {
-    const shape = new FigText({ text: 'test' });
+describe('fig text shape', () => {
+  it('should properly get actual width of the shape', () => {
+    expect.hasAssertions();
 
-    expect(shape.width).toEqual('19');
+    const shape = new FigText({ text: 'test' });
+    expect(shape.width).toStrictEqual('19');
   });
 
-  it('Should properly get actual height of the shape', () => {
-    const shape = new FigText({ text: 'test' });
+  it('should properly get actual height of the shape', () => {
+    expect.hasAssertions();
 
-    expect(shape.height).toEqual('6');
+    const shape = new FigText({ text: 'test' });
+    expect(shape.height).toStrictEqual('6');
   });
 
-  it('Should properly render with default options', () => {
+  it('should properly render with default options', () => {
+    expect.hasAssertions();
+
     const cursor = new Canvas();
     const shape = new FigText();
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
@@ -24,15 +28,17 @@ describe('Shape::FigText', () => {
 
     shape.render(cursor);
 
-    expect(backgroundSpy).toBeCalledTimes(1);
-    expect(backgroundSpy).toBeCalledWith('none');
-    expect(foregroundSpy).toBeCalledTimes(1);
-    expect(foregroundSpy).toBeCalledWith('none');
-    expect(moveToSpy).toBeCalledTimes(6);
-    expect(writeSpy).toBeCalledTimes(6);
+    expect(backgroundSpy).toHaveBeenCalledTimes(1);
+    expect(backgroundSpy).toHaveBeenCalledWith('none');
+    expect(foregroundSpy).toHaveBeenCalledTimes(1);
+    expect(foregroundSpy).toHaveBeenCalledWith('none');
+    expect(moveToSpy).toHaveBeenCalledTimes(6);
+    expect(writeSpy).toHaveBeenCalledTimes(6);
   });
 
-  it('Should properly render with custom options', () => {
+  it('should properly render with custom options', () => {
+    expect.hasAssertions();
+
     const cursor = new Canvas();
     const shape = new FigText({ text: 'test', background: 'black', foreground: 'white' });
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
@@ -42,15 +48,17 @@ describe('Shape::FigText', () => {
 
     shape.render(cursor);
 
-    expect(backgroundSpy).toBeCalledTimes(1);
-    expect(backgroundSpy).toBeCalledWith('black');
-    expect(foregroundSpy).toBeCalledTimes(1);
-    expect(foregroundSpy).toBeCalledWith('white');
-    expect(moveToSpy).toBeCalledTimes(6);
-    expect(writeSpy).toBeCalledTimes(6);
+    expect(backgroundSpy).toHaveBeenCalledTimes(1);
+    expect(backgroundSpy).toHaveBeenCalledWith('black');
+    expect(foregroundSpy).toHaveBeenCalledTimes(1);
+    expect(foregroundSpy).toHaveBeenCalledWith('white');
+    expect(moveToSpy).toHaveBeenCalledTimes(6);
+    expect(writeSpy).toHaveBeenCalledTimes(6);
   });
 
-  it('Should properly create Object representation', () => {
+  it('should properly create Object representation', () => {
+    expect.hasAssertions();
+
     const shape = new FigText({
       text: 'test',
       x: '10%',
@@ -63,7 +71,7 @@ describe('Shape::FigText', () => {
 
     const obj = shape.toObject();
 
-    expect(obj).toEqual({
+    expect(obj).toStrictEqual({
       type: 'FigText',
       options: {
         text: 'test',
@@ -82,7 +90,9 @@ describe('Shape::FigText', () => {
     });
   });
 
-  it('Should properly create FigText instance from Object representation', () => {
+  it('should properly create FigText instance from Object representation', () => {
+    expect.hasAssertions();
+
     const shape: FigText = FigText.fromObject<FigText>({
       type: 'FigText',
       options: {
@@ -98,14 +108,14 @@ describe('Shape::FigText', () => {
     });
 
     expect(shape).toBeInstanceOf(FigText);
-    expect(shape.text).toEqual('test');
-    expect(shape.renderedText.length).toEqual(386);
-    expect(shape.x).toEqual('0');
-    expect(shape.y).toEqual('0');
-    expect(shape.background).toEqual('red');
-    expect(shape.foreground).toEqual('black');
-    expect(shape.font).toEqual('Ghost');
-    expect(shape.horizontalLayout).toEqual('full');
-    expect(shape.verticalLayout).toEqual('fitted');
+    expect(shape.text).toStrictEqual('test');
+    expect(shape.renderedText).toHaveLength(386);
+    expect(shape.x).toStrictEqual('0');
+    expect(shape.y).toStrictEqual('0');
+    expect(shape.background).toStrictEqual('red');
+    expect(shape.foreground).toStrictEqual('black');
+    expect(shape.font).toStrictEqual('Ghost');
+    expect(shape.horizontalLayout).toStrictEqual('full');
+    expect(shape.verticalLayout).toStrictEqual('fitted');
   });
 });

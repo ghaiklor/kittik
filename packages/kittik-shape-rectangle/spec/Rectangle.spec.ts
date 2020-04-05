@@ -2,8 +2,10 @@ import { Canvas } from 'terminal-canvas';
 import { Rectangle } from '../src/Rectangle';
 import { ShapeObject } from 'kittik-shape-basic';
 
-describe('Shape::Rectangle', () => {
-  it('Should properly render with default options', () => {
+describe('rectangle shape', () => {
+  it('should properly render with default options', () => {
+    expect.hasAssertions();
+
     const cursor = Canvas.create();
     const rectangle = new Rectangle({ x: '0', y: '0', height: '2', width: '5' });
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
@@ -13,18 +15,20 @@ describe('Shape::Rectangle', () => {
 
     rectangle.render(cursor);
 
-    expect(backgroundSpy).toBeCalledTimes(1);
-    expect(backgroundSpy).toBeCalledWith('none');
-    expect(foregroundSpy).toBeCalledTimes(1);
-    expect(foregroundSpy).toBeCalledWith('none');
-    expect(moveToSpy).toBeCalledTimes(5);
-    expect(moveToSpy).toBeCalledWith(0, 0);
-    expect(moveToSpy).toBeCalledWith(0, 1);
-    expect(writeSpy).toBeCalledTimes(4);
-    expect(writeSpy).toBeCalledWith('     ');
+    expect(backgroundSpy).toHaveBeenCalledTimes(1);
+    expect(backgroundSpy).toHaveBeenCalledWith('none');
+    expect(foregroundSpy).toHaveBeenCalledTimes(1);
+    expect(foregroundSpy).toHaveBeenCalledWith('none');
+    expect(moveToSpy).toHaveBeenCalledTimes(5);
+    expect(moveToSpy).toHaveBeenCalledWith(0, 0);
+    expect(moveToSpy).toHaveBeenCalledWith(0, 1);
+    expect(writeSpy).toHaveBeenCalledTimes(4);
+    expect(writeSpy).toHaveBeenCalledWith('     ');
   });
 
-  it('Should properly render with custom options', () => {
+  it('should properly render with custom options', () => {
+    expect.hasAssertions();
+
     const cursor = Canvas.create();
     const rectangle = new Rectangle({
       text: 'test',
@@ -43,19 +47,21 @@ describe('Shape::Rectangle', () => {
 
     rectangle.render(cursor);
 
-    expect(backgroundSpy).toBeCalledTimes(1);
-    expect(backgroundSpy).toBeCalledWith('yellow');
-    expect(foregroundSpy).toBeCalledTimes(1);
-    expect(foregroundSpy).toBeCalledWith('black');
-    expect(moveToSpy).toBeCalledTimes(14);
-    expect(writeSpy).toBeCalledTimes(13);
+    expect(backgroundSpy).toHaveBeenCalledTimes(1);
+    expect(backgroundSpy).toHaveBeenCalledWith('yellow');
+    expect(foregroundSpy).toHaveBeenCalledTimes(1);
+    expect(foregroundSpy).toHaveBeenCalledWith('black');
+    expect(moveToSpy).toHaveBeenCalledTimes(14);
+    expect(writeSpy).toHaveBeenCalledTimes(13);
   });
 
-  it('Should properly serialize shape to Object representation', () => {
+  it('should properly serialize shape to Object representation', () => {
+    expect.hasAssertions();
+
     const rectangle = new Rectangle();
     const obj = rectangle.toObject();
 
-    expect(obj).toEqual({
+    expect(obj).toStrictEqual({
       type: 'Rectangle',
       options: {
         text: '',
@@ -69,7 +75,9 @@ describe('Shape::Rectangle', () => {
     });
   });
 
-  it('Should properly create rectangle from Object representation', () => {
+  it('should properly create rectangle from Object representation', () => {
+    expect.hasAssertions();
+
     const obj: ShapeObject = {
       type: 'Rectangle',
       options: {
@@ -84,12 +92,12 @@ describe('Shape::Rectangle', () => {
     const rectangle = Rectangle.fromObject<Rectangle>(obj);
 
     expect(rectangle).toBeInstanceOf(Rectangle);
-    expect(rectangle.text).toEqual('test');
-    expect(rectangle.width).toEqual('30');
-    expect(rectangle.height).toEqual('50');
-    expect(rectangle.x).toEqual('1');
-    expect(rectangle.y).toEqual('1');
-    expect(rectangle.background).toEqual('none');
-    expect(rectangle.foreground).toEqual('none');
+    expect(rectangle.text).toStrictEqual('test');
+    expect(rectangle.width).toStrictEqual('30');
+    expect(rectangle.height).toStrictEqual('50');
+    expect(rectangle.x).toStrictEqual('1');
+    expect(rectangle.y).toStrictEqual('1');
+    expect(rectangle.background).toStrictEqual('none');
+    expect(rectangle.foreground).toStrictEqual('none');
   });
 });

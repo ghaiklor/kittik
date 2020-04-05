@@ -47,46 +47,54 @@ const DECK_DECLARATION: DeckDeclaration = {
   ]
 };
 
-describe('Deck', () => {
-  it('Should properly handle the key press for previous slide', async () => {
+describe('deck', () => {
+  it('should properly handle the key press for previous slide', async () => {
+    expect.hasAssertions();
+
     const deck = new Deck(DECK_DECLARATION);
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
 
     await deck.nextSlide();
     process.stdin.emit('keypress', 'p');
 
-    expect(renderSpy).toBeCalledTimes(2);
-    expect(renderSpy).toBeCalledWith(1);
-    expect(renderSpy).toBeCalledWith(0);
+    expect(renderSpy).toHaveBeenCalledTimes(2);
+    expect(renderSpy).toHaveBeenCalledWith(1);
+    expect(renderSpy).toHaveBeenCalledWith(0);
 
     deck.exit();
   });
 
-  it('Should properly handle the key press for next slide', async () => {
+  it('should properly handle the key press for next slide', async () => {
+    expect.hasAssertions();
+
     const deck = new Deck(DECK_DECLARATION);
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
 
     await deck.previousSlide();
     process.stdin.emit('keypress', 'n');
 
-    expect(renderSpy).toBeCalledTimes(1);
-    expect(renderSpy).toBeCalledWith(1);
+    expect(renderSpy).toHaveBeenCalledTimes(1);
+    expect(renderSpy).toHaveBeenCalledWith(1);
 
     deck.exit();
   });
 
-  it('Should properly handle the key press for exit', () => {
+  it('should properly handle the key press for exit', () => {
+    expect.hasAssertions();
+
     const deck = new Deck(DECK_DECLARATION);
     const exitSpy = jest.spyOn(deck, 'exit');
 
     process.stdin.emit('keypress', 'q');
 
-    expect(exitSpy).toBeCalledTimes(1);
+    expect(exitSpy).toHaveBeenCalledTimes(1);
 
     deck.exit();
   });
 
-  it('Should properly render next and previous slides', async () => {
+  it('should properly render next and previous slides', async () => {
+    expect.hasAssertions();
+
     const deck = new Deck(DECK_DECLARATION);
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
 
@@ -95,14 +103,16 @@ describe('Deck', () => {
     await deck.previousSlide();
     await deck.previousSlide();
 
-    expect(renderSpy).toBeCalledTimes(2);
-    expect(renderSpy).toBeCalledWith(0);
-    expect(renderSpy).toBeCalledWith(1);
+    expect(renderSpy).toHaveBeenCalledTimes(2);
+    expect(renderSpy).toHaveBeenCalledWith(0);
+    expect(renderSpy).toHaveBeenCalledWith(1);
 
     deck.exit();
   });
 
-  it('Should properly render slides without custom cursor', async () => {
+  it('should properly render slides without custom cursor', async () => {
+    expect.hasAssertions();
+
     const deck = new Deck({ ...DECK_DECLARATION, cursor: undefined });
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
 
@@ -111,14 +121,16 @@ describe('Deck', () => {
     await deck.previousSlide();
     await deck.previousSlide();
 
-    expect(renderSpy).toBeCalledTimes(2);
-    expect(renderSpy).toBeCalledWith(0);
-    expect(renderSpy).toBeCalledWith(1);
+    expect(renderSpy).toHaveBeenCalledTimes(2);
+    expect(renderSpy).toHaveBeenCalledWith(0);
+    expect(renderSpy).toHaveBeenCalledWith(1);
 
     deck.exit();
   });
 
-  it('Should properly render minimal slide without global shapes/animations', async () => {
+  it('should properly render minimal slide without global shapes/animations', async () => {
+    expect.hasAssertions();
+
     const deck = new Deck({ slides: [{ name: 'Test', shapes: [], order: [] }, { name: 'Test 2', shapes: [], order: [], animations: [] }] });
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
 
@@ -127,14 +139,16 @@ describe('Deck', () => {
     await deck.previousSlide();
     await deck.previousSlide();
 
-    expect(renderSpy).toBeCalledTimes(2);
-    expect(renderSpy).toBeCalledWith(0);
-    expect(renderSpy).toBeCalledWith(1);
+    expect(renderSpy).toHaveBeenCalledTimes(2);
+    expect(renderSpy).toHaveBeenCalledWith(0);
+    expect(renderSpy).toHaveBeenCalledWith(1);
 
     deck.exit();
   });
 
-  it('Should not call slide renderer many times if slide is already rendering', () => {
+  it('should not call slide renderer many times if slide is already rendering', () => {
+    expect.hasAssertions();
+
     const deck = new Deck({ slides: [{ name: 'Test', shapes: [], order: [] }] });
 
     // Though, slides is a private property, I need to access it anyway in sake of the tests
@@ -148,12 +162,14 @@ describe('Deck', () => {
     deck.renderSlide(); // eslint-disable-line @typescript-eslint/no-floating-promises
     deck.renderSlide(); // eslint-disable-line @typescript-eslint/no-floating-promises
 
-    expect(renderSpy).toBeCalledTimes(1);
+    expect(renderSpy).toHaveBeenCalledTimes(1);
 
     deck.exit();
   });
 
-  it('Should properly add a shape to all the slides in the deck', () => {
+  it('should properly add a shape to all the slides in the deck', () => {
+    expect.hasAssertions();
+
     const deck = new Deck({ slides: [{ name: 'Test', shapes: [{ name: 'Shape', type: 'Text' }], order: [] }] });
     const shape = {} as ShapeRenderable;
 
@@ -167,16 +183,20 @@ describe('Deck', () => {
     deck.exit();
   });
 
-  it('Should properly throw an error if shape already exists in other slides', () => {
+  it('should properly throw an error if shape already exists in other slides', () => {
+    expect.hasAssertions();
+
     const deck = new Deck({ slides: [{ name: 'Test', shapes: [{ name: 'Shape', type: 'Text' }], order: [] }] });
     const shape = {} as ShapeRenderable;
 
-    expect(() => deck.addShape('Shape', shape)).toThrowError('Slides [Test] already have a shape with the name "Shape"');
+    expect(() => deck.addShape('Shape', shape)).toThrow('Slides [Test] already have a shape with the name "Shape"');
 
     deck.exit();
   });
 
-  it('Should properly add an animation to all the slides in the deck', () => {
+  it('should properly add an animation to all the slides in the deck', () => {
+    expect.hasAssertions();
+
     const deck = new Deck({ slides: [{ name: 'Test', shapes: [], order: [], animations: [{ name: 'Animation', type: 'Print' }] }] });
     const animation = {} as Animationable;
 
@@ -190,11 +210,13 @@ describe('Deck', () => {
     deck.exit();
   });
 
-  it('Should properly throw an error if animation already exists in other slides', () => {
+  it('should properly throw an error if animation already exists in other slides', () => {
+    expect.hasAssertions();
+
     const deck = new Deck({ slides: [{ name: 'Test', shapes: [], order: [], animations: [{ name: 'Animation', type: 'Print' }] }] });
     const animation = {} as Animationable;
 
-    expect(() => deck.addAnimation('Animation', animation)).toThrowError('Slides [Test] already have an animation with the name "Animation"');
+    expect(() => deck.addAnimation('Animation', animation)).toThrow('Slides [Test] already have an animation with the name "Animation"');
 
     deck.exit();
   });

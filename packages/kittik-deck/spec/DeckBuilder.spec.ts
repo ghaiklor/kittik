@@ -2,8 +2,10 @@ import { AnimationBuilder, ShapeBuilder, SlideBuilder } from '../src/Deck';
 import { Canvas } from 'terminal-canvas';
 import { DeckBuilder } from '../src/DeckBuilder';
 
-describe('DeckBuilder', () => {
-  it('Should properly create deck using DeckBuilder', () => {
+describe('deck builder', () => {
+  it('should properly create deck using DeckBuilder', () => {
+    expect.hasAssertions();
+
     const deck = DeckBuilder
       .start()
       .withCursor(Canvas.create())

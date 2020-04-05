@@ -2,8 +2,10 @@ import { Canvas } from 'terminal-canvas';
 import { ShapeBuilder, AnimationBuilder } from '../src/slide/Slide';
 import { SlideBuilder } from '../src/slide/SlideBuilder';
 
-describe('SlideBuilder', () => {
-  it('Should properly instantiate slide via builder', () => {
+describe('slide builder', () => {
+  it('should properly instantiate slide via builder', () => {
+    expect.hasAssertions();
+
     const slide = SlideBuilder
       .start()
       .withName('Hello, World')
@@ -29,7 +31,7 @@ describe('SlideBuilder', () => {
 
     expect(slide.name).toBe('Hello, World');
     expect(slide.shapes.size).toBe(1);
-    expect(slide.shapes.get('Hello, World')?.toObject()).toEqual({
+    expect(slide.shapes.get('Hello, World')?.toObject()).toStrictEqual({
       type: 'Text',
       options: {
         align: 'center',
@@ -50,7 +52,7 @@ describe('SlideBuilder', () => {
     });
 
     expect(slide.animations.size).toBe(1);
-    expect(slide.animations.get('Print')?.toObject()).toEqual({
+    expect(slide.animations.get('Print')?.toObject()).toStrictEqual({
       type: 'Print',
       options: {
         duration: 2000,
@@ -58,7 +60,7 @@ describe('SlideBuilder', () => {
       }
     });
 
-    expect(slide.order).toEqual([{
+    expect(slide.order).toStrictEqual([{
       shape: 'Hello, World',
       animations: ['Print']
     }]);
