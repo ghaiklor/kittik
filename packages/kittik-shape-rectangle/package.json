@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Shape for rendering rectangles in Kittik",
   "license": "MIT",
+  "type": "module",
   "main": "dist/Rectangle.js",
   "types": "dist/Rectangle.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",

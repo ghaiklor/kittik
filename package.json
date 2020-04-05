@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Show off your slides in terminal",
   "license": "MIT",
+  "type": "module",
   "homepage": "https://github.com/ghaiklor/kittik#readme",
   "author": {
     "name": "Eugene Obrezkov",

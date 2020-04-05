@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Provides text printing animation in Kittik",
   "license": "MIT",
+  "type": "module",
   "main": "dist/Print.js",
   "types": "dist/Print.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",

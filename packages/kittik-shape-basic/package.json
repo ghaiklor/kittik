@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Basic class for creating other shapes in Kittik",
   "license": "MIT",
+  "type": "module",
   "main": "dist/Shape.js",
   "types": "dist/Shape.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",

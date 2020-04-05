@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Provides focus animations in Kittik",
   "license": "MIT",
+  "type": "module",
   "main": "dist/Focus.js",
   "types": "dist/Focus.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",

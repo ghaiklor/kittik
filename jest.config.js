@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageReporters: ['json', 'text', 'lcov', 'clover'],

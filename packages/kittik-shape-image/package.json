@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Shape for rendering png/jpg/other images in Kittik",
   "license": "MIT",
+  "type": "module",
   "main": "dist/Image.js",
   "types": "dist/Image.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",
