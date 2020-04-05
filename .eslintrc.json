@@ -7,8 +7,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/all",
     "plugin:import/typescript",
     "plugin:jest/all",
     "plugin:node/recommended",
@@ -34,6 +33,13 @@
     "standard"
   ],
   "rules": {
+    "@typescript-eslint/consistent-type-assertions": [
+      "error",
+      {
+        "assertionStyle": "as",
+        "objectLiteralTypeAssertions": "allow"
+      }
+    ],
     "node/no-missing-import": [
       "error",
       {
@@ -48,13 +54,6 @@
     "semi": [
       "error",
       "always"
-    ],
-    "@typescript-eslint/consistent-type-assertions": [
-      "error",
-      {
-        "assertionStyle": "as",
-        "objectLiteralTypeAssertions": "allow"
-      }
     ]
   }
 }
