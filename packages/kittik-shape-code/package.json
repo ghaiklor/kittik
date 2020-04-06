@@ -41,7 +41,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "js-beautify": "1.10.3",
+    "js-beautify": "1.11.0",
     "kittik-shape-basic": "0.0.0",
     "redeyed": "2.1.1"
   },
