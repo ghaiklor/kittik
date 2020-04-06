@@ -81,6 +81,17 @@ module.exports = {
       "off"
     ],
 
+    // In addition to ensuring that type assertions are written in a consistent way
+    // this rule also helps make your codebase more type-safe
+    // Except cases where I explicitly use `as` on object literals and it is ok in our case
+    "@typescript-eslint/consistent-type-assertions": [
+      "error",
+      {
+        "assertionStyle": "as",
+        "objectLiteralTypeAssertions": "allow"
+      }
+    ],
+
     // This rule checks the file paths of import and export declarations
     // If the file paths don't exist, this reports these
     // By default, this rule does not have *.ts extension in resolvers
