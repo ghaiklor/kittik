@@ -48,8 +48,37 @@ module.exports = {
     "@typescript-eslint/typedef": [
       "error",
       {
-        "memberVariableDeclaration": false
+        "arrowParameter": false,
+        "memberVariableDeclaration": false,
+        "parameter": false
       }
+    ],
+
+    // Despite your best intentions, the any type can sometimes leak into your codebase
+    // Member access on any typed variables is not checked at all by TypeScript
+    // so it creates a potential safety hole, and source of bugs in your codebase
+    // Though, for now... we are disabling this
+    // Because we need to call not typed APIs, like JSON.parse, etc...
+    "@typescript-eslint/no-unsafe-call": [
+      "off"
+    ],
+
+    // When aliasing, the type alias does not create a new type
+    // it just creates a new name to refer to the original type
+    // So aliasing primitives and other simple types, tuples, unions or intersections can some times be redundant
+    // Though, we are allowing this as it is provide more readability in our codebase
+    "@typescript-eslint/no-type-alias": [
+      "error",
+      {
+        "allowAliases": "always"
+      }
+    ],
+
+    // Magic numbers are numbers that occur multiple times in code without an explicit meaning
+    // They should preferably be replaced by named constants, but...
+    // At the moment we don't have such a problem, except in tests, where it is normal
+    "@typescript-eslint/no-magic-numbers": [
+      "off"
     ],
 
     // This rule checks the file paths of import and export declarations
