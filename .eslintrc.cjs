@@ -1,4 +1,4 @@
-{
+module.exports = {
   "root": true,
   "env": {
     "es6": true,
@@ -38,6 +38,15 @@
       {
         "assertionStyle": "as",
         "objectLiteralTypeAssertions": "allow"
+      }
+    ],
+    "@typescript-eslint/prefer-readonly-parameter-types": [
+      "off"
+    ],
+    "@typescript-eslint/typedef": [
+      "error",
+      {
+        "memberVariableDeclaration": false
       }
     ],
     "node/no-missing-import": [
