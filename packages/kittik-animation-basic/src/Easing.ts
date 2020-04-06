@@ -8,7 +8,7 @@ export function outQuad (t: number, b: number, c: number, d: number): number {
 
 export function inOutQuad (t: number, b: number, c: number, d: number): number {
   if ((t /= d / 2) < 1) return c / 2 * t * t + b;
-  return -c / 2 * ((--t) * (t - 2) - 1) + b;
+  return -c / 2 * (--t * (t - 2) - 1) + b;
 }
 
 export function inCubic (t: number, b: number, c: number, d: number): number {
@@ -63,11 +63,11 @@ export function inOutSine (t: number, b: number, c: number, d: number): number {
 }
 
 export function inExpo (t: number, b: number, c: number, d: number): number {
-  return (t === 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
+  return t === 0 ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
 }
 
 export function outExpo (t: number, b: number, c: number, d: number): number {
-  return (t === d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
+  return t === d ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
 }
 
 export function inOutExpo (t: number, b: number, c: number, d: number): number {
@@ -156,19 +156,19 @@ export function outBack (t: number, b: number, c: number, d: number): number {
 export function inOutBack (t: number, b: number, c: number, d: number): number {
   let s = 1.70158;
 
-  if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
-  return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
+  if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= 1.525) + 1) * t - s)) + b;
+  return c / 2 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2) + b;
 }
 
 export function outBounce (t: number, b: number, c: number, d: number): number {
-  if ((t /= d) < (1 / 2.75)) {
+  if ((t /= d) < 1 / 2.75) {
     return c * (7.5625 * t * t) + b;
-  } else if (t < (2 / 2.75)) {
-    return c * (7.5625 * (t -= (1.5 / 2.75)) * t + 0.75) + b;
-  } else if (t < (2.5 / 2.75)) {
-    return c * (7.5625 * (t -= (2.25 / 2.75)) * t + 0.9375) + b;
+  } else if (t < 2 / 2.75) {
+    return c * (7.5625 * (t -= 1.5 / 2.75) * t + 0.75) + b;
+  } else if (t < 2.5 / 2.75) {
+    return c * (7.5625 * (t -= 2.25 / 2.75) * t + 0.9375) + b;
   } else {
-    return c * (7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375) + b;
+    return c * (7.5625 * (t -= 2.625 / 2.75) * t + 0.984375) + b;
   }
 }
 
@@ -211,4 +211,4 @@ export type Easing =
   'inOutBack' |
   'outBounce' |
   'inBounce' |
-  'inOutBounce'
+  'inOutBounce';

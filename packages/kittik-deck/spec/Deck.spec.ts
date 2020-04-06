@@ -153,7 +153,7 @@ describe('deck', () => {
 
     // Though, slides is a private property, I need to access it anyway in sake of the tests
     // This is done to test if slides render() behaves as expected
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const renderSpy = jest.spyOn(deck.slides[0], 'render');
 
@@ -176,7 +176,7 @@ describe('deck', () => {
     deck.addShape('Shape 2', shape);
 
     // I am accessing the private property to check if there is actually a new shape exists
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     expect(deck.slides[0].shapes.size).toBe(2);
 
@@ -203,7 +203,7 @@ describe('deck', () => {
     deck.addAnimation('Animation 2', animation);
 
     // I am accessing the private property to check if there is actually a new animation exists
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     expect(deck.slides[0].animations.size).toBe(2);
 

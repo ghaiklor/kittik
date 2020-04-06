@@ -224,6 +224,6 @@ describe('slide', () => {
     slide.addOrder('Test');
 
     expect(slide.order).toHaveLength(1);
-    expect(slide.order[0]).toStrictEqual({ shape: 'Test' });
+    expect(slide.order[0]).toStrictEqual({ animations: [], shape: 'Test' });
   });
 });

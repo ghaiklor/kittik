@@ -17,10 +17,10 @@ export declare interface Animation {
 }
 
 export class Animation extends EventEmitter implements AnimationOptions {
-  duration = 1000;
-  easing: EASING.Easing = 'outQuad';
+  public duration = 1000;
+  public easing: EASING.Easing = 'outQuad';
 
-  constructor (options?: Partial<AnimationOptions>) {
+  public constructor (options?: Partial<AnimationOptions>) {
     super();
 
     if (options?.duration !== undefined) {
@@ -34,19 +34,40 @@ export class Animation extends EventEmitter implements AnimationOptions {
     this.on('tick', this.onTick.bind(this));
   }
 
-  onTick<S extends Shape, P extends keyof S, V extends number>(shape: S, property: P, value: V): void {
+  public static create<T extends Animation>(options?: Partial<AnimationOptions>): T
+  public static create<T extends Animation, O extends AnimationOptions>(options?: Partial<O>): T {
+    return (new this(options)) as T;
+  }
+
+  public static fromObject<T extends Animation>(obj: AnimationObject): T
+  public static fromObject<T extends Animation, O extends AnimationObject>(obj: O): T {
+    if (obj.type !== this.name) {
+      throw new Error(
+        `${obj.type} is not an object representation of the ${this.name}.` +
+        `Did you mean to set ${this.name} as a type of animation?`
+      );
+    }
+
+    return this.create(obj.options);
+  }
+
+  public static fromJSON<T extends Animation>(json: string): T {
+    return this.fromObject(JSON.parse(json));
+  }
+
+  public onTick<S extends Shape, P extends keyof S, V extends number>(shape: S, property: P, value: V): void {
     Object.assign(shape, { [property]: value });
   }
 
-  onEasing (easing: EASING.Easing, time: number, startValue: number, byValue: number, duration: number): number {
+  public onEasing (easing: EASING.Easing, time: number, startValue: number, byValue: number, duration: number): number {
     return Math.round(EASING[easing](time, startValue, byValue, duration));
   }
 
-  async delay (ms: number): Promise<void> {
+  public async delay (ms: number): Promise<void> {
     return await new Promise(resolve => setTimeout(resolve, isFinite(ms) ? ms : 1));
   }
 
-  async animateProperty<S extends Shape, P extends keyof S>(options: AnimationPropertyOptions<S, P>): Promise<S> {
+  public async animateProperty<S extends Shape, P extends keyof S>(options: AnimationPropertyOptions<S, P>): Promise<S> {
     const shape = options.shape;
     const property = options.property;
     const startValue = options.startValue;
@@ -57,21 +78,21 @@ export class Animation extends EventEmitter implements AnimationOptions {
     const delay = duration / (endValue - startValue);
     const start = Date.now();
     const end = start + duration;
-    const tick = (resolve: Function, reject: Function): void => {
+    const tick = (resolve: (shape: S) => void, reject: () => void): void => {
       const currentTime = Date.now();
 
       if (currentTime > end) {
         resolve(shape);
       } else {
         this.emit('tick', shape, property, this.onEasing(easing, currentTime - start, startValue, byValue, duration));
-        this.delay(delay).then(() => tick(resolve, reject)).catch((e) => reject(e));
+        this.delay(delay).then(() => tick(resolve, reject)).catch(reject);
       }
     };
 
     return await new Promise(tick);
   }
 
-  toObject<T extends AnimationObject>(): T {
+  public toObject<T extends AnimationObject>(): T {
     const obj = {
       type: this.constructor.name,
       options: {
@@ -83,28 +104,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
     return obj as T;
   }
 
-  toJSON (): string {
+  public toJSON (): string {
     return JSON.stringify(this.toObject());
-  }
-
-  static create<T extends Animation>(options?: Partial<AnimationOptions>): T
-  static create<T extends Animation, O extends AnimationOptions>(options?: Partial<O>): T {
-    return (new this(options)) as T;
-  }
-
-  static fromObject<T extends Animation>(obj: AnimationObject): T
-  static fromObject<T extends Animation, O extends AnimationObject>(obj: O): T {
-    if (obj.type !== this.name) {
-      throw new Error(
-        `${obj.type} is not an object representation of the ${this.name}.` +
-        `Did you mean to set ${this.name} as a type of animation?`
-      );
-    }
-
-    return this.create(obj.options);
-  }
-
-  static fromJSON<T extends Animation>(json: string): T {
-    return this.fromObject(JSON.parse(json));
   }
 }

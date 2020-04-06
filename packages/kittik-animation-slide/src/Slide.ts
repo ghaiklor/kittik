@@ -7,14 +7,30 @@ export { SlideObject } from './SlideObject';
 export { SlideOptions, Direction } from './SlideOptions';
 
 export class Slide extends Animation implements SlideOptions, Animationable {
-  direction: Direction = 'inRight';
+  public direction: Direction = 'inRight';
 
-  constructor (options?: Partial<SlideOptions>) {
+  public constructor (options?: Partial<SlideOptions>) {
     super(options);
 
     if (options?.direction !== undefined) {
       this.direction = options.direction;
     }
+  }
+
+  public async animate<T extends Shape>(shape: T): Promise<T> {
+    const { startX, startY, endX, endY } = this.parseCoordinates(shape);
+
+    return await Promise.all([
+      this.animateProperty({ shape, property: 'x', startValue: startX, endValue: endX }),
+      this.animateProperty({ shape, property: 'y', startValue: startY, endValue: endY })
+    ]).then(async () => await Promise.resolve(shape));
+  }
+
+  public toObject<T extends SlideObject>(): T {
+    const obj: SlideObject = super.toObject();
+    obj.options = { ...obj.options, direction: this.direction };
+
+    return obj as T;
   }
 
   private parseCoordinates<T extends Shape>(shape: T): { startX: number, startY: number, endX: number, endY: number } {
@@ -37,21 +53,5 @@ export class Slide extends Animation implements SlideOptions, Animationable {
     const [startX, startY, endX, endY] = directions[this.direction]();
 
     return { startX, startY, endX, endY };
-  }
-
-  async animate<T extends Shape>(shape: T): Promise<T> {
-    const { startX, startY, endX, endY } = this.parseCoordinates(shape);
-
-    return await Promise.all([
-      this.animateProperty({ shape, property: 'x', startValue: startX, endValue: endX }),
-      this.animateProperty({ shape, property: 'y', startValue: startY, endValue: endY })
-    ]).then(async () => await Promise.resolve(shape));
-  }
-
-  toObject<T extends SlideObject>(): T {
-    const obj: SlideObject = super.toObject();
-    obj.options = { ...obj.options, direction: this.direction };
-
-    return obj as T;
   }
 }

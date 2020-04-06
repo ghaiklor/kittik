@@ -17,7 +17,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
   protected _background = 'none';
   protected _foreground = 'none';
 
-  constructor (options?: Partial<ShapeOptions>) {
+  public constructor (options?: Partial<ShapeOptions>) {
     if (options?.text !== undefined) {
       this.text = options.text;
     }
@@ -47,19 +47,35 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     }
   }
 
-  get cursor (): Canvas {
+  public static create<T extends Shape>(options?: Partial<ShapeOptions>): T
+  public static create<T extends Shape, O extends ShapeOptions>(options?: Partial<O>): T {
+    return (new this(options)) as T;
+  }
+
+  public static fromObject<T extends Shape>(obj: ShapeObject): T
+  public static fromObject<T extends Shape, O extends ShapeObject>(obj: O): T {
+    if (obj.type !== this.name) throw new Error(`${obj.type} is not an Object representation of the ${this.name}`);
+
+    return this.create(obj.options);
+  }
+
+  public static fromJSON<T extends Shape>(json: string): T {
+    return this.fromObject(JSON.parse(json));
+  }
+
+  public get cursor (): Canvas {
     return this._cursor;
   }
 
-  get text (): string {
+  public get text (): string {
     return this._text;
   }
 
-  set text (text) {
+  public set text (text: string) {
     this._text = text;
   }
 
-  get x (): string {
+  public get x (): string {
     const x = this._x;
 
     if (x === 'left') return '0';
@@ -70,11 +86,11 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     return x;
   }
 
-  set x (x) {
+  public set x (x: string) {
     this._x = x;
   }
 
-  get y (): string {
+  public get y (): string {
     const y = this._y;
 
     if (y === 'top') return '0';
@@ -85,11 +101,11 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     return y;
   }
 
-  set y (y) {
+  public set y (y: string) {
     this._y = y;
   }
 
-  get width (): string {
+  public get width (): string {
     const width = this._width;
 
     if (/\d+%$/.test(width)) {
@@ -99,11 +115,11 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     return width;
   }
 
-  set width (width) {
+  public set width (width: string) {
     this._width = width;
   }
 
-  get height (): string {
+  public get height (): string {
     const height = this._height;
 
     if (/\d+%$/.test(height)) {
@@ -113,31 +129,31 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     return height;
   }
 
-  set height (height) {
+  public set height (height: string) {
     this._height = height;
   }
 
-  get background (): string {
+  public get background (): string {
     return this._background;
   }
 
-  set background (background) {
+  public set background (background: string) {
     this._background = background;
   }
 
-  get foreground (): string {
+  public get foreground (): string {
     return this._foreground;
   }
 
-  set foreground (foreground) {
+  public set foreground (foreground: string) {
     this._foreground = foreground;
   }
 
-  render <T extends Canvas>(cursor: T): void {
+  public render <T extends Canvas>(cursor: T): void {
     this._cursor = cursor;
   }
 
-  toObject<T extends ShapeObject>(): T {
+  public toObject<T extends ShapeObject>(): T {
     const obj = {
       type: this.constructor.name,
       options: {
@@ -154,23 +170,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     return obj as T;
   }
 
-  toJSON (): string {
+  public toJSON (): string {
     return JSON.stringify(this.toObject());
-  }
-
-  static create<T extends Shape>(options?: Partial<ShapeOptions>): T
-  static create<T extends Shape, O extends ShapeOptions>(options?: Partial<O>): T {
-    return (new this(options)) as T;
-  }
-
-  static fromObject<T extends Shape>(obj: ShapeObject): T
-  static fromObject<T extends Shape, O extends ShapeObject>(obj: O): T {
-    if (obj.type !== this.name) throw new Error(`${obj.type} is not an Object representation of the ${this.name}`);
-
-    return this.create(obj.options);
-  }
-
-  static fromJSON<T extends Shape>(json: string): T {
-    return this.fromObject(JSON.parse(json));
   }
 }

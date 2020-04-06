@@ -5,24 +5,24 @@ import beautify from 'js-beautify';
 import redeyed from 'redeyed';
 
 export class Code extends Shape implements ShapeRenderable {
-  get text (): string {
+  public get text (): string {
     return beautify(this._text, { indent_size: 2 });
   }
 
-  set text (code: string) {
+  public set text (code: string) {
     this._text = code;
   }
 
-  get width (): string {
+  public get width (): string {
     const lengths = this.text.split('\n').map(item => item.length);
     return Math.max(...lengths).toString();
   }
 
-  get height (): string {
+  public get height (): string {
     return this.text.split('\n').length.toString();
   }
 
-  render <T extends Canvas>(cursor: T): void {
+  public render <T extends Canvas>(cursor: T): void {
     super.render(cursor);
 
     const codeSplits = redeyed(this.text, DEFAULT_THEME).splits;

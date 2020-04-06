@@ -13,12 +13,12 @@ export { ShapeBuilder } from 'kittik-slide';
 export { SlideBuilder } from 'kittik-slide';
 
 export class Deck {
-  private readonly slides: Slide[] = []
+  public cursor: Canvas = Canvas.create().saveScreen().reset().hideCursor();
+  private readonly slides: Slide[] = [];
   private isRendering = false;
   private currentSlideIndex = 0;
-  cursor: Canvas = Canvas.create().saveScreen().reset().hideCursor()
 
-  constructor (declaration?: DeckDeclaration) {
+  public constructor (declaration?: DeckDeclaration) {
     if (declaration?.cursor !== undefined) {
       this.cursor = declaration.cursor;
     }
@@ -28,6 +28,53 @@ export class Deck {
     }
 
     this.initKeyboard();
+  }
+
+  public addShape (name: string, shape: ShapeRenderable): void {
+    const slidesWithShape = this.slides.filter(slide => slide.shapes.has(name)).map(slide => slide.name);
+    if (slidesWithShape.length > 0) {
+      throw new Error(`Slides [${slidesWithShape.join(', ')}] already have a shape with the name "${name}"`);
+    }
+
+    this.slides.forEach(slide => slide.addShape(name, shape));
+  }
+
+  public addAnimation (name: string, animation: Animationable): void {
+    const slidesWithAnimation = this.slides.filter(slide => slide.animations.has(name)).map(slide => slide.name);
+    if (slidesWithAnimation.length > 0) {
+      throw new Error(`Slides [${slidesWithAnimation.join(', ')}] already have an animation with the name "${name}"`);
+    }
+
+    this.slides.forEach(slide => slide.addAnimation(name, animation));
+  }
+
+  public addSlide (slide: Slide): void {
+    this.slides.push(slide);
+  }
+
+  public async renderSlide (index = this.currentSlideIndex): Promise<void> {
+    if (!this.isRendering && this.slides[index] !== undefined) {
+      this.isRendering = true;
+      await this.slides[index].render();
+      this.isRendering = false;
+    }
+  }
+
+  public async nextSlide (): Promise<void> {
+    if (this.currentSlideIndex + 1 <= this.slides.length - 1) {
+      return await this.renderSlide(++this.currentSlideIndex);
+    }
+  }
+
+  public async previousSlide (): Promise<void> {
+    if (this.currentSlideIndex - 1 >= 0) {
+      return await this.renderSlide(--this.currentSlideIndex);
+    }
+  }
+
+  public exit (): void {
+    process.stdin.pause();
+    this.cursor.showCursor().restoreScreen().reset();
   }
 
   private initSlides (declaration: DeckDeclaration): void {
@@ -63,52 +110,5 @@ export class Deck {
         this.exit();
         break;
     }
-  }
-
-  addShape (name: string, shape: ShapeRenderable): void {
-    const slidesWithShape = this.slides.filter(slide => slide.shapes.has(name)).map(slide => slide.name);
-    if (slidesWithShape.length > 0) {
-      throw new Error(`Slides [${slidesWithShape.join(', ')}] already have a shape with the name "${name}"`);
-    }
-
-    this.slides.forEach(slide => slide.addShape(name, shape));
-  }
-
-  addAnimation (name: string, animation: Animationable): void {
-    const slidesWithAnimation = this.slides.filter(slide => slide.animations.has(name)).map(slide => slide.name);
-    if (slidesWithAnimation.length > 0) {
-      throw new Error(`Slides [${slidesWithAnimation.join(', ')}] already have an animation with the name "${name}"`);
-    }
-
-    this.slides.forEach(slide => slide.addAnimation(name, animation));
-  }
-
-  addSlide (slide: Slide): void {
-    this.slides.push(slide);
-  }
-
-  async renderSlide (index = this.currentSlideIndex): Promise<void> {
-    if (!this.isRendering && this.slides[index] !== undefined) {
-      this.isRendering = true;
-      await this.slides[index].render();
-      this.isRendering = false;
-    }
-  }
-
-  async nextSlide (): Promise<void> {
-    if (this.currentSlideIndex + 1 <= this.slides.length - 1) {
-      return await this.renderSlide(++this.currentSlideIndex);
-    }
-  }
-
-  async previousSlide (): Promise<void> {
-    if (this.currentSlideIndex - 1 >= 0) {
-      return await this.renderSlide(--this.currentSlideIndex);
-    }
-  }
-
-  exit (): void {
-    process.stdin.pause();
-    this.cursor.showCursor().restoreScreen().reset();
   }
 }

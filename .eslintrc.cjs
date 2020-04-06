@@ -92,6 +92,14 @@ module.exports = {
       }
     ],
 
+    // The choice of how to define strings in a codebase is a stylistic one outside of template literals
+    // (which allow embedded of expressions to be interpreted)
+    // I chose to use single quotes
+    "@typescript-eslint/quotes": [
+      "error",
+      "single"
+    ],
+
     // This rule checks the file paths of import and export declarations
     // If the file paths don't exist, this reports these
     // By default, this rule does not have *.ts extension in resolvers

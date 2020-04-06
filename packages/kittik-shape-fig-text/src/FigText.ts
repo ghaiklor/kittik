@@ -8,13 +8,13 @@ export { FigTextObject } from './FigTextObject';
 export { FigTextOptions } from './FigTextOptions';
 
 export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
-  font: Fonts = 'Standard';
-  horizontalLayout: KerningMethods = 'default';
-  verticalLayout: KerningMethods = 'default'
-  printDirection: PrintDirection = 0;
-  showHardBlanks = false;
+  public font: Fonts = 'Standard';
+  public horizontalLayout: KerningMethods = 'default';
+  public verticalLayout: KerningMethods = 'default';
+  public printDirection: PrintDirection = 0;
+  public showHardBlanks = false;
 
-  constructor (options?: Partial<FigTextOptions>) {
+  public constructor (options?: Partial<FigTextOptions>) {
     super(options);
 
     if (options?.font !== undefined) {
@@ -38,16 +38,16 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     }
   }
 
-  get width (): string {
+  public get width (): string {
     const lengths = this.renderedText.split('\n').map(item => item.length);
     return Math.max(...lengths).toString();
   }
 
-  get height (): string {
+  public get height (): string {
     return this.renderedText.split('\n').length.toString();
   }
 
-  get renderedText (): string {
+  public get renderedText (): string {
     return figlet.textSync(this.text, {
       font: this.font,
       horizontalLayout: this.horizontalLayout,
@@ -57,7 +57,7 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     });
   }
 
-  render <T extends Canvas>(cursor: T): void {
+  public render <T extends Canvas>(cursor: T): void {
     super.render(cursor);
 
     const text = this.renderedText.split('\n');
@@ -70,7 +70,7 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     text.forEach((line, index) => cursor.moveTo(x, y + index).write(line));
   }
 
-  toObject<T extends FigTextObject>(): T {
+  public toObject<T extends FigTextObject>(): T {
     const obj: FigTextObject = super.toObject();
     obj.options = {
       ...obj.options,

@@ -2,7 +2,7 @@ import { Canvas } from 'terminal-canvas';
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 
 export class Rectangle extends Shape implements ShapeRenderable {
-  render <T extends Canvas>(cursor: T): void {
+  public render <T extends Canvas>(cursor: T): void {
     super.render(cursor);
 
     const text = this.text;
@@ -19,6 +19,6 @@ export class Rectangle extends Shape implements ShapeRenderable {
 
     for (let y = y1; y <= y2; y++) cursor.write(filler).moveTo(x1, y);
 
-    cursor.moveTo(x1 + (width / 2 - text.length / 2), y1 + (height / 2)).write(text);
+    cursor.moveTo(x1 + (width / 2 - text.length / 2), y1 + height / 2).write(text);
   }
 }

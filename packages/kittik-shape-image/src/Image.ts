@@ -12,7 +12,7 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
   private _image = 'R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=';
   private _preserveAspectRatio = true;
 
-  constructor (options?: Partial<ImageOptions>) {
+  public constructor (options?: Partial<ImageOptions>) {
     super(options);
 
     if (options?.image !== undefined) {
@@ -24,7 +24,11 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     }
   }
 
-  get image (): string {
+  public static isBase64 (string: string): boolean {
+    return /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/.test(string);
+  }
+
+  public get image (): string {
     if (Image.isBase64(this._image)) {
       return this._image;
     } else if (fs.existsSync(path.resolve(process.cwd(), this._image))) {
@@ -34,19 +38,19 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     }
   }
 
-  set image (image: string) {
+  public set image (image: string) {
     this._image = image;
   }
 
-  get preserveAspectRatio (): boolean {
+  public get preserveAspectRatio (): boolean {
     return this._preserveAspectRatio;
   }
 
-  set preserveAspectRatio (preserve: boolean) {
+  public set preserveAspectRatio (preserve: boolean) {
     this._preserveAspectRatio = preserve;
   }
 
-  render <T extends Canvas>(cursor: T): void {
+  public render <T extends Canvas>(cursor: T): void {
     super.render(cursor);
 
     const width = this.width;
@@ -61,7 +65,7 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     cursor.stream.write(`\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}^G`);
   }
 
-  toObject<T extends ImageObject>(): T {
+  public toObject<T extends ImageObject>(): T {
     const obj: ImageObject = super.toObject();
     obj.options = {
       ...obj.options,
@@ -70,9 +74,5 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     };
 
     return obj as T;
-  }
-
-  static isBase64 (string: string): boolean {
-    return /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/.test(string);
   }
 }

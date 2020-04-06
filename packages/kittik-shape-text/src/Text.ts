@@ -7,15 +7,15 @@ export { TextObject } from './TextObject';
 export { TextOptions } from './TextOptions';
 
 export class Text extends Shape implements TextOptions, ShapeRenderable {
-  align: 'left' | 'center' | 'right' = 'center';
-  blink = false;
-  bold = false;
-  dim = false;
-  hidden = false;
-  reverse = false;
-  underlined = false;
+  public align: 'left' | 'center' | 'right' = 'center';
+  public blink = false;
+  public bold = false;
+  public dim = false;
+  public hidden = false;
+  public reverse = false;
+  public underlined = false;
 
-  constructor (options?: Partial<TextOptions>) {
+  public constructor (options?: Partial<TextOptions>) {
     super(options);
 
     if (options?.align !== undefined) {
@@ -47,16 +47,16 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     }
   }
 
-  get width (): string {
+  public get width (): string {
     const lengths = this.text.split('\n').map(item => item.length);
     return Math.max(...lengths).toString();
   }
 
-  get height (): string {
+  public get height (): string {
     return this.text.split('\n').length.toString();
   }
 
-  render <T extends Canvas>(cursor: T): void {
+  public render <T extends Canvas>(cursor: T): void {
     super.render(cursor);
 
     const text = this.text.split('\n');
@@ -89,7 +89,7 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     });
   }
 
-  toObject<T extends TextObject>(): T {
+  public toObject<T extends TextObject>(): T {
     const obj: TextObject = super.toObject();
     obj.options = {
       ...obj.options,

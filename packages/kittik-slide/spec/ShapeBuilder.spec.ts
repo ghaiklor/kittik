@@ -58,7 +58,7 @@ describe('shape builder', () => {
     expect(() => {
       // This is a corner case where I check if builder throws an error when providing wrong type
       // Since this case has been covered by type system of TypeScript, I need to disable it
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       ShapeBuilder.start('Nonsense').end();
     }).toThrow('Shape "Nonsense" you tried to build does not exist');
