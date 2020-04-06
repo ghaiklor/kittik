@@ -22,6 +22,7 @@ module.exports = {
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
+    "extraFileExtensions": [".cjs"],
     "project": "./tsconfig.eslint.json"
   },
   "plugins": [
