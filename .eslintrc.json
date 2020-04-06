@@ -19,7 +19,7 @@
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2019,
     "sourceType": "module",
     "project": "./tsconfig.eslint.json"
   },
@@ -38,6 +38,10 @@
         "assertionStyle": "as",
         "objectLiteralTypeAssertions": "allow"
       }
+    ],
+    "@typescript-eslint/indent": [
+      "error",
+      2
     ],
     "@typescript-eslint/no-magic-numbers": [
       "off"
