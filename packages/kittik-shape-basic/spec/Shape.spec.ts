@@ -1,6 +1,6 @@
+import { Canvas } from 'terminal-canvas';
 import { Shape } from '../src/Shape';
 import { ShapeObject } from '../src/ShapeObject';
-import { Canvas } from 'terminal-canvas';
 
 describe('basic shape', () => {
   it('should properly get/set text', () => {
@@ -23,7 +23,7 @@ describe('basic shape', () => {
     expect(shape.width).toStrictEqual('5');
 
     shape.width = '50%';
-    expect(parseInt(shape.width)).toBe(Math.floor(process.stdout.columns / 2));
+    expect(parseInt(shape.width, 10)).toBe(Math.floor(process.stdout.columns / 2));
   });
 
   it('should properly get/set height', () => {
@@ -52,10 +52,10 @@ describe('basic shape', () => {
     expect(shape.x).toStrictEqual('0');
 
     shape.x = 'center';
-    expect(shape.x).toStrictEqual(Math.floor(process.stdout.columns / 2 - parseInt(shape.width) / 2).toString());
+    expect(shape.x).toStrictEqual(Math.floor(process.stdout.columns / 2 - parseInt(shape.width, 10) / 2).toString());
 
     shape.x = 'right';
-    expect(shape.x).toStrictEqual(Math.floor(process.stdout.columns - parseInt(shape.width)).toString());
+    expect(shape.x).toStrictEqual(Math.floor(process.stdout.columns - parseInt(shape.width, 10)).toString());
 
     shape.x = '50%';
     expect(shape.x).toStrictEqual(Math.floor(process.stdout.columns / 2).toString());
@@ -74,10 +74,10 @@ describe('basic shape', () => {
     expect(shape.y).toStrictEqual('0');
 
     shape.y = 'middle';
-    expect(shape.y).toStrictEqual(Math.floor(process.stdout.rows / 2 - parseInt(shape.height) / 2).toString());
+    expect(shape.y).toStrictEqual(Math.floor(process.stdout.rows / 2 - parseInt(shape.height, 10) / 2).toString());
 
     shape.y = 'bottom';
-    expect(shape.y).toStrictEqual(Math.floor(process.stdout.rows - parseInt(shape.height)).toString());
+    expect(shape.y).toStrictEqual(Math.floor(process.stdout.rows - parseInt(shape.height, 10)).toString());
 
     shape.y = '50%';
     expect(shape.y).toStrictEqual(Math.floor(process.stdout.rows / 2).toString());
@@ -109,10 +109,10 @@ describe('basic shape', () => {
     const cursor = new Canvas({ width: 10, height: 20 });
     const shape = new Shape();
 
-    expect(parseInt(shape.width)).toBe(Math.floor(process.stdout.columns / 2));
+    expect(parseInt(shape.width, 10)).toBe(Math.floor(process.stdout.columns / 2));
 
     shape.render(cursor);
-    expect(parseInt(shape.width)).toBe(Math.floor(10 / 2));
+    expect(parseInt(shape.width, 10)).toBe(Math.floor(10 / 2));
   });
 
   it('should properly serialize shape to object', () => {
@@ -169,6 +169,7 @@ describe('basic shape', () => {
     const shape = new Shape();
     const json = shape.toJSON();
 
+    // eslint-disable-next-line max-len
     expect(json).toStrictEqual('{"type":"Shape","options":{"text":"","width":"50%","height":"25%","x":"left","y":"top","background":"none","foreground":"none"}}');
   });
 
@@ -178,6 +179,7 @@ describe('basic shape', () => {
     const shape = new Shape({ text: 'test', x: '0', y: '0', width: '30', height: '50' });
     const json = shape.toJSON();
 
+    // eslint-disable-next-line max-len
     expect(json).toStrictEqual('{"type":"Shape","options":{"text":"test","width":"30","height":"50","x":"0","y":"0","background":"none","foreground":"none"}}');
   });
 

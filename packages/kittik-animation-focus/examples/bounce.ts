@@ -1,6 +1,6 @@
 import { Canvas } from 'terminal-canvas';
-import { Rectangle } from 'kittik-shape-rectangle';
 import { Focus } from '..';
+import { Rectangle } from 'kittik-shape-rectangle';
 
 const onTick = (shape: Rectangle): void => {
   cursor.eraseScreen();

@@ -1,4 +1,4 @@
-import { DeckBuilder, SlideBuilder, AnimationBuilder, ShapeBuilder } from '..';
+import { AnimationBuilder, DeckBuilder, ShapeBuilder, SlideBuilder } from '..';
 
 DeckBuilder
   .start()
@@ -42,4 +42,4 @@ DeckBuilder
   )
   .end()
   .renderSlide()
-  .catch(e => console.error(e));
+  .catch((e) => console.error(e));

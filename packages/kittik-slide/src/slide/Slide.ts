@@ -1,11 +1,11 @@
-import { Animationable } from 'kittik-animation-basic';
-import { AnimationDeclaration } from '../animation/AnimationDeclaration';
 import { ANIMATIONS, AnimationType } from '../animation/Animations';
+import { SHAPES, ShapeType } from '../shape/Shapes';
+import { AnimationDeclaration } from '../animation/AnimationDeclaration';
+import { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
 import { OrderDeclaration } from './OrderDeclaration';
 import { ShapeDeclaration } from '../shape/ShapeDeclaration';
 import { ShapeRenderable } from 'kittik-shape-basic';
-import { SHAPES, ShapeType } from '../shape/Shapes';
 import { SlideDeclaration } from './SlideDeclaration';
 
 export { AnimationBuilder } from '../animation/AnimationBuilder';
@@ -26,23 +26,23 @@ export class Slide {
   public readonly order: OrderDeclaration[] = [];
 
   public constructor (cursor?: Canvas, declaration?: SlideDeclaration) {
-    if (cursor !== undefined) {
+    if (typeof cursor !== 'undefined') {
       this.cursor = cursor;
     }
 
-    if (declaration?.name !== undefined) {
+    if (typeof declaration?.name !== 'undefined') {
       this.name = declaration.name;
     }
 
-    if (declaration?.shapes !== undefined) {
+    if (typeof declaration?.shapes !== 'undefined') {
       this.initShapes(declaration.shapes);
     }
 
-    if (declaration?.animations !== undefined) {
+    if (typeof declaration?.animations !== 'undefined') {
       this.initAnimations(declaration.animations);
     }
 
-    if (declaration?.order !== undefined) {
+    if (typeof declaration?.order !== 'undefined') {
       this.order = declaration.order;
     }
   }
@@ -80,12 +80,13 @@ export class Slide {
       throw new Error(`You already have an ordering for shape "${shape}" in slide "${this.name}"`);
     }
 
-    this.order.push({ shape, animations });
+    this.order.push({ animations, shape });
   }
 
+  // eslint-disable-next-line max-statements
   public async render (): Promise<void> {
-    const shapes = this.shapes;
-    const animations = this.animations;
+    const { shapes } = this;
+    const { animations } = this;
     const shapesToRender: ShapeRenderable[] = [];
     const sequence: Array<() => void> = [];
 
@@ -95,9 +96,10 @@ export class Slide {
 
     for (const order of this.order) {
       const shapeToRender = shapes.get(order.shape);
-      if (shapeToRender === undefined) {
+      if (typeof shapeToRender === 'undefined') {
         throw new Error(
-          `You specified shape "${order.shape}" in slide "${this.name}" as part of ordering, but it does not exist in shapes declaration.\n` +
+          `You specified shape "${order.shape}" in slide "${this.name}" ` +
+          'as part of ordering, but it does not exist in shapes declaration.\n' +
           'Maybe you forgot to create a shape you want to order or it is a typo in ordering itself.'
         );
       }
@@ -107,8 +109,8 @@ export class Slide {
 
       // But, if there are animations specified for the shape
       // We need to add their animations in the sequence as well
-      (order.animations?.map(item => animations.get(item)) ?? [])
-        .forEach(animation => sequence.push(() => animation?.animate(shapeToRender)));
+      (order.animations?.map((item) => animations.get(item)) ?? [])
+        .forEach((animation) => sequence.push(() => animation?.animate(shapeToRender)));
 
       // Finally, we need to re-render all the shapes that were (possibly) affected by animation
       sequence.push(() => this.renderShapes(shapesToRender));
@@ -123,12 +125,15 @@ export class Slide {
   }
 
   public toObject (): SlideDeclaration {
-    const name = this.name;
-    const shapes = [...this.shapes.entries()].map(([name, shape]) => ({ ...shape.toObject(), name }));
-    const animations = [...this.animations.entries()].map(([name, animation]) => ({ ...animation.toObject(), name }));
-    const order = this.order;
+    const { name, order } = this;
 
-    return { name, shapes, animations, order };
+    const shapes = [...this.shapes.entries()]
+      .map(([shapeName, shape]) => ({ ...shape.toObject(), name: shapeName }));
+
+    const animations = [...this.animations.entries()]
+      .map(([animationName, animation]) => ({ ...animation.toObject(), name: animationName }));
+
+    return { animations, name, order, shapes };
   }
 
   public toJSON (): string {
@@ -139,8 +144,10 @@ export class Slide {
     declaration.forEach((shapeDeclaration: ShapeDeclaration) => {
       const ctor = SHAPES.get(shapeDeclaration.type as ShapeType);
 
-      if (ctor === undefined) {
-        throw new Error(`Shape "${shapeDeclaration.name}" (${shapeDeclaration.type}) is unknown for me, maybe you made a typo?`);
+      if (typeof ctor === 'undefined') {
+        throw new Error(
+          `Shape "${shapeDeclaration.name}" (${shapeDeclaration.type}) is unknown for me, maybe you made a typo?`
+        );
       }
 
       this.addShape(shapeDeclaration.name, ctor.fromObject(shapeDeclaration));
@@ -151,8 +158,11 @@ export class Slide {
     declaration.forEach((animationDeclaration: AnimationDeclaration) => {
       const ctor = ANIMATIONS.get(animationDeclaration.type as AnimationType);
 
-      if (ctor === undefined) {
-        throw new Error(`Animation "${animationDeclaration.name}" (${animationDeclaration.type}) is unknown for me, maybe you made a typo?`);
+      if (typeof ctor === 'undefined') {
+        throw new Error(
+          `Animation "${animationDeclaration.name}" (${animationDeclaration.type}) is unknown for me, ` +
+          'maybe you made a typo?'
+        );
       }
 
       this.addAnimation(animationDeclaration.name, ctor.fromObject(animationDeclaration));

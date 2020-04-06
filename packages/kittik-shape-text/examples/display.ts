@@ -11,5 +11,5 @@ const shapes = [
   new Text({ text: 'UNDERLINED', y: '10', underlined: true })
 ];
 
-shapes.forEach(shape => shape.render(canvas));
+shapes.forEach((shape) => shape.render(canvas));
 canvas.flush();

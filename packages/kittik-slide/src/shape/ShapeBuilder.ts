@@ -1,5 +1,5 @@
+import { SHAPES, ShapeType } from './Shapes';
 import { ShapeObject, ShapeOptions, ShapeRenderable } from 'kittik-shape-basic';
-import { ShapeType, SHAPES } from './Shapes';
 
 export class ShapeBuilder implements ShapeObject {
   public type: ShapeType;
@@ -69,7 +69,7 @@ export class ShapeBuilder implements ShapeObject {
 
   public end (): ShapeRenderable {
     const ctr = SHAPES.get(this.type);
-    if (ctr === undefined) {
+    if (typeof ctr === 'undefined') {
       throw new Error(`Shape "${this.type}" you tried to build does not exist`);
     }
 

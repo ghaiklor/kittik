@@ -1,6 +1,6 @@
+import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Canvas } from 'terminal-canvas';
 import { DEFAULT_THEME } from './themes/default';
-import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import beautify from 'js-beautify';
 import redeyed from 'redeyed';
 
@@ -14,7 +14,7 @@ export class Code extends Shape implements ShapeRenderable {
   }
 
   public get width (): string {
-    const lengths = this.text.split('\n').map(item => item.length);
+    const lengths = this.text.split('\n').map((item) => item.length);
     return Math.max(...lengths).toString();
   }
 
@@ -26,20 +26,20 @@ export class Code extends Shape implements ShapeRenderable {
     super.render(cursor);
 
     const codeSplits = redeyed(this.text, DEFAULT_THEME).splits;
-    const x = parseInt(this.x);
-    const y = parseInt(this.y);
+    const x = parseInt(this.x, 10);
+    const y = parseInt(this.y, 10);
 
     cursor.moveTo(x, y);
 
     codeSplits.forEach((split: string) => {
-      const code = split.replace(/__.*__/, '');
-      const color = /__(.*)__/.exec(split);
+      const code = split.replace(/__.*__/u, '');
+      const color = (/__(?<color>.*)__/u).exec(split);
 
-      if (/\n/.exec(code) !== null) {
-        cursor.moveTo(x, cursor.cursorY + 1).write(code.replace('\n', ''));
-      } else {
-        cursor.foreground(color !== null ? color[1] : 'none');
+      if ((/\n/u).exec(code) === null) {
+        cursor.foreground(color === null ? 'none' : color[1]);
         cursor.write(code);
+      } else {
+        cursor.moveTo(x, cursor.cursorY + 1).write(code.replace('\n', ''));
       }
     });
   }

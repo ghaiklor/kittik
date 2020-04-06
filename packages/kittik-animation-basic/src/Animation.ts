@@ -1,9 +1,9 @@
+import * as EASING from './Easing';
 import { AnimationObject } from './AnimationObject';
 import { AnimationOptions } from './AnimationOptions';
 import { AnimationPropertyOptions } from './AnimationPropertyOptions';
 import { EventEmitter } from 'events';
 import { Shape } from 'kittik-shape-basic';
-import * as EASING from './Easing';
 
 export { Animationable } from './Animationable';
 export { AnimationObject } from './AnimationObject';
@@ -12,8 +12,17 @@ export { AnimationPropertyOptions } from './AnimationPropertyOptions';
 export { Easing } from './Easing';
 
 export declare interface Animation {
-  on<S extends Shape, P extends keyof S, V extends number>(event: 'tick', listener: (shape: S, property: P, value: V) => void): this
-  emit<S extends Shape, P extends keyof S, V extends number>(event: 'tick', shape: S, property: P, value: V): boolean
+  on<
+    S extends Shape,
+    P extends keyof S,
+    V extends number
+  >(event: 'tick', listener: (shape: S, property: P, value: V) => void): this
+
+  emit<
+    S extends Shape,
+    P extends keyof S,
+    V extends number
+  >(event: 'tick', shape: S, property: P, value: V): boolean
 }
 
 export class Animation extends EventEmitter implements AnimationOptions {
@@ -23,11 +32,11 @@ export class Animation extends EventEmitter implements AnimationOptions {
   public constructor (options?: Partial<AnimationOptions>) {
     super();
 
-    if (options?.duration !== undefined) {
+    if (typeof options?.duration !== 'undefined') {
       this.duration = options.duration;
     }
 
-    if (options?.easing !== undefined) {
+    if (typeof options?.easing !== 'undefined') {
       this.easing = options.easing;
     }
 
@@ -55,23 +64,29 @@ export class Animation extends EventEmitter implements AnimationOptions {
     return this.fromObject(JSON.parse(json));
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public onTick<S extends Shape, P extends keyof S, V extends number>(shape: S, property: P, value: V): void {
     Object.assign(shape, { [property]: value });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public onEasing (easing: EASING.Easing, time: number, startValue: number, byValue: number, duration: number): number {
     return Math.round(EASING[easing](time, startValue, byValue, duration));
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public async delay (ms: number): Promise<void> {
-    return await new Promise(resolve => setTimeout(resolve, isFinite(ms) ? ms : 1));
+    return await new Promise((resolve) => setTimeout(resolve, isFinite(ms) ? ms : 1));
   }
 
-  public async animateProperty<S extends Shape, P extends keyof S>(options: AnimationPropertyOptions<S, P>): Promise<S> {
-    const shape = options.shape;
-    const property = options.property;
-    const startValue = options.startValue;
-    const endValue = options.endValue;
+  public async animateProperty<
+    S extends Shape,
+    P extends keyof S
+  >(options: AnimationPropertyOptions<S, P>): Promise<S> {
+    const { shape } = options;
+    const { property } = options;
+    const { startValue } = options;
+    const { endValue } = options;
     const byValue = options.byValue ?? (endValue - startValue);
     const duration = options.duration ?? this.duration;
     const easing = options.easing ?? this.easing;

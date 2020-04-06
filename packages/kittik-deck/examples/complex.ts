@@ -178,7 +178,10 @@ new Deck({
       name: 'Text',
       type: 'Text',
       options: {
-        text: 'Also, I have a public API, so you can integrate me in any NodeJS project\nOr, add your own shapes and animations',
+        text:
+        'Also, I have a public API, so you can integrate me in any NodeJS project\n' +
+        'Or, add your own shapes and animations',
+
         x: 'center',
         y: 'middle'
       }

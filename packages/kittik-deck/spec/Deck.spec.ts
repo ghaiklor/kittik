@@ -1,6 +1,6 @@
+import { Deck, DeckDeclaration } from '../src/Deck';
 import { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
-import { Deck, DeckDeclaration } from '../src/Deck';
 import { ShapeRenderable } from 'kittik-shape-basic';
 
 const DECK_DECLARATION: DeckDeclaration = {
@@ -113,7 +113,7 @@ describe('deck', () => {
   it('should properly render slides without custom cursor', async () => {
     expect.hasAssertions();
 
-    const deck = new Deck({ ...DECK_DECLARATION, cursor: undefined });
+    const deck = new Deck({ ...DECK_DECLARATION, cursor: null });
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
 
     await deck.nextSlide();
@@ -131,7 +131,12 @@ describe('deck', () => {
   it('should properly render minimal slide without global shapes/animations', async () => {
     expect.hasAssertions();
 
-    const deck = new Deck({ slides: [{ name: 'Test', shapes: [], order: [] }, { name: 'Test 2', shapes: [], order: [], animations: [] }] });
+    const deck = new Deck({
+      slides: [
+        { name: 'Test', shapes: [], order: [] }, { name: 'Test 2', shapes: [], order: [], animations: [] }
+      ]
+    });
+
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
 
     await deck.nextSlide();
@@ -197,9 +202,13 @@ describe('deck', () => {
   it('should properly add an animation to all the slides in the deck', () => {
     expect.hasAssertions();
 
-    const deck = new Deck({ slides: [{ name: 'Test', shapes: [], order: [], animations: [{ name: 'Animation', type: 'Print' }] }] });
-    const animation = {} as Animationable;
+    const deck = new Deck({
+      slides: [
+        { name: 'Test', shapes: [], order: [], animations: [{ name: 'Animation', type: 'Print' }] }
+      ]
+    });
 
+    const animation = {} as Animationable;
     deck.addAnimation('Animation 2', animation);
 
     // I am accessing the private property to check if there is actually a new animation exists
@@ -213,10 +222,15 @@ describe('deck', () => {
   it('should properly throw an error if animation already exists in other slides', () => {
     expect.hasAssertions();
 
-    const deck = new Deck({ slides: [{ name: 'Test', shapes: [], order: [], animations: [{ name: 'Animation', type: 'Print' }] }] });
-    const animation = {} as Animationable;
+    const deck = new Deck({
+      slides: [
+        { name: 'Test', shapes: [], order: [], animations: [{ name: 'Animation', type: 'Print' }] }
+      ]
+    });
 
-    expect(() => deck.addAnimation('Animation', animation)).toThrow('Slides [Test] already have an animation with the name "Animation"');
+    const animation = {} as Animationable;
+    expect(() => deck.addAnimation('Animation', animation))
+      .toThrow('Slides [Test] already have an animation with the name "Animation"');
 
     deck.exit();
   });

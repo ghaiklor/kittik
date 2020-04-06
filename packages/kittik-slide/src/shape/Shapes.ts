@@ -1,8 +1,8 @@
+import { ShapeObject, ShapeRenderable } from 'kittik-shape-basic';
 import { Code } from 'kittik-shape-code';
 import { FigText } from 'kittik-shape-fig-text';
 import { Image } from 'kittik-shape-image';
 import { Rectangle } from 'kittik-shape-rectangle';
-import { ShapeRenderable, ShapeObject } from 'kittik-shape-basic';
 import { Text } from 'kittik-shape-text';
 
 export type ShapeType = 'Code' | 'FigText' | 'Image' | 'Rectangle' | 'Text';

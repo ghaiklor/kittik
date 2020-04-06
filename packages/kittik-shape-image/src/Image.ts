@@ -1,7 +1,7 @@
+import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Canvas } from 'terminal-canvas';
 import { ImageObject } from './ImageObject';
 import { ImageOptions } from './ImageOptions';
-import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import fs from 'fs';
 import path from 'path';
 
@@ -15,17 +15,17 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
   public constructor (options?: Partial<ImageOptions>) {
     super(options);
 
-    if (options?.image !== undefined) {
+    if (typeof options?.image !== 'undefined') {
       this.image = options.image;
     }
 
-    if (options?.preserveAspectRatio !== undefined) {
+    if (typeof options?.preserveAspectRatio !== 'undefined') {
       this.preserveAspectRatio = options.preserveAspectRatio;
     }
   }
 
   public static isBase64 (string: string): boolean {
-    return /^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$/.test(string);
+    return (/^[A-Za-z0-9+/]{4}*[A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==$/u).test(string);
   }
 
   public get image (): string {
@@ -33,9 +33,8 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
       return this._image;
     } else if (fs.existsSync(path.resolve(process.cwd(), this._image))) {
       return fs.readFileSync(path.resolve(process.cwd(), this._image), 'base64');
-    } else {
-      throw new Error('Image is not in base64 or does not exists on file system');
     }
+    throw new Error('Image is not in base64 or does not exists on file system');
   }
 
   public set image (image: string) {
@@ -53,14 +52,20 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
   public render <T extends Canvas>(cursor: T): void {
     super.render(cursor);
 
-    const width = this.width;
-    const height = this.height;
-    const x = parseInt(this.x);
-    const y = parseInt(this.y);
-    const image = this.image;
-    const preserveAspectRatio = this.preserveAspectRatio;
+    const { width } = this;
+    const { height } = this;
+    const x = parseInt(this.x, 10);
+    const y = parseInt(this.y, 10);
+    const { image } = this;
+    const { preserveAspectRatio } = this;
     const size = 3 * (image.length / 4);
-    const args = `size=${size};width=${width};height=${height};preserveAspectRatio=${preserveAspectRatio ? 1 : 0};inline=1`;
+    const args = [
+      `size=${size}`,
+      `width=${width}`,
+      `height=${height}`,
+      `preserveAspectRatio=${preserveAspectRatio ? 1 : 0}`,
+      'inline=1'
+    ].join(';');
 
     cursor.stream.write(`\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}^G`);
   }

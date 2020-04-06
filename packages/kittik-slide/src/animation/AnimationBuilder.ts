@@ -1,5 +1,5 @@
+import { ANIMATIONS, AnimationType } from './Animations';
 import { AnimationObject, AnimationOptions, Animationable, Easing } from 'kittik-animation-basic';
-import { AnimationType, ANIMATIONS } from './Animations';
 
 export class AnimationBuilder implements AnimationObject {
   public type: AnimationType;
@@ -39,7 +39,7 @@ export class AnimationBuilder implements AnimationObject {
 
   public end (): Animationable {
     const ctr = ANIMATIONS.get(this.type);
-    if (ctr === undefined) {
+    if (typeof ctr === 'undefined') {
       throw new Error(`Animation "${this.type}" you tried to build does not exist`);
     }
 

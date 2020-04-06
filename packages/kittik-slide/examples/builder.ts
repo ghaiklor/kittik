@@ -1,7 +1,7 @@
-import { Canvas } from 'terminal-canvas';
 import { AnimationBuilder, ShapeBuilder, SlideBuilder } from '..';
-import { SlideOptions } from 'kittik-animation-slide';
+import { Canvas } from 'terminal-canvas';
 import { FocusOptions } from 'kittik-animation-focus';
+import { SlideOptions } from 'kittik-animation-slide';
 
 const cursor = Canvas.create().reset().hideCursor();
 
@@ -50,4 +50,4 @@ SlideBuilder
   .end()
   .render()
   .finally(() => cursor.reset().showCursor())
-  .catch(e => console.error(e));
+  .catch((e) => console.error(e));

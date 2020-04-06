@@ -1,5 +1,5 @@
+import { AnimationBuilder, ShapeBuilder } from '../src/slide/Slide';
 import { Canvas } from 'terminal-canvas';
-import { ShapeBuilder, AnimationBuilder } from '../src/slide/Slide';
 import { SlideBuilder } from '../src/slide/SlideBuilder';
 
 describe('slide builder', () => {

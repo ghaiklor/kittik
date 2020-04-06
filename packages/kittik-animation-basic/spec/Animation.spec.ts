@@ -31,7 +31,15 @@ describe('basic animation', () => {
     const animation = new Animation();
     const emitSpy = jest.spyOn(animation, 'emit');
 
-    await animation.animateProperty({ shape, property: 'x', startValue: 0, endValue: 100, byValue: 1, duration: 100, easing: 'inExpo' });
+    await animation.animateProperty({
+      shape,
+      property: 'x',
+      startValue: 0,
+      endValue: 100,
+      byValue: 1,
+      duration: 100,
+      easing: 'inExpo'
+    });
 
     expect(emitSpy.mock.calls.length).toBeGreaterThan(60);
     expect(emitSpy).toHaveBeenCalledWith('tick', expect.any(Shape), 'x', expect.any(Number));

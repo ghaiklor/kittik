@@ -30,20 +30,31 @@ describe('image shape', () => {
     shape.render(cursor);
 
     expect(writeSpy).toHaveBeenCalledTimes(1);
-    expect(writeSpy).toHaveBeenCalledWith('\u001b[11;11H\u001b]1337;File=size=6;width=15;height=5;preserveAspectRatio=1;inline=1:dGVzdA==^G');
+    expect(writeSpy).toHaveBeenCalledWith(
+      '\u001b[11;11H\u001b]1337;File=size=6;width=15;height=5;preserveAspectRatio=1;inline=1:dGVzdA==^G'
+    );
   });
 
   it('should properly render the shape with disabled preserveAspectRatio', () => {
     expect.hasAssertions();
 
     const cursor = new Canvas();
-    const shape = new Image({ image: 'dGVzdA==', preserveAspectRatio: false, width: '15', height: '5', x: '10', y: '10' });
     const writeSpy = jest.spyOn(cursor.stream, 'write').mockImplementation(() => true);
+    const shape = new Image({
+      image: 'dGVzdA==',
+      preserveAspectRatio: false,
+      width: '15',
+      height: '5',
+      x: '10',
+      y: '10'
+    });
 
     shape.render(cursor);
 
     expect(writeSpy).toHaveBeenCalledTimes(1);
-    expect(writeSpy).toHaveBeenCalledWith('\u001b[11;11H\u001b]1337;File=size=6;width=15;height=5;preserveAspectRatio=0;inline=1:dGVzdA==^G');
+    expect(writeSpy).toHaveBeenCalledWith(
+      '\u001b[11;11H\u001b]1337;File=size=6;width=15;height=5;preserveAspectRatio=0;inline=1:dGVzdA==^G'
+    );
   });
 
   it('should properly serialize shape to object', () => {

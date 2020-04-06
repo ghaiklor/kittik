@@ -1,6 +1,6 @@
 import { Animation, Animationable } from 'kittik-animation-basic';
+import { BounceDirection, Direction, FocusOptions, ShakeDirection } from './FocusOptions';
 import { FocusObject } from './FocusObject';
-import { FocusOptions, Direction, BounceDirection, ShakeDirection } from './FocusOptions';
 import { Shape } from 'kittik-shape-basic';
 
 export { FocusObject } from './FocusObject';
@@ -15,19 +15,19 @@ export class Focus extends Animation implements FocusOptions, Animationable {
   public constructor (options?: Partial<FocusOptions>) {
     super(options);
 
-    if (options?.duration !== undefined) {
+    if (typeof options?.duration !== 'undefined') {
       this.duration = options.duration;
     }
 
-    if (options?.direction !== undefined) {
+    if (typeof options?.direction !== 'undefined') {
       this.direction = options.direction;
     }
 
-    if (options?.offset !== undefined) {
+    if (typeof options?.offset !== 'undefined') {
       this.offset = options.offset;
     }
 
-    if (options?.repeat !== undefined) {
+    if (typeof options?.repeat !== 'undefined') {
       this.repeat = options.repeat;
     }
   }
@@ -41,13 +41,12 @@ export class Focus extends Animation implements FocusOptions, Animationable {
   }
 
   public async animate<T extends Shape>(shape: T): Promise<T> {
-    const direction = this.direction;
+    const { direction } = this;
 
     if (direction.includes('bounce')) {
       return await this.animateBounce(shape, direction as BounceDirection);
-    } else {
-      return await this.animateShake(shape, direction as ShakeDirection);
     }
+    return await this.animateShake(shape, direction as ShakeDirection);
   }
 
   public toObject<T extends FocusObject>(): T {
@@ -63,13 +62,13 @@ export class Focus extends Animation implements FocusOptions, Animationable {
   }
 
   private async animateBounce<T extends Shape>(shape: T, direction: BounceDirection): Promise<T> {
-    const x = parseInt(shape.x);
-    const y = parseInt(shape.y);
-    const offset = this.offset;
+    const x = parseInt(shape.x, 10);
+    const y = parseInt(shape.y, 10);
+    const { offset } = this;
 
-    let startValue: number;
-    let endValue: number;
-    let property: keyof T;
+    let startValue = 0;
+    let endValue = 0;
+    let property: keyof T = 'x';
     switch (direction) {
       case 'bounceUp':
         startValue = y;
@@ -91,24 +90,33 @@ export class Focus extends Animation implements FocusOptions, Animationable {
         endValue = x - offset;
         property = 'x';
         break;
+      default:
+        throw new Error(`Unexpected direction for bounce: ${direction as string}`);
     }
 
     const length = this.repeat;
     const firstStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue, endValue });
-    const secondStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue: endValue, endValue: startValue });
+    const secondStep = async (): Promise<T> => await this.animateProperty({
+      shape,
+      property,
+      startValue: endValue,
+      endValue: startValue
+    });
 
-    return await Array.from({ length }).reduce(async (promise: Promise<T>) => await promise.then(firstStep).then(secondStep), Promise.resolve(shape));
+    return await Array
+      .from({ length })
+      .reduce(async (promise: Promise<T>) => await promise.then(firstStep).then(secondStep), Promise.resolve(shape));
   }
 
   private async animateShake<T extends Shape>(shape: T, direction: ShakeDirection): Promise<T> {
-    const x = parseInt(shape.x);
-    const y = parseInt(shape.y);
-    const offset = this.offset;
+    const x = parseInt(shape.x, 10);
+    const y = parseInt(shape.y, 10);
+    const { offset } = this;
 
-    let startValue: number;
-    let leftValue: number;
-    let rightValue: number;
-    let property: keyof T;
+    let startValue = 0;
+    let leftValue = 0;
+    let rightValue = 0;
+    let property: keyof T = 'x';
     switch (direction) {
       case 'shakeX':
         startValue = x;
@@ -122,13 +130,38 @@ export class Focus extends Animation implements FocusOptions, Animationable {
         rightValue = y + offset;
         property = 'y';
         break;
+      default:
+        throw new Error(`Unexpected direction for shake: ${direction as string}`);
     }
 
     const length = this.repeat;
-    const firstStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue, endValue: leftValue });
-    const secondStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue: leftValue, endValue: rightValue });
-    const thirdStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue: rightValue, endValue: startValue });
 
-    return await Array.from({ length }).reduce(async (promise: Promise<T>) => await promise.then(firstStep).then(secondStep).then(thirdStep), Promise.resolve(shape));
+    const firstStep = async (): Promise<T> => await this.animateProperty({
+      shape,
+      property,
+      startValue,
+      endValue: leftValue
+    });
+
+    const secondStep = async (): Promise<T> => await this.animateProperty({
+      shape,
+      property,
+      startValue: leftValue,
+      endValue: rightValue
+    });
+
+    const thirdStep = async (): Promise<T> => await this.animateProperty({
+      shape,
+      property,
+      startValue: rightValue,
+      endValue: startValue
+    });
+
+    return await Array
+      .from({ length })
+      .reduce(
+        async (promise: Promise<T>) => await promise.then(firstStep).then(secondStep).then(thirdStep),
+        Promise.resolve(shape)
+      );
   }
 }

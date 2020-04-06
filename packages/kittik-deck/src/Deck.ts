@@ -19,11 +19,11 @@ export class Deck {
   private currentSlideIndex = 0;
 
   public constructor (declaration?: DeckDeclaration) {
-    if (declaration?.cursor !== undefined) {
+    if (typeof declaration?.cursor !== 'undefined') {
       this.cursor = declaration.cursor;
     }
 
-    if (declaration !== undefined) {
+    if (typeof declaration !== 'undefined') {
       this.initSlides(declaration);
     }
 
@@ -31,21 +31,21 @@ export class Deck {
   }
 
   public addShape (name: string, shape: ShapeRenderable): void {
-    const slidesWithShape = this.slides.filter(slide => slide.shapes.has(name)).map(slide => slide.name);
+    const slidesWithShape = this.slides.filter((slide) => slide.shapes.has(name)).map((slide) => slide.name);
     if (slidesWithShape.length > 0) {
       throw new Error(`Slides [${slidesWithShape.join(', ')}] already have a shape with the name "${name}"`);
     }
 
-    this.slides.forEach(slide => slide.addShape(name, shape));
+    this.slides.forEach((slide) => slide.addShape(name, shape));
   }
 
   public addAnimation (name: string, animation: Animationable): void {
-    const slidesWithAnimation = this.slides.filter(slide => slide.animations.has(name)).map(slide => slide.name);
+    const slidesWithAnimation = this.slides.filter((slide) => slide.animations.has(name)).map((slide) => slide.name);
     if (slidesWithAnimation.length > 0) {
       throw new Error(`Slides [${slidesWithAnimation.join(', ')}] already have an animation with the name "${name}"`);
     }
 
-    this.slides.forEach(slide => slide.addAnimation(name, animation));
+    this.slides.forEach((slide) => slide.addAnimation(name, animation));
   }
 
   public addSlide (slide: Slide): void {
@@ -53,23 +53,29 @@ export class Deck {
   }
 
   public async renderSlide (index = this.currentSlideIndex): Promise<void> {
-    if (!this.isRendering && this.slides[index] !== undefined) {
+    if (!this.isRendering && typeof this.slides[index] !== 'undefined') {
       this.isRendering = true;
       await this.slides[index].render();
       this.isRendering = false;
     }
   }
 
-  public async nextSlide (): Promise<void> {
+  public async nextSlide (): Promise<boolean> {
     if (this.currentSlideIndex + 1 <= this.slides.length - 1) {
-      return await this.renderSlide(++this.currentSlideIndex);
+      await this.renderSlide(++this.currentSlideIndex);
+      return true;
     }
+
+    return false;
   }
 
-  public async previousSlide (): Promise<void> {
+  public async previousSlide (): Promise<boolean> {
     if (this.currentSlideIndex - 1 >= 0) {
-      return await this.renderSlide(--this.currentSlideIndex);
+      await this.renderSlide(--this.currentSlideIndex);
+      return true;
     }
+
+    return false;
   }
 
   public exit (): void {
@@ -81,7 +87,7 @@ export class Deck {
     const globalShapes = declaration.shapes ?? [];
     const globalAnimations = declaration.animations ?? [];
 
-    declaration.slides.forEach(slide => this.addSlide(Slide.create(this.cursor, {
+    declaration.slides.forEach((slide) => this.addSlide(Slide.create(this.cursor, {
       ...slide,
       shapes: globalShapes.concat(slide.shapes),
       animations: globalAnimations.concat(slide.animations ?? [])
@@ -101,13 +107,15 @@ export class Deck {
   private onKeyPress (chunk: string): void {
     switch (chunk) {
       case 'p':
-        this.previousSlide().catch(e => console.error(e));
+        this.previousSlide().catch((e) => console.error(e));
         break;
       case 'n':
-        this.nextSlide().catch(e => console.error(e));
+        this.nextSlide().catch((e) => console.error(e));
         break;
       case 'q':
         this.exit();
+        break;
+      default:
         break;
     }
   }

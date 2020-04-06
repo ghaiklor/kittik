@@ -1,5 +1,5 @@
-import { Canvas } from 'terminal-canvas';
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
+import { Canvas } from 'terminal-canvas';
 import { TextObject } from './TextObject';
 import { TextOptions } from './TextOptions';
 
@@ -18,37 +18,37 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
   public constructor (options?: Partial<TextOptions>) {
     super(options);
 
-    if (options?.align !== undefined) {
+    if (typeof options?.align !== 'undefined') {
       this.align = options.align;
     }
 
-    if (options?.blink !== undefined) {
+    if (typeof options?.blink !== 'undefined') {
       this.blink = options.blink;
     }
 
-    if (options?.bold !== undefined) {
+    if (typeof options?.bold !== 'undefined') {
       this.bold = options.bold;
     }
 
-    if (options?.dim !== undefined) {
+    if (typeof options?.dim !== 'undefined') {
       this.dim = options.dim;
     }
 
-    if (options?.hidden !== undefined) {
+    if (typeof options?.hidden !== 'undefined') {
       this.hidden = options.hidden;
     }
 
-    if (options?.reverse !== undefined) {
+    if (typeof options?.reverse !== 'undefined') {
       this.reverse = options.reverse;
     }
 
-    if (options?.underlined !== undefined) {
+    if (typeof options?.underlined !== 'undefined') {
       this.underlined = options.underlined;
     }
   }
 
   public get width (): string {
-    const lengths = this.text.split('\n').map(item => item.length);
+    const lengths = this.text.split('\n').map((item) => item.length);
     return Math.max(...lengths).toString();
   }
 
@@ -60,9 +60,9 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     super.render(cursor);
 
     const text = this.text.split('\n');
-    const x = parseInt(this.x);
-    const y = parseInt(this.y);
-    const width = parseInt(this.width);
+    const x = parseInt(this.x, 10);
+    const y = parseInt(this.y, 10);
+    const width = parseInt(this.width, 10);
 
     cursor
       .background(this.background)
@@ -85,6 +85,8 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
         case 'right':
           cursor.moveTo(x + (width - line.length), y + index).write(line);
           break;
+        default:
+          throw new Error(`Unknown align specified for text: ${this.align as string}`);
       }
     });
   }

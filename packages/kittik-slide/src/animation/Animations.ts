@@ -1,4 +1,4 @@
-import { Animationable, AnimationObject } from 'kittik-animation-basic';
+import { AnimationObject, Animationable } from 'kittik-animation-basic';
 import { Focus } from 'kittik-animation-focus';
 import { Print } from 'kittik-animation-print';
 import { Slide } from 'kittik-animation-slide';

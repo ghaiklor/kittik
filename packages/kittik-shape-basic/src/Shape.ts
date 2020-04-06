@@ -18,31 +18,31 @@ export class Shape implements ShapeOptions, ShapeRenderable {
   protected _foreground = 'none';
 
   public constructor (options?: Partial<ShapeOptions>) {
-    if (options?.text !== undefined) {
+    if (typeof options?.text !== 'undefined') {
       this.text = options.text;
     }
 
-    if (options?.x !== undefined) {
+    if (typeof options?.x !== 'undefined') {
       this.x = options.x;
     }
 
-    if (options?.y !== undefined) {
+    if (typeof options?.y !== 'undefined') {
       this.y = options.y;
     }
 
-    if (options?.width !== undefined) {
+    if (typeof options?.width !== 'undefined') {
       this.width = options.width;
     }
 
-    if (options?.height !== undefined) {
+    if (typeof options?.height !== 'undefined') {
       this.height = options.height;
     }
 
-    if (options?.background !== undefined) {
+    if (typeof options?.background !== 'undefined') {
       this.background = options.background;
     }
 
-    if (options?.foreground !== undefined) {
+    if (typeof options?.foreground !== 'undefined') {
       this.foreground = options.foreground;
     }
   }
@@ -79,9 +79,9 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     const x = this._x;
 
     if (x === 'left') return '0';
-    if (x === 'center') return Math.floor(this._cursor.width / 2 - parseInt(this.width) / 2).toString();
-    if (x === 'right') return Math.floor(this._cursor.width - parseInt(this.width)).toString();
-    if (/\d+%$/.test(x)) return Math.floor(parseInt(x.slice(0, -1)) * this._cursor.width / 100).toString();
+    if (x === 'center') return Math.floor(this._cursor.width / 2 - parseInt(this.width, 10) / 2).toString();
+    if (x === 'right') return Math.floor(this._cursor.width - parseInt(this.width, 10)).toString();
+    if ((/\d+%$/u).test(x)) return Math.floor(parseInt(x.slice(0, -1), 10) * this._cursor.width / 100).toString();
 
     return x;
   }
@@ -94,9 +94,9 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     const y = this._y;
 
     if (y === 'top') return '0';
-    if (y === 'middle') return Math.floor(this._cursor.height / 2 - parseInt(this.height) / 2).toString();
-    if (y === 'bottom') return Math.floor(this._cursor.height - parseInt(this.height)).toString();
-    if (/\d+%$/.test(y)) return Math.floor(parseInt(y.slice(0, -1)) * this._cursor.height / 100).toString();
+    if (y === 'middle') return Math.floor(this._cursor.height / 2 - parseInt(this.height, 10) / 2).toString();
+    if (y === 'bottom') return Math.floor(this._cursor.height - parseInt(this.height, 10)).toString();
+    if ((/\d+%$/u).test(y)) return Math.floor(parseInt(y.slice(0, -1), 10) * this._cursor.height / 100).toString();
 
     return y;
   }
@@ -108,8 +108,8 @@ export class Shape implements ShapeOptions, ShapeRenderable {
   public get width (): string {
     const width = this._width;
 
-    if (/\d+%$/.test(width)) {
-      return Math.floor(parseInt(width.slice(0, -1)) * this._cursor.width / 100).toString();
+    if ((/\d+%$/u).test(width)) {
+      return Math.floor(parseInt(width.slice(0, -1), 10) * this._cursor.width / 100).toString();
     }
 
     return width;
@@ -122,8 +122,8 @@ export class Shape implements ShapeOptions, ShapeRenderable {
   public get height (): string {
     const height = this._height;
 
-    if (/\d+%$/.test(height)) {
-      return Math.floor(parseInt(height.slice(0, -1)) * this._cursor.height / 100).toString();
+    if ((/\d+%$/u).test(height)) {
+      return Math.floor(parseInt(height.slice(0, -1), 10) * this._cursor.height / 100).toString();
     }
 
     return height;

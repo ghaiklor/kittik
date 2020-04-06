@@ -68,4 +68,4 @@ const slide = new Slide(cursor, {
 slide
   .render()
   .finally(() => cursor.reset().showCursor())
-  .catch(e => console.error(e));
+  .catch((e) => console.error(e));

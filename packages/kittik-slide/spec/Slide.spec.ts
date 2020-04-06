@@ -1,12 +1,12 @@
+import { Text, TextObject } from 'kittik-shape-text';
 import { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
 import { AnimationObject } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
 import { OrderDeclaration } from '../src/slide/OrderDeclaration';
+import { Print } from 'kittik-animation-print';
 import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
 import { Slide } from '../src/slide/Slide';
 import { SlideDeclaration } from '../src/slide/SlideDeclaration';
-import { TextObject, Text } from 'kittik-shape-text';
-import { Print } from 'kittik-animation-print';
 
 const SLIDE_DECLARATION: SlideDeclaration = {
   name: 'Testing Slide',
@@ -83,16 +83,32 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const cursor = new Canvas();
-    expect(() => new Slide(cursor, { name: 'Test', shapes: [{ name: 'Test', type: 'unknown' }], order: [{ shape: 'Test' }] }))
-      .toThrow('Shape "Test" (unknown) is unknown for me, maybe you made a typo?');
+
+    expect(
+      () => new Slide(
+        cursor, {
+          name: 'Test',
+          shapes: [{ name: 'Test', type: 'unknown' }],
+          order: [{ shape: 'Test' }]
+        }
+      )
+    ).toThrow('Shape "Test" (unknown) is unknown for me, maybe you made a typo?');
   });
 
   it('should properly throw an error if animation type is unknown', () => {
     expect.hasAssertions();
 
     const cursor = new Canvas();
-    expect(() => new Slide(cursor, { name: 'Test', shapes: [{ name: 'Test', type: 'Text' }], animations: [{ name: 'Test', type: 'unknown' }], order: [{ shape: 'Test' }] }))
-      .toThrow('Animation "Test" (unknown) is unknown for me, maybe you made a typo?');
+    expect(
+      () => new Slide(
+        cursor, {
+          name: 'Test',
+          shapes: [{ name: 'Test', type: 'Text' }],
+          animations: [{ name: 'Test', type: 'unknown' }],
+          order: [{ shape: 'Test' }]
+        }
+      )
+    ).toThrow('Animation "Test" (unknown) is unknown for me, maybe you made a typo?');
   });
 
   it('should properly throw an error if trying to use shape name in ordering that does not exist', async () => {
@@ -101,7 +117,10 @@ describe('slide', () => {
     const cursor = new Canvas();
     const slide = new Slide(cursor, { name: 'Test', shapes: [], order: [{ shape: 'Not Exists' }] });
 
-    await expect(slide.render()).rejects.toThrow('You specified shape "Not Exists" in slide "Test" as part of ordering, but it does not exist in shapes declaration.');
+    await expect(slide.render()).rejects.toThrow(
+      'You specified shape "Not Exists" in slide "Test" as part of ordering, ' +
+      'but it does not exist in shapes declaration.'
+    );
   });
 
   it('should properly render the whole slide', async () => {
@@ -124,7 +143,11 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const cursor = new Canvas();
-    const slide = Slide.create(cursor, { name: 'Test', shapes: [{ name: 'Test', type: 'Text' }], order: [{ shape: 'Test' }] });
+    const slide = Slide.create(cursor, {
+      name: 'Test',
+      shapes: [{ name: 'Test', type: 'Text' }],
+      order: [{ shape: 'Test' }]
+    });
 
     expect(await slide.render()).toBeUndefined();
   });
@@ -133,7 +156,11 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const cursor = new Canvas();
-    const slide = Slide.create(cursor, { name: 'Test', shapes: [{ name: 'Test', type: 'Text' }], order: [{ shape: 'Test', animations: ['Not Exists'] }] });
+    const slide = Slide.create(cursor, {
+      name: 'Test',
+      shapes: [{ name: 'Test', type: 'Text' }],
+      order: [{ shape: 'Test', animations: ['Not Exists'] }]
+    });
 
     expect(await slide.render()).toBeUndefined();
   });
@@ -187,7 +214,7 @@ describe('slide', () => {
   it('should properly instantiate an empty slide instance when nothing is passed but an empty arrays', () => {
     expect.hasAssertions();
 
-    const slide = new Slide(undefined, { name: 'Test', order: [], shapes: [] });
+    const slide = new Slide(null, { name: 'Test', order: [], shapes: [] });
     expect(slide.cursor).toBeInstanceOf(Canvas);
     expect(slide.shapes.size).toBe(0);
     expect(slide.animations.size).toBe(0);
@@ -197,21 +224,27 @@ describe('slide', () => {
   it('should properly throw an error when trying to add shape that is already added', () => {
     expect.hasAssertions();
 
-    const slide = new Slide(undefined, { name: 'Test', shapes: [{ name: 'Test', type: 'Text' }], order: [] });
+    const slide = new Slide(null, { name: 'Test', shapes: [{ name: 'Test', type: 'Text' }], order: [] });
     expect(() => slide.addShape('Test', Text.create())).toThrow('Shape "Test" already exists in slide');
   });
 
   it('should properly throw an error when trying to add animation that is already added', () => {
     expect.hasAssertions();
 
-    const slide = new Slide(undefined, { name: 'Test', shapes: [], order: [], animations: [{ name: 'Test', type: 'Print' }] });
+    const slide = new Slide(null, {
+      name: 'Test',
+      shapes: [],
+      order: [],
+      animations: [{ name: 'Test', type: 'Print' }]
+    });
+
     expect(() => slide.addAnimation('Test', Print.create())).toThrow('Animation "Test" already exists in slide');
   });
 
   it('should properly throw an error when trying to add ordering for the shape that is already added', () => {
     expect.hasAssertions();
 
-    const slide = new Slide(undefined, { name: 'Test', shapes: [], order: [{ shape: 'Test' }] });
+    const slide = new Slide(null, { name: 'Test', shapes: [], order: [{ shape: 'Test' }] });
     expect(() => slide.addOrder('Test')).toThrow(
       'You already have an ordering for shape "Test" in slide "Test"'
     );

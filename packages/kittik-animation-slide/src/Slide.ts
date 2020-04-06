@@ -1,7 +1,7 @@
 import { Animation, Animationable } from 'kittik-animation-basic';
+import { Direction, SlideOptions } from './SlideOptions';
 import { Shape } from 'kittik-shape-basic';
 import { SlideObject } from './SlideObject';
-import { SlideOptions, Direction } from './SlideOptions';
 
 export { SlideObject } from './SlideObject';
 export { SlideOptions, Direction } from './SlideOptions';
@@ -12,7 +12,7 @@ export class Slide extends Animation implements SlideOptions, Animationable {
   public constructor (options?: Partial<SlideOptions>) {
     super(options);
 
-    if (options?.direction !== undefined) {
+    if (typeof options?.direction !== 'undefined') {
       this.direction = options.direction;
     }
   }
@@ -34,11 +34,11 @@ export class Slide extends Animation implements SlideOptions, Animationable {
   }
 
   private parseCoordinates<T extends Shape>(shape: T): { startX: number, startY: number, endX: number, endY: number } {
-    const cursor = shape.cursor;
-    const x = parseInt(shape.x);
-    const y = parseInt(shape.y);
-    const width = parseInt(shape.width);
-    const height = parseInt(shape.height);
+    const { cursor } = shape;
+    const x = parseInt(shape.x, 10);
+    const y = parseInt(shape.y, 10);
+    const width = parseInt(shape.width, 10);
+    const height = parseInt(shape.height, 10);
     const directions = {
       inUp: () => [x, -height, x, y],
       inDown: () => [x, cursor.height + height, x, y],

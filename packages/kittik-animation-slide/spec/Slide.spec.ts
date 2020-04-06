@@ -29,8 +29,12 @@ describe('slide animation', () => {
     await animation.animate(shape);
 
     expect(spy).toHaveBeenCalledTimes(2);
-    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
-    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: cursor.height + 5, endValue: 0 }));
+
+    expect(spy)
+      .toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
+
+    expect(spy)
+      .toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: cursor.height + 5, endValue: 0 }));
   });
 
   it('should properly parse coordinates for inLeft', async () => {
@@ -58,8 +62,12 @@ describe('slide animation', () => {
     await animation.animate(shape);
 
     expect(spy).toHaveBeenCalledTimes(2);
-    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: cursor.width + 15, endValue: 0 }));
-    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
+
+    expect(spy)
+      .toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: cursor.width + 15, endValue: 0 }));
+
+    expect(spy)
+      .toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
   });
 
   it('should properly parse coordinates for outUp', async () => {
@@ -87,8 +95,12 @@ describe('slide animation', () => {
     await animation.animate(shape);
 
     expect(spy).toHaveBeenCalledTimes(2);
-    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
-    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: cursor.height + 5 }));
+
+    expect(spy)
+      .toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: 0 }));
+
+    expect(spy)
+      .toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: cursor.height + 5 }));
   });
 
   it('should properly parse coordinates for outLeft', async () => {
@@ -116,8 +128,12 @@ describe('slide animation', () => {
     await animation.animate(shape);
 
     expect(spy).toHaveBeenCalledTimes(2);
-    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: cursor.width + 1 }));
-    expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
+
+    expect(spy)
+      .toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 0, endValue: cursor.width + 1 }));
+
+    expect(spy)
+      .toHaveBeenCalledWith(expect.objectContaining({ property: 'y', startValue: 0, endValue: 0 }));
   });
 
   it('should properly serialize animation to Object', () => {

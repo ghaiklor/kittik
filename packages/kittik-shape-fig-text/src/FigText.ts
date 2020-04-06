@@ -1,8 +1,8 @@
+import { Shape, ShapeRenderable } from 'kittik-shape-basic';
+import figlet, { Fonts, KerningMethods, PrintDirection } from 'figlet';
 import { Canvas } from 'terminal-canvas';
 import { FigTextObject } from './FigTextObject';
 import { FigTextOptions } from './FigTextOptions';
-import { Shape, ShapeRenderable } from 'kittik-shape-basic';
-import figlet, { KerningMethods, PrintDirection, Fonts } from 'figlet';
 
 export { FigTextObject } from './FigTextObject';
 export { FigTextOptions } from './FigTextOptions';
@@ -17,29 +17,29 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
   public constructor (options?: Partial<FigTextOptions>) {
     super(options);
 
-    if (options?.font !== undefined) {
+    if (typeof options?.font !== 'undefined') {
       this.font = options.font;
     }
 
-    if (options?.horizontalLayout !== undefined) {
+    if (typeof options?.horizontalLayout !== 'undefined') {
       this.horizontalLayout = options.horizontalLayout;
     }
 
-    if (options?.verticalLayout !== undefined) {
+    if (typeof options?.verticalLayout !== 'undefined') {
       this.verticalLayout = options.verticalLayout;
     }
 
-    if (options?.printDirection !== undefined) {
+    if (typeof options?.printDirection !== 'undefined') {
       this.printDirection = options.printDirection;
     }
 
-    if (options?.showHardBlanks !== undefined) {
+    if (typeof options?.showHardBlanks !== 'undefined') {
       this.showHardBlanks = options.showHardBlanks;
     }
   }
 
   public get width (): string {
-    const lengths = this.renderedText.split('\n').map(item => item.length);
+    const lengths = this.renderedText.split('\n').map((item) => item.length);
     return Math.max(...lengths).toString();
   }
 
@@ -61,10 +61,10 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     super.render(cursor);
 
     const text = this.renderedText.split('\n');
-    const x = parseInt(this.x);
-    const y = parseInt(this.y);
-    const background = this.background;
-    const foreground = this.foreground;
+    const x = parseInt(this.x, 10);
+    const y = parseInt(this.y, 10);
+    const { background } = this;
+    const { foreground } = this;
 
     cursor.background(background).foreground(foreground);
     text.forEach((line, index) => cursor.moveTo(x, y + index).write(line));

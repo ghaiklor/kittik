@@ -1,5 +1,5 @@
-import { Canvas } from 'terminal-canvas';
 import { FigText, FigTextOptions } from '../src/FigText';
+import { Canvas } from 'terminal-canvas';
 
 describe('fig text shape', () => {
   it('should properly get actual width of the shape', () => {

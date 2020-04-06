@@ -8,5 +8,5 @@ const shapes = [
   new Text({ text: 'I am\ngoing from the\nright', align: 'right', x: 'center', y: 'bottom' })
 ];
 
-shapes.forEach(shape => shape.render(canvas));
+shapes.forEach((shape) => shape.render(canvas));
 canvas.flush();
