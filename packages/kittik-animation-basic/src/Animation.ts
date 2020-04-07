@@ -16,13 +16,21 @@ export declare interface Animation {
     S extends Shape,
     P extends keyof S,
     V extends number
-  >(event: 'tick', listener: (shape: S, property: P, value: V) => void): this
+  >(
+    event: 'tick',
+    listener: (shape: S, property: P, value: V) => void
+  ): this
 
   emit<
     S extends Shape,
     P extends keyof S,
     V extends number
-  >(event: 'tick', shape: S, property: P, value: V): boolean
+  >(
+    event: 'tick',
+    shape: S,
+    property: P,
+    value: V
+  ): boolean
 }
 
 export class Animation extends EventEmitter implements AnimationOptions {
@@ -52,8 +60,8 @@ export class Animation extends EventEmitter implements AnimationOptions {
   public static fromObject<T extends Animation, O extends AnimationObject>(obj: O): T {
     if (obj.type !== this.name) {
       throw new Error(
-        `${obj.type} is not an object representation of the ${this.name}.` +
-        `Did you mean to set ${this.name} as a type of animation?`
+        `You specified configuration for "${obj.type}" but provided it to "${this.name}". ` +
+        `Did you mean to set "type" in configuration to "${this.name}"?`
       );
     }
 
@@ -83,10 +91,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
     S extends Shape,
     P extends keyof S
   >(options: AnimationPropertyOptions<S, P>): Promise<S> {
-    const { shape } = options;
-    const { property } = options;
-    const { startValue } = options;
-    const { endValue } = options;
+    const { shape, property, startValue, endValue } = options;
     const byValue = options.byValue ?? (endValue - startValue);
     const duration = options.duration ?? this.duration;
     const easing = options.easing ?? this.easing;
@@ -108,15 +113,13 @@ export class Animation extends EventEmitter implements AnimationOptions {
   }
 
   public toObject<T extends AnimationObject>(): T {
-    const obj = {
+    return {
       type: this.constructor.name,
       options: {
         duration: this.duration,
         easing: this.easing
       }
-    };
-
-    return obj as T;
+    } as T;
   }
 
   public toJSON (): string {

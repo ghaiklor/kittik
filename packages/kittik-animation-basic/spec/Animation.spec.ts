@@ -77,7 +77,10 @@ describe('basic animation', () => {
     expect.hasAssertions();
 
     const obj = { type: 'Slide' };
-    expect(() => Animation.fromObject(obj)).toThrow('Slide is not an object representation of the Animation');
+    expect(() => Animation.fromObject(obj)).toThrow(
+      'You specified configuration for "Slide" but provided it to "Animation". ' +
+      'Did you mean to set "type" in configuration to "Animation"?'
+    );
   });
 
   it('should properly create Animation instance from object representation', () => {
@@ -92,7 +95,6 @@ describe('basic animation', () => {
     };
 
     const animation = Animation.fromObject(obj);
-
     expect(animation).toBeInstanceOf(Animation);
     expect(animation.duration).toStrictEqual(1);
     expect(animation.easing).toStrictEqual('inExpo');

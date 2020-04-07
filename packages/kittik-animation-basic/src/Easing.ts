@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable max-params */
 
 export const inQuad = function inQuad (t: number, b: number, c: number, d: number): number {
   return c * (t /= d) * t + b;
