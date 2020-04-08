@@ -63,8 +63,7 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     const text = this.renderedText.split('\n');
     const x = parseInt(this.x, 10);
     const y = parseInt(this.y, 10);
-    const { background } = this;
-    const { foreground } = this;
+    const { background, foreground } = this;
 
     cursor.background(background).foreground(foreground);
     text.forEach((line, index) => cursor.moveTo(x, y + index).write(line));
