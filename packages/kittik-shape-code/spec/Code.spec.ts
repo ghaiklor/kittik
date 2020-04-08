@@ -6,7 +6,6 @@ describe('code shape', () => {
     expect.hasAssertions();
 
     const shape = new Code();
-
     expect(shape.text).toStrictEqual('');
 
     shape.text = 'console.log(  \'test\'  )';
@@ -17,7 +16,6 @@ describe('code shape', () => {
     expect.hasAssertions();
 
     const shape = new Code({ text: 'console.log(\'Test\')' });
-
     expect(shape.width).toStrictEqual('19');
   });
 
@@ -25,7 +23,6 @@ describe('code shape', () => {
     expect.hasAssertions();
 
     const shape = new Code({ text: 'console.log(\'Test\')' });
-
     expect(shape.height).toStrictEqual('1');
   });
 
