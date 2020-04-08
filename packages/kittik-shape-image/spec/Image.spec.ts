@@ -17,7 +17,7 @@ describe('image shape', () => {
     expect(shape.image).toHaveLength(24180);
 
     shape.image = 'non-existing-file.png';
-    expect(() => shape.image).toThrow('Image is not in base64 or does not exists on file system');
+    expect(() => shape.image).toThrow('Image is not in base64 or does not exist on file system');
   });
 
   it('should properly render the shape', () => {
@@ -109,6 +109,7 @@ describe('image shape', () => {
 
   it('should properly check if string isBase64', () => {
     expect.hasAssertions();
+
     expect(Image.isBase64('dGVzdA==')).toBe(true);
     expect(Image.isBase64('not base64')).toBe(false);
   });

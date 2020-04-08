@@ -25,16 +25,19 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
   }
 
   public static isBase64 (string: string): boolean {
-    return (/^[A-Za-z0-9+/]{4}*[A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==$/u).test(string);
+    return (/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/u).test(string);
   }
 
   public get image (): string {
     if (Image.isBase64(this._image)) {
       return this._image;
-    } else if (fs.existsSync(path.resolve(process.cwd(), this._image))) {
+    }
+
+    if (fs.existsSync(path.resolve(process.cwd(), this._image))) {
       return fs.readFileSync(path.resolve(process.cwd(), this._image), 'base64');
     }
-    throw new Error('Image is not in base64 or does not exists on file system');
+
+    throw new Error('Image is not in base64 or does not exist on file system');
   }
 
   public set image (image: string) {
@@ -52,12 +55,9 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
   public render <T extends Canvas>(cursor: T): void {
     super.render(cursor);
 
-    const { width } = this;
-    const { height } = this;
+    const { width, height, image, preserveAspectRatio } = this;
     const x = parseInt(this.x, 10);
     const y = parseInt(this.y, 10);
-    const { image } = this;
-    const { preserveAspectRatio } = this;
     const size = 3 * (image.length / 4);
     const args = [
       `size=${size}`,
