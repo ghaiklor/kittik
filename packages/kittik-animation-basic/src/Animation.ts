@@ -12,16 +12,16 @@ export { AnimationPropertyOptions } from './AnimationPropertyOptions';
 export { Easing } from './Easing';
 
 export declare interface Animation {
-  on<
+  on: <
     S extends Shape,
     P extends keyof S,
     V extends number
   >(
     event: 'tick',
     listener: (shape: S, property: P, value: V) => void
-  ): this
+  ) => this
 
-  emit<
+  emit: <
     S extends Shape,
     P extends keyof S,
     V extends number
@@ -30,7 +30,7 @@ export declare interface Animation {
     shape: S,
     property: P,
     value: V
-  ): boolean
+  ) => boolean
 }
 
 export class Animation extends EventEmitter implements AnimationOptions {

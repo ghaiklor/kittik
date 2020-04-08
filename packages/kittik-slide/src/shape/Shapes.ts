@@ -8,7 +8,7 @@ import { Text } from 'kittik-shape-text';
 export type ShapeType = 'Code' | 'FigText' | 'Image' | 'Rectangle' | 'Text';
 
 // eslint-disable-next-line @typescript-eslint/no-extra-parens
-export const SHAPES = new Map<ShapeType, { fromObject<T extends ShapeObject>(obj: T): ShapeRenderable }>([
+export const SHAPES = new Map<ShapeType, { fromObject: <T extends ShapeObject>(obj: T) => ShapeRenderable }>([
   ['Code', Code],
   ['FigText', FigText],
   ['Image', Image],
