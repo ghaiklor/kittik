@@ -46,7 +46,16 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     if (direction.includes('bounce')) {
       return await this.animateBounce(shape, direction as BounceDirection);
     }
-    return await this.animateShake(shape, direction as ShakeDirection);
+
+    if (direction.includes('shake')) {
+      return await this.animateShake(shape, direction as ShakeDirection);
+    }
+
+    throw new Error(
+      'Focus animation does not support any others directions, expect "bounce" or "shake". ' +
+      `But, you specified as a direction for the animation "${direction}". ` +
+      'Maybe you made a typo?'
+    );
   }
 
   public toObject<T extends FocusObject>(): T {
@@ -91,11 +100,18 @@ export class Focus extends Animation implements FocusOptions, Animationable {
         property = 'x';
         break;
       default:
-        throw new Error(`Unexpected direction for bounce: ${direction as string}`);
+        throw new Error(`Unexpected direction for bounce animation: ${direction as string}`);
     }
 
     const length = this.repeat;
-    const firstStep = async (): Promise<T> => await this.animateProperty({ shape, property, startValue, endValue });
+
+    const firstStep = async (): Promise<T> => await this.animateProperty({
+      shape,
+      property,
+      startValue,
+      endValue
+    });
+
     const secondStep = async (): Promise<T> => await this.animateProperty({
       shape,
       property,
@@ -131,7 +147,7 @@ export class Focus extends Animation implements FocusOptions, Animationable {
         property = 'y';
         break;
       default:
-        throw new Error(`Unexpected direction for shake: ${direction as string}`);
+        throw new Error(`Unexpected direction for shake animation: ${direction as string}`);
     }
 
     const length = this.repeat;
