@@ -47,21 +47,24 @@ export class Slide {
     }
   }
 
-  public static create (cursor: Canvas, declaration: SlideDeclaration): Slide {
+  public static create (cursor?: Canvas, declaration?: SlideDeclaration): Slide {
     return new this(cursor, declaration);
   }
 
-  public static fromObject (obj: SlideDeclaration, cursor: Canvas): Slide {
+  public static fromObject (obj: SlideDeclaration, cursor?: Canvas): Slide {
     return this.create(cursor, obj);
   }
 
-  public static fromJSON (json: string, cursor: Canvas): Slide {
+  public static fromJSON (json: string, cursor?: Canvas): Slide {
     return this.fromObject(JSON.parse(json), cursor);
   }
 
   public addShape (name: string, shape: ShapeRenderable, toOverride = false): void {
     if (this.shapes.has(name) && !toOverride) {
-      throw new Error(`Shape "${name}" already exists in slide "${this.name}"`);
+      throw new Error(
+        `You are trying to add shape with the name "${name}" into the slide "${this.name}". ` +
+        `But this shape already exists in slide "${this.name}".`
+      );
     }
 
     this.shapes.set(name, shape);
@@ -69,37 +72,53 @@ export class Slide {
 
   public addAnimation (name: string, animation: Animationable, toOverride = false): void {
     if (this.animations.has(name) && !toOverride) {
-      throw new Error(`Animation "${name}" already exists in slide "${this.name}"`);
+      throw new Error(
+        `You are trying to add animation with the name "${name}" into the slide "${this.name}". ` +
+        `But this animation already exists in slide "${this.name}".`
+      );
     }
 
     this.animations.set(name, animation);
   }
 
   public addOrder (shape: string, animations: string[] = []): void {
-    if (this.order.some((order: OrderDeclaration) => order.shape === shape)) {
-      throw new Error(`You already have an ordering for shape "${shape}" in slide "${this.name}"`);
+    if (this.order.some((order) => order.shape === shape)) {
+      throw new Error(
+        `You already have specified an ordering for shape "${shape}" in slide "${this.name}". ` +
+        'Adding another one with the same name does not make any sense. ' +
+        'Did you make a typo in shape name or forgot that you already added a shape to ordering?'
+      );
+    }
+
+    const unknownAnimations = animations.filter((animation) => !this.animations.has(animation));
+    if (unknownAnimations.length > 0) {
+      throw new Error(
+        `You have provided animations for the shape "${shape}" in slide "${this.name}". ` +
+        `But, some of them could not be found in the slide "${this.name}". ` +
+        `These animations are: [${unknownAnimations.join(', ')}]. ` +
+        `Please, check if the animations from the list are declared in slide "${this.name}".`
+      );
     }
 
     this.order.push({ animations, shape });
   }
 
-  // eslint-disable-next-line max-statements
   public async render (): Promise<void> {
-    const { shapes } = this;
-    const { animations } = this;
+    const { animations, shapes } = this;
     const shapesToRender: ShapeRenderable[] = [];
     const sequence: Array<() => void> = [];
+    const onTick = (): void => this.renderShapes(shapesToRender);
 
     // We need to re-render shapes each time when some of the animations made a tick
     // Hence, made an update in shape properties that we need to reflect on canvas
-    animations.forEach((animation: Animationable) => animation.on('tick', () => this.renderShapes(shapesToRender)));
+    animations.forEach((animation) => animation.on('tick', onTick));
 
     for (const order of this.order) {
       const shapeToRender = shapes.get(order.shape);
       if (typeof shapeToRender === 'undefined') {
         throw new Error(
           `You specified shape "${order.shape}" in slide "${this.name}" ` +
-          'as part of ordering, but it does not exist in shapes declaration.\n' +
+          'as part of ordering, but it does not exist in shapes declaration for the slide. ' +
           'Maybe you forgot to create a shape you want to order or it is a typo in ordering itself.'
         );
       }
@@ -117,9 +136,9 @@ export class Slide {
     }
 
     // When all of the rendering and animation is done - we can freely remove the listeners from animations
-    sequence.push(() => animations.forEach((animation: Animationable) => animation.removeAllListeners()));
+    sequence.push(() => animations.forEach((animation) => animation.removeListener('tick', onTick)));
 
-    // We can't allow Promise.all() here or anything that could render the shapes concurrently or parallel
+    // We can't allow Promise.all() here or anything that could render the shapes concurrently
     // Hence, we need to reduce the sequence to the chain of promises, so we can get waterfall rendering
     return await sequence.reduce(async (promise, item) => await promise.then(item), Promise.resolve());
   }
@@ -141,12 +160,14 @@ export class Slide {
   }
 
   private initShapes (declaration: ShapeDeclaration[]): void {
-    declaration.forEach((shapeDeclaration: ShapeDeclaration) => {
+    declaration.forEach((shapeDeclaration) => {
       const ctor = SHAPES.get(shapeDeclaration.type as ShapeType);
 
       if (typeof ctor === 'undefined') {
         throw new Error(
-          `Shape "${shapeDeclaration.name}" (${shapeDeclaration.type}) is unknown for me, maybe you made a typo?`
+          `You have specified a shape with the name "${shapeDeclaration.name}" in slide "${this.name}". ` +
+          `This shape has an unknown type "${shapeDeclaration.type}". ` +
+          'Maybe you made a typo in "type" or tried to use a shape we do not have implemented.'
         );
       }
 
@@ -155,13 +176,14 @@ export class Slide {
   }
 
   private initAnimations (declaration: AnimationDeclaration[]): void {
-    declaration.forEach((animationDeclaration: AnimationDeclaration) => {
+    declaration.forEach((animationDeclaration) => {
       const ctor = ANIMATIONS.get(animationDeclaration.type as AnimationType);
 
       if (typeof ctor === 'undefined') {
         throw new Error(
-          `Animation "${animationDeclaration.name}" (${animationDeclaration.type}) is unknown for me, ` +
-          'maybe you made a typo?'
+          `You have specified an animation with the name "${animationDeclaration.name}" in slide "${this.name}". ` +
+          `This animation has an unknown type "${animationDeclaration.type}". ` +
+          'Maybe you made a typo in "type" or tried to use an animation we do not have implemented.'
         );
       }
 
@@ -171,7 +193,7 @@ export class Slide {
 
   private renderShapes (shapes: ShapeRenderable[]): void {
     this.cursor.eraseScreen();
-    shapes.forEach((shape: ShapeRenderable) => shape.render(this.cursor));
+    shapes.forEach((shape) => shape.render(this.cursor));
     this.cursor.flush();
   }
 }

@@ -84,42 +84,54 @@ describe('slide', () => {
 
     const cursor = new Canvas();
 
-    expect(
-      () => new Slide(
-        cursor, {
-          name: 'Test',
-          shapes: [{ name: 'Test', type: 'unknown' }],
-          order: [{ shape: 'Test' }]
-        }
-      )
-    ).toThrow('Shape "Test" (unknown) is unknown for me, maybe you made a typo?');
+    expect(() => new Slide(
+      cursor,
+      {
+        name: 'Test',
+        shapes: [{ name: 'Test', type: 'unknown' }],
+        order: [{ shape: 'Test' }]
+      }
+    )).toThrow(
+      'You have specified a shape with the name "Test" in slide "Test". ' +
+      'This shape has an unknown type "unknown". ' +
+      'Maybe you made a typo in "type" or tried to use a shape we do not have implemented.'
+    );
   });
 
   it('should properly throw an error if animation type is unknown', () => {
     expect.hasAssertions();
 
     const cursor = new Canvas();
-    expect(
-      () => new Slide(
-        cursor, {
-          name: 'Test',
-          shapes: [{ name: 'Test', type: 'Text' }],
-          animations: [{ name: 'Test', type: 'unknown' }],
-          order: [{ shape: 'Test' }]
-        }
-      )
-    ).toThrow('Animation "Test" (unknown) is unknown for me, maybe you made a typo?');
+
+    expect(() => new Slide(
+      cursor,
+      {
+        name: 'Test',
+        shapes: [{ name: 'Test', type: 'Text' }],
+        animations: [{ name: 'Test', type: 'unknown' }],
+        order: [{ shape: 'Test' }]
+      }
+    )).toThrow(
+      'You have specified an animation with the name "Test" in slide "Test". ' +
+      'This animation has an unknown type "unknown". ' +
+      'Maybe you made a typo in "type" or tried to use an animation we do not have implemented.'
+    );
   });
 
   it('should properly throw an error if trying to use shape name in ordering that does not exist', async () => {
     expect.hasAssertions();
 
     const cursor = new Canvas();
-    const slide = new Slide(cursor, { name: 'Test', shapes: [], order: [{ shape: 'Not Exists' }] });
+    const slide = new Slide(cursor, {
+      name: 'Test',
+      shapes: [],
+      order: [{ shape: 'Not Exists' }]
+    });
 
     await expect(slide.render()).rejects.toThrow(
       'You specified shape "Not Exists" in slide "Test" as part of ordering, ' +
-      'but it does not exist in shapes declaration.'
+      'but it does not exist in shapes declaration for the slide. ' +
+      'Maybe you forgot to create a shape you want to order or it is a typo in ordering itself.'
     );
   });
 
@@ -214,7 +226,8 @@ describe('slide', () => {
   it('should properly instantiate an empty slide instance when nothing is passed but an empty arrays', () => {
     expect.hasAssertions();
 
-    const slide = new Slide(null, { name: 'Test', order: [], shapes: [] });
+    const cursor = new Canvas();
+    const slide = new Slide(cursor, { name: 'Test', order: [], shapes: [] });
     expect(slide.cursor).toBeInstanceOf(Canvas);
     expect(slide.shapes.size).toBe(0);
     expect(slide.animations.size).toBe(0);
@@ -224,29 +237,42 @@ describe('slide', () => {
   it('should properly throw an error when trying to add shape that is already added', () => {
     expect.hasAssertions();
 
-    const slide = new Slide(null, { name: 'Test', shapes: [{ name: 'Test', type: 'Text' }], order: [] });
-    expect(() => slide.addShape('Test', Text.create())).toThrow('Shape "Test" already exists in slide');
+    const canvas = new Canvas();
+    const slide = new Slide(canvas, { name: 'Test', shapes: [{ name: 'Test', type: 'Text' }], order: [] });
+
+    expect(() => slide.addShape('Test', Text.create())).toThrow(
+      'You are trying to add shape with the name "Test" into the slide "Test". ' +
+      'But this shape already exists in slide "Test".'
+    );
   });
 
   it('should properly throw an error when trying to add animation that is already added', () => {
     expect.hasAssertions();
 
-    const slide = new Slide(null, {
+    const canvas = new Canvas();
+    const slide = new Slide(canvas, {
       name: 'Test',
       shapes: [],
       order: [],
       animations: [{ name: 'Test', type: 'Print' }]
     });
 
-    expect(() => slide.addAnimation('Test', Print.create())).toThrow('Animation "Test" already exists in slide');
+    expect(() => slide.addAnimation('Test', Print.create())).toThrow(
+      'You are trying to add animation with the name "Test" into the slide "Test". ' +
+      'But this animation already exists in slide "Test".'
+    );
   });
 
   it('should properly throw an error when trying to add ordering for the shape that is already added', () => {
     expect.hasAssertions();
 
-    const slide = new Slide(null, { name: 'Test', shapes: [], order: [{ shape: 'Test' }] });
+    const canvas = new Canvas();
+    const slide = new Slide(canvas, { name: 'Test', shapes: [], order: [{ shape: 'Test' }] });
+
     expect(() => slide.addOrder('Test')).toThrow(
-      'You already have an ordering for shape "Test" in slide "Test"'
+      'You already have specified an ordering for shape "Test" in slide "Test". ' +
+      'Adding another one with the same name does not make any sense. ' +
+      'Did you make a typo in shape name or forgot that you already added a shape to ordering?'
     );
   });
 

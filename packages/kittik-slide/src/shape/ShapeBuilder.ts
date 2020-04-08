@@ -70,7 +70,10 @@ export class ShapeBuilder implements ShapeObject {
   public end (): ShapeRenderable {
     const ctr = SHAPES.get(this.type);
     if (typeof ctr === 'undefined') {
-      throw new Error(`Shape "${this.type}" you tried to build does not exist`);
+      throw new Error(
+        `You tried to build a shape with the type "${this.type}". ` +
+        'But the shape of this type is not implemented or you made a typo.'
+      );
     }
 
     return ctr.fromObject(this);

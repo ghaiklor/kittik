@@ -61,6 +61,9 @@ describe('shape builder', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       ShapeBuilder.start('Nonsense').end();
-    }).toThrow('Shape "Nonsense" you tried to build does not exist');
+    }).toThrow(
+      'You tried to build a shape with the type "Nonsense". ' +
+      'But the shape of this type is not implemented or you made a typo.'
+    );
   });
 });

@@ -40,7 +40,10 @@ export class AnimationBuilder implements AnimationObject {
   public end (): Animationable {
     const ctr = ANIMATIONS.get(this.type);
     if (typeof ctr === 'undefined') {
-      throw new Error(`Animation "${this.type}" you tried to build does not exist`);
+      throw new Error(
+        `You tried to build an animation with the type "${this.type}". ` +
+        'But the animation of this type is not implemented or you made a typo.'
+      );
     }
 
     return ctr.fromObject(this);

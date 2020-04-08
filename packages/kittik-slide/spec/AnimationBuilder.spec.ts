@@ -49,6 +49,9 @@ describe('animation builder', () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       AnimationBuilder.start('Nonsense').end();
-    }).toThrow('Animation "Nonsense" you tried to build does not exist');
+    }).toThrow(
+      'You tried to build an animation with the type "Nonsense". ' +
+      'But the animation of this type is not implemented or you made a typo.'
+    );
   });
 });
