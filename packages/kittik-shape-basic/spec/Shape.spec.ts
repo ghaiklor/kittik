@@ -194,7 +194,10 @@ describe('basic shape', () => {
     expect.hasAssertions();
 
     const obj = { type: 'Rectangle' };
-    expect(() => Shape.fromObject(obj)).toThrow('Rectangle is not an Object representation of the Shape');
+    expect(() => Shape.fromObject(obj)).toThrow(
+      'You specified configuration for "Rectangle" but provided it to "Shape". ' +
+      'Did you mean to set "type" in configuration to "Shape"?'
+    );
   });
 
   it('should properly create Shape instance from Object representation', () => {

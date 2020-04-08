@@ -54,7 +54,12 @@ export class Shape implements ShapeOptions, ShapeRenderable {
 
   public static fromObject<T extends Shape>(obj: ShapeObject): T
   public static fromObject<T extends Shape, O extends ShapeObject>(obj: O): T {
-    if (obj.type !== this.name) throw new Error(`${obj.type} is not an Object representation of the ${this.name}`);
+    if (obj.type !== this.name) {
+      throw new Error(
+        `You specified configuration for "${obj.type}" but provided it to "${this.name}". ` +
+        `Did you mean to set "type" in configuration to "${this.name}"?`
+      );
+    }
 
     return this.create(obj.options);
   }
@@ -154,7 +159,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
   }
 
   public toObject<T extends ShapeObject>(): T {
-    const obj = {
+    return {
       type: this.constructor.name,
       options: {
         text: this._text,
@@ -165,9 +170,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
         background: this._background,
         foreground: this._foreground
       }
-    };
-
-    return obj as T;
+    } as T;
   }
 
   public toJSON (): string {
