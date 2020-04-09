@@ -33,7 +33,12 @@ export class Deck {
   public addShape (name: string, shape: ShapeRenderable): void {
     const slidesWithShape = this.slides.filter((slide) => slide.shapes.has(name)).map((slide) => slide.name);
     if (slidesWithShape.length > 0) {
-      throw new Error(`Slides [${slidesWithShape.join(', ')}] already have a shape with the name "${name}"`);
+      throw new Error(
+        `You are trying to add a shape with the name "${name}" into the deck. ` +
+        'When adding a shape into the deck, actually it adds the shape to all the slides in the deck. ' +
+        `That is why we can not add the shape "${name}" to the deck, some of the slides already have it. ` +
+        `Remove the shape from the slides [${slidesWithShape.join(', ')}] or rename the shape.`
+      );
     }
 
     this.slides.forEach((slide) => slide.addShape(name, shape));
@@ -42,40 +47,59 @@ export class Deck {
   public addAnimation (name: string, animation: Animationable): void {
     const slidesWithAnimation = this.slides.filter((slide) => slide.animations.has(name)).map((slide) => slide.name);
     if (slidesWithAnimation.length > 0) {
-      throw new Error(`Slides [${slidesWithAnimation.join(', ')}] already have an animation with the name "${name}"`);
+      throw new Error(
+        `You are trying to add an animation with the name "${name}" into the deck. ` +
+        'When adding an animation into the deck, actually it adds the animation to all the slides in the deck. ' +
+        `That is why we can not add the animation "${name}" to the deck, some of the slides already have it. ` +
+        `Remove the animations from the slides [${slidesWithAnimation.join(', ')}] or rename the animation.`
+      );
     }
 
     this.slides.forEach((slide) => slide.addAnimation(name, animation));
   }
 
   public addSlide (slide: Slide): void {
+    if (this.slides.some((s) => s.name === slide.name)) {
+      throw new Error(
+        `You are trying to add a slide with the name "${slide.name}" into the deck. ` +
+        'But the slide with the same name already exists there. ' +
+        `Remove the slide "${slide.name}" from the deck or rename the slide you tried to add.`
+      );
+    }
+
     this.slides.push(slide);
   }
 
-  public async renderSlide (index = this.currentSlideIndex): Promise<void> {
+  public async renderSlide (index = this.currentSlideIndex): Promise<boolean> {
     if (!this.isRendering && typeof this.slides[index] !== 'undefined') {
       this.isRendering = true;
       await this.slides[index].render();
       this.isRendering = false;
+
+      return true;
     }
+
+    return false;
   }
 
   public async nextSlide (): Promise<boolean> {
-    if (this.currentSlideIndex + 1 <= this.slides.length - 1) {
-      await this.renderSlide(++this.currentSlideIndex);
-      return true;
+    const isRendered = await this.renderSlide(this.currentSlideIndex + 1);
+
+    if (isRendered) {
+      this.currentSlideIndex += 1;
     }
 
-    return false;
+    return isRendered;
   }
 
   public async previousSlide (): Promise<boolean> {
-    if (this.currentSlideIndex - 1 >= 0) {
-      await this.renderSlide(--this.currentSlideIndex);
-      return true;
+    const isRendered = await this.renderSlide(this.currentSlideIndex - 1);
+
+    if (isRendered) {
+      this.currentSlideIndex -= 1;
     }
 
-    return false;
+    return isRendered;
   }
 
   public exit (): void {

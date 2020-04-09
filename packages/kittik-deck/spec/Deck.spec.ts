@@ -52,7 +52,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck(DECK_DECLARATION);
-    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
+    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
 
     await deck.nextSlide();
     process.stdin.emit('keypress', 'p');
@@ -68,7 +68,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck(DECK_DECLARATION);
-    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
+    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
 
     await deck.previousSlide();
     process.stdin.emit('keypress', 'n');
@@ -96,7 +96,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck(DECK_DECLARATION);
-    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
+    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
 
     await deck.nextSlide();
     await deck.nextSlide();
@@ -114,7 +114,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck({ ...DECK_DECLARATION, cursor: null });
-    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
+    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
 
     await deck.nextSlide();
     await deck.nextSlide();
@@ -133,11 +133,21 @@ describe('deck', () => {
 
     const deck = new Deck({
       slides: [
-        { name: 'Test', shapes: [], order: [] }, { name: 'Test 2', shapes: [], order: [], animations: [] }
+        {
+          name: 'Test',
+          shapes: [],
+          order: []
+        },
+        {
+          name: 'Test 2',
+          shapes: [],
+          order: [],
+          animations: []
+        }
       ]
     });
 
-    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue();
+    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
 
     await deck.nextSlide();
     await deck.nextSlide();
@@ -175,8 +185,16 @@ describe('deck', () => {
   it('should properly add a shape to all the slides in the deck', () => {
     expect.hasAssertions();
 
-    const deck = new Deck({ slides: [{ name: 'Test', shapes: [{ name: 'Shape', type: 'Text' }], order: [] }] });
     const shape = {} as ShapeRenderable;
+    const deck = new Deck({
+      slides: [
+        {
+          name: 'Test',
+          shapes: [{ name: 'Shape', type: 'Text' }],
+          order: []
+        }
+      ]
+    });
 
     deck.addShape('Shape 2', shape);
 
@@ -191,10 +209,20 @@ describe('deck', () => {
   it('should properly throw an error if shape already exists in other slides', () => {
     expect.hasAssertions();
 
-    const deck = new Deck({ slides: [{ name: 'Test', shapes: [{ name: 'Shape', type: 'Text' }], order: [] }] });
     const shape = {} as ShapeRenderable;
+    const deck = new Deck({
+      slides: [
+        {
+          name: 'Test',
+          shapes: [{ name: 'Shape', type: 'Text' }],
+          order: []
+        }
+      ]
+    });
 
-    expect(() => deck.addShape('Shape', shape)).toThrow('Slides [Test] already have a shape with the name "Shape"');
+    expect(() => deck.addShape('Shape', shape)).toThrow(
+      'Slides [Test] already have a shape with the name "Shape"'
+    );
 
     deck.exit();
   });
@@ -202,13 +230,18 @@ describe('deck', () => {
   it('should properly add an animation to all the slides in the deck', () => {
     expect.hasAssertions();
 
+    const animation = {} as Animationable;
     const deck = new Deck({
       slides: [
-        { name: 'Test', shapes: [], order: [], animations: [{ name: 'Animation', type: 'Print' }] }
+        {
+          name: 'Test',
+          shapes: [],
+          order: [],
+          animations: [{ name: 'Animation', type: 'Print' }]
+        }
       ]
     });
 
-    const animation = {} as Animationable;
     deck.addAnimation('Animation 2', animation);
 
     // I am accessing the private property to check if there is actually a new animation exists
@@ -222,15 +255,21 @@ describe('deck', () => {
   it('should properly throw an error if animation already exists in other slides', () => {
     expect.hasAssertions();
 
+    const animation = {} as Animationable;
     const deck = new Deck({
       slides: [
-        { name: 'Test', shapes: [], order: [], animations: [{ name: 'Animation', type: 'Print' }] }
+        {
+          name: 'Test',
+          shapes: [],
+          order: [],
+          animations: [{ name: 'Animation', type: 'Print' }]
+        }
       ]
     });
 
-    const animation = {} as Animationable;
-    expect(() => deck.addAnimation('Animation', animation))
-      .toThrow('Slides [Test] already have an animation with the name "Animation"');
+    expect(() => deck.addAnimation('Animation', animation)).toThrow(
+      'Slides [Test] already have an animation with the name "Animation"'
+    );
 
     deck.exit();
   });
