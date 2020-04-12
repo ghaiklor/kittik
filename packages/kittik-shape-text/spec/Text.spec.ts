@@ -184,6 +184,20 @@ describe('text shape', () => {
     expect(writeSpy).toHaveBeenCalledWith('longest');
   });
 
+  it('should properly throw an error if align property is wrong', () => {
+    expect.hasAssertions();
+
+    // Alignment can be set at runtime
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const text = new Text({ align: 'wrong' });
+    const cursor = Canvas.create();
+
+    expect(() => text.render(cursor)).toThrow(
+      'Unknown align specified for text: wrong'
+    );
+  });
+
   it('should properly render with custom options', () => {
     expect.hasAssertions();
 
