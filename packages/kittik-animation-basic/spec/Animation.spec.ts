@@ -110,4 +110,9 @@ describe('basic animation', () => {
     expect(animation.duration).toStrictEqual(1000);
     expect(animation.easing).toStrictEqual('outQuad');
   });
+
+  it('should properly handle non-number delay', async () => {
+    expect.hasAssertions();
+    expect(await new Animation().delay(Infinity)).toBeUndefined();
+  });
 });
