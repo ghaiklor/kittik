@@ -64,13 +64,12 @@ describe('deck', () => {
     deck.exit();
   });
 
-  it('should properly handle the key press for next slide', async () => {
+  it('should properly handle the key press for next slide', () => {
     expect.hasAssertions();
 
     const deck = new Deck(DECK_DECLARATION);
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
 
-    await deck.previousSlide();
     process.stdin.emit('keypress', 'n');
 
     expect(renderSpy).toHaveBeenCalledTimes(1);
@@ -99,13 +98,11 @@ describe('deck', () => {
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
 
     await deck.nextSlide();
-    await deck.nextSlide();
-    await deck.previousSlide();
     await deck.previousSlide();
 
     expect(renderSpy).toHaveBeenCalledTimes(2);
-    expect(renderSpy).toHaveBeenCalledWith(0);
     expect(renderSpy).toHaveBeenCalledWith(1);
+    expect(renderSpy).toHaveBeenCalledWith(0);
 
     deck.exit();
   });
@@ -113,17 +110,15 @@ describe('deck', () => {
   it('should properly render slides without custom cursor', async () => {
     expect.hasAssertions();
 
-    const deck = new Deck({ ...DECK_DECLARATION, cursor: null });
+    const deck = new Deck({ ...DECK_DECLARATION });
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
 
     await deck.nextSlide();
-    await deck.nextSlide();
-    await deck.previousSlide();
     await deck.previousSlide();
 
     expect(renderSpy).toHaveBeenCalledTimes(2);
-    expect(renderSpy).toHaveBeenCalledWith(0);
     expect(renderSpy).toHaveBeenCalledWith(1);
+    expect(renderSpy).toHaveBeenCalledWith(0);
 
     deck.exit();
   });
@@ -150,13 +145,11 @@ describe('deck', () => {
     const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
 
     await deck.nextSlide();
-    await deck.nextSlide();
-    await deck.previousSlide();
     await deck.previousSlide();
 
     expect(renderSpy).toHaveBeenCalledTimes(2);
-    expect(renderSpy).toHaveBeenCalledWith(0);
     expect(renderSpy).toHaveBeenCalledWith(1);
+    expect(renderSpy).toHaveBeenCalledWith(0);
 
     deck.exit();
   });
@@ -221,7 +214,10 @@ describe('deck', () => {
     });
 
     expect(() => deck.addShape('Shape', shape)).toThrow(
-      'Slides [Test] already have a shape with the name "Shape"'
+      'You are trying to add a shape with the name "Shape" into the deck. ' +
+      'When adding a shape into the deck, actually it adds the shape to all the slides in the deck. ' +
+      'That is why we can not add the shape "Shape" to the deck, some of the slides already have it. ' +
+      'Remove the shape from the slides [Test] or rename the shape.'
     );
 
     deck.exit();
@@ -268,7 +264,10 @@ describe('deck', () => {
     });
 
     expect(() => deck.addAnimation('Animation', animation)).toThrow(
-      'Slides [Test] already have an animation with the name "Animation"'
+      'You are trying to add an animation with the name "Animation" into the deck. ' +
+      'When adding an animation into the deck, actually it adds the animation to all the slides in the deck. ' +
+      'That is why we can not add the animation "Animation" to the deck, some of the slides already have it. ' +
+      'Remove the animations from the slides [Test] or rename the animation.'
     );
 
     deck.exit();
