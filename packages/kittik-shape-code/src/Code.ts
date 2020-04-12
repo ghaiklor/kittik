@@ -1,7 +1,7 @@
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Canvas } from 'terminal-canvas';
 import { DEFAULT_THEME } from './themes/default';
-import beautify from 'js-beautify';
+import { js_beautify as beautify } from 'js-beautify';
 import redeyed from 'redeyed';
 
 export class Code extends Shape implements ShapeRenderable {
