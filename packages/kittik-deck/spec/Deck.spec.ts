@@ -2,6 +2,7 @@ import { Deck, DeckDeclaration } from '../src/Deck';
 import { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
 import { ShapeRenderable } from 'kittik-shape-basic';
+import { Slide } from 'kittik-slide';
 
 const DECK_DECLARATION: DeckDeclaration = {
   cursor: Canvas.create(),
@@ -47,6 +48,10 @@ const DECK_DECLARATION: DeckDeclaration = {
   ]
 };
 
+const AFTER_EACH = (deck: Deck): void => {
+  deck.exit();
+};
+
 describe('deck', () => {
   it('should properly handle the key press for previous slide', async () => {
     expect.hasAssertions();
@@ -61,7 +66,7 @@ describe('deck', () => {
     expect(renderSpy).toHaveBeenCalledWith(1);
     expect(renderSpy).toHaveBeenCalledWith(0);
 
-    deck.exit();
+    AFTER_EACH(deck);
   });
 
   it('should properly handle the key press for next slide', () => {
@@ -75,20 +80,30 @@ describe('deck', () => {
     expect(renderSpy).toHaveBeenCalledTimes(1);
     expect(renderSpy).toHaveBeenCalledWith(1);
 
-    deck.exit();
+    AFTER_EACH(deck);
   });
 
   it('should properly handle the key press for exit', () => {
     expect.hasAssertions();
 
     const deck = new Deck(DECK_DECLARATION);
-    const exitSpy = jest.spyOn(deck, 'exit');
+    const exitSpy = jest.spyOn(deck, 'exit').mockImplementation();
 
     process.stdin.emit('keypress', 'q');
 
     expect(exitSpy).toHaveBeenCalledTimes(1);
 
-    deck.exit();
+    AFTER_EACH(deck);
+  });
+
+  it('should do nothing when unknown key has been pressed', () => {
+    expect.hasAssertions();
+
+    const deck = new Deck();
+
+    expect(process.stdin.emit('keypress', '?')).toBe(true);
+
+    AFTER_EACH(deck);
   });
 
   it('should properly render next and previous slides', async () => {
@@ -104,7 +119,7 @@ describe('deck', () => {
     expect(renderSpy).toHaveBeenCalledWith(1);
     expect(renderSpy).toHaveBeenCalledWith(0);
 
-    deck.exit();
+    AFTER_EACH(deck);
   });
 
   it('should properly render slides without custom cursor', async () => {
@@ -120,13 +135,14 @@ describe('deck', () => {
     expect(renderSpy).toHaveBeenCalledWith(1);
     expect(renderSpy).toHaveBeenCalledWith(0);
 
-    deck.exit();
+    AFTER_EACH(deck);
   });
 
   it('should properly render minimal slide without global shapes/animations', async () => {
     expect.hasAssertions();
 
     const deck = new Deck({
+      cursor: DECK_DECLARATION.cursor,
       slides: [
         {
           name: 'Test',
@@ -151,13 +167,16 @@ describe('deck', () => {
     expect(renderSpy).toHaveBeenCalledWith(1);
     expect(renderSpy).toHaveBeenCalledWith(0);
 
-    deck.exit();
+    AFTER_EACH(deck);
   });
 
   it('should not call slide renderer many times if slide is already rendering', () => {
     expect.hasAssertions();
 
-    const deck = new Deck({ slides: [{ name: 'Test', shapes: [], order: [] }] });
+    const deck = new Deck({
+      cursor: DECK_DECLARATION.cursor,
+      slides: [{ name: 'Test', shapes: [], order: [] }]
+    });
 
     // Though, slides is a private property, I need to access it anyway in sake of the tests
     // This is done to test if slides render() behaves as expected
@@ -172,7 +191,7 @@ describe('deck', () => {
 
     expect(renderSpy).toHaveBeenCalledTimes(1);
 
-    deck.exit();
+    AFTER_EACH(deck);
   });
 
   it('should properly add a shape to all the slides in the deck', () => {
@@ -180,6 +199,7 @@ describe('deck', () => {
 
     const shape = {} as ShapeRenderable;
     const deck = new Deck({
+      cursor: DECK_DECLARATION.cursor,
       slides: [
         {
           name: 'Test',
@@ -196,7 +216,7 @@ describe('deck', () => {
     // @ts-ignore
     expect(deck.slides[0].shapes.size).toBe(2);
 
-    deck.exit();
+    AFTER_EACH(deck);
   });
 
   it('should properly throw an error if shape already exists in other slides', () => {
@@ -204,6 +224,7 @@ describe('deck', () => {
 
     const shape = {} as ShapeRenderable;
     const deck = new Deck({
+      cursor: DECK_DECLARATION.cursor,
       slides: [
         {
           name: 'Test',
@@ -220,7 +241,7 @@ describe('deck', () => {
       'Remove the shape from the slides [Test] or rename the shape.'
     );
 
-    deck.exit();
+    AFTER_EACH(deck);
   });
 
   it('should properly add an animation to all the slides in the deck', () => {
@@ -228,6 +249,7 @@ describe('deck', () => {
 
     const animation = {} as Animationable;
     const deck = new Deck({
+      cursor: DECK_DECLARATION.cursor,
       slides: [
         {
           name: 'Test',
@@ -245,7 +267,7 @@ describe('deck', () => {
     // @ts-ignore
     expect(deck.slides[0].animations.size).toBe(2);
 
-    deck.exit();
+    AFTER_EACH(deck);
   });
 
   it('should properly throw an error if animation already exists in other slides', () => {
@@ -253,6 +275,7 @@ describe('deck', () => {
 
     const animation = {} as Animationable;
     const deck = new Deck({
+      cursor: DECK_DECLARATION.cursor,
       slides: [
         {
           name: 'Test',
@@ -270,6 +293,32 @@ describe('deck', () => {
       'Remove the animations from the slides [Test] or rename the animation.'
     );
 
-    deck.exit();
+    AFTER_EACH(deck);
+  });
+
+  it('should properly throw an error if name of the slide already exists in the deck', () => {
+    expect.hasAssertions();
+
+    const deck = new Deck({
+      cursor: DECK_DECLARATION.cursor,
+      slides: [
+        {
+          name: 'Slide #1',
+          shapes: [],
+          order: []
+        }
+      ]
+    });
+
+    const slide = new Slide();
+    slide.name = 'Slide #1';
+
+    expect(() => deck.addSlide(slide)).toThrow(
+      'You are trying to add a slide with the name "Slide #1" into the deck. ' +
+      'But the slide with the same name already exists there. ' +
+      'Remove the slide "Slide #1" from the deck or rename the slide you tried to add.'
+    );
+
+    AFTER_EACH(deck);
   });
 });

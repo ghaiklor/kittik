@@ -13,7 +13,7 @@ export { ShapeBuilder } from 'kittik-slide';
 export { SlideBuilder } from 'kittik-slide';
 
 export class Deck {
-  public cursor: Canvas = Canvas.create().saveScreen().reset().hideCursor();
+  public cursor: Canvas = Canvas.create();
   private readonly slides: Slide[] = [];
   private isRendering = false;
   private currentSlideIndex = 0;
@@ -102,9 +102,10 @@ export class Deck {
     return isRendered;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   public exit (): void {
     process.stdin.pause();
-    this.cursor.showCursor().restoreScreen().reset();
+    process.stdin.removeAllListeners();
   }
 
   private initSlides (declaration: DeckDeclaration): void {

@@ -29,7 +29,6 @@ describe('deck builder', () => {
       .end();
 
     expect(deck.cursor).toBeInstanceOf(Canvas);
-
     deck.exit();
   });
 });
