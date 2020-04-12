@@ -26,7 +26,6 @@ describe('print animation', () => {
 
     expect(spy.mock.calls.length).toBeGreaterThanOrEqual(10);
     expect(spy).toHaveBeenCalledWith('tick', expect.any(Shape), 'text', 0);
-    expect(spy).toHaveBeenCalledWith('tick', expect.any(Shape), 'text', 2);
     expect(spy).toHaveBeenCalledWith('tick', expect.any(Shape), 'text', 4);
   });
 });
