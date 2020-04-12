@@ -276,6 +276,20 @@ describe('slide', () => {
     );
   });
 
+  it('should properly throw an error when trying to add ordering for the animation that is not exists', () => {
+    expect.hasAssertions();
+
+    const canvas = new Canvas();
+    const slide = new Slide(canvas, { name: 'Test', shapes: [], order: [{ shape: 'Test' }] });
+
+    expect(() => slide.addOrder('Test #2', ['Not Existing'])).toThrow(
+      'You have provided animations for the shape "Test #2" in slide "Test". ' +
+      'But, some of them could not be found in the slide "Test". ' +
+      'These animations are: [Not Existing]. ' +
+      'Please, check if the animations from the list are declared in slide "Test".'
+    );
+  });
+
   it('should properly add order to the slide', () => {
     expect.hasAssertions();
 
