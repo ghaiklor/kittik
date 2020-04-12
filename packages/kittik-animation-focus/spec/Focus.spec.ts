@@ -111,6 +111,52 @@ describe('focus animation', () => {
     expect(spy).toHaveBeenCalledWith(expect.objectContaining({ property: 'x', startValue: 5, endValue: 0 }));
   });
 
+  it('should properly throw an error if trying to animate with the wrong direction', async () => {
+    expect.hasAssertions();
+
+    // Since direction for the animation can be specified at runtime
+    // I'm not sure that it will be exactly what we want by the contract
+    // So here it a test with disabled check from TypeScript that checks this case
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const animation = new Focus({ direction: 'wrong' });
+    const shape = new Shape();
+
+    await expect(animation.animate(shape)).rejects.toThrow(
+      'Focus animation does not support any other directions, except "bounce" or "shake". ' +
+      'But, you specified as a direction for the animation "wrong". ' +
+      'Maybe you made a typo?'
+    );
+  });
+
+  it('should properly throw an error if trying to animate with the wrong bounce direction', async () => {
+    expect.hasAssertions();
+
+    const animation = new Focus();
+    const shape = new Shape();
+
+    // Another case if something comes from runtime and it is not correct
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    await expect(animation.animateBounce(shape, 'wrong')).rejects.toThrow(
+      'Unexpected direction for bounce animation: wrong'
+    );
+  });
+
+  it('should properly throw an error if trying to animate with the wrong shake direction', async () => {
+    expect.hasAssertions();
+
+    const animation = new Focus();
+    const shape = new Shape();
+
+    // Another case if something comes from runtime and it is not correct
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    await expect(animation.animateShake(shape, 'wrong')).rejects.toThrow(
+      'Unexpected direction for shake animation: wrong'
+    );
+  });
+
   it('should properly serialize animation to Object', () => {
     expect.hasAssertions();
 

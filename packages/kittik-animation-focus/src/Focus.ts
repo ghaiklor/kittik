@@ -52,7 +52,7 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     }
 
     throw new Error(
-      'Focus animation does not support any others directions, expect "bounce" or "shake". ' +
+      'Focus animation does not support any other directions, except "bounce" or "shake". ' +
       `But, you specified as a direction for the animation "${direction}". ` +
       'Maybe you made a typo?'
     );
