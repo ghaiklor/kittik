@@ -49,7 +49,7 @@
     "@typescript-eslint/no-type-alias": [
       "error",
       {
-        "allowAliases": "always"
+        "allowAliases": "in-unions"
       }
     ],
     "@typescript-eslint/prefer-readonly-parameter-types": [
