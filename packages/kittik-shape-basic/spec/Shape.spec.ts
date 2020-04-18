@@ -170,7 +170,7 @@ describe('basic shape', () => {
     const json = shape.toJSON();
 
     // eslint-disable-next-line max-len
-    expect(json).toStrictEqual('{"type":"Shape","options":{"text":"","width":"50%","height":"25%","x":"left","y":"top","background":"none","foreground":"none"}}');
+    expect(json).toStrictEqual('{"type":"Shape","options":{"background":"none","foreground":"none","height":"25%","text":"","width":"50%","x":"left","y":"top"}}');
   });
 
   it('should properly serialize shape to JSON with custom options', () => {
@@ -187,7 +187,7 @@ describe('basic shape', () => {
     const json = shape.toJSON();
 
     // eslint-disable-next-line max-len
-    expect(json).toStrictEqual('{"type":"Shape","options":{"text":"test","width":"30","height":"50","x":"0","y":"0","background":"none","foreground":"none"}}');
+    expect(json).toStrictEqual('{"type":"Shape","options":{"background":"none","foreground":"none","height":"50","text":"test","width":"30","x":"0","y":"0"}}');
   });
 
   it('should properly create Shape instance from static create()', () => {
