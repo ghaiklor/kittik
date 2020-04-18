@@ -63,12 +63,7 @@
       "single"
     ],
     "@typescript-eslint/typedef": [
-      "error",
-      {
-        "arrowParameter": false,
-        "memberVariableDeclaration": false,
-        "parameter": false
-      }
+      "off"
     ],
     "array-bracket-newline": [
       "error",
