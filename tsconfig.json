@@ -5,7 +5,7 @@
     "declaration": true,
     "declarationMap": true,
     "incremental": true,
-    "module": "ES2020",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
@@ -20,6 +20,6 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "ES2020"
+    "target": "ES2019"
   }
 }
