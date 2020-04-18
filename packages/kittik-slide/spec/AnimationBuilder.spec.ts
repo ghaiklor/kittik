@@ -47,7 +47,7 @@ describe('animation builder', () => {
       // This is a specific case where I check if someone tries to build not existing animation
       // Though, this case was covered by types, so I need to disable it to write the test
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      // @ts-expect-error
       AnimationBuilder.start('Nonsense').end();
     }).toThrow(
       'You tried to build an animation with the type "Nonsense". ' +

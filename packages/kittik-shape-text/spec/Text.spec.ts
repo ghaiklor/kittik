@@ -189,7 +189,7 @@ describe('text shape', () => {
 
     // Alignment can be set at runtime
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-expect-error
     const text = new Text({ align: 'wrong' });
     const cursor = Canvas.create();
 

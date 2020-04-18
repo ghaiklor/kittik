@@ -21,8 +21,8 @@ export { SlideDeclaration } from './SlideDeclaration';
 export class Slide {
   public cursor: Canvas = Canvas.create();
   public name = 'Untitled Slide';
-  public readonly shapes: Map<string, ShapeRenderable> = new Map();
-  public readonly animations: Map<string, Animationable> = new Map();
+  public readonly shapes: Map<string, ShapeRenderable> = new Map<string, ShapeRenderable>();
+  public readonly animations: Map<string, Animationable> = new Map<string, Animationable>();
   public readonly order: OrderDeclaration[] = [];
 
   public constructor (cursor?: Canvas, declaration?: SlideDeclaration) {

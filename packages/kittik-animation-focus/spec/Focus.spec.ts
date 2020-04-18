@@ -118,7 +118,7 @@ describe('focus animation', () => {
     // I'm not sure that it will be exactly what we want by the contract
     // So here it a test with disabled check from TypeScript that checks this case
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-expect-error
     const animation = new Focus({ direction: 'wrong' });
     const shape = new Shape();
 
@@ -137,7 +137,7 @@ describe('focus animation', () => {
 
     // Another case if something comes from runtime and it is not correct
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-expect-error
     await expect(animation.animateBounce(shape, 'wrong')).rejects.toThrow(
       'Unexpected direction for bounce animation: wrong'
     );
@@ -151,7 +151,7 @@ describe('focus animation', () => {
 
     // Another case if something comes from runtime and it is not correct
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    // @ts-expect-error
     await expect(animation.animateShake(shape, 'wrong')).rejects.toThrow(
       'Unexpected direction for shake animation: wrong'
     );
