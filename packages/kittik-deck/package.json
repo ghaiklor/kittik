@@ -57,6 +57,7 @@
     "jest": "25.3.0",
     "kittik-animation-basic": "0.0.0",
     "kittik-animation-focus": "0.0.0",
+    "kittik-animation-print": "0.0.0",
     "kittik-animation-slide": "0.0.0",
     "kittik-shape-basic": "0.0.0",
     "kittik-shape-code": "0.0.0",

@@ -159,6 +159,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
   }
 
   public toObject<T extends ShapeObject>(): T {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     return {
       type: this.constructor.name,
       options: {

@@ -1,7 +1,5 @@
 import { AnimationBuilder, ShapeBuilder, SlideBuilder } from '..';
 import { Canvas } from 'terminal-canvas';
-import { FocusOptions } from 'kittik-animation-focus';
-import { SlideOptions } from 'kittik-animation-slide';
 
 const cursor = Canvas
   .create()
@@ -28,7 +26,7 @@ SlideBuilder
       .start('Slide')
       .withDuration(5000)
       .withEasing('inBounce')
-      .withOptions({ direction: 'inLeft' } as SlideOptions)
+      .withOptions({ direction: 'inLeft' })
       .end()
   )
   .withAnimation(
@@ -37,7 +35,7 @@ SlideBuilder
       .start('Focus')
       .withDuration(1000)
       .withEasing('inOutSine')
-      .withOptions({ direction: 'shakeX', repeat: 3 } as FocusOptions)
+      .withOptions({ direction: 'shakeX', repeat: 3 })
       .end()
   )
   .withAnimation(
@@ -46,7 +44,7 @@ SlideBuilder
       .start('Slide')
       .withDuration(5000)
       .withEasing('outBounce')
-      .withOptions({ direction: 'outRight' } as SlideOptions)
+      .withOptions({ direction: 'outRight' })
       .end()
   )
   .withOrder('Hello, World', ['Slide In From Left', 'Focusing', 'Slide Out To Right'])

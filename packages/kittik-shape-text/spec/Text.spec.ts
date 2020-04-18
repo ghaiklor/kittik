@@ -297,7 +297,8 @@ describe('text shape', () => {
   it('should properly serialize shape to Object representation', () => {
     expect.hasAssertions();
 
-    const text = Text.create({ text: 'test', bold: true } as TextOptions);
+    const options: Partial<TextOptions> = { text: 'test', bold: true };
+    const text = Text.create(options);
     const obj = text.toObject();
 
     expect(obj).toStrictEqual({

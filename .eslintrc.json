@@ -32,13 +32,6 @@
     "standard"
   ],
   "rules": {
-    "@typescript-eslint/consistent-type-assertions": [
-      "error",
-      {
-        "assertionStyle": "as",
-        "objectLiteralTypeAssertions": "allow"
-      }
-    ],
     "@typescript-eslint/no-magic-numbers": [
       "off"
     ],

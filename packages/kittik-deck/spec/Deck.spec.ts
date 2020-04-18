@@ -1,7 +1,8 @@
 import { Deck, DeckDeclaration } from '../src/Deck';
+import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
-import { ShapeRenderable } from 'kittik-shape-basic';
+import { Print } from 'kittik-animation-print';
 import { Slide } from 'kittik-slide';
 
 const DECK_DECLARATION: DeckDeclaration = {
@@ -197,7 +198,7 @@ describe('deck', () => {
   it('should properly add a shape to all the slides in the deck', () => {
     expect.hasAssertions();
 
-    const shape = {} as ShapeRenderable;
+    const shape: ShapeRenderable = new Shape();
     const deck = new Deck({
       cursor: DECK_DECLARATION.cursor,
       slides: [
@@ -222,7 +223,7 @@ describe('deck', () => {
   it('should properly throw an error if shape already exists in other slides', () => {
     expect.hasAssertions();
 
-    const shape = {} as ShapeRenderable;
+    const shape: ShapeRenderable = new Shape();
     const deck = new Deck({
       cursor: DECK_DECLARATION.cursor,
       slides: [
@@ -247,7 +248,7 @@ describe('deck', () => {
   it('should properly add an animation to all the slides in the deck', () => {
     expect.hasAssertions();
 
-    const animation = {} as Animationable;
+    const animation: Animationable = new Print();
     const deck = new Deck({
       cursor: DECK_DECLARATION.cursor,
       slides: [
@@ -273,7 +274,7 @@ describe('deck', () => {
   it('should properly throw an error if animation already exists in other slides', () => {
     expect.hasAssertions();
 
-    const animation = {} as Animationable;
+    const animation: Animationable = new Print();
     const deck = new Deck({
       cursor: DECK_DECLARATION.cursor,
       slides: [

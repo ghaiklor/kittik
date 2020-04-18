@@ -124,6 +124,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
   }
 
   public toObject<T extends AnimationObject>(): T {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     return {
       type: this.constructor.name,
       options: {

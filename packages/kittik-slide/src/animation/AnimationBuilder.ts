@@ -19,7 +19,7 @@ export class AnimationBuilder implements AnimationObject {
     return this;
   }
 
-  public withOptions (options: Partial<AnimationOptions>): this {
+  public withOptions <T extends AnimationOptions>(options: Partial<T>): this {
     this.options = { ...this.options, ...options };
 
     return this;

@@ -93,18 +93,20 @@ describe('fig text shape', () => {
   it('should properly create FigText instance from Object representation', () => {
     expect.hasAssertions();
 
+    const options: Partial<FigTextOptions> = {
+      background: 'red',
+      font: 'Ghost',
+      foreground: 'black',
+      horizontalLayout: 'full',
+      text: 'test',
+      verticalLayout: 'fitted',
+      x: 'left',
+      y: 'top'
+    };
+
     const shape: FigText = FigText.fromObject<FigText>({
       type: 'FigText',
-      options: {
-        background: 'red',
-        font: 'Ghost',
-        foreground: 'black',
-        horizontalLayout: 'full',
-        text: 'test',
-        verticalLayout: 'fitted',
-        x: 'left',
-        y: 'top'
-      } as FigTextOptions
+      options
     });
 
     expect(shape).toBeInstanceOf(FigText);
