@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "declaration": true,
     "declarationMap": true,
+    "esModuleInterop": true,
     "incremental": true,
     "module": "CommonJS",
     "moduleResolution": "node",
