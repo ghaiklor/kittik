@@ -28,12 +28,11 @@
     "postinstall": "npm run bootstrap",
     "publish": "lerna version --conventional-commits --exact --create-release github && lerna publish",
     "test": "lerna run test --stream --parallel",
-    "update": "find ./packages -name package.json -maxdepth 2 -exec dirname {} \\; | xargs -o -L 1 npm-check --save-exact --update && lernaupdate --dedupe"
+    "update": "find ./packages -name package.json -maxdepth 2 -exec dirname {} \\; | xargs -o -L 1 npm-check --save-exact --update"
   },
   "devDependencies": {
     "git-cz": "4.3.1",
     "lerna": "3.20.2",
-    "lerna-update-wizard": "0.17.8",
     "npm-check": "5.9.2"
   }
 }
