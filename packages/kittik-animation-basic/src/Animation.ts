@@ -2,6 +2,7 @@ import * as EASING from './Easing';
 import { AnimationObject } from './AnimationObject';
 import { AnimationOptions } from './AnimationOptions';
 import { AnimationPropertyOptions } from './AnimationPropertyOptions';
+import { EasingOptions } from './EasingOptions';
 import { EventEmitter } from 'events';
 import { Shape } from 'kittik-shape-basic';
 
@@ -10,6 +11,7 @@ export { AnimationObject } from './AnimationObject';
 export { AnimationOptions } from './AnimationOptions';
 export { AnimationPropertyOptions } from './AnimationPropertyOptions';
 export { Easing } from './Easing';
+export { EasingOptions } from './EasingOptions';
 
 export declare interface Animation {
   on: <
@@ -78,8 +80,8 @@ export class Animation extends EventEmitter implements AnimationOptions {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  public onEasing (easing: EASING.Easing, time: number, startValue: number, byValue: number, duration: number): number {
-    return Math.round(EASING[easing](time, startValue, byValue, duration));
+  public onEasing (easing: EASING.Easing, options: EasingOptions): number {
+    return Math.round(EASING[easing](options.time, options.startValue, options.byValue, options.duration));
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -104,7 +106,12 @@ export class Animation extends EventEmitter implements AnimationOptions {
       if (currentTime > end) {
         resolve(shape);
       } else {
-        this.emit('tick', shape, property, this.onEasing(easing, currentTime - start, startValue, byValue, duration));
+        this.emit(
+          'tick',
+          shape,
+          property,
+          this.onEasing(easing, { time: currentTime - start, startValue, byValue, duration })
+        );
 
         this
           .delay(delay)

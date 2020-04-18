@@ -104,12 +104,6 @@
     "max-lines-per-function": [
       "off"
     ],
-    "max-params": [
-      "error",
-      {
-        "max": 6
-      }
-    ],
     "max-statements": [
       "off"
     ],

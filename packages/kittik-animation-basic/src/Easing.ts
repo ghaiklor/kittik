@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 
