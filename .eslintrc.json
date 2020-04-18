@@ -58,10 +58,6 @@
     "@typescript-eslint/prefer-readonly-parameter-types": [
       "off"
     ],
-    "@typescript-eslint/quotes": [
-      "error",
-      "single"
-    ],
     "@typescript-eslint/typedef": [
       "off"
     ],
