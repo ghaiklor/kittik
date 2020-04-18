@@ -105,7 +105,11 @@ export class Animation extends EventEmitter implements AnimationOptions {
         resolve(shape);
       } else {
         this.emit('tick', shape, property, this.onEasing(easing, currentTime - start, startValue, byValue, duration));
-        this.delay(delay).then(() => tick(resolve, reject)).catch(reject);
+
+        this
+          .delay(delay)
+          .then(() => tick(resolve, reject))
+          .catch(reject);
       }
     };
 

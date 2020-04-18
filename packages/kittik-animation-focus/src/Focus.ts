@@ -176,7 +176,10 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     return await Array
       .from({ length })
       .reduce(
-        async (promise: Promise<T>) => await promise.then(firstStep).then(secondStep).then(thirdStep),
+        async (promise: Promise<T>) => await promise
+          .then(firstStep)
+          .then(secondStep)
+          .then(thirdStep),
         Promise.resolve(shape)
       );
   }

@@ -8,7 +8,9 @@ const onTick = (shape: Rectangle): void => {
   cursor.flush();
 };
 
-const cursor = new Canvas().reset().hideCursor();
+const cursor = new Canvas()
+  .reset()
+  .hideCursor();
 
 const print = new Print({
   duration: 5000,

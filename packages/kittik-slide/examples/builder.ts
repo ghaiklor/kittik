@@ -3,7 +3,10 @@ import { Canvas } from 'terminal-canvas';
 import { FocusOptions } from 'kittik-animation-focus';
 import { SlideOptions } from 'kittik-animation-slide';
 
-const cursor = Canvas.create().reset().hideCursor();
+const cursor = Canvas
+  .create()
+  .reset()
+  .hideCursor();
 
 SlideBuilder
   .start()

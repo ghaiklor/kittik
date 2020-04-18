@@ -4,7 +4,10 @@ import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
 import { Slide } from '..';
 import { SlideOptions } from 'kittik-animation-slide';
 
-const cursor = Canvas.create().reset().hideCursor();
+const cursor = Canvas
+  .create()
+  .reset()
+  .hideCursor();
 
 const HelloShapeDeclaration: ShapeDeclaration = {
   name: 'Hello',

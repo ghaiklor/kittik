@@ -8,7 +8,10 @@ const onTick = (shape: Rectangle): void => {
   cursor.flush();
 };
 
-const cursor = new Canvas().reset().hideCursor();
+const cursor = new Canvas()
+  .reset()
+  .hideCursor();
+
 const shape = new Rectangle({
   background: 'white',
   foreground: 'black',

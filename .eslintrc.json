@@ -121,12 +121,6 @@
       "error",
       "always-multiline"
     ],
-    "newline-per-chained-call": [
-      "error",
-      {
-        "ignoreChainWithDepth": 4
-      }
-    ],
     "no-console": [
       "off"
     ],
