@@ -124,13 +124,13 @@ describe('basic shape', () => {
     expect(obj).toStrictEqual({
       type: 'Shape',
       options: {
+        background: 'none',
+        foreground: 'none',
+        height: '25%',
         text: '',
         width: '50%',
-        height: '25%',
         x: '10',
-        y: '10',
-        background: 'none',
-        foreground: 'none'
+        y: '10'
       }
     });
   });
@@ -139,26 +139,26 @@ describe('basic shape', () => {
     expect.hasAssertions();
 
     const shape = new Shape({
-      text: 'test',
-      x: '0',
-      y: '0',
-      width: '30',
-      height: '50',
       background: 'red',
-      foreground: 'black'
+      foreground: 'black',
+      height: '50',
+      text: 'test',
+      width: '30',
+      x: '0',
+      y: '0'
     });
 
     const obj = shape.toObject();
     expect(obj).toStrictEqual({
       type: 'Shape',
       options: {
+        background: 'red',
+        foreground: 'black',
+        height: '50',
         text: 'test',
         width: '30',
-        height: '50',
         x: '0',
-        y: '0',
-        background: 'red',
-        foreground: 'black'
+        y: '0'
       }
     });
   });
@@ -176,7 +176,14 @@ describe('basic shape', () => {
   it('should properly serialize shape to JSON with custom options', () => {
     expect.hasAssertions();
 
-    const shape = new Shape({ text: 'test', x: '0', y: '0', width: '30', height: '50' });
+    const shape = new Shape({
+      height: '50',
+      text: 'test',
+      width: '30',
+      x: '0',
+      y: '0'
+    });
+
     const json = shape.toJSON();
 
     // eslint-disable-next-line max-len
@@ -206,13 +213,13 @@ describe('basic shape', () => {
     const obj: ShapeObject = {
       type: 'Shape',
       options: {
+        background: 'red',
+        foreground: 'black',
+        height: '50',
         text: 'test',
         width: '30',
-        height: '50',
         x: '1',
-        y: '1',
-        background: 'red',
-        foreground: 'black'
+        y: '1'
       }
     };
 

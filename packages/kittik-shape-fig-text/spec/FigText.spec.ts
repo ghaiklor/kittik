@@ -60,13 +60,13 @@ describe('fig text shape', () => {
     expect.hasAssertions();
 
     const shape = new FigText({
-      text: 'test',
-      x: '10%',
       font: 'Ghost',
       horizontalLayout: 'full',
-      verticalLayout: 'fitted',
       printDirection: 1,
-      showHardBlanks: false
+      showHardBlanks: false,
+      text: 'test',
+      verticalLayout: 'fitted',
+      x: '10%'
     });
 
     const obj = shape.toObject();
@@ -74,18 +74,18 @@ describe('fig text shape', () => {
     expect(obj).toStrictEqual({
       type: 'FigText',
       options: {
-        text: 'test',
-        width: '50%',
-        height: '25%',
-        x: '10%',
-        y: 'top',
         background: 'none',
-        foreground: 'none',
         font: 'Ghost',
+        foreground: 'none',
+        height: '25%',
         horizontalLayout: 'full',
-        verticalLayout: 'fitted',
         printDirection: 1,
-        showHardBlanks: false
+        showHardBlanks: false,
+        text: 'test',
+        verticalLayout: 'fitted',
+        width: '50%',
+        x: '10%',
+        y: 'top'
       }
     });
   });
@@ -96,14 +96,14 @@ describe('fig text shape', () => {
     const shape: FigText = FigText.fromObject<FigText>({
       type: 'FigText',
       options: {
-        text: 'test',
-        x: 'left',
-        y: 'top',
         background: 'red',
-        foreground: 'black',
         font: 'Ghost',
+        foreground: 'black',
         horizontalLayout: 'full',
-        verticalLayout: 'fitted'
+        text: 'test',
+        verticalLayout: 'fitted',
+        x: 'left',
+        y: 'top'
       } as FigTextOptions
     });
 

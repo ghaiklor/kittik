@@ -3,13 +3,13 @@ import { Rectangle } from '..';
 
 const canvas = new Canvas().reset();
 const shape = new Rectangle({
-  text: 'Hello, World!',
-  x: '5%',
-  y: '10%',
-  width: '50%',
-  height: '25%',
   background: 'yellow',
-  foreground: 'blue'
+  foreground: 'blue',
+  height: '25%',
+  text: 'Hello, World!',
+  width: '50%',
+  x: '5%',
+  y: '10%'
 });
 
 shape.render(canvas);

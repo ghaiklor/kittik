@@ -24,7 +24,14 @@ describe('image shape', () => {
     expect.hasAssertions();
 
     const cursor = new Canvas();
-    const shape = new Image({ image: 'dGVzdA==', width: '15', height: '5', x: '10', y: '10' });
+    const shape = new Image({
+      height: '5',
+      image: 'dGVzdA==',
+      width: '15',
+      x: '10',
+      y: '10'
+    });
+
     const writeSpy = jest.spyOn(cursor.stream, 'write').mockImplementation(() => true);
 
     shape.render(cursor);
@@ -41,10 +48,10 @@ describe('image shape', () => {
     const cursor = new Canvas();
     const writeSpy = jest.spyOn(cursor.stream, 'write').mockImplementation(() => true);
     const shape = new Image({
+      height: '5',
       image: 'dGVzdA==',
       preserveAspectRatio: false,
       width: '15',
-      height: '5',
       x: '10',
       y: '10'
     });
@@ -66,15 +73,15 @@ describe('image shape', () => {
     expect(obj).toStrictEqual({
       type: 'Image',
       options: {
-        text: '',
-        width: '50%',
-        height: '25%',
-        x: 'left',
-        y: 'top',
         background: 'none',
         foreground: 'none',
+        height: '25%',
         image: 'dGVzdA==',
-        preserveAspectRatio: true
+        preserveAspectRatio: true,
+        text: '',
+        width: '50%',
+        x: 'left',
+        y: 'top'
       }
     });
   });
@@ -85,11 +92,11 @@ describe('image shape', () => {
     const obj: ImageObject = {
       type: 'Image',
       options: {
-        x: '20',
-        y: '20',
+        height: '20',
         image: 'dGVzdA==',
         width: '10',
-        height: '20'
+        x: '20',
+        y: '20'
       }
     };
 

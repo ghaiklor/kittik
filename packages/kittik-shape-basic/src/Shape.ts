@@ -162,13 +162,13 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     return {
       type: this.constructor.name,
       options: {
+        background: this._background,
+        foreground: this._foreground,
+        height: this._height,
         text: this._text,
         width: this._width,
-        height: this._height,
         x: this._x,
-        y: this._y,
-        background: this._background,
-        foreground: this._foreground
+        y: this._y
       }
     } as T;
   }

@@ -51,13 +51,13 @@ describe('code shape', () => {
     expect(obj).toStrictEqual({
       type: 'Code',
       options: {
+        background: 'none',
+        foreground: 'none',
+        height: '25%',
         text: 'console.log()',
         width: '50%',
-        height: '25%',
         x: 'left',
-        y: 'top',
-        background: 'none',
-        foreground: 'none'
+        y: 'top'
       }
     });
   });

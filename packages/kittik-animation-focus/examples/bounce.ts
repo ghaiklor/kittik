@@ -9,7 +9,15 @@ const onTick = (shape: Rectangle): void => {
 };
 
 const cursor = new Canvas().reset().hideCursor();
-const shape = new Rectangle({ x: 'center', y: 'middle', background: 'white', foreground: 'black', text: 'Bouncing' });
+
+const shape = new Rectangle({
+  background: 'white',
+  foreground: 'black',
+  text: 'Bouncing',
+  x: 'center',
+  y: 'middle'
+});
+
 const bounceUp = new Focus({ direction: 'bounceUp' }).on('tick', onTick);
 const bounceDown = new Focus({ direction: 'bounceDown' }).on('tick', onTick);
 const bounceLeft = new Focus({ direction: 'bounceLeft' }).on('tick', onTick);

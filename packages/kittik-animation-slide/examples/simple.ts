@@ -9,8 +9,19 @@ const onTick = (shape: Rectangle): void => {
 };
 
 const cursor = new Canvas().reset().hideCursor();
-const shape = new Rectangle({ x: 'center', y: 'middle', background: 'white', foreground: 'black', text: 'Sliding' });
-const inLeft = new Slide({ direction: 'inLeft', duration: 5000, easing: 'outBounce' }).on('tick', onTick);
+const shape = new Rectangle({
+  background: 'white',
+  foreground: 'black',
+  text: 'Sliding',
+  x: 'center',
+  y: 'middle'
+});
+
+const inLeft = new Slide({
+  direction: 'inLeft',
+  duration: 5000,
+  easing: 'outBounce'
+}).on('tick', onTick);
 
 (async function animate () {
   shape.render(cursor);

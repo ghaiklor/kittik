@@ -58,13 +58,13 @@ const deck = new Deck({
       name: 'Rectangle',
       type: 'Rectangle',
       options: {
-        text: 'Shape: Rectangle',
-        x: 'center',
-        y: 'middle',
-        width: '50%',
-        height: '20%',
         background: 'white',
-        foreground: 'black'
+        foreground: 'black',
+        height: '20%',
+        text: 'Shape: Rectangle',
+        width: '50%',
+        x: 'center',
+        y: 'middle'
       }
     },
     {

@@ -40,14 +40,14 @@ export class Slide extends Animation implements SlideOptions, Animationable {
     const width = parseInt(shape.width, 10);
     const height = parseInt(shape.height, 10);
     const directions = {
-      inUp: () => [x, -height, x, y],
       inDown: () => [x, cursor.height + height, x, y],
       inLeft: () => [-width, y, x, y],
       inRight: () => [cursor.width + width, y, x, y],
-      outUp: () => [x, y, x, -height],
+      inUp: () => [x, -height, x, y],
       outDown: () => [x, y, x, cursor.height + height],
       outLeft: () => [x, y, -width, y],
-      outRight: () => [x, y, cursor.width + 1, y]
+      outRight: () => [x, y, cursor.width + 1, y],
+      outUp: () => [x, y, x, -height]
     };
 
     const [startX, startY, endX, endY] = directions[this.direction]();

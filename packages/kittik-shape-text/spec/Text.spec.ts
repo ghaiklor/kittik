@@ -203,18 +203,18 @@ describe('text shape', () => {
 
     const cursor = Canvas.create();
     const text = new Text({
-      text: 'Hello, World',
-      x: 'left',
-      y: '10',
       align: 'center',
       background: 'yellow',
-      foreground: 'black',
+      blink: true,
       bold: true,
       dim: true,
-      underlined: true,
-      blink: true,
+      foreground: 'black',
+      hidden: true,
       reverse: true,
-      hidden: true
+      text: 'Hello, World',
+      underlined: true,
+      x: 'left',
+      y: '10'
     });
 
     const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
@@ -327,12 +327,12 @@ describe('text shape', () => {
     const obj: TextObject = {
       type: 'Text',
       options: {
-        text: 'test',
-        x: 'left',
-        y: 'top',
+        align: 'right',
         bold: true,
+        text: 'test',
         underlined: true,
-        align: 'right'
+        x: 'left',
+        y: 'top'
       }
     };
 

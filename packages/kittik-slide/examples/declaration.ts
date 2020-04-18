@@ -10,11 +10,11 @@ const HelloShapeDeclaration: ShapeDeclaration = {
   name: 'Hello',
   type: 'Rectangle',
   options: {
-    x: 'center',
-    y: 'middle',
     background: 'aqua',
     foreground: 'black',
-    text: 'Hello, World!'
+    text: 'Hello, World!',
+    x: 'center',
+    y: 'middle'
   }
 };
 

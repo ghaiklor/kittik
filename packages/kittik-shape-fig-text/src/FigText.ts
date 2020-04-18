@@ -51,9 +51,9 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     return figlet.textSync(this.text, {
       font: this.font,
       horizontalLayout: this.horizontalLayout,
-      verticalLayout: this.verticalLayout,
       printDirection: this.printDirection,
-      showHardBlanks: this.showHardBlanks
+      showHardBlanks: this.showHardBlanks,
+      verticalLayout: this.verticalLayout
     });
   }
 
@@ -75,9 +75,9 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
       ...obj.options,
       font: this.font,
       horizontalLayout: this.horizontalLayout,
-      verticalLayout: this.verticalLayout,
       printDirection: this.printDirection,
-      showHardBlanks: this.showHardBlanks
+      showHardBlanks: this.showHardBlanks,
+      verticalLayout: this.verticalLayout
     };
 
     return obj as T;

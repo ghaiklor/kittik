@@ -9,7 +9,14 @@ const onTick = (shape: Rectangle): void => {
 };
 
 const cursor = new Canvas().reset().hideCursor();
-const shape = new Rectangle({ x: 'center', y: 'middle', background: 'white', foreground: 'black', text: 'Shaking' });
+const shape = new Rectangle({
+  background: 'white',
+  foreground: 'black',
+  text: 'Shaking',
+  x: 'center',
+  y: 'middle'
+});
+
 const shakeX = new Focus({ direction: 'shakeX' }).on('tick', onTick);
 const shakeY = new Focus({ direction: 'shakeY' }).on('tick', onTick);
 

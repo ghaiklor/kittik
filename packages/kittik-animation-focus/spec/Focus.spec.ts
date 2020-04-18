@@ -166,9 +166,9 @@ describe('focus animation', () => {
     expect(obj).toStrictEqual({
       type: 'Focus',
       options: {
+        direction: 'shakeX',
         duration: 1000,
         easing: 'outQuad',
-        direction: 'shakeX',
         offset: 5,
         repeat: 1
       }
@@ -181,9 +181,9 @@ describe('focus animation', () => {
     const obj: FocusObject = {
       type: 'Focus',
       options: {
+        direction: 'bounceDown',
         duration: 4000,
         easing: 'inOutExpo',
-        direction: 'bounceDown',
         offset: 20,
         repeat: 5
       }

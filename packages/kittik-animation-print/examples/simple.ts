@@ -9,13 +9,18 @@ const onTick = (shape: Rectangle): void => {
 };
 
 const cursor = new Canvas().reset().hideCursor();
-const print = new Print({ duration: 5000, easing: 'inOutSine' }).on('tick', onTick);
+
+const print = new Print({
+  duration: 5000,
+  easing: 'inOutSine'
+}).on('tick', onTick);
+
 const shape = new Rectangle({
-  x: 'center',
-  y: 'middle',
   background: 'white',
   foreground: 'black',
-  text: 'The Longest Hello, World printing out'
+  text: 'The Longest Hello, World printing out',
+  x: 'center',
+  y: 'middle'
 });
 
 (async function animate () {

@@ -158,7 +158,12 @@
       "always"
     ],
     "sort-keys": [
-      "off"
+      "error",
+      "asc",
+      {
+        "minKeys": 5,
+        "natural": true
+      }
     ]
   }
 }

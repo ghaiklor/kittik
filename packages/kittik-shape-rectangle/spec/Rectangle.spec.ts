@@ -31,13 +31,13 @@ describe('rectangle shape', () => {
 
     const cursor = Canvas.create();
     const rectangle = new Rectangle({
+      background: 'yellow',
+      foreground: 'black',
+      height: '11',
       text: 'test',
       width: '11',
-      height: '11',
       x: '1',
-      y: '1',
-      background: 'yellow',
-      foreground: 'black'
+      y: '1'
     });
 
     const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
@@ -64,13 +64,13 @@ describe('rectangle shape', () => {
     expect(obj).toStrictEqual({
       type: 'Rectangle',
       options: {
+        background: 'none',
+        foreground: 'none',
+        height: '25%',
         text: '',
         width: '50%',
-        height: '25%',
         x: 'left',
-        y: 'top',
-        background: 'none',
-        foreground: 'none'
+        y: 'top'
       }
     });
   });
@@ -81,9 +81,9 @@ describe('rectangle shape', () => {
     const obj: ShapeObject = {
       type: 'Rectangle',
       options: {
+        height: '50',
         text: 'test',
         width: '30',
-        height: '50',
         x: '1',
         y: '1'
       }

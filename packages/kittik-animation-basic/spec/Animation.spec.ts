@@ -32,13 +32,13 @@ describe('basic animation', () => {
     const emitSpy = jest.spyOn(animation, 'emit');
 
     await animation.animateProperty({
-      shape,
-      property: 'x',
-      startValue: 0,
-      endValue: 100,
       byValue: 1,
       duration: 100,
-      easing: 'inExpo'
+      easing: 'inExpo',
+      endValue: 100,
+      property: 'x',
+      shape,
+      startValue: 0
     });
 
     expect(emitSpy.mock.calls.length).toBeGreaterThan(60);

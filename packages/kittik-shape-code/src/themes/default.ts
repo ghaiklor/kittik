@@ -1,4 +1,9 @@
 export const DEFAULT_THEME = {
+  _default: null,
+  Block: {
+    _default: '__LIGHT_SLATE_GREY__'
+  },
+
   Boolean: {
     true: null,
     false: null,
@@ -6,28 +11,17 @@ export const DEFAULT_THEME = {
   },
 
   Identifier: {
-    undefined: '__LIGHT_SLATE_GREY__',
-    self: '__INDIAN_RED__',
+    _default: '__WHITE__',
     console: '__BLUE__',
-    log: '__BLUE__',
-    warn: '__RED__',
     error: '__INDIAN_RED__',
-    _default: '__WHITE__'
-  },
-
-  Null: {
-    _default: '__LIGHT_SLATE_GREY__'
-  },
-
-  Numeric: {
-    _default: '__BLUE__'
-  },
-
-  String: {
-    _default: '__GREEN__'
+    log: '__BLUE__',
+    self: '__INDIAN_RED__',
+    undefined: '__LIGHT_SLATE_GREY__',
+    warn: '__RED__'
   },
 
   Keyword: {
+    _default: '__SKY_BLUE__',
     break: null,
     case: null,
     catch: '__CYAN__',
@@ -68,70 +62,75 @@ export const DEFAULT_THEME = {
     void: null,
     while: null,
     with: null,
-    yield: null,
-    _default: '__SKY_BLUE__'
-  },
-
-  Punctuator: {
-    ';': '__LIGHT_SLATE_GREY__',
-    '.': '__GREEN__',
-    ',': '__GREEN__',
-    '{': '__YELLOW__',
-    '}': '__YELLOW__',
-    '(': '__LIGHT_SLATE_GREY__',
-    ')': '__LIGHT_SLATE_GREY__',
-    '[': '__YELLOW__',
-    ']': '__YELLOW__',
-    '<': null,
-    '>': null,
-    '+': null,
-    '-': null,
-    '*': null,
-    '%': null,
-    '&': null,
-    '|': null,
-    '^': null,
-    '!': null,
-    '~': null,
-    '?': null,
-    ':': null,
-    '=': null,
-    '<=': null,
-    '>=': null,
-    '==': null,
-    '!=': null,
-    '++': null,
-    '--': null,
-    '<<': null,
-    '>>': null,
-    '&&': null,
-    '||': null,
-    '+=': null,
-    '-=': null,
-    '*=': null,
-    '%=': null,
-    '&=': null,
-    '|=': null,
-    '^=': null,
-    '/=': null,
-    '=>': null,
-    '===': null,
-    '!==': null,
-    '>>>': null,
-    '<<=': null,
-    '>>=': null,
-    '...': null,
-    '>>>=': null,
-    _default: '__LIGHT_YELLOW__'
+    yield: null
   },
 
   Line: {
     _default: '__LIGHT_SLATE_GREY__'
   },
 
-  Block: {
+  Null: {
     _default: '__LIGHT_SLATE_GREY__'
   },
 
-  _default: null
+  Numeric: {
+    _default: '__BLUE__'
+  },
+
+  Punctuator: {
+    '!': null,
+    '!=': null,
+    '!==': null,
+    '%': null,
+    '%=': null,
+    '&': null,
+    '&&': null,
+    '&=': null,
+    '(': '__LIGHT_SLATE_GREY__',
+    ')': '__LIGHT_SLATE_GREY__',
+    '*': null,
+    '*=': null,
+    '+': null,
+    '++': null,
+    '+=': null,
+    ',': '__GREEN__',
+    '.': '__GREEN__',
+    '...': null,
+    '/=': null,
+    ':': null,
+    ';': '__LIGHT_SLATE_GREY__',
+    '<': null,
+    '<<': null,
+    '<<=': null,
+    '<=': null,
+    '=': null,
+    '==': null,
+    '===': null,
+    '=>': null,
+    '>': null,
+    '>=': null,
+    '>>': null,
+    '>>=': null,
+    '>>>': null,
+    '>>>=': null,
+    '?': null,
+    '[': '__YELLOW__',
+    ']': '__YELLOW__',
+    '^': null,
+    '^=': null,
+    _default: '__LIGHT_YELLOW__',
+    '{': '__YELLOW__',
+    '|': null,
+    '|=': null,
+    '||': null,
+    '}': '__YELLOW__',
+    '~': null,
+    '-': null,
+    '-=': null,
+    '--': null
+  },
+
+  String: {
+    _default: '__GREEN__'
+  }
 };
