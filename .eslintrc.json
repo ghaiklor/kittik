@@ -130,9 +130,6 @@
     "no-console": [
       "off"
     ],
-    "no-plusplus": [
-      "off"
-    ],
     "no-sync": [
       "off"
     ],

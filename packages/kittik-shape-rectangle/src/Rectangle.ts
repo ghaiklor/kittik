@@ -14,7 +14,7 @@ export class Rectangle extends Shape implements ShapeRenderable {
     const filler = ' '.repeat(width);
 
     cursor.moveTo(x1, y1).background(background).foreground(foreground);
-    for (let y = y1; y <= y2; y++) cursor.write(filler).moveTo(x1, y);
+    for (let y = y1; y <= y2; y += 1) cursor.write(filler).moveTo(x1, y);
     cursor.moveTo(x1 + (width / 2 - text.length / 2), y1 + height / 2).write(text);
   }
 }

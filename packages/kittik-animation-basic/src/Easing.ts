@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 
 export const inQuad = function inQuad (t: number, b: number, c: number, d: number): number {
