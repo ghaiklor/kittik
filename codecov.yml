@@ -16,9 +16,6 @@ coverage:
       kittik-deck:
         flags:
           - kittik-deck
-      kittik-parser:
-        flags:
-          - kittik-parser
       kittik-shape-basic:
         flags:
           - kittik-shape-basic
@@ -56,9 +53,6 @@ flags:
   kittik-deck:
     paths:
       - packages/kittik-deck
-  kittik-parser:
-    paths:
-      - packages/kittik-parser
   kittik-shape-basic:
     paths:
       - packages/kittik-shape-basic
