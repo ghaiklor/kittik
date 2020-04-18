@@ -10,7 +10,7 @@ export class Focus extends Animation implements FocusOptions, Animationable {
   public direction: Direction = 'shakeX';
   public offset = 5;
   public repeat = 1;
-  private _duration = 1000;
+  private rawDuration = 1000;
 
   public constructor (options?: Partial<FocusOptions>) {
     super(options);
@@ -33,11 +33,11 @@ export class Focus extends Animation implements FocusOptions, Animationable {
   }
 
   public get duration (): number {
-    return this._duration / this.repeat;
+    return this.rawDuration / this.repeat;
   }
 
   public set duration (duration: number) {
-    this._duration = duration;
+    this.rawDuration = duration;
   }
 
   public async animate<T extends Shape>(shape: T): Promise<T> {

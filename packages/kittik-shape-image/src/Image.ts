@@ -9,8 +9,8 @@ export { ImageObject } from './ImageObject';
 export { ImageOptions } from './ImageOptions';
 
 export class Image extends Shape implements ImageOptions, ShapeRenderable {
-  private _image = 'R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=';
-  private _preserveAspectRatio = true;
+  private rawImageOrPath = 'R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=';
+  private rawPreserveAspectRatio = true;
 
   public constructor (options?: Partial<ImageOptions>) {
     super(options);
@@ -29,27 +29,27 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
   }
 
   public get image (): string {
-    if (Image.isBase64(this._image)) {
-      return this._image;
+    if (Image.isBase64(this.rawImageOrPath)) {
+      return this.rawImageOrPath;
     }
 
-    if (fs.existsSync(path.resolve(process.cwd(), this._image))) {
-      return fs.readFileSync(path.resolve(process.cwd(), this._image), 'base64');
+    if (fs.existsSync(path.resolve(process.cwd(), this.rawImageOrPath))) {
+      return fs.readFileSync(path.resolve(process.cwd(), this.rawImageOrPath), 'base64');
     }
 
     throw new Error('Image is not in base64 or does not exist on file system');
   }
 
   public set image (image: string) {
-    this._image = image;
+    this.rawImageOrPath = image;
   }
 
   public get preserveAspectRatio (): boolean {
-    return this._preserveAspectRatio;
+    return this.rawPreserveAspectRatio;
   }
 
   public set preserveAspectRatio (preserve: boolean) {
-    this._preserveAspectRatio = preserve;
+    this.rawPreserveAspectRatio = preserve;
   }
 
   public render <T extends Canvas>(cursor: T): void {
@@ -74,8 +74,8 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     const obj: ImageObject = super.toObject();
     obj.options = {
       ...obj.options,
-      image: this._image,
-      preserveAspectRatio: this._preserveAspectRatio
+      image: this.rawImageOrPath,
+      preserveAspectRatio: this.rawPreserveAspectRatio
     };
 
     return obj as T;

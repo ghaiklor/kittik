@@ -6,11 +6,11 @@ import redeyed from 'redeyed';
 
 export class Code extends Shape implements ShapeRenderable {
   public get text (): string {
-    return beautify(this._text, { indent_size: 2 });
+    return beautify(this.rawText, { indent_size: 2 });
   }
 
   public set text (code: string) {
-    this._text = code;
+    this.rawText = code;
   }
 
   public get width (): string {

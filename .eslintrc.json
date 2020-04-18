@@ -139,9 +139,6 @@
     "no-ternary": [
       "off"
     ],
-    "no-underscore-dangle": [
-      "off"
-    ],
     "node/no-missing-import": [
       "error",
       {

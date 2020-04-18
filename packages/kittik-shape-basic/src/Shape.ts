@@ -8,14 +8,14 @@ export { ShapeOptions } from './ShapeOptions';
 export { ShapeRenderable } from './ShapeRenderable';
 
 export class Shape implements ShapeOptions, ShapeRenderable {
-  protected _cursor = Canvas.create();
-  protected _text = '';
-  protected _x = 'left';
-  protected _y = 'top';
-  protected _width = '50%';
-  protected _height = '25%';
-  protected _background = 'none';
-  protected _foreground = 'none';
+  protected rawCursor = Canvas.create();
+  protected rawText = '';
+  protected rawX = 'left';
+  protected rawY = 'top';
+  protected rawWidth = '50%';
+  protected rawHeight = '25%';
+  protected rawBackground = 'none';
+  protected rawForeground = 'none';
 
   public constructor (options?: Partial<ShapeOptions>) {
     if (typeof options?.text !== 'undefined') {
@@ -69,106 +69,106 @@ export class Shape implements ShapeOptions, ShapeRenderable {
   }
 
   public get cursor (): Canvas {
-    return this._cursor;
+    return this.rawCursor;
   }
 
   public get text (): string {
-    return this._text;
+    return this.rawText;
   }
 
   public set text (text: string) {
-    this._text = text;
+    this.rawText = text;
   }
 
   public get x (): string {
-    const x = this._x;
+    const x = this.rawX;
 
     if (x === 'left') return '0';
-    if (x === 'center') return Math.floor(this._cursor.width / 2 - parseInt(this.width, 10) / 2).toString();
-    if (x === 'right') return Math.floor(this._cursor.width - parseInt(this.width, 10)).toString();
-    if ((/\d+%$/u).test(x)) return Math.floor(parseInt(x.slice(0, -1), 10) * this._cursor.width / 100).toString();
+    if (x === 'center') return Math.floor(this.rawCursor.width / 2 - parseInt(this.width, 10) / 2).toString();
+    if (x === 'right') return Math.floor(this.rawCursor.width - parseInt(this.width, 10)).toString();
+    if ((/\d+%$/u).test(x)) return Math.floor(parseInt(x.slice(0, -1), 10) * this.rawCursor.width / 100).toString();
 
     return x;
   }
 
   public set x (x: string) {
-    this._x = x;
+    this.rawX = x;
   }
 
   public get y (): string {
-    const y = this._y;
+    const y = this.rawY;
 
     if (y === 'top') return '0';
-    if (y === 'middle') return Math.floor(this._cursor.height / 2 - parseInt(this.height, 10) / 2).toString();
-    if (y === 'bottom') return Math.floor(this._cursor.height - parseInt(this.height, 10)).toString();
-    if ((/\d+%$/u).test(y)) return Math.floor(parseInt(y.slice(0, -1), 10) * this._cursor.height / 100).toString();
+    if (y === 'middle') return Math.floor(this.rawCursor.height / 2 - parseInt(this.height, 10) / 2).toString();
+    if (y === 'bottom') return Math.floor(this.rawCursor.height - parseInt(this.height, 10)).toString();
+    if ((/\d+%$/u).test(y)) return Math.floor(parseInt(y.slice(0, -1), 10) * this.rawCursor.height / 100).toString();
 
     return y;
   }
 
   public set y (y: string) {
-    this._y = y;
+    this.rawY = y;
   }
 
   public get width (): string {
-    const width = this._width;
+    const width = this.rawWidth;
 
     if ((/\d+%$/u).test(width)) {
-      return Math.floor(parseInt(width.slice(0, -1), 10) * this._cursor.width / 100).toString();
+      return Math.floor(parseInt(width.slice(0, -1), 10) * this.rawCursor.width / 100).toString();
     }
 
     return width;
   }
 
   public set width (width: string) {
-    this._width = width;
+    this.rawWidth = width;
   }
 
   public get height (): string {
-    const height = this._height;
+    const height = this.rawHeight;
 
     if ((/\d+%$/u).test(height)) {
-      return Math.floor(parseInt(height.slice(0, -1), 10) * this._cursor.height / 100).toString();
+      return Math.floor(parseInt(height.slice(0, -1), 10) * this.rawCursor.height / 100).toString();
     }
 
     return height;
   }
 
   public set height (height: string) {
-    this._height = height;
+    this.rawHeight = height;
   }
 
   public get background (): string {
-    return this._background;
+    return this.rawBackground;
   }
 
   public set background (background: string) {
-    this._background = background;
+    this.rawBackground = background;
   }
 
   public get foreground (): string {
-    return this._foreground;
+    return this.rawForeground;
   }
 
   public set foreground (foreground: string) {
-    this._foreground = foreground;
+    this.rawForeground = foreground;
   }
 
   public render <T extends Canvas>(cursor: T): void {
-    this._cursor = cursor;
+    this.rawCursor = cursor;
   }
 
   public toObject<T extends ShapeObject>(): T {
     return {
       type: this.constructor.name,
       options: {
-        background: this._background,
-        foreground: this._foreground,
-        height: this._height,
-        text: this._text,
-        width: this._width,
-        x: this._x,
-        y: this._y
+        background: this.rawBackground,
+        foreground: this.rawForeground,
+        height: this.rawHeight,
+        text: this.rawText,
+        width: this.rawWidth,
+        x: this.rawX,
+        y: this.rawY
       }
     } as T;
   }
