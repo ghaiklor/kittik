@@ -89,14 +89,15 @@
     "id-length": [
       "error",
       {
-        "min": 1
+        "exceptions": [
+          "x",
+          "y"
+        ]
       }
     ],
     "max-len": [
       "error",
-      {
-        "code": 120
-      }
+      120
     ],
     "max-lines": [
       "off"

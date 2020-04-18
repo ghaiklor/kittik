@@ -278,4 +278,4 @@ const deck = new Deck({
 
 deck
   .renderSlide()
-  .catch((e) => console.error(e));
+  .catch((error) => console.error(error));

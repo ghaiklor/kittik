@@ -59,7 +59,7 @@ export class Deck {
   }
 
   public addSlide (slide: Slide): void {
-    if (this.slides.some((s) => s.name === slide.name)) {
+    if (this.slides.some((existingSlide) => existingSlide.name === slide.name)) {
       throw new Error(
         `You are trying to add a slide with the name "${slide.name}" into the deck. ` +
         'But the slide with the same name already exists there. ' +
@@ -132,10 +132,10 @@ export class Deck {
   private onKeyPress (chunk: string): void {
     switch (chunk) {
       case 'p':
-        this.previousSlide().catch((e) => console.error(e));
+        this.previousSlide().catch((error) => console.error(error));
         break;
       case 'n':
-        this.nextSlide().catch((e) => console.error(e));
+        this.nextSlide().catch((error) => console.error(error));
         break;
       case 'q':
         this.exit();

@@ -53,4 +53,4 @@ SlideBuilder
   .end()
   .render()
   .finally(() => cursor.reset().showCursor())
-  .catch((e) => console.error(e));
+  .catch((error) => console.error(error));
