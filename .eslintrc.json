@@ -125,5 +125,16 @@
         "natural": true
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.js"
+      ],
+      "rules": {
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/quotes": "off"
+      }
+    }
+  ]
 }
