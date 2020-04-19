@@ -8,7 +8,7 @@ export { ShapeOptions } from './ShapeOptions';
 export { ShapeRenderable } from './ShapeRenderable';
 
 export class Shape implements ShapeOptions, ShapeRenderable {
-  protected rawCursor = Canvas.create();
+  protected rawCanvas = Canvas.create();
   protected rawText = '';
   protected rawX = 'left';
   protected rawY = 'top';
@@ -68,8 +68,8 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     return this.fromObject(JSON.parse(json));
   }
 
-  public get cursor (): Canvas {
-    return this.rawCursor;
+  public get canvas (): Canvas {
+    return this.rawCanvas;
   }
 
   public get text (): string {
@@ -84,9 +84,9 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     const x = this.rawX;
 
     if (x === 'left') return '0';
-    if (x === 'center') return Math.floor(this.rawCursor.width / 2 - parseInt(this.width, 10) / 2).toString();
-    if (x === 'right') return Math.floor(this.rawCursor.width - parseInt(this.width, 10)).toString();
-    if ((/\d+%$/u).test(x)) return Math.floor(parseInt(x.slice(0, -1), 10) * this.rawCursor.width / 100).toString();
+    if (x === 'center') return Math.floor(this.rawCanvas.width / 2 - parseInt(this.width, 10) / 2).toString();
+    if (x === 'right') return Math.floor(this.rawCanvas.width - parseInt(this.width, 10)).toString();
+    if ((/\d+%$/u).test(x)) return Math.floor(parseInt(x.slice(0, -1), 10) * this.rawCanvas.width / 100).toString();
 
     return x;
   }
@@ -99,9 +99,9 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     const y = this.rawY;
 
     if (y === 'top') return '0';
-    if (y === 'middle') return Math.floor(this.rawCursor.height / 2 - parseInt(this.height, 10) / 2).toString();
-    if (y === 'bottom') return Math.floor(this.rawCursor.height - parseInt(this.height, 10)).toString();
-    if ((/\d+%$/u).test(y)) return Math.floor(parseInt(y.slice(0, -1), 10) * this.rawCursor.height / 100).toString();
+    if (y === 'middle') return Math.floor(this.rawCanvas.height / 2 - parseInt(this.height, 10) / 2).toString();
+    if (y === 'bottom') return Math.floor(this.rawCanvas.height - parseInt(this.height, 10)).toString();
+    if ((/\d+%$/u).test(y)) return Math.floor(parseInt(y.slice(0, -1), 10) * this.rawCanvas.height / 100).toString();
 
     return y;
   }
@@ -114,7 +114,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     const width = this.rawWidth;
 
     if ((/\d+%$/u).test(width)) {
-      return Math.floor(parseInt(width.slice(0, -1), 10) * this.rawCursor.width / 100).toString();
+      return Math.floor(parseInt(width.slice(0, -1), 10) * this.rawCanvas.width / 100).toString();
     }
 
     return width;
@@ -128,7 +128,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     const height = this.rawHeight;
 
     if ((/\d+%$/u).test(height)) {
-      return Math.floor(parseInt(height.slice(0, -1), 10) * this.rawCursor.height / 100).toString();
+      return Math.floor(parseInt(height.slice(0, -1), 10) * this.rawCanvas.height / 100).toString();
     }
 
     return height;
@@ -154,8 +154,8 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     this.rawForeground = foreground;
   }
 
-  public render <T extends Canvas>(cursor: T): void {
-    this.rawCursor = cursor;
+  public render <T extends Canvas>(canvas: T): void {
+    this.rawCanvas = canvas;
   }
 
   public toObject<T extends ShapeObject>(): T {

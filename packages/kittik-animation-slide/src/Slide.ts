@@ -34,19 +34,19 @@ export class Slide extends Animation implements SlideOptions, Animationable {
   }
 
   private parseCoordinates<T extends Shape>(shape: T): { startX: number, startY: number, endX: number, endY: number } {
-    const { cursor } = shape;
+    const { canvas } = shape;
     const x = parseInt(shape.x, 10);
     const y = parseInt(shape.y, 10);
     const width = parseInt(shape.width, 10);
     const height = parseInt(shape.height, 10);
     const directions = {
-      inDown: () => [x, cursor.height + height, x, y],
+      inDown: () => [x, canvas.height + height, x, y],
       inLeft: () => [-width, y, x, y],
-      inRight: () => [cursor.width + width, y, x, y],
+      inRight: () => [canvas.width + width, y, x, y],
       inUp: () => [x, -height, x, y],
-      outDown: () => [x, y, x, cursor.height + height],
+      outDown: () => [x, y, x, canvas.height + height],
       outLeft: () => [x, y, -width, y],
-      outRight: () => [x, y, cursor.width + 1, y],
+      outRight: () => [x, y, canvas.width + 1, y],
       outUp: () => [x, y, x, -height]
     };
 
