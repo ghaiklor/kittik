@@ -11,7 +11,7 @@ export class Print extends Animation implements Animationable {
   public async animate<T extends Shape>(shape: T): Promise<T> {
     this.originalText = shape.text;
 
-    return await this.animateProperty({
+    return await this.animateProperty<T, 'text'>({
       shape,
       property: 'text',
       startValue: 0,
