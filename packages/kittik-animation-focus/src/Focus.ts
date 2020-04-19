@@ -103,8 +103,6 @@ export class Focus extends Animation implements FocusOptions, Animationable {
         throw new Error(`Unexpected direction for bounce animation: ${direction as string}`);
     }
 
-    const length = this.repeat;
-
     const firstStep = async (): Promise<T> => await this.animateProperty({
       shape,
       property,
@@ -119,9 +117,12 @@ export class Focus extends Animation implements FocusOptions, Animationable {
       endValue: startValue
     });
 
-    return await Array
-      .from({ length })
-      .reduce(async (promise: Promise<T>) => await promise.then(firstStep).then(secondStep), Promise.resolve(shape));
+    let sequence: Promise<T> = Promise.resolve(shape);
+    for (let counter = this.repeat; counter > 0; counter -= 1) {
+      sequence = sequence.then(firstStep).then(secondStep);
+    }
+
+    return await sequence;
   }
 
   private async animateShake<T extends Shape>(shape: T, direction: ShakeDirection): Promise<T> {
@@ -150,8 +151,6 @@ export class Focus extends Animation implements FocusOptions, Animationable {
         throw new Error(`Unexpected direction for shake animation: ${direction as string}`);
     }
 
-    const length = this.repeat;
-
     const firstStep = async (): Promise<T> => await this.animateProperty({
       shape,
       property,
@@ -173,14 +172,14 @@ export class Focus extends Animation implements FocusOptions, Animationable {
       endValue: startValue
     });
 
-    return await Array
-      .from({ length })
-      .reduce(
-        async (promise: Promise<T>) => await promise
-          .then(firstStep)
-          .then(secondStep)
-          .then(thirdStep),
-        Promise.resolve(shape)
-      );
+    let sequence: Promise<T> = Promise.resolve(shape);
+    for (let counter = this.repeat; counter > 0; counter -= 1) {
+      sequence = sequence
+        .then(firstStep)
+        .then(secondStep)
+        .then(thirdStep);
+    }
+
+    return await sequence;
   }
 }
