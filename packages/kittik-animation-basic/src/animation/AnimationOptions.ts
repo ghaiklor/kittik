@@ -1,4 +1,4 @@
-import { Easing } from './Easing';
+import { Easing } from '../easing/Easing';
 
 export interface AnimationOptions {
   duration: number

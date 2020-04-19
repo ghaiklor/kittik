@@ -1,8 +1,8 @@
-import * as EASING from './Easing';
+import * as EASING from '../easing/Easing';
 import { AnimationObject } from './AnimationObject';
 import { AnimationOptions } from './AnimationOptions';
 import { AnimationPropertyOptions } from './AnimationPropertyOptions';
-import { EasingOptions } from './EasingOptions';
+import { EasingOptions } from '../easing/EasingOptions';
 import { EventEmitter } from 'events';
 import { Shape } from 'kittik-shape-basic';
 
@@ -10,8 +10,8 @@ export { Animationable } from './Animationable';
 export { AnimationObject } from './AnimationObject';
 export { AnimationOptions } from './AnimationOptions';
 export { AnimationPropertyOptions } from './AnimationPropertyOptions';
-export { Easing } from './Easing';
-export { EasingOptions } from './EasingOptions';
+export { Easing } from '../easing/Easing';
+export { EasingOptions } from '../easing/EasingOptions';
 
 export declare interface Animation {
   on: <

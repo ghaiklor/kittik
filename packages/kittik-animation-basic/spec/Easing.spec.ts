@@ -1,4 +1,4 @@
-import * as EASING from '../src/Easing';
+import * as EASING from '../src/easing/Easing';
 
 describe('easing', () => {
   it('should properly calculate all the easing functions', () => {

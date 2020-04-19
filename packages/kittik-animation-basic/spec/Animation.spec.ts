@@ -1,5 +1,5 @@
-import { Animation } from '../src/Animation';
-import { AnimationObject } from '../src/AnimationObject';
+import { Animation } from '../src/animation/Animation';
+import { AnimationObject } from '../src/animation/AnimationObject';
 import { Shape } from 'kittik-shape-basic';
 
 describe('basic animation', () => {

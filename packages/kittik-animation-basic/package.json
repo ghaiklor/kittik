@@ -4,8 +4,8 @@
   "description": "Basic class for creating animations in Kittik",
   "license": "MIT",
   "type": "module",
-  "main": "dist/Animation.js",
-  "types": "dist/Animation.d.ts",
+  "main": "dist/animation/Animation.js",
+  "types": "dist/animation/Animation.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",
   "files": [
     "dist"
