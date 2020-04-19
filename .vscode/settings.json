@@ -13,6 +13,7 @@
         "obrezkov",
         "paren",
         "plusplus",
+        "precommit",
         "promisify",
         "punctuator",
         "readonly",

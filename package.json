@@ -26,6 +26,7 @@
     "commit": "git cz",
     "lint": "lerna run lint --stream --parallel",
     "postinstall": "npm run bootstrap",
+    "precommit": "npm run lint",
     "publish": "lerna version --conventional-commits --exact --create-release github && lerna publish",
     "test": "lerna run test --stream --parallel",
     "update": "find ./packages -name package.json -maxdepth 2 -exec dirname {} \\; | xargs -o -L 1 npm-check --save-exact --update"
