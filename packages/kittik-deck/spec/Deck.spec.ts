@@ -6,7 +6,7 @@ import { Print } from 'kittik-animation-print';
 import { Slide } from 'kittik-slide';
 
 const DECK_DECLARATION: DeckDeclaration = {
-  cursor: Canvas.create(),
+  canvas: Canvas.create(),
   shapes: [
     {
       name: 'Global Shape',
@@ -123,7 +123,7 @@ describe('deck', () => {
     AFTER_EACH(deck);
   });
 
-  it('should properly render slides without custom cursor', async () => {
+  it('should properly render slides without custom canvas', async () => {
     expect.hasAssertions();
 
     const deck = new Deck({ ...DECK_DECLARATION });
@@ -143,7 +143,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck({
-      cursor: DECK_DECLARATION.cursor,
+      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Test',
@@ -175,7 +175,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck({
-      cursor: DECK_DECLARATION.cursor,
+      canvas: DECK_DECLARATION.canvas,
       slides: [{ name: 'Test', shapes: [], order: [] }]
     });
 
@@ -200,7 +200,7 @@ describe('deck', () => {
 
     const shape: ShapeRenderable = new Shape();
     const deck = new Deck({
-      cursor: DECK_DECLARATION.cursor,
+      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Test',
@@ -225,7 +225,7 @@ describe('deck', () => {
 
     const shape: ShapeRenderable = new Shape();
     const deck = new Deck({
-      cursor: DECK_DECLARATION.cursor,
+      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Test',
@@ -250,7 +250,7 @@ describe('deck', () => {
 
     const animation: Animationable = new Print();
     const deck = new Deck({
-      cursor: DECK_DECLARATION.cursor,
+      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Test',
@@ -276,7 +276,7 @@ describe('deck', () => {
 
     const animation: Animationable = new Print();
     const deck = new Deck({
-      cursor: DECK_DECLARATION.cursor,
+      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Test',
@@ -301,7 +301,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck({
-      cursor: DECK_DECLARATION.cursor,
+      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Slide #1',

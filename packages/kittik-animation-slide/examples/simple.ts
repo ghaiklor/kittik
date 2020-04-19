@@ -3,12 +3,12 @@ import { Rectangle } from 'kittik-shape-rectangle';
 import { Slide } from '..';
 
 const onTick = (shape: Rectangle): void => {
-  cursor.eraseScreen();
-  shape.render(cursor);
-  cursor.flush();
+  canvas.eraseScreen();
+  shape.render(canvas);
+  canvas.flush();
 };
 
-const cursor = new Canvas()
+const canvas = new Canvas()
   .reset()
   .hideCursor();
 
@@ -27,10 +27,10 @@ const inLeft = new Slide({
 }).on('tick', onTick);
 
 (async function animate () {
-  shape.render(cursor);
-  cursor.flush();
+  shape.render(canvas);
+  canvas.flush();
 
   await inLeft.animate(shape);
 
-  cursor.showCursor();
+  canvas.showCursor();
 })().catch(console.error);

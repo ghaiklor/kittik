@@ -6,14 +6,14 @@ describe('rectangle shape', () => {
   it('should properly render with default options', () => {
     expect.hasAssertions();
 
-    const cursor = Canvas.create();
+    const canvas = Canvas.create();
     const rectangle = new Rectangle({ x: '0', y: '0', height: '2', width: '5' });
-    const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    rectangle.render(cursor);
+    rectangle.render(canvas);
 
     expect(backgroundSpy).toHaveBeenCalledTimes(1);
     expect(backgroundSpy).toHaveBeenCalledWith('none');
@@ -29,7 +29,7 @@ describe('rectangle shape', () => {
   it('should properly render with custom options', () => {
     expect.hasAssertions();
 
-    const cursor = Canvas.create();
+    const canvas = Canvas.create();
     const rectangle = new Rectangle({
       background: 'yellow',
       foreground: 'black',
@@ -40,12 +40,12 @@ describe('rectangle shape', () => {
       y: '1'
     });
 
-    const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    rectangle.render(cursor);
+    rectangle.render(canvas);
 
     expect(backgroundSpy).toHaveBeenCalledTimes(1);
     expect(backgroundSpy).toHaveBeenCalledWith('yellow');

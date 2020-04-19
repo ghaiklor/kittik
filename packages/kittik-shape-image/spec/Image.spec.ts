@@ -23,7 +23,7 @@ describe('image shape', () => {
   it('should properly render the shape', () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
+    const canvas = new Canvas();
     const shape = new Image({
       height: '5',
       image: 'dGVzdA==',
@@ -32,9 +32,9 @@ describe('image shape', () => {
       y: '10'
     });
 
-    const writeSpy = jest.spyOn(cursor.stream, 'write').mockImplementation(() => true);
+    const writeSpy = jest.spyOn(canvas.stream, 'write').mockImplementation(() => true);
 
-    shape.render(cursor);
+    shape.render(canvas);
 
     expect(writeSpy).toHaveBeenCalledTimes(1);
     expect(writeSpy).toHaveBeenCalledWith(
@@ -45,8 +45,8 @@ describe('image shape', () => {
   it('should properly render the shape with disabled preserveAspectRatio', () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
-    const writeSpy = jest.spyOn(cursor.stream, 'write').mockImplementation(() => true);
+    const canvas = new Canvas();
+    const writeSpy = jest.spyOn(canvas.stream, 'write').mockImplementation(() => true);
     const shape = new Image({
       height: '5',
       image: 'dGVzdA==',
@@ -56,7 +56,7 @@ describe('image shape', () => {
       y: '10'
     });
 
-    shape.render(cursor);
+    shape.render(canvas);
 
     expect(writeSpy).toHaveBeenCalledTimes(1);
     expect(writeSpy).toHaveBeenCalledWith(

@@ -21,20 +21,20 @@ describe('text shape', () => {
   it('should properly render with default options', () => {
     expect.hasAssertions();
 
-    const cursor = Canvas.create();
+    const canvas = Canvas.create();
     const text = new Text();
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
-    const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
-    const dimSpy = jest.spyOn(cursor, 'dim').mockReturnThis();
-    const underlinedSpy = jest.spyOn(cursor, 'underlined').mockReturnThis();
-    const blinkSpy = jest.spyOn(cursor, 'blink').mockReturnThis();
-    const reverseSpy = jest.spyOn(cursor, 'reverse').mockReturnThis();
-    const hiddenSpy = jest.spyOn(cursor, 'hidden').mockReturnThis();
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
+    const boldSpy = jest.spyOn(canvas, 'bold').mockReturnThis();
+    const dimSpy = jest.spyOn(canvas, 'dim').mockReturnThis();
+    const underlinedSpy = jest.spyOn(canvas, 'underlined').mockReturnThis();
+    const blinkSpy = jest.spyOn(canvas, 'blink').mockReturnThis();
+    const reverseSpy = jest.spyOn(canvas, 'reverse').mockReturnThis();
+    const hiddenSpy = jest.spyOn(canvas, 'hidden').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    text.render(cursor);
+    text.render(canvas);
 
     expect(foregroundSpy).toHaveBeenCalledTimes(1);
     expect(foregroundSpy).toHaveBeenCalledWith('none');
@@ -61,20 +61,20 @@ describe('text shape', () => {
   it('should properly render with text align to left', () => {
     expect.hasAssertions();
 
-    const cursor = Canvas.create();
+    const canvas = Canvas.create();
     const text = new Text({ text: 'test\nlongest', align: 'left' });
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
-    const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
-    const dimSpy = jest.spyOn(cursor, 'dim').mockReturnThis();
-    const underlinedSpy = jest.spyOn(cursor, 'underlined').mockReturnThis();
-    const blinkSpy = jest.spyOn(cursor, 'blink').mockReturnThis();
-    const reverseSpy = jest.spyOn(cursor, 'reverse').mockReturnThis();
-    const hiddenSpy = jest.spyOn(cursor, 'hidden').mockReturnThis();
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
+    const boldSpy = jest.spyOn(canvas, 'bold').mockReturnThis();
+    const dimSpy = jest.spyOn(canvas, 'dim').mockReturnThis();
+    const underlinedSpy = jest.spyOn(canvas, 'underlined').mockReturnThis();
+    const blinkSpy = jest.spyOn(canvas, 'blink').mockReturnThis();
+    const reverseSpy = jest.spyOn(canvas, 'reverse').mockReturnThis();
+    const hiddenSpy = jest.spyOn(canvas, 'hidden').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    text.render(cursor);
+    text.render(canvas);
 
     expect(foregroundSpy).toHaveBeenCalledTimes(1);
     expect(foregroundSpy).toHaveBeenCalledWith('none');
@@ -103,20 +103,20 @@ describe('text shape', () => {
   it('should properly render with text align to center', () => {
     expect.hasAssertions();
 
-    const cursor = Canvas.create();
+    const canvas = Canvas.create();
     const text = new Text({ text: 'test\nlongest', align: 'center' });
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
-    const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
-    const dimSpy = jest.spyOn(cursor, 'dim').mockReturnThis();
-    const underlinedSpy = jest.spyOn(cursor, 'underlined').mockReturnThis();
-    const blinkSpy = jest.spyOn(cursor, 'blink').mockReturnThis();
-    const reverseSpy = jest.spyOn(cursor, 'reverse').mockReturnThis();
-    const hiddenSpy = jest.spyOn(cursor, 'hidden').mockReturnThis();
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
+    const boldSpy = jest.spyOn(canvas, 'bold').mockReturnThis();
+    const dimSpy = jest.spyOn(canvas, 'dim').mockReturnThis();
+    const underlinedSpy = jest.spyOn(canvas, 'underlined').mockReturnThis();
+    const blinkSpy = jest.spyOn(canvas, 'blink').mockReturnThis();
+    const reverseSpy = jest.spyOn(canvas, 'reverse').mockReturnThis();
+    const hiddenSpy = jest.spyOn(canvas, 'hidden').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    text.render(cursor);
+    text.render(canvas);
 
     expect(foregroundSpy).toHaveBeenCalledTimes(1);
     expect(foregroundSpy).toHaveBeenCalledWith('none');
@@ -145,20 +145,20 @@ describe('text shape', () => {
   it('should properly render with text align to right', () => {
     expect.hasAssertions();
 
-    const cursor = Canvas.create();
+    const canvas = Canvas.create();
     const text = new Text({ text: 'test\nlongest', align: 'right' });
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
-    const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
-    const dimSpy = jest.spyOn(cursor, 'dim').mockReturnThis();
-    const underlinedSpy = jest.spyOn(cursor, 'underlined').mockReturnThis();
-    const blinkSpy = jest.spyOn(cursor, 'blink').mockReturnThis();
-    const reverseSpy = jest.spyOn(cursor, 'reverse').mockReturnThis();
-    const hiddenSpy = jest.spyOn(cursor, 'hidden').mockReturnThis();
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
+    const boldSpy = jest.spyOn(canvas, 'bold').mockReturnThis();
+    const dimSpy = jest.spyOn(canvas, 'dim').mockReturnThis();
+    const underlinedSpy = jest.spyOn(canvas, 'underlined').mockReturnThis();
+    const blinkSpy = jest.spyOn(canvas, 'blink').mockReturnThis();
+    const reverseSpy = jest.spyOn(canvas, 'reverse').mockReturnThis();
+    const hiddenSpy = jest.spyOn(canvas, 'hidden').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    text.render(cursor);
+    text.render(canvas);
 
     expect(foregroundSpy).toHaveBeenCalledTimes(1);
     expect(foregroundSpy).toHaveBeenCalledWith('none');
@@ -191,9 +191,9 @@ describe('text shape', () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const text = new Text({ align: 'wrong' });
-    const cursor = Canvas.create();
+    const canvas = Canvas.create();
 
-    expect(() => text.render(cursor)).toThrow(
+    expect(() => text.render(canvas)).toThrow(
       'Unknown align specified for text: wrong'
     );
   });
@@ -201,7 +201,7 @@ describe('text shape', () => {
   it('should properly render with custom options', () => {
     expect.hasAssertions();
 
-    const cursor = Canvas.create();
+    const canvas = Canvas.create();
     const text = new Text({
       align: 'center',
       background: 'yellow',
@@ -217,18 +217,18 @@ describe('text shape', () => {
       y: '10'
     });
 
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
-    const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
-    const dimSpy = jest.spyOn(cursor, 'dim').mockReturnThis();
-    const underlinedSpy = jest.spyOn(cursor, 'underlined').mockReturnThis();
-    const blinkSpy = jest.spyOn(cursor, 'blink').mockReturnThis();
-    const reverseSpy = jest.spyOn(cursor, 'reverse').mockReturnThis();
-    const hiddenSpy = jest.spyOn(cursor, 'hidden').mockReturnThis();
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
+    const boldSpy = jest.spyOn(canvas, 'bold').mockReturnThis();
+    const dimSpy = jest.spyOn(canvas, 'dim').mockReturnThis();
+    const underlinedSpy = jest.spyOn(canvas, 'underlined').mockReturnThis();
+    const blinkSpy = jest.spyOn(canvas, 'blink').mockReturnThis();
+    const reverseSpy = jest.spyOn(canvas, 'reverse').mockReturnThis();
+    const hiddenSpy = jest.spyOn(canvas, 'hidden').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    text.render(cursor);
+    text.render(canvas);
 
     expect(foregroundSpy).toHaveBeenCalledTimes(1);
     expect(foregroundSpy).toHaveBeenCalledWith('black');
@@ -255,20 +255,20 @@ describe('text shape', () => {
   it('should properly render multi-lined text', () => {
     expect.hasAssertions();
 
-    const cursor = Canvas.create();
+    const canvas = Canvas.create();
     const text = new Text({ text: 'Hello\nWorld' });
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
-    const boldSpy = jest.spyOn(cursor, 'bold').mockReturnThis();
-    const dimSpy = jest.spyOn(cursor, 'dim').mockReturnThis();
-    const underlinedSpy = jest.spyOn(cursor, 'underlined').mockReturnThis();
-    const blinkSpy = jest.spyOn(cursor, 'blink').mockReturnThis();
-    const reverseSpy = jest.spyOn(cursor, 'reverse').mockReturnThis();
-    const hiddenSpy = jest.spyOn(cursor, 'hidden').mockReturnThis();
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
+    const boldSpy = jest.spyOn(canvas, 'bold').mockReturnThis();
+    const dimSpy = jest.spyOn(canvas, 'dim').mockReturnThis();
+    const underlinedSpy = jest.spyOn(canvas, 'underlined').mockReturnThis();
+    const blinkSpy = jest.spyOn(canvas, 'blink').mockReturnThis();
+    const reverseSpy = jest.spyOn(canvas, 'reverse').mockReturnThis();
+    const hiddenSpy = jest.spyOn(canvas, 'hidden').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    text.render(cursor);
+    text.render(canvas);
 
     expect(foregroundSpy).toHaveBeenCalledTimes(1);
     expect(foregroundSpy).toHaveBeenCalledWith('none');

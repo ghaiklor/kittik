@@ -11,8 +11,8 @@ export class DeckBuilder {
     return new this();
   }
 
-  public withCursor (cursor: Canvas): this {
-    this.deck.cursor = cursor;
+  public withCanvas (canvas: Canvas): this {
+    this.deck.canvas = canvas;
 
     return this;
   }

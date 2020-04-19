@@ -21,7 +21,7 @@ describe('slide animation', () => {
   it('should properly parse coordinates for inDown', async () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
+    const canvas = new Canvas();
     const shape = new Rectangle({ height: '5' });
     const animation = new Slide({ direction: 'inDown' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
@@ -34,7 +34,7 @@ describe('slide animation', () => {
     );
 
     expect(spy).toHaveBeenCalledWith(
-      expect.objectContaining({ property: 'y', startValue: cursor.height + 5, endValue: 0 })
+      expect.objectContaining({ property: 'y', startValue: canvas.height + 5, endValue: 0 })
     );
   });
 
@@ -55,7 +55,7 @@ describe('slide animation', () => {
   it('should properly parse coordinates for inRight', async () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
+    const canvas = new Canvas();
     const shape = new Rectangle({ width: '15' });
     const animation = new Slide({ direction: 'inRight' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
@@ -64,7 +64,7 @@ describe('slide animation', () => {
 
     expect(spy).toHaveBeenCalledTimes(2);
     expect(spy).toHaveBeenCalledWith(
-      expect.objectContaining({ property: 'x', startValue: cursor.width + 15, endValue: 0 })
+      expect.objectContaining({ property: 'x', startValue: canvas.width + 15, endValue: 0 })
     );
 
     expect(spy).toHaveBeenCalledWith(
@@ -89,7 +89,7 @@ describe('slide animation', () => {
   it('should properly parse coordinates for outDown', async () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
+    const canvas = new Canvas();
     const shape = new Rectangle({ height: '5' });
     const animation = new Slide({ direction: 'outDown' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
@@ -102,7 +102,7 @@ describe('slide animation', () => {
     );
 
     expect(spy).toHaveBeenCalledWith(
-      expect.objectContaining({ property: 'y', startValue: 0, endValue: cursor.height + 5 })
+      expect.objectContaining({ property: 'y', startValue: 0, endValue: canvas.height + 5 })
     );
   });
 
@@ -123,7 +123,7 @@ describe('slide animation', () => {
   it('should properly parse coordinates for outRight', async () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
+    const canvas = new Canvas();
     const shape = new Rectangle();
     const animation = new Slide({ direction: 'outRight' });
     const spy = jest.spyOn(animation, 'animateProperty').mockResolvedValue(shape);
@@ -132,7 +132,7 @@ describe('slide animation', () => {
 
     expect(spy).toHaveBeenCalledTimes(2);
     expect(spy).toHaveBeenCalledWith(
-      expect.objectContaining({ property: 'x', startValue: 0, endValue: cursor.width + 1 })
+      expect.objectContaining({ property: 'x', startValue: 0, endValue: canvas.width + 1 })
     );
 
     expect(spy).toHaveBeenCalledWith(

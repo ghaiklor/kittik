@@ -16,8 +16,8 @@ export class SlideBuilder {
     return this;
   }
 
-  public withCursor (cursor: Readonly<Canvas>): this {
-    this.slide.cursor = cursor;
+  public withCanvas (canvas: Readonly<Canvas>): this {
+    this.slide.canvas = canvas;
 
     return this;
   }

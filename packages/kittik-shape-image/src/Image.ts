@@ -52,8 +52,8 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     this.rawPreserveAspectRatio = preserve;
   }
 
-  public render <T extends Canvas>(cursor: T): void {
-    super.render(cursor);
+  public render <T extends Canvas>(canvas: T): void {
+    super.render(canvas);
 
     const { width, height, image, preserveAspectRatio } = this;
     const x = parseInt(this.x, 10);
@@ -67,7 +67,7 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
       'inline=1'
     ].join(';');
 
-    cursor.stream.write(`\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}^G`);
+    canvas.stream.write(`\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}^G`);
   }
 
   public toObject<T extends ImageObject>(): T {

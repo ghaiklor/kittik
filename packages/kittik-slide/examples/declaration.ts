@@ -4,7 +4,7 @@ import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
 import { Slide } from '..';
 import { SlideOptions } from 'kittik-animation-slide';
 
-const cursor = Canvas
+const canvas = Canvas
   .create()
   .reset()
   .hideCursor();
@@ -54,7 +54,7 @@ const SlideOutRightAnimationDeclaration: AnimationDeclaration = {
   options: SlideOutRightAnimationOptions
 };
 
-const slide = new Slide(cursor, {
+const slide = new Slide(canvas, {
   name: 'Hello, World!',
   shapes: [HelloShapeDeclaration],
   animations: [PrintAnimationDeclaration, SlideInLeftAnimationDeclaration, SlideOutRightAnimationDeclaration],
@@ -70,5 +70,5 @@ const slide = new Slide(cursor, {
 
 slide
   .render()
-  .finally(() => cursor.reset().showCursor())
+  .finally(() => canvas.reset().showCursor())
   .catch((error) => console.error(error));

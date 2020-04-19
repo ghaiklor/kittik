@@ -29,13 +29,13 @@ describe('code shape', () => {
   it('should properly render the shape', () => {
     expect.hasAssertions();
 
-    const cursor = Canvas.create();
+    const canvas = Canvas.create();
     const shape = new Code({ text: 'const b = 1234;\nprocess.exit()' });
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    shape.render(cursor);
+    shape.render(canvas);
 
     expect(moveToSpy).toHaveBeenCalledTimes(2);
     expect(foregroundSpy).toHaveBeenCalledTimes(13);

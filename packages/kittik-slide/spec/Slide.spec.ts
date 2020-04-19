@@ -82,10 +82,10 @@ describe('slide', () => {
   it('should properly throw an error if shape type is unknown', () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
+    const canvas = new Canvas();
 
     expect(() => new Slide(
-      cursor,
+      canvas,
       {
         name: 'Test',
         shapes: [{ name: 'Test', type: 'unknown' }],
@@ -101,10 +101,10 @@ describe('slide', () => {
   it('should properly throw an error if animation type is unknown', () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
+    const canvas = new Canvas();
 
     expect(() => new Slide(
-      cursor,
+      canvas,
       {
         name: 'Test',
         shapes: [{ name: 'Test', type: 'Text' }],
@@ -121,8 +121,8 @@ describe('slide', () => {
   it('should properly throw an error if trying to use shape name in ordering that does not exist', async () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
-    const slide = new Slide(cursor, {
+    const canvas = new Canvas();
+    const slide = new Slide(canvas, {
       name: 'Test',
       shapes: [],
       order: [{ shape: 'Not Exists' }]
@@ -138,11 +138,11 @@ describe('slide', () => {
   it('should properly render the whole slide', async () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
-    const slide = Slide.create(cursor, SLIDE_DECLARATION);
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
-    const eraseScreenSpy = jest.spyOn(cursor, 'eraseScreen').mockReturnThis();
-    const flushSpy = jest.spyOn(cursor, 'flush').mockReturnThis();
+    const canvas = new Canvas();
+    const slide = Slide.create(canvas, SLIDE_DECLARATION);
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
+    const eraseScreenSpy = jest.spyOn(canvas, 'eraseScreen').mockReturnThis();
+    const flushSpy = jest.spyOn(canvas, 'flush').mockReturnThis();
 
     expect(await slide.render()).toBeUndefined();
 
@@ -154,8 +154,8 @@ describe('slide', () => {
   it('should render the slide without animations', async () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
-    const slide = Slide.create(cursor, {
+    const canvas = new Canvas();
+    const slide = Slide.create(canvas, {
       name: 'Test',
       shapes: [{ name: 'Test', type: 'Text' }],
       order: [{ shape: 'Test' }]
@@ -167,8 +167,8 @@ describe('slide', () => {
   it('should render the slide with unknown animation in ordering', async () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
-    const slide = Slide.create(cursor, {
+    const canvas = new Canvas();
+    const slide = Slide.create(canvas, {
       name: 'Test',
       shapes: [{ name: 'Test', type: 'Text' }],
       order: [{ shape: 'Test', animations: ['Not Exists'] }]
@@ -180,8 +180,8 @@ describe('slide', () => {
   it('should properly serialize slide to the object representation', () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
-    const slide = Slide.create(cursor, SLIDE_DECLARATION);
+    const canvas = new Canvas();
+    const slide = Slide.create(canvas, SLIDE_DECLARATION);
 
     expect(slide.toObject()).toStrictEqual(SERIALIZED_SLIDE_DECLARATION);
   });
@@ -189,8 +189,8 @@ describe('slide', () => {
   it('should properly serialize slide to JSON representation', () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
-    const slide = Slide.create(cursor, SLIDE_DECLARATION);
+    const canvas = new Canvas();
+    const slide = Slide.create(canvas, SLIDE_DECLARATION);
 
     expect(JSON.parse(slide.toJSON())).toStrictEqual(SERIALIZED_SLIDE_DECLARATION);
   });
@@ -198,8 +198,8 @@ describe('slide', () => {
   it('should properly create slide from object representation', async () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
-    const slide = Slide.fromObject(SLIDE_DECLARATION, cursor);
+    const canvas = new Canvas();
+    const slide = Slide.fromObject(SLIDE_DECLARATION, canvas);
 
     expect(await slide.render()).toBeUndefined();
   });
@@ -207,17 +207,17 @@ describe('slide', () => {
   it('should properly create slide from json representation', async () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
-    const slide = Slide.fromJSON(JSON.stringify(SLIDE_DECLARATION), cursor);
+    const canvas = new Canvas();
+    const slide = Slide.fromJSON(JSON.stringify(SLIDE_DECLARATION), canvas);
 
     expect(await slide.render()).toBeUndefined();
   });
 
-  it('should properly instantiate an empty slide instance when no declaration nor cursor is passed', () => {
+  it('should properly instantiate an empty slide instance when no declaration nor canvas is passed', () => {
     expect.hasAssertions();
 
     const slide = new Slide();
-    expect(slide.cursor).toBeInstanceOf(Canvas);
+    expect(slide.canvas).toBeInstanceOf(Canvas);
     expect(slide.shapes.size).toBe(0);
     expect(slide.animations.size).toBe(0);
     expect(slide.order).toHaveLength(0);
@@ -226,9 +226,9 @@ describe('slide', () => {
   it('should properly instantiate an empty slide instance when nothing is passed but an empty arrays', () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
-    const slide = new Slide(cursor, { name: 'Test', order: [], shapes: [] });
-    expect(slide.cursor).toBeInstanceOf(Canvas);
+    const canvas = new Canvas();
+    const slide = new Slide(canvas, { name: 'Test', order: [], shapes: [] });
+    expect(slide.canvas).toBeInstanceOf(Canvas);
     expect(slide.shapes.size).toBe(0);
     expect(slide.animations.size).toBe(0);
     expect(slide.order).toHaveLength(0);

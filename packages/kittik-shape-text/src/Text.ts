@@ -56,15 +56,15 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     return this.text.split('\n').length.toString();
   }
 
-  public render <T extends Canvas>(cursor: T): void {
-    super.render(cursor);
+  public render <T extends Canvas>(canvas: T): void {
+    super.render(canvas);
 
     const text = this.text.split('\n');
     const x = parseInt(this.x, 10);
     const y = parseInt(this.y, 10);
     const width = parseInt(this.width, 10);
 
-    cursor
+    canvas
       .background(this.background)
       .foreground(this.foreground)
       .blink(this.blink)
@@ -77,13 +77,13 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     text.forEach((line, index) => {
       switch (this.align) {
         case 'left':
-          cursor.moveTo(x, y + index).write(line);
+          canvas.moveTo(x, y + index).write(line);
           break;
         case 'center':
-          cursor.moveTo(x + Math.floor(width / 2 - line.length / 2), y + index).write(line);
+          canvas.moveTo(x + Math.floor(width / 2 - line.length / 2), y + index).write(line);
           break;
         case 'right':
-          cursor.moveTo(x + (width - line.length), y + index).write(line);
+          canvas.moveTo(x + (width - line.length), y + index).write(line);
           break;
         default:
           throw new Error(`Unknown align specified for text: ${this.align as string}`);

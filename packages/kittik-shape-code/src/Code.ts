@@ -22,24 +22,24 @@ export class Code extends Shape implements ShapeRenderable {
     return this.text.split('\n').length.toString();
   }
 
-  public render <T extends Canvas>(cursor: T): void {
-    super.render(cursor);
+  public render <T extends Canvas>(canvas: T): void {
+    super.render(canvas);
 
     const codeSplits = redeyed(this.text, DEFAULT_THEME).splits;
     const x = parseInt(this.x, 10);
     const y = parseInt(this.y, 10);
 
-    cursor.moveTo(x, y);
+    canvas.moveTo(x, y);
 
     codeSplits.forEach((split: string) => {
       const code = split.replace(/__.*__/u, '');
       const color = (/__(?<color>.*)__/u).exec(split);
 
       if ((/\n/u).exec(code) === null) {
-        cursor.foreground(color === null ? 'none' : color[1]);
-        cursor.write(code);
+        canvas.foreground(color === null ? 'none' : color[1]);
+        canvas.write(code);
       } else {
-        cursor.moveTo(x, cursor.cursorY + 1).write(code.replace('\n', ''));
+        canvas.moveTo(x, canvas.cursorY + 1).write(code.replace('\n', ''));
       }
     });
   }

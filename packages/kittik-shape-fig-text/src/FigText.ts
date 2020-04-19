@@ -57,16 +57,16 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     });
   }
 
-  public render <T extends Canvas>(cursor: T): void {
-    super.render(cursor);
+  public render <T extends Canvas>(canvas: T): void {
+    super.render(canvas);
 
     const text = this.renderedText.split('\n');
     const x = parseInt(this.x, 10);
     const y = parseInt(this.y, 10);
     const { background, foreground } = this;
 
-    cursor.background(background).foreground(foreground);
-    text.forEach((line, index) => cursor.moveTo(x, y + index).write(line));
+    canvas.background(background).foreground(foreground);
+    text.forEach((line, index) => canvas.moveTo(x, y + index).write(line));
   }
 
   public toObject<T extends FigTextObject>(): T {

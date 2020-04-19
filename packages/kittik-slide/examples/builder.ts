@@ -1,14 +1,14 @@
 import { AnimationBuilder, ShapeBuilder, SlideBuilder } from '..';
 import { Canvas } from 'terminal-canvas';
 
-const cursor = Canvas
+const canvas = Canvas
   .create()
   .reset()
   .hideCursor();
 
 SlideBuilder
   .start()
-  .withCursor(cursor)
+  .withCanvas(canvas)
   .withShape(
     'Hello, World',
     ShapeBuilder
@@ -50,5 +50,5 @@ SlideBuilder
   .withOrder('Hello, World', ['Slide In From Left', 'Focusing', 'Slide Out To Right'])
   .end()
   .render()
-  .finally(() => cursor.reset().showCursor())
+  .finally(() => canvas.reset().showCursor())
   .catch((error) => console.error(error));

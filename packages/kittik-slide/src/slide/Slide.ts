@@ -19,15 +19,15 @@ export { SlideBuilder } from './SlideBuilder';
 export { SlideDeclaration } from './SlideDeclaration';
 
 export class Slide {
-  public cursor: Canvas = Canvas.create();
+  public canvas: Canvas = Canvas.create();
   public name = 'Untitled Slide';
   public readonly shapes: Map<string, ShapeRenderable> = new Map<string, ShapeRenderable>();
   public readonly animations: Map<string, Animationable> = new Map<string, Animationable>();
   public readonly order: OrderDeclaration[] = [];
 
-  public constructor (cursor?: Canvas, declaration?: SlideDeclaration) {
-    if (typeof cursor !== 'undefined') {
-      this.cursor = cursor;
+  public constructor (canvas?: Canvas, declaration?: SlideDeclaration) {
+    if (typeof canvas !== 'undefined') {
+      this.canvas = canvas;
     }
 
     if (typeof declaration?.name !== 'undefined') {
@@ -47,16 +47,16 @@ export class Slide {
     }
   }
 
-  public static create (cursor?: Canvas, declaration?: SlideDeclaration): Slide {
-    return new this(cursor, declaration);
+  public static create (canvas?: Canvas, declaration?: SlideDeclaration): Slide {
+    return new this(canvas, declaration);
   }
 
-  public static fromObject (obj: SlideDeclaration, cursor?: Canvas): Slide {
-    return this.create(cursor, obj);
+  public static fromObject (obj: SlideDeclaration, canvas?: Canvas): Slide {
+    return this.create(canvas, obj);
   }
 
-  public static fromJSON (json: string, cursor?: Canvas): Slide {
-    return this.fromObject(JSON.parse(json), cursor);
+  public static fromJSON (json: string, canvas?: Canvas): Slide {
+    return this.fromObject(JSON.parse(json), canvas);
   }
 
   public addShape (name: string, shape: ShapeRenderable, toOverride = false): void {
@@ -192,8 +192,8 @@ export class Slide {
   }
 
   private renderShapes (shapes: ShapeRenderable[]): void {
-    this.cursor.eraseScreen();
-    shapes.forEach((shape) => shape.render(this.cursor));
-    this.cursor.flush();
+    this.canvas.eraseScreen();
+    shapes.forEach((shape) => shape.render(this.canvas));
+    this.canvas.flush();
   }
 }

@@ -9,7 +9,7 @@ describe('slide builder', () => {
     const slide = SlideBuilder
       .start()
       .withName('Hello, World')
-      .withCursor(Canvas.create())
+      .withCanvas(Canvas.create())
       .withShape(
         'Hello, World',
         ShapeBuilder

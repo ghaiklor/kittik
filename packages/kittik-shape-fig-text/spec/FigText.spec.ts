@@ -19,14 +19,14 @@ describe('fig text shape', () => {
   it('should properly render with default options', () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
+    const canvas = new Canvas();
     const shape = new FigText();
-    const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    shape.render(cursor);
+    shape.render(canvas);
 
     expect(backgroundSpy).toHaveBeenCalledTimes(1);
     expect(backgroundSpy).toHaveBeenCalledWith('none');
@@ -39,14 +39,14 @@ describe('fig text shape', () => {
   it('should properly render with custom options', () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas();
+    const canvas = new Canvas();
     const shape = new FigText({ text: 'test', background: 'black', foreground: 'white' });
-    const backgroundSpy = jest.spyOn(cursor, 'background').mockReturnThis();
-    const foregroundSpy = jest.spyOn(cursor, 'foreground').mockReturnThis();
-    const moveToSpy = jest.spyOn(cursor, 'moveTo').mockReturnThis();
-    const writeSpy = jest.spyOn(cursor, 'write').mockReturnThis();
+    const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
+    const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
+    const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();
+    const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
 
-    shape.render(cursor);
+    shape.render(canvas);
 
     expect(backgroundSpy).toHaveBeenCalledTimes(1);
     expect(backgroundSpy).toHaveBeenCalledWith('black');

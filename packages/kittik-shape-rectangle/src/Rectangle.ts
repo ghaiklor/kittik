@@ -2,8 +2,8 @@ import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Canvas } from 'terminal-canvas';
 
 export class Rectangle extends Shape implements ShapeRenderable {
-  public render <T extends Canvas>(cursor: T): void {
-    super.render(cursor);
+  public render <T extends Canvas>(canvas: T): void {
+    super.render(canvas);
 
     const { text, background, foreground } = this;
     const width = parseInt(this.width, 10);
@@ -13,16 +13,16 @@ export class Rectangle extends Shape implements ShapeRenderable {
     const y2 = y1 + height;
     const filler = ' '.repeat(width);
 
-    cursor
+    canvas
       .moveTo(x1, y1)
       .background(background)
       .foreground(foreground);
 
     for (let y = y1; y <= y2; y += 1) {
-      cursor.write(filler).moveTo(x1, y);
+      canvas.write(filler).moveTo(x1, y);
     }
 
-    cursor
+    canvas
       .moveTo(x1 + (width / 2 - text.length / 2), y1 + height / 2)
       .write(text);
   }

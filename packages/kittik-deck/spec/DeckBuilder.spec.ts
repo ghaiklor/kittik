@@ -8,7 +8,7 @@ describe('deck builder', () => {
 
     const deck = DeckBuilder
       .start()
-      .withCursor(Canvas.create())
+      .withCanvas(Canvas.create())
       .withAnimation(
         'Test Animation',
         AnimationBuilder
@@ -28,7 +28,7 @@ describe('deck builder', () => {
       )
       .end();
 
-    expect(deck.cursor).toBeInstanceOf(Canvas);
+    expect(deck.canvas).toBeInstanceOf(Canvas);
     deck.exit();
   });
 });

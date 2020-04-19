@@ -3,12 +3,12 @@ import { Print } from '..';
 import { Rectangle } from 'kittik-shape-rectangle';
 
 const onTick = (shape: Rectangle): void => {
-  cursor.eraseScreen();
-  shape.render(cursor);
-  cursor.flush();
+  canvas.eraseScreen();
+  shape.render(canvas);
+  canvas.flush();
 };
 
-const cursor = new Canvas()
+const canvas = new Canvas()
   .reset()
   .hideCursor();
 
@@ -26,10 +26,10 @@ const shape = new Rectangle({
 });
 
 (async function animate () {
-  shape.render(cursor);
-  cursor.flush();
+  shape.render(canvas);
+  canvas.flush();
 
   await print.animate(shape);
 
-  cursor.showCursor();
+  canvas.showCursor();
 })().catch(console.error);

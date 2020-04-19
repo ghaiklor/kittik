@@ -13,14 +13,14 @@ export { ShapeBuilder } from 'kittik-slide';
 export { SlideBuilder } from 'kittik-slide';
 
 export class Deck {
-  public cursor: Canvas = Canvas.create();
+  public canvas: Canvas = Canvas.create();
   private readonly slides: Slide[] = [];
   private isRendering = false;
   private currentSlideIndex = 0;
 
   public constructor (declaration?: DeckDeclaration) {
-    if (typeof declaration?.cursor !== 'undefined') {
-      this.cursor = declaration.cursor;
+    if (typeof declaration?.canvas !== 'undefined') {
+      this.canvas = declaration.canvas;
     }
 
     if (typeof declaration !== 'undefined') {
@@ -112,7 +112,7 @@ export class Deck {
     const globalShapes = declaration.shapes ?? [];
     const globalAnimations = declaration.animations ?? [];
 
-    declaration.slides.forEach((slide) => this.addSlide(Slide.create(this.cursor, {
+    declaration.slides.forEach((slide) => this.addSlide(Slide.create(this.canvas, {
       ...slide,
       shapes: globalShapes.concat(slide.shapes),
       animations: globalAnimations.concat(slide.animations ?? [])

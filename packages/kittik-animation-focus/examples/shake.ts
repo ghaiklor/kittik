@@ -3,12 +3,12 @@ import { Focus } from '..';
 import { Rectangle } from 'kittik-shape-rectangle';
 
 const onTick = (shape: Rectangle): void => {
-  cursor.eraseScreen();
-  shape.render(cursor);
-  cursor.flush();
+  canvas.eraseScreen();
+  shape.render(canvas);
+  canvas.flush();
 };
 
-const cursor = new Canvas()
+const canvas = new Canvas()
   .reset()
   .hideCursor();
 
@@ -24,11 +24,11 @@ const shakeX = new Focus({ direction: 'shakeX' }).on('tick', onTick);
 const shakeY = new Focus({ direction: 'shakeY' }).on('tick', onTick);
 
 (async function animate () {
-  shape.render(cursor);
-  cursor.flush();
+  shape.render(canvas);
+  canvas.flush();
 
   await shakeX.animate(shape);
   await shakeY.animate(shape);
 
-  cursor.showCursor();
+  canvas.showCursor();
 })().catch(console.error);

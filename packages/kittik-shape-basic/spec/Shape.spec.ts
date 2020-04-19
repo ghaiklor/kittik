@@ -103,15 +103,15 @@ describe('basic shape', () => {
     expect(shape.foreground).toStrictEqual('yellow');
   });
 
-  it('should properly update the cursor when provided another one through render()', () => {
+  it('should properly update the canvas when provided another one through render()', () => {
     expect.hasAssertions();
 
-    const cursor = new Canvas({ width: 10, height: 20 });
+    const canvas = new Canvas({ width: 10, height: 20 });
     const shape = new Shape();
 
     expect(parseInt(shape.width, 10)).toBe(Math.floor(process.stdout.columns / 2));
 
-    shape.render(cursor);
+    shape.render(canvas);
     expect(parseInt(shape.width, 10)).toBe(Math.floor(10 / 2));
   });
 
