@@ -28,7 +28,7 @@
     "postinstall": "npm run bootstrap",
     "precommit": "npm run lint",
     "prepublish": "npm run all",
-    "publish": "lerna publish --dist-tag beta --preid beta --conventional-commits --conventional-prerelease --exact --create-release github",
+    "publish": "lerna publish --dist-tag beta --preid beta --conventional-commits --conventional-prerelease --exact",
     "test": "lerna run test",
     "update": "find ./packages -name package.json -maxdepth 2 -exec dirname {} \\; | xargs -o -L 1 npm-check --save-exact --update"
   },
