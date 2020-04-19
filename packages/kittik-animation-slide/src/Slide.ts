@@ -21,9 +21,9 @@ export class Slide extends Animation implements SlideOptions, Animationable {
     const { startX, startY, endX, endY } = this.parseCoordinates(shape);
 
     return await Promise.all([
-      this.animateProperty({ shape, property: 'x', startValue: startX, endValue: endX }),
-      this.animateProperty({ shape, property: 'y', startValue: startY, endValue: endY })
-    ]).then(async () => await Promise.resolve(shape));
+      this.animateProperty<T, 'x'>({ shape, property: 'x', startValue: startX, endValue: endX }),
+      this.animateProperty<T, 'y'>({ shape, property: 'y', startValue: startY, endValue: endY })
+    ]).then(() => shape);
   }
 
   public toObject<T extends SlideObject>(): T {
