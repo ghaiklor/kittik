@@ -1,3 +1,39 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [5.1.0-beta.0](https://github.com/ghaiklor/kittik/compare/v2.1.2...v5.1.0-beta.0) (2020-04-19)
+
+
+### Bug Fixes
+
+* 🐛 issue when delay could accept NaN or Infinity values ([1905b0d](https://github.com/ghaiklor/kittik/commit/1905b0d3df5b548c835b59e3301a82c310c0fd78))
+* 🐛 issue when process.stdin could be not an interactive ([5055370](https://github.com/ghaiklor/kittik/commit/5055370bb0e0adebaa171c7dcced69b63ddc3bbd))
+* 🐛 issue with animating text with print animation ([b55f6bd](https://github.com/ghaiklor/kittik/commit/b55f6bd61d46c6e3aecb60349332e33f4a0edc82))
+* 🐛 issue with graceful closing the process ([268dccf](https://github.com/ghaiklor/kittik/commit/268dccf9911ac2c8a7015cae02e9587273f56326))
+* 🐛 issue with regular expression for base64 in image shape ([c3f9be2](https://github.com/ghaiklor/kittik/commit/c3f9be2f129b12d4ac7371891b924c54fbc0be1b))
+
+
+### Features
+
+* 🎸 add a possibility to override cursor when using builder ([43b03aa](https://github.com/ghaiklor/kittik/commit/43b03aa9599e8eb243fda86bcf1c49a90b54e363))
+* 🎸 add Builder Pattern to Shape/Animation/Slide ([d30c965](https://github.com/ghaiklor/kittik/commit/d30c965abbe85b961c22d68c525455b27770e29d))
+* 🎸 add name to the slides, so you can reference them later ([f45e55c](https://github.com/ghaiklor/kittik/commit/f45e55c63281f8717c0c3b694fc7546d6d8e5fde))
+* 🎸 DeckBuilder allows to create the whole decks via API ([fc1eb56](https://github.com/ghaiklor/kittik/commit/fc1eb56da99d0ca498f20d5d47f6430f81077f9e))
+* 🎸 implement more user-friendly error handling in slides ([c494c26](https://github.com/ghaiklor/kittik/commit/c494c265f80fcb1800e83bc39fbfa4b58c754e96))
+* 🎸 implement passing cursor as an argument to renderer ([594795c](https://github.com/ghaiklor/kittik/commit/594795c7645b377447fa3e2f693dcbf3132d9079))
+
+
+### BREAKING CHANGES
+
+* 🧨 Any shape constructor now accept not the two argument (cursor, options)
+but only the one (options)
+
+
+
+
+
 # [0.0.0](https://github.com/ghaiklor/kittik/compare/v2.1.2...v0.0.0) (2020-04-19)
 
 
@@ -134,6 +170,3 @@ but only the one (options)
 * **shape:** Implements writing text in center of rectangle ([0bbc828](https://github.com/ghaiklor/kittik/commit/0bbc828255b6869820b4f4945c434a4505bf8c5e))
 * **slide:** Implements basic slide ([9d1c05b](https://github.com/ghaiklor/kittik/commit/9d1c05bac7fe2c9e557d9b55830a2add2850e630))
 * **slide:** Impplements simple Slide wrapper that allows to render the slide ([881b956](https://github.com/ghaiklor/kittik/commit/881b956c6f8672e1f8d291e5b995f7726df1072e))
-
-
-

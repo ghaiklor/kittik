@@ -1,6 +1,6 @@
 {
   "name": "kittik-shape-rectangle",
-  "version": "0.0.0",
+  "version": "5.1.0-beta.0",
   "description": "Shape for rendering rectangles in Kittik",
   "license": "MIT",
   "type": "module",
@@ -39,7 +39,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "kittik-shape-basic": "0.0.0"
+    "kittik-shape-basic": "5.1.0-beta.0"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",

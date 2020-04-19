@@ -1,6 +1,6 @@
 {
   "name": "kittik-animation-slide",
-  "version": "0.0.0",
+  "version": "5.1.0-beta.0",
   "description": "Provides slide animations in Kittik",
   "license": "MIT",
   "type": "module",
@@ -39,7 +39,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "kittik-animation-basic": "0.0.0"
+    "kittik-animation-basic": "5.1.0-beta.0"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
@@ -55,8 +55,8 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "jest": "25.3.0",
-    "kittik-shape-basic": "0.0.0",
-    "kittik-shape-rectangle": "0.0.0",
+    "kittik-shape-basic": "5.1.0-beta.0",
+    "kittik-shape-rectangle": "5.1.0-beta.0",
     "rimraf": "3.0.2",
     "terminal-canvas": "3.1.0",
     "ts-jest": "25.4.0",
