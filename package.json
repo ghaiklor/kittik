@@ -21,14 +21,14 @@
   "scripts": {
     "all": "npm run build && npm run test && npm run lint",
     "bootstrap": "lerna bootstrap --hoist --strict",
-    "build": "lerna run build --stream --concurrency 1",
-    "clean": "lerna run clean --stream --parallel",
+    "build": "lerna run build",
+    "clean": "lerna run clean",
     "commit": "git cz",
-    "lint": "lerna run lint --stream --parallel",
+    "lint": "lerna run lint",
     "postinstall": "npm run bootstrap",
     "precommit": "npm run lint",
     "publish": "lerna version --conventional-commits --exact --create-release github && lerna publish",
-    "test": "lerna run test --stream --parallel",
+    "test": "lerna run test",
     "update": "find ./packages -name package.json -maxdepth 2 -exec dirname {} \\; | xargs -o -L 1 npm-check --save-exact --update"
   },
   "devDependencies": {
