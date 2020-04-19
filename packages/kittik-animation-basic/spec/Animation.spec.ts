@@ -41,7 +41,7 @@ describe('basic animation', () => {
       startValue: 0
     });
 
-    expect(emitSpy.mock.calls.length).toBeGreaterThan(60);
+    expect(emitSpy.mock.calls.length).toBeGreaterThan(50);
     expect(emitSpy).toHaveBeenCalledWith('tick', expect.any(Shape), 'x', expect.any(Number));
   });
 
