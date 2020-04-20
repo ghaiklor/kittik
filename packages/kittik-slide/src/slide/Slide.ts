@@ -10,22 +10,24 @@ import { SlideDeclaration } from './SlideDeclaration';
 
 export { AnimationBuilder } from '../animation/AnimationBuilder';
 export { AnimationDeclaration } from '../animation/AnimationDeclaration';
-export { AnimationType } from '../animation/Animations';
+export { AnimationType, AnimationObject, AnimationOptions } from '../animation/Animations';
 export { OrderDeclaration } from './OrderDeclaration';
 export { ShapeBuilder } from '../shape/ShapeBuilder';
 export { ShapeDeclaration } from '../shape/ShapeDeclaration';
-export { ShapeType } from '../shape/Shapes';
+export { ShapeType, ShapeObject, ShapeOptions } from '../shape/Shapes';
 export { SlideBuilder } from './SlideBuilder';
 export { SlideDeclaration } from './SlideDeclaration';
 
-export class Slide {
-  public canvas: Canvas = Canvas.create();
+export class Slide<
+  C extends Canvas = Canvas
+> {
+  public canvas: C = Canvas.create() as C;
   public name = 'Untitled Slide';
   public readonly shapes: Map<string, ShapeRenderable> = new Map<string, ShapeRenderable>();
   public readonly animations: Map<string, Animationable> = new Map<string, Animationable>();
   public readonly order: OrderDeclaration[] = [];
 
-  public constructor (canvas?: Canvas, declaration?: SlideDeclaration) {
+  public constructor (canvas?: C, declaration?: SlideDeclaration) {
     if (typeof canvas !== 'undefined') {
       this.canvas = canvas;
     }
@@ -47,15 +49,15 @@ export class Slide {
     }
   }
 
-  public static create (canvas?: Canvas, declaration?: SlideDeclaration): Slide {
+  public static create <C extends Canvas>(canvas?: C, declaration?: SlideDeclaration): Slide<C> {
     return new this(canvas, declaration);
   }
 
-  public static fromObject (obj: SlideDeclaration, canvas?: Canvas): Slide {
+  public static fromObject <C extends Canvas>(obj: SlideDeclaration, canvas?: C): Slide<C> {
     return this.create(canvas, obj);
   }
 
-  public static fromJSON (json: string, canvas?: Canvas): Slide {
+  public static fromJSON <C extends Canvas>(json: string, canvas?: C): Slide<C> {
     return this.fromObject(JSON.parse(json), canvas);
   }
 
