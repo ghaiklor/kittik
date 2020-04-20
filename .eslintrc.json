@@ -38,7 +38,8 @@
     "@typescript-eslint/no-type-alias": [
       "error",
       {
-        "allowAliases": "in-unions"
+        "allowAliases": "always",
+        "allowConditionalTypes": "always"
       }
     ],
     "@typescript-eslint/prefer-readonly-parameter-types": [

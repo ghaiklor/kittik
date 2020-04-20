@@ -1,7 +1,11 @@
 import { Animation, Animationable } from 'kittik-animation-basic';
+import { PrintOptions } from './PrintOptions';
 import { Shape } from 'kittik-shape-basic';
 
-export class Print extends Animation implements Animationable {
+export { PrintObject } from './PrintObject';
+export { PrintOptions } from './PrintOptions';
+
+export class Print extends Animation implements PrintOptions, Animationable {
   private originalText = '';
 
   public onTick<S extends Shape, P extends keyof S, V extends number>(shape: S, _property: P, value: V): void {
