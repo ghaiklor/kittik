@@ -1,69 +1,61 @@
-import { SHAPES, ShapeType } from './Shapes';
-import { ShapeObject, ShapeOptions, ShapeRenderable } from 'kittik-shape-basic';
+import { SHAPES, ShapeOptions, ShapeType } from './Shapes';
+import { ShapeObject, ShapeRenderable } from 'kittik-shape-basic';
 
-export class ShapeBuilder implements ShapeObject {
-  public type: ShapeType;
-  public options?: Partial<ShapeOptions>;
+export class ShapeBuilder<T extends ShapeType, O extends ShapeOptions<T>> implements ShapeObject {
+  public type: T;
+  public options: Partial<O>;
 
-  public constructor (type: ShapeType) {
+  public constructor (type: T) {
     this.type = type;
+    this.options = {};
   }
 
-  public static start (type: ShapeType): ShapeBuilder {
+  public static start <T extends ShapeType, O extends ShapeOptions<T>>(type: T): ShapeBuilder<T, O> {
     return new this(type);
   }
 
-  public withType (type: ShapeType): this {
+  public withType (type: T): this {
     this.type = type;
-
     return this;
   }
 
-  public withOptions (options: Partial<ShapeOptions>): this {
+  public withOptions (options: Partial<O>): this {
     this.options = { ...this.options, ...options };
-
     return this;
   }
 
-  public withText (text: string): this {
-    this.options = { ...this.options, text };
-
+  public withText (text: O['text']): this {
+    this.options.text = text;
     return this;
   }
 
-  public withX (x: string): this {
-    this.options = { ...this.options, x };
-
+  public withX (x: O['x']): this {
+    this.options.x = x;
     return this;
   }
 
-  public withY (y: string): this {
-    this.options = { ...this.options, y };
-
+  public withY (y: O['y']): this {
+    this.options.y = y;
     return this;
   }
 
-  public withWidth (width: string): this {
-    this.options = { ...this.options, width };
-
+  public withWidth (width: O['width']): this {
+    this.options.width = width;
     return this;
   }
 
-  public withHeight (height: string): this {
-    this.options = { ...this.options, height };
-
+  public withHeight (height: O['height']): this {
+    this.options.height = height;
     return this;
   }
 
-  public withBackground (background: string): this {
-    this.options = { ...this.options, background };
-
+  public withBackground (background: O['background']): this {
+    this.options.background = background;
     return this;
   }
 
-  public withForeground (foreground: string): this {
-    this.options = { ...this.options, foreground };
-
+  public withForeground (foreground: O['foreground']): this {
+    this.options.foreground = foreground;
     return this;
   }
 

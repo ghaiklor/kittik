@@ -1,10 +1,14 @@
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Canvas } from 'terminal-canvas';
+import { CodeOptions } from './CodeOptions';
 import { DEFAULT_THEME } from './themes/default';
 import { js_beautify as beautify } from 'js-beautify';
 import redeyed from 'redeyed';
 
-export class Code extends Shape implements ShapeRenderable {
+export { CodeObject } from './CodeObject';
+export { CodeOptions } from './CodeOptions';
+
+export class Code extends Shape implements CodeOptions, ShapeRenderable {
   public get text (): string {
     return beautify(this.rawText, { indent_size: 2 });
   }

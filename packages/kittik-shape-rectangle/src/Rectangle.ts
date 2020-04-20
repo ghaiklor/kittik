@@ -1,7 +1,11 @@
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Canvas } from 'terminal-canvas';
+import { RectangleOptions } from './RectangleOptions';
 
-export class Rectangle extends Shape implements ShapeRenderable {
+export { RectangleObject } from './RectangleObject';
+export { RectangleOptions } from './RectangleOptions';
+
+export class Rectangle extends Shape implements RectangleOptions, ShapeRenderable {
   public render <T extends Canvas>(canvas: T): void {
     super.render(canvas);
 
