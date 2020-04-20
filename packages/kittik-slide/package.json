@@ -60,12 +60,12 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
-    "jest": "25.3.0",
+    "jest": "25.4.0",
     "kittik-animation-basic": "5.1.0-beta.1",
     "kittik-shape-basic": "5.1.0-beta.1",
     "rimraf": "3.0.2",
     "terminal-canvas": "3.1.0",
     "ts-jest": "25.4.0",
-    "typescript": "3.9.0-beta"
+    "typescript": "3.9.0-dev.20200420"
   }
 }
