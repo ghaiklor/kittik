@@ -1,5 +1,6 @@
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Canvas } from 'terminal-canvas';
+import { RectangleObject } from './RectangleObject';
 import { RectangleOptions } from './RectangleOptions';
 
 export { RectangleObject } from './RectangleObject';
@@ -29,5 +30,15 @@ export class Rectangle extends Shape implements RectangleOptions, ShapeRenderabl
     canvas
       .moveTo(x1 + (width / 2 - text.length / 2), y1 + height / 2)
       .write(text);
+  }
+
+  public toObject (): RectangleObject {
+    const base = super.toObject();
+    const type: RectangleObject['type'] = 'Rectangle';
+    const options: RectangleObject['options'] = {
+      ...base.options
+    };
+
+    return { type, options };
   }
 }

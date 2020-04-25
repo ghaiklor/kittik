@@ -1,5 +1,6 @@
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Canvas } from 'terminal-canvas';
+import { CodeObject } from './CodeObject';
 import { CodeOptions } from './CodeOptions';
 import { DEFAULT_THEME } from './themes/default';
 import { js_beautify as beautify } from 'js-beautify';
@@ -46,5 +47,15 @@ export class Code extends Shape implements CodeOptions, ShapeRenderable {
         canvas.moveTo(x, canvas.cursorY + 1).write(code.replace('\n', ''));
       }
     });
+  }
+
+  public toObject (): CodeObject {
+    const base = super.toObject();
+    const type: CodeObject['type'] = 'Code';
+    const options: CodeObject['options'] = {
+      ...base.options
+    };
+
+    return { type, options };
   }
 }

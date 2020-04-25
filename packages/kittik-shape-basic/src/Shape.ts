@@ -47,13 +47,14 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     }
   }
 
-  public static create<T extends Shape>(options?: Partial<ShapeOptions>): T
-  public static create<T extends Shape, O extends ShapeOptions>(options?: Partial<O>): T {
-    return (new this(options)) as T;
+  public static create <S extends Shape, O extends Partial<ShapeOptions>>(options?: O): S {
+    return (new this(options)) as S;
   }
 
-  public static fromObject<T extends Shape>(obj: ShapeObject): T
-  public static fromObject<T extends Shape, O extends ShapeObject>(obj: O): T {
+  public static fromObject <T, O extends ShapeOptions, S extends Shape>(obj: ShapeObject<T, O>): S
+  public static fromObject <T, O extends ShapeOptions>(obj: ShapeObject<T, O>): Shape
+  public static fromObject <T>(obj: ShapeObject<T, ShapeOptions>): Shape
+  public static fromObject (obj: ShapeObject<'Basic', ShapeOptions>): Shape {
     if (obj.type !== this.name) {
       throw new Error(
         `You specified configuration for "${obj.type}" but provided it to "${this.name}". ` +
@@ -64,7 +65,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     return this.create(obj.options);
   }
 
-  public static fromJSON<T extends Shape>(json: string): T {
+  public static fromJSON <S extends Shape>(json: string): S {
     return this.fromObject(JSON.parse(json));
   }
 
@@ -158,20 +159,21 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     this.rawCanvas = canvas;
   }
 
-  public toObject<T extends ShapeObject>(): T {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    return {
-      type: this.constructor.name,
-      options: {
-        background: this.rawBackground,
-        foreground: this.rawForeground,
-        height: this.rawHeight,
-        text: this.rawText,
-        width: this.rawWidth,
-        x: this.rawX,
-        y: this.rawY
-      }
-    } as T;
+  public toObject <T, O extends ShapeOptions>(): ShapeObject<T, O>
+  public toObject <T>(): ShapeObject<T, ShapeOptions>
+  public toObject (): ShapeObject<'Basic', ShapeOptions> {
+    const type: 'Basic' = 'Basic' as const;
+    const options: ShapeOptions = {
+      background: this.rawBackground,
+      foreground: this.rawForeground,
+      height: this.rawHeight,
+      text: this.rawText,
+      width: this.rawWidth,
+      x: this.rawX,
+      y: this.rawY
+    };
+
+    return { type, options };
   }
 
   public toJSON (): string {

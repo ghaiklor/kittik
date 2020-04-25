@@ -70,14 +70,15 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     canvas.stream.write(`\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}^G`);
   }
 
-  public toObject<T extends ImageObject>(): T {
-    const obj: ImageObject = super.toObject();
-    obj.options = {
-      ...obj.options,
+  public toObject (): ImageObject {
+    const base = super.toObject();
+    const type: ImageObject['type'] = 'Image';
+    const options: ImageObject['options'] = {
+      ...base.options,
       image: this.rawImageOrPath,
       preserveAspectRatio: this.rawPreserveAspectRatio
     };
 
-    return obj as T;
+    return { type, options };
   }
 }

@@ -91,10 +91,11 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     });
   }
 
-  public toObject<T extends TextObject>(): T {
-    const obj: TextObject = super.toObject();
-    obj.options = {
-      ...obj.options,
+  public toObject (): TextObject {
+    const base = super.toObject();
+    const type: TextObject['type'] = 'Text';
+    const options: TextObject['options'] = {
+      ...base.options,
       align: this.align,
       blink: this.blink,
       bold: this.bold,
@@ -104,6 +105,6 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
       underlined: this.underlined
     };
 
-    return obj as T;
+    return { type, options };
   }
 }

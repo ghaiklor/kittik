@@ -1,11 +1,11 @@
 import { ANIMATIONS, AnimationType } from '../animation/Animations';
 import { SHAPES, ShapeType } from '../shape/Shapes';
+import { ShapeOptions, ShapeRenderable } from 'kittik-shape-basic';
 import { AnimationDeclaration } from '../animation/AnimationDeclaration';
 import { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
 import { OrderDeclaration } from './OrderDeclaration';
 import { ShapeDeclaration } from '../shape/ShapeDeclaration';
-import { ShapeRenderable } from 'kittik-shape-basic';
 import { SlideDeclaration } from './SlideDeclaration';
 
 export { AnimationBuilder } from '../animation/AnimationBuilder';
@@ -154,6 +154,10 @@ export class Slide<
     const animations = [...this.animations.entries()]
       .map(([animationName, animation]) => ({ ...animation.toObject(), name: animationName }));
 
+    // eslint-disable-next-line no-warning-comments
+    // TODO: think about these array declarations
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     return { animations, name, order, shapes };
   }
 
@@ -161,9 +165,9 @@ export class Slide<
     return JSON.stringify(this.toObject());
   }
 
-  private initShapes (declaration: ShapeDeclaration[]): void {
+  private initShapes (declaration: Array<ShapeDeclaration<ShapeType, ShapeOptions>>): void {
     declaration.forEach((shapeDeclaration) => {
-      const ctor = SHAPES.get(shapeDeclaration.type as ShapeType);
+      const ctor = SHAPES.get(shapeDeclaration.type);
 
       if (typeof ctor === 'undefined') {
         throw new Error(

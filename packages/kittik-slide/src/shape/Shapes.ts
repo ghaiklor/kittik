@@ -1,12 +1,14 @@
+import { ShapeObject as BasicShapeObject, ShapeOptions as BasicShapeOptions, Shape } from 'kittik-shape-basic';
 import { Code, CodeObject, CodeOptions } from 'kittik-shape-code';
 import { FigText, FigTextObject, FigTextOptions } from 'kittik-shape-fig-text';
 import { Image, ImageObject, ImageOptions } from 'kittik-shape-image';
 import { Rectangle, RectangleObject, RectangleOptions } from 'kittik-shape-rectangle';
 import { Text, TextObject, TextOptions } from 'kittik-shape-text';
-import { Shape } from 'kittik-shape-basic';
 
 export type ShapeType = 'Code' | 'FigText' | 'Image' | 'Rectangle' | 'Text';
 
+// eslint-disable-next-line no-warning-comments
+// TODO: refactor this
 export type ShapeOptions<T extends ShapeType> = T extends 'Code'
   ? CodeOptions
   : T extends 'FigText'
@@ -17,8 +19,10 @@ export type ShapeOptions<T extends ShapeType> = T extends 'Code'
         ? RectangleOptions
         : T extends 'Text'
           ? TextOptions
-          : never;
+          : BasicShapeOptions;
 
+// eslint-disable-next-line no-warning-comments
+// TODO: refactor this
 export type ShapeObject<T extends ShapeType> = T extends 'Code'
   ? CodeObject
   : T extends 'FigText'
@@ -29,7 +33,7 @@ export type ShapeObject<T extends ShapeType> = T extends 'Code'
         ? RectangleObject
         : T extends 'Text'
           ? TextObject
-          : never;
+          : BasicShapeObject<T, BasicShapeOptions>;
 
 export const SHAPES = new Map<ShapeType, typeof Shape>([
   ['Code', Code],

@@ -1,13 +1,16 @@
 import { SHAPES, ShapeOptions, ShapeType } from './Shapes';
 import { ShapeObject, ShapeRenderable } from 'kittik-shape-basic';
 
-export class ShapeBuilder<T extends ShapeType, O extends ShapeOptions<T>> implements ShapeObject {
+export class ShapeBuilder<T extends ShapeType, O extends ShapeOptions<T>> implements ShapeObject<T, O> {
   public type: T;
-  public options: Partial<O>;
+  public options: O;
 
   public constructor (type: T) {
     this.type = type;
-    this.options = {};
+
+    // eslint-disable-next-line no-warning-comments
+    // TODO: hmm, think about this unknown
+    this.options = {} as unknown as O;
   }
 
   public static start <T extends ShapeType, O extends ShapeOptions<T>>(type: T): ShapeBuilder<T, O> {

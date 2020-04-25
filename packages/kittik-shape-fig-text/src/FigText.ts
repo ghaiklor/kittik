@@ -69,10 +69,11 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     text.forEach((line, index) => canvas.moveTo(x, y + index).write(line));
   }
 
-  public toObject<T extends FigTextObject>(): T {
-    const obj: FigTextObject = super.toObject();
-    obj.options = {
-      ...obj.options,
+  public toObject (): FigTextObject {
+    const base = super.toObject();
+    const type: FigTextObject['type'] = 'FigText';
+    const options: FigTextObject['options'] = {
+      ...base.options,
       font: this.font,
       horizontalLayout: this.horizontalLayout,
       printDirection: this.printDirection,
@@ -80,6 +81,6 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
       verticalLayout: this.verticalLayout
     };
 
-    return obj as T;
+    return { type, options };
   }
 }
