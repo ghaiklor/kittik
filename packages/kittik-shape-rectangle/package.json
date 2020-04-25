@@ -43,12 +43,12 @@
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
-    "@types/node": "13.13.0",
-    "@typescript-eslint/eslint-plugin": "2.28.0",
-    "@typescript-eslint/parser": "2.28.0",
+    "@types/node": "13.13.2",
+    "@typescript-eslint/eslint-plugin": "2.29.0",
+    "@typescript-eslint/parser": "2.29.0",
     "eslint": "6.8.0",
     "eslint-config-standard": "14.1.1",
-    "eslint-config-standard-with-typescript": "15.0.1",
+    "eslint-config-standard-with-typescript": "16.0.0",
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-jest": "23.8.2",
     "eslint-plugin-node": "11.1.0",
@@ -58,6 +58,6 @@
     "rimraf": "3.0.2",
     "terminal-canvas": "3.1.0",
     "ts-jest": "25.4.0",
-    "typescript": "3.9.0-dev.20200420"
+    "typescript": "3.9.0-dev.20200425"
   }
 }
