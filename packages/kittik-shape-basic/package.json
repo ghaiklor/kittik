@@ -1,6 +1,6 @@
 {
   "name": "kittik-shape-basic",
-  "version": "5.1.0-beta.1",
+  "version": "5.1.0-beta.2",
   "description": "Basic class for creating other shapes in Kittik",
   "license": "MIT",
   "type": "module",

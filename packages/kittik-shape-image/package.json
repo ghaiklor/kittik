@@ -1,6 +1,6 @@
 {
   "name": "kittik-shape-image",
-  "version": "5.1.0-beta.1",
+  "version": "5.1.0-beta.2",
   "description": "Shape for rendering png/jpg/other images in Kittik",
   "license": "MIT",
   "type": "module",
@@ -39,7 +39,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "kittik-shape-basic": "5.1.0-beta.1"
+    "kittik-shape-basic": "5.1.0-beta.2"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",

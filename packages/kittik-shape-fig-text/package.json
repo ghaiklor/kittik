@@ -1,6 +1,6 @@
 {
   "name": "kittik-shape-fig-text",
-  "version": "5.1.0-beta.1",
+  "version": "5.1.0-beta.2",
   "description": "Shape for rendering ASCII art in Kittik",
   "license": "MIT",
   "type": "module",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "figlet": "1.3.0",
-    "kittik-shape-basic": "5.1.0-beta.1"
+    "kittik-shape-basic": "5.1.0-beta.2"
   },
   "devDependencies": {
     "@types/figlet": "1.2.0",
