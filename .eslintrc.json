@@ -45,6 +45,10 @@
     "@typescript-eslint/prefer-readonly-parameter-types": [
       "off"
     ],
+    "@typescript-eslint/semi": [
+      "error",
+      "always"
+    ],
     "@typescript-eslint/typedef": [
       "off"
     ],
