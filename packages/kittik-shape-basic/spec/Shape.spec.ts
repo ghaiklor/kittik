@@ -1,6 +1,5 @@
 import { Canvas } from 'terminal-canvas';
 import { Shape } from '../src/Shape';
-import { ShapeObject } from '../src/ShapeObject';
 
 describe('basic shape', () => {
   it('should properly get/set text', () => {
@@ -122,7 +121,7 @@ describe('basic shape', () => {
     const obj = shape.toObject();
 
     expect(obj).toStrictEqual({
-      type: 'Shape',
+      type: 'Basic',
       options: {
         background: 'none',
         foreground: 'none',
@@ -150,7 +149,7 @@ describe('basic shape', () => {
 
     const obj = shape.toObject();
     expect(obj).toStrictEqual({
-      type: 'Shape',
+      type: 'Basic',
       options: {
         background: 'red',
         foreground: 'black',
@@ -170,7 +169,7 @@ describe('basic shape', () => {
     const json = shape.toJSON();
 
     // eslint-disable-next-line max-len
-    expect(json).toStrictEqual('{"type":"Shape","options":{"background":"none","foreground":"none","height":"25%","text":"","width":"50%","x":"left","y":"top"}}');
+    expect(json).toStrictEqual('{"type":"Basic","options":{"background":"none","foreground":"none","height":"25%","text":"","width":"50%","x":"left","y":"top"}}');
   });
 
   it('should properly serialize shape to JSON with custom options', () => {
@@ -187,7 +186,7 @@ describe('basic shape', () => {
     const json = shape.toJSON();
 
     // eslint-disable-next-line max-len
-    expect(json).toStrictEqual('{"type":"Shape","options":{"background":"none","foreground":"none","height":"50","text":"test","width":"30","x":"0","y":"0"}}');
+    expect(json).toStrictEqual('{"type":"Basic","options":{"background":"none","foreground":"none","height":"50","text":"test","width":"30","x":"0","y":"0"}}');
   });
 
   it('should properly create Shape instance from static create()', () => {
@@ -200,7 +199,7 @@ describe('basic shape', () => {
   it('should properly throw error if trying to create Shape not from its representation', () => {
     expect.hasAssertions();
 
-    const obj = { type: 'Rectangle' };
+    const obj = { type: 'Rectangle', options: {} };
     expect(() => Shape.fromObject(obj)).toThrow(
       'You specified configuration for "Rectangle" but provided it to "Shape". ' +
       'Did you mean to set "type" in configuration to "Shape"?'
@@ -210,7 +209,7 @@ describe('basic shape', () => {
   it('should properly create Shape instance from Object representation', () => {
     expect.hasAssertions();
 
-    const obj: ShapeObject = {
+    const obj = {
       type: 'Shape',
       options: {
         background: 'red',

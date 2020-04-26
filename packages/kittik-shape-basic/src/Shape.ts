@@ -51,10 +51,10 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     return (new this(options)) as S;
   }
 
-  public static fromObject <T, O extends ShapeOptions, S extends Shape>(obj: ShapeObject<T, O>): S
-  public static fromObject <T, O extends ShapeOptions>(obj: ShapeObject<T, O>): Shape
-  public static fromObject <T>(obj: ShapeObject<T, ShapeOptions>): Shape
-  public static fromObject (obj: ShapeObject<'Basic', ShapeOptions>): Shape {
+  public static fromObject <T, O extends Partial<ShapeOptions>, S extends Shape>(obj: ShapeObject<T, O>): S
+  public static fromObject <T, O extends Partial<ShapeOptions>>(obj: ShapeObject<T, O>): Shape
+  public static fromObject <T>(obj: ShapeObject<T, Partial<ShapeOptions>>): Shape
+  public static fromObject (obj: ShapeObject<'Basic', Partial<ShapeOptions>>): Shape {
     if (obj.type !== this.name) {
       throw new Error(
         `You specified configuration for "${obj.type}" but provided it to "${this.name}". ` +
