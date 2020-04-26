@@ -1,4 +1,4 @@
-import { Text, TextObject, TextOptions } from 'kittik-shape-text';
+import { Text, TextObject } from 'kittik-shape-text';
 import { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
 import { AnimationObject } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
@@ -33,7 +33,7 @@ const SLIDE_DECLARATION: SlideDeclaration = {
   }]
 };
 
-const SERIALIZED_TEXT_DECLARATION: ShapeDeclaration<'Text', TextOptions> & TextObject = {
+const SERIALIZED_TEXT_DECLARATION: ShapeDeclaration & TextObject = {
   name: 'Hello',
   type: 'Text',
   options: {

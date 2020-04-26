@@ -1,11 +1,11 @@
 import { ANIMATIONS, AnimationType } from '../animation/Animations';
-import { SHAPES, ShapeType } from '../shape/Shapes';
-import { ShapeOptions, ShapeRenderable } from 'kittik-shape-basic';
 import { AnimationDeclaration } from '../animation/AnimationDeclaration';
 import { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
 import { OrderDeclaration } from './OrderDeclaration';
+import { SHAPES } from '../shape/Shapes';
 import { ShapeDeclaration } from '../shape/ShapeDeclaration';
+import { ShapeRenderable } from 'kittik-shape-basic';
 import { SlideDeclaration } from './SlideDeclaration';
 
 export { AnimationBuilder } from '../animation/AnimationBuilder';
@@ -165,7 +165,7 @@ export class Slide<
     return JSON.stringify(this.toObject());
   }
 
-  private initShapes (declaration: Array<ShapeDeclaration<ShapeType, ShapeOptions>>): void {
+  private initShapes (declaration: ShapeDeclaration[]): void {
     declaration.forEach((shapeDeclaration) => {
       const ctor = SHAPES.get(shapeDeclaration.type);
 

@@ -71,6 +71,6 @@ export class ShapeBuilder<T extends ShapeType, O extends ShapeOptions<T>> implem
       );
     }
 
-    return ctr.fromObject(this);
+    return ctr.fromObject<T, O, ShapeRenderable>(this);
   }
 }

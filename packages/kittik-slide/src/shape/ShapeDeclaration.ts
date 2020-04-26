@@ -1,5 +1,6 @@
-import { ShapeObject, ShapeOptions } from 'kittik-shape-basic';
+import { ShapeOptions, ShapeType } from './Shapes';
+import { ShapeObject } from 'kittik-shape-basic';
 
-export interface ShapeDeclaration<T, O extends ShapeOptions> extends ShapeObject<T, O> {
+export interface ShapeDeclaration extends ShapeObject<ShapeType, ShapeOptions<ShapeType>> {
   name: string
 }
