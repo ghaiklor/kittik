@@ -40,7 +40,7 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     this.rawDuration = duration;
   }
 
-  public async animate<T extends Shape>(shape: T): Promise<T> {
+  public async animate <T extends Shape>(shape: T): Promise<T> {
     const { direction } = this;
 
     if (direction.includes('bounce')) {
@@ -58,19 +58,20 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     );
   }
 
-  public toObject<T extends FocusObject>(): T {
-    const obj: FocusObject = super.toObject();
-    obj.options = {
-      ...obj.options,
+  public toObject (): FocusObject {
+    const base = super.toObject();
+    const type: FocusObject['type'] = 'Focus';
+    const options: FocusObject['options'] = {
+      ...base.options,
       direction: this.direction,
       offset: this.offset,
       repeat: this.repeat
     };
 
-    return obj as T;
+    return { type, options };
   }
 
-  private async animateBounce<T extends Shape>(shape: T, direction: BounceDirection): Promise<T> {
+  private async animateBounce <T extends Shape>(shape: T, direction: BounceDirection): Promise<T> {
     const x = parseInt(shape.x, 10);
     const y = parseInt(shape.y, 10);
     const { offset } = this;
@@ -125,7 +126,7 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     return await sequence;
   }
 
-  private async animateShake<T extends Shape>(shape: T, direction: ShakeDirection): Promise<T> {
+  private async animateShake <T extends Shape>(shape: T, direction: ShakeDirection): Promise<T> {
     const x = parseInt(shape.x, 10);
     const y = parseInt(shape.y, 10);
     const { offset } = this;

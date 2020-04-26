@@ -1,4 +1,5 @@
 import { Animation, Animationable } from 'kittik-animation-basic';
+import { PrintObject } from './PrintObject';
 import { PrintOptions } from './PrintOptions';
 import { Shape } from 'kittik-shape-basic';
 
@@ -8,7 +9,7 @@ export { PrintOptions } from './PrintOptions';
 export class Print extends Animation implements PrintOptions, Animationable {
   private originalText = '';
 
-  public onTick<S extends Shape, P extends keyof S, V extends number>(shape: S, _property: P, value: V): void {
+  public onTick <S extends Shape, P extends keyof S, V extends number>(shape: S, _property: P, value: V): void {
     shape.text = this.originalText.slice(0, value);
   }
 
@@ -21,5 +22,15 @@ export class Print extends Animation implements PrintOptions, Animationable {
       startValue: 0,
       endValue: this.originalText.length
     });
+  }
+
+  public toObject (): PrintObject {
+    const base = super.toObject();
+    const type: PrintObject['type'] = 'Print';
+    const options: PrintObject['options'] = {
+      ...base.options
+    };
+
+    return { type, options };
   }
 }

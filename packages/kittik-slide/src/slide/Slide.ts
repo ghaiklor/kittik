@@ -1,4 +1,4 @@
-import { ANIMATIONS, AnimationType } from '../animation/Animations';
+import { ANIMATIONS } from '../animation/Animations';
 import { AnimationDeclaration } from '../animation/AnimationDeclaration';
 import { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
@@ -183,7 +183,7 @@ export class Slide<
 
   private initAnimations (declaration: AnimationDeclaration[]): void {
     declaration.forEach((animationDeclaration) => {
-      const ctor = ANIMATIONS.get(animationDeclaration.type as AnimationType);
+      const ctor = ANIMATIONS.get(animationDeclaration.type);
 
       if (typeof ctor === 'undefined') {
         throw new Error(

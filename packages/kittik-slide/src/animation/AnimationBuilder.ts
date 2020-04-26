@@ -1,13 +1,16 @@
 import { ANIMATIONS, AnimationOptions, AnimationType } from './Animations';
-import { Animationable } from 'kittik-animation-basic';
+import { AnimationObject, Animationable } from 'kittik-animation-basic';
 
-export class AnimationBuilder<T extends AnimationType, O extends AnimationOptions<T>> {
+export class AnimationBuilder<T extends AnimationType, O extends AnimationOptions<T>> implements AnimationObject<T, O> {
   public type: T;
-  public options: Partial<O>;
+  public options: O;
 
   public constructor (type: T) {
     this.type = type;
-    this.options = {};
+
+    // eslint-disable-next-line no-warning-comments
+    // TODO: what to do with this unknown?
+    this.options = {} as unknown as O;
   }
 
   public static start <T extends AnimationType, O extends AnimationOptions<T>>(type: T): AnimationBuilder<T, O> {
@@ -43,6 +46,6 @@ export class AnimationBuilder<T extends AnimationType, O extends AnimationOption
       );
     }
 
-    return ctr.fromObject(this);
+    return ctr.fromObject<T, O, Animationable>(this);
   }
 }

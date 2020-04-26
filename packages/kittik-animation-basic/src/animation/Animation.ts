@@ -53,13 +53,16 @@ export class Animation extends EventEmitter implements AnimationOptions {
     this.on('tick', this.onTick.bind(this));
   }
 
-  public static create<T extends Animation>(options?: Partial<AnimationOptions>): T
-  public static create<T extends Animation, O extends AnimationOptions>(options?: Partial<O>): T {
-    return (new this(options)) as T;
+  public static create <A extends Animation, O extends AnimationOptions>(options: O): A
+  public static create <O extends AnimationOptions>(options: O): Animation
+  public static create (options: AnimationOptions): Animation {
+    return new this(options);
   }
 
-  public static fromObject<T extends Animation>(obj: AnimationObject): T
-  public static fromObject<T extends Animation, O extends AnimationObject>(obj: O): T {
+  public static fromObject <T, O extends AnimationOptions, A extends Animation>(obj: AnimationObject<T, O>): A
+  public static fromObject <T, O extends AnimationOptions>(obj: AnimationObject<T, O>): Animation
+  public static fromObject <T>(obj: AnimationObject<T, AnimationOptions>): Animation
+  public static fromObject (obj: AnimationObject<'Basic', AnimationOptions>): Animation {
     if (obj.type !== this.name) {
       throw new Error(
         `You specified configuration for "${obj.type}" but provided it to "${this.name}". ` +
@@ -70,20 +73,27 @@ export class Animation extends EventEmitter implements AnimationOptions {
     return this.create(obj.options);
   }
 
-  public static fromJSON<T extends Animation>(json: string): T {
+  public static fromJSON <A extends Animation>(json: string): A {
     return this.fromObject(JSON.parse(json));
   }
 
+  // We need to have a possibility to override onTick in children
+  // Moreover, in case overridden method wants to use its `this` we need to have it here
+  // Even if we do not use `this` in this specific implementation, someone else can
   // eslint-disable-next-line class-methods-use-this
-  public onTick<S extends Shape, P extends keyof S, V extends number>(shape: S, property: P, value: V): void {
+  public onTick <S extends Shape, P extends keyof S, V extends number>(shape: S, property: P, value: V): void {
     Object.assign(shape, { [property]: value });
   }
 
+  // The same scenario applies to `this` in this method
+  // Someone else can override it in children and make use of `this` in his own class
   // eslint-disable-next-line class-methods-use-this
   public onEasing (easing: EASING.Easing, options: EasingOptions): number {
     return Math.round(EASING[easing](options.time, options.startValue, options.byValue, options.duration));
   }
 
+  // Again, the same scenario as above
+  // Someone else can override it in children and make use of `this` in his own class
   // eslint-disable-next-line class-methods-use-this
   public async delay (ms: number): Promise<void> {
     return await new Promise((resolve) => setTimeout(resolve, isFinite(ms) ? ms : 1));
@@ -123,15 +133,16 @@ export class Animation extends EventEmitter implements AnimationOptions {
     return await new Promise(tick);
   }
 
-  public toObject<T extends AnimationObject>(): T {
-    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-    return {
-      type: this.constructor.name,
-      options: {
-        duration: this.duration,
-        easing: this.easing
-      }
-    } as T;
+  public toObject <T, O extends AnimationOptions>(): AnimationObject<T, O>
+  public toObject <T>(): AnimationObject<T, AnimationOptions>
+  public toObject (): AnimationObject<'Basic', AnimationOptions> {
+    const type: 'Basic' = 'Basic' as const;
+    const options: AnimationOptions = {
+      duration: this.duration,
+      easing: this.easing
+    };
+
+    return { type, options };
   }
 
   public toJSON (): string {
