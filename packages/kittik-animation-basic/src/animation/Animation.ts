@@ -53,16 +53,16 @@ export class Animation extends EventEmitter implements AnimationOptions {
     this.on('tick', this.onTick.bind(this));
   }
 
-  public static create <A extends Animation, O extends AnimationOptions>(options: O): A
-  public static create <O extends AnimationOptions>(options: O): Animation
-  public static create (options: AnimationOptions): Animation {
+  public static create <A extends Animation, O extends Partial<AnimationOptions>>(options: O): A
+  public static create <O extends Partial<AnimationOptions>>(options: O): Animation
+  public static create (options: Partial<AnimationOptions>): Animation {
     return new this(options);
   }
 
-  public static fromObject <T, O extends AnimationOptions, A extends Animation>(obj: AnimationObject<T, O>): A
-  public static fromObject <T, O extends AnimationOptions>(obj: AnimationObject<T, O>): Animation
-  public static fromObject <T>(obj: AnimationObject<T, AnimationOptions>): Animation
-  public static fromObject (obj: AnimationObject<'Basic', AnimationOptions>): Animation {
+  public static fromObject <T, O extends Partial<AnimationOptions>, A extends Animation>(obj: AnimationObject<T, O>): A
+  public static fromObject <T, O extends Partial<AnimationOptions>>(obj: AnimationObject<T, O>): Animation
+  public static fromObject <T>(obj: AnimationObject<T, Partial<AnimationOptions>>): Animation
+  public static fromObject (obj: AnimationObject<'Basic', Partial<AnimationOptions>>): Animation {
     if (obj.type !== this.name) {
       throw new Error(
         `You specified configuration for "${obj.type}" but provided it to "${this.name}". ` +
