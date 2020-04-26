@@ -28,7 +28,7 @@
     "email": "ghaiklor@gmail.com"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "scripts": {
     "all": "npm run build && npm run test && npm run lint",
