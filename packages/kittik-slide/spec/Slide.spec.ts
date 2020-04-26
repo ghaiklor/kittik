@@ -1,6 +1,5 @@
 import { Text, TextObject } from 'kittik-shape-text';
 import { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
-import { AnimationObject } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
 import { OrderDeclaration } from '../src/slide/OrderDeclaration';
 import { Print } from 'kittik-animation-print';
@@ -54,7 +53,7 @@ const SERIALIZED_TEXT_DECLARATION: ShapeDeclaration & TextObject = {
   }
 };
 
-const SERIALIZED_ANIMATION_DECLARATION: AnimationDeclaration & AnimationObject = {
+const SERIALIZED_ANIMATION_DECLARATION: AnimationDeclaration = {
   name: 'Print',
   type: 'Print',
   options: {
@@ -88,7 +87,12 @@ describe('slide', () => {
       canvas,
       {
         name: 'Test',
-        shapes: [{ name: 'Test', type: 'unknown' }],
+
+        // I'm doing this to test if runtime semantics will be still valid
+        // You must not be able to provide shape type any other then allowed
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        shapes: [{ name: 'Test', type: 'unknown' as const }],
         order: [{ shape: 'Test' }]
       }
     )).toThrow(
@@ -107,8 +111,13 @@ describe('slide', () => {
       canvas,
       {
         name: 'Test',
-        shapes: [{ name: 'Test', type: 'Text' }],
-        animations: [{ name: 'Test', type: 'unknown' }],
+        shapes: [{ name: 'Test', type: 'Text' as const, options: {} }],
+
+        // I'm doing this to test if runtime semantics will be still valid
+        // You must not be able to provide animation type any other then allowed
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        animations: [{ name: 'Test', type: 'unknown' as const }],
         order: [{ shape: 'Test' }]
       }
     )).toThrow(
@@ -157,7 +166,7 @@ describe('slide', () => {
     const canvas = new Canvas();
     const slide = Slide.create(canvas, {
       name: 'Test',
-      shapes: [{ name: 'Test', type: 'Text' }],
+      shapes: [{ name: 'Test', type: 'Text' as const, options: {} }],
       order: [{ shape: 'Test' }]
     });
 
@@ -170,7 +179,7 @@ describe('slide', () => {
     const canvas = new Canvas();
     const slide = Slide.create(canvas, {
       name: 'Test',
-      shapes: [{ name: 'Test', type: 'Text' }],
+      shapes: [{ name: 'Test', type: 'Text' as const, options: {} }],
       order: [{ shape: 'Test', animations: ['Not Exists'] }]
     });
 
@@ -238,7 +247,14 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = new Slide(canvas, { name: 'Test', shapes: [{ name: 'Test', type: 'Text' }], order: [] });
+    const slide = new Slide(
+      canvas,
+      {
+        name: 'Test',
+        shapes: [{ name: 'Test', type: 'Text' as const, options: {} }],
+        order: []
+      }
+    );
 
     expect(() => slide.addShape('Test', Text.create())).toThrow(
       'You are trying to add shape with the name "Test" into the slide "Test". ' +
@@ -254,10 +270,10 @@ describe('slide', () => {
       name: 'Test',
       shapes: [],
       order: [],
-      animations: [{ name: 'Test', type: 'Print' }]
+      animations: [{ name: 'Test', type: 'Print' as const, options: {} }]
     });
 
-    expect(() => slide.addAnimation('Test', Print.create())).toThrow(
+    expect(() => slide.addAnimation('Test', Print.create({}))).toThrow(
       'You are trying to add animation with the name "Test" into the slide "Test". ' +
       'But this animation already exists in slide "Test".'
     );

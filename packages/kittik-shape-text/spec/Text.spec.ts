@@ -1,6 +1,5 @@
 import { Canvas } from 'terminal-canvas';
 import { Text } from '../src/Text';
-import { TextObject } from '../src/TextObject';
 import { TextOptions } from '../src/TextOptions';
 
 describe('text shape', () => {
@@ -325,10 +324,10 @@ describe('text shape', () => {
   it('should properly create text from Object representation', () => {
     expect.hasAssertions();
 
-    const obj: TextObject = {
-      type: 'Text',
+    const obj = {
+      type: 'Text' as const,
       options: {
-        align: 'right',
+        align: 'right' as const,
         bold: true,
         text: 'test',
         underlined: true,
@@ -337,7 +336,7 @@ describe('text shape', () => {
       }
     };
 
-    const text = Text.fromObject<Text>(obj);
+    const text = Text.fromObject<'Text', Partial<TextOptions>, Text>(obj);
 
     expect(text).toBeInstanceOf(Text);
     expect(text.text).toStrictEqual('test');

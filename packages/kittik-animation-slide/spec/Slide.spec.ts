@@ -1,7 +1,6 @@
+import { Slide, SlideOptions } from '../src/Slide';
 import { Canvas } from 'terminal-canvas';
 import { Rectangle } from 'kittik-shape-rectangle';
-import { Slide } from '../src/Slide';
-import { SlideObject } from '../src/SlideObject';
 
 describe('slide animation', () => {
   it('should properly parse coordinates for inUp', async () => {
@@ -159,16 +158,16 @@ describe('slide animation', () => {
   it('should properly create Animation instance from object', () => {
     expect.hasAssertions();
 
-    const obj: SlideObject = {
-      type: 'Slide',
+    const obj = {
+      type: 'Slide' as const,
       options: {
         duration: 4000,
-        easing: 'inOutExpo',
-        direction: 'inLeft'
+        easing: 'inOutExpo' as const,
+        direction: 'inLeft' as const
       }
     };
 
-    const animation = Slide.fromObject<Slide>(obj);
+    const animation = Slide.fromObject<'Slide', SlideOptions, Slide>(obj);
 
     expect(animation).toBeInstanceOf(Slide);
     expect(animation.duration).toBe(4000);

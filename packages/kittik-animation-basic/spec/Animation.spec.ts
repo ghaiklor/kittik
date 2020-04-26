@@ -1,5 +1,4 @@
 import { Animation } from '../src/animation/Animation';
-import { AnimationObject } from '../src/animation/AnimationObject';
 import { Shape } from 'kittik-shape-basic';
 
 describe('basic animation', () => {
@@ -50,7 +49,7 @@ describe('basic animation', () => {
 
     const animation = new Animation();
     expect(animation.toObject()).toStrictEqual({
-      type: 'Animation',
+      type: 'Basic',
       options: {
         duration: 1000,
         easing: 'outQuad'
@@ -62,7 +61,7 @@ describe('basic animation', () => {
     expect.hasAssertions();
 
     const animation = new Animation();
-    expect(animation.toJSON()).toStrictEqual('{"type":"Animation","options":{"duration":1000,"easing":"outQuad"}}');
+    expect(animation.toJSON()).toStrictEqual('{"type":"Basic","options":{"duration":1000,"easing":"outQuad"}}');
   });
 
   it('should properly create Animation instance from static create()', () => {
@@ -76,7 +75,7 @@ describe('basic animation', () => {
   it('should properly throw exception if object representation is not from this animation', () => {
     expect.hasAssertions();
 
-    const obj = { type: 'Slide' };
+    const obj = { type: 'Slide', options: {} };
     expect(() => Animation.fromObject(obj)).toThrow(
       'You specified configuration for "Slide" but provided it to "Animation". ' +
       'Did you mean to set "type" in configuration to "Animation"?'
@@ -86,11 +85,11 @@ describe('basic animation', () => {
   it('should properly create Animation instance from object representation', () => {
     expect.hasAssertions();
 
-    const obj: AnimationObject = {
+    const obj = {
       type: 'Animation',
       options: {
         duration: 1,
-        easing: 'inExpo'
+        easing: 'inExpo' as const
       }
     };
 

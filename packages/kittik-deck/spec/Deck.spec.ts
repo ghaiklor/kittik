@@ -204,7 +204,7 @@ describe('deck', () => {
       slides: [
         {
           name: 'Test',
-          shapes: [{ name: 'Shape', type: 'Text' }],
+          shapes: [{ name: 'Shape', type: 'Text' as const, options: {} }],
           order: []
         }
       ]
@@ -229,7 +229,7 @@ describe('deck', () => {
       slides: [
         {
           name: 'Test',
-          shapes: [{ name: 'Shape', type: 'Text' }],
+          shapes: [{ name: 'Shape', type: 'Text' as const, options: {} }],
           order: []
         }
       ]
@@ -256,7 +256,7 @@ describe('deck', () => {
           name: 'Test',
           shapes: [],
           order: [],
-          animations: [{ name: 'Animation', type: 'Print' }]
+          animations: [{ name: 'Animation', type: 'Print' as const, options: {} }]
         }
       ]
     });
@@ -282,7 +282,7 @@ describe('deck', () => {
           name: 'Test',
           shapes: [],
           order: [],
-          animations: [{ name: 'Animation', type: 'Print' }]
+          animations: [{ name: 'Animation', type: 'Print' as const, options: {} }]
         }
       ]
     });

@@ -1,6 +1,5 @@
+import { Image, ImageOptions } from '../src/Image';
 import { Canvas } from 'terminal-canvas';
-import { Image } from '../src/Image';
-import { ImageObject } from '../src/ImageObject';
 import path from 'path';
 
 describe('image shape', () => {
@@ -89,8 +88,8 @@ describe('image shape', () => {
   it('should properly create Image from object', () => {
     expect.hasAssertions();
 
-    const obj: ImageObject = {
-      type: 'Image',
+    const obj = {
+      type: 'Image' as const,
       options: {
         height: '20',
         image: 'dGVzdA==',
@@ -100,7 +99,7 @@ describe('image shape', () => {
       }
     };
 
-    const image = Image.fromObject<Image>(obj);
+    const image = Image.fromObject<'Image', Partial<ImageOptions>, Image>(obj);
 
     expect(image).toBeInstanceOf(Image);
     expect(image.text).toStrictEqual('');

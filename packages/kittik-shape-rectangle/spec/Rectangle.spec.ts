@@ -1,6 +1,5 @@
 import { Canvas } from 'terminal-canvas';
 import { Rectangle } from '../src/Rectangle';
-import { ShapeObject } from 'kittik-shape-basic';
 
 describe('rectangle shape', () => {
   it('should properly render with default options', () => {
@@ -78,7 +77,7 @@ describe('rectangle shape', () => {
   it('should properly create rectangle from Object representation', () => {
     expect.hasAssertions();
 
-    const obj: ShapeObject = {
+    const obj = {
       type: 'Rectangle',
       options: {
         height: '50',
@@ -89,7 +88,7 @@ describe('rectangle shape', () => {
       }
     };
 
-    const rectangle = Rectangle.fromObject<Rectangle>(obj);
+    const rectangle = Rectangle.fromObject(obj);
 
     expect(rectangle).toBeInstanceOf(Rectangle);
     expect(rectangle.text).toStrictEqual('test');
