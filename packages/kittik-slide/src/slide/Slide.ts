@@ -18,9 +18,7 @@ export { ShapeType, ShapeObject, ShapeOptions } from '../shape/Shapes';
 export { SlideBuilder } from './SlideBuilder';
 export { SlideDeclaration } from './SlideDeclaration';
 
-export class Slide<
-  C extends Canvas = Canvas
-> {
+export class Slide <C extends Canvas = Canvas> {
   public canvas: C = Canvas.create() as C;
   public name = 'Untitled Slide';
   public readonly shapes: Map<string, ShapeRenderable> = new Map<string, ShapeRenderable>();
