@@ -3,10 +3,10 @@ import { Canvas } from 'terminal-canvas';
 import { ShapeRenderable } from 'kittik-shape-basic';
 import { Slide } from './Slide';
 
-export class SlideBuilder<C extends Canvas> {
-  private readonly slide: Slide<C> = new Slide();
+export class SlideBuilder {
+  private readonly slide: Slide = new Slide();
 
-  public static start <C extends Canvas>(): SlideBuilder<C> {
+  public static start (): SlideBuilder {
     return new this();
   }
 
@@ -15,7 +15,7 @@ export class SlideBuilder<C extends Canvas> {
     return this;
   }
 
-  public withCanvas (canvas: Readonly<C>): this {
+  public withCanvas (canvas: Readonly<Canvas>): this {
     this.slide.canvas = canvas;
     return this;
   }
@@ -35,7 +35,7 @@ export class SlideBuilder<C extends Canvas> {
     return this;
   }
 
-  public end (): Slide<C> {
+  public end (): Slide {
     return this.slide;
   }
 }
