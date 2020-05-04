@@ -1,1 +1,1 @@
-export { default } from '../../jest.config.js';
+module.exports = require('../../jest.config');

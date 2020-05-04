@@ -3,7 +3,7 @@
   "version": "5.1.0-beta.2",
   "description": "Deck package provides abstraction over collection of slides in Kittik",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
   "main": "dist/Deck.js",
   "types": "dist/Deck.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",

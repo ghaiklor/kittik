@@ -118,6 +118,14 @@
         ]
       }
     ],
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      {
+        "ignores": [
+          "modules"
+        ]
+      }
+    ],
     "semi": [
       "error",
       "always"
@@ -138,6 +146,7 @@
       ],
       "rules": {
         "@typescript-eslint/indent": "off",
+        "@typescript-eslint/no-require-imports": "off",
         "@typescript-eslint/quotes": "off"
       }
     }

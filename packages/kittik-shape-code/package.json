@@ -3,7 +3,7 @@
   "version": "5.1.0-beta.2",
   "description": "Code shape for rendering code in Kittik",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
   "main": "dist/Code.js",
   "types": "dist/Code.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",

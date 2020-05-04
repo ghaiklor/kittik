@@ -3,7 +3,7 @@
   "version": "5.1.0-beta.2",
   "description": "Shape for rendering ASCII art in Kittik",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
   "main": "dist/FigText.js",
   "types": "dist/FigText.d.ts",
   "homepage": "https://github.com/ghaiklor/kittik#readme",
