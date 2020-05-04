@@ -1,6 +1,6 @@
 {
   "name": "kittik-animation-basic",
-  "version": "5.1.0-beta.2",
+  "version": "5.1.0-beta.3",
   "description": "Basic class for creating animations in Kittik",
   "license": "MIT",
   "type": "commonjs",
@@ -52,7 +52,7 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "jest": "25.5.4",
-    "kittik-shape-basic": "5.1.0-beta.2",
+    "kittik-shape-basic": "5.1.0-beta.3",
     "rimraf": "3.0.2",
     "terminal-canvas": "3.1.0",
     "ts-jest": "25.4.0",

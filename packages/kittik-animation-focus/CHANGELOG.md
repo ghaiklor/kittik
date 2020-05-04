@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-beta.3](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.2...v5.1.0-beta.3) (2020-05-04)
+
+**Note:** Version bump only for package kittik-animation-focus
+
+
+
+
+
 # [5.1.0-beta.2](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2020-04-26)
 
 

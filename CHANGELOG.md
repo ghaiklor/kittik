@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.1.0-beta.3](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.2...v5.1.0-beta.3) (2020-05-04)
+
+
+### Features
+
+* 🎸 improve typecheck and autocompletion for SlideBuilder ([559e1b3](https://github.com/ghaiklor/kittik/commit/559e1b3ea89b3a2a60edda1b31cf445e7672a25f))
+
+
+
+
+
 # [5.1.0-beta.2](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2020-04-26)
 
 

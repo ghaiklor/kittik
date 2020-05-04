@@ -1,6 +1,6 @@
 {
   "name": "kittik-shape-text",
-  "version": "5.1.0-beta.2",
+  "version": "5.1.0-beta.3",
   "description": "Shape for rendering text in Kittik",
   "license": "MIT",
   "type": "commonjs",
@@ -39,7 +39,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "kittik-shape-basic": "5.1.0-beta.2"
+    "kittik-shape-basic": "5.1.0-beta.3"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",

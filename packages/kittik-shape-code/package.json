@@ -1,6 +1,6 @@
 {
   "name": "kittik-shape-code",
-  "version": "5.1.0-beta.2",
+  "version": "5.1.0-beta.3",
   "description": "Code shape for rendering code in Kittik",
   "license": "MIT",
   "type": "commonjs",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "js-beautify": "1.11.0",
-    "kittik-shape-basic": "5.1.0-beta.2",
+    "kittik-shape-basic": "5.1.0-beta.3",
     "redeyed": "2.1.1"
   },
   "devDependencies": {
