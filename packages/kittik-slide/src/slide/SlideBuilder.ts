@@ -34,22 +34,18 @@ export class SlideBuilder<TShape, TAnimation> {
     this.slide.addShape(name, shape);
 
     // eslint-disable-next-line no-warning-comments
-    // TODO: think about returning this and accumulator type here
-    // Accumulator type in result returns SlideBuilder anyway, so seems like a bug in TypeScript?
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    return this;
+    // TODO: we can use unknown here to cast `this` to our abstract type
+    // But better to find a way to explain TypeScript that `this` is valid here
+    return this as unknown as TShapeAccumulator<this, T>;
   }
 
   public withAnimation <T extends string>(name: T, animation: Animationable): TAnimationAccumulator<this, T> {
     this.slide.addAnimation(name, animation);
 
     // eslint-disable-next-line no-warning-comments
-    // TODO: think about returning this and accumulator type here
-    // Accumulator type in result returns SlideBuilder anyway, so seems like a bug in TypeScript?
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    return this;
+    // TODO: we can use unknown here to cast `this` to our abstract type
+    // But better to find a way to explain TypeScript that `this` is valid here
+    return this as unknown as TAnimationAccumulator<this, T>;
   }
 
   public withOrder (shape: TShape, animations?: TAnimation[]): this {
