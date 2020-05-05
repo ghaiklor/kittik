@@ -41,5 +41,5 @@ DeckBuilder
       .end()
   )
   .end()
-  .renderSlide()
+  .render()
   .catch((error) => console.error(error));

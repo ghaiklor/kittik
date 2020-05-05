@@ -58,7 +58,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck(DECK_DECLARATION);
-    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
+    const renderSpy = jest.spyOn(deck, 'render').mockResolvedValue(true);
 
     await deck.nextSlide();
     process.stdin.emit('keypress', 'p');
@@ -74,7 +74,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck(DECK_DECLARATION);
-    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
+    const renderSpy = jest.spyOn(deck, 'render').mockResolvedValue(true);
 
     process.stdin.emit('keypress', 'n');
 
@@ -111,7 +111,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck(DECK_DECLARATION);
-    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
+    const renderSpy = jest.spyOn(deck, 'render').mockResolvedValue(true);
 
     await deck.nextSlide();
     await deck.previousSlide();
@@ -127,7 +127,7 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck({ ...DECK_DECLARATION });
-    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
+    const renderSpy = jest.spyOn(deck, 'render').mockResolvedValue(true);
 
     await deck.nextSlide();
     await deck.previousSlide();
@@ -159,7 +159,7 @@ describe('deck', () => {
       ]
     });
 
-    const renderSpy = jest.spyOn(deck, 'renderSlide').mockResolvedValue(true);
+    const renderSpy = jest.spyOn(deck, 'render').mockResolvedValue(true);
 
     await deck.nextSlide();
     await deck.previousSlide();
@@ -185,10 +185,10 @@ describe('deck', () => {
     // @ts-expect-error
     const renderSpy = jest.spyOn(deck.slides[0], 'render');
 
-    deck.renderSlide(); // eslint-disable-line @typescript-eslint/no-floating-promises
-    deck.renderSlide(); // eslint-disable-line @typescript-eslint/no-floating-promises
-    deck.renderSlide(); // eslint-disable-line @typescript-eslint/no-floating-promises
-    deck.renderSlide(); // eslint-disable-line @typescript-eslint/no-floating-promises
+    deck.render(); // eslint-disable-line @typescript-eslint/no-floating-promises
+    deck.render(); // eslint-disable-line @typescript-eslint/no-floating-promises
+    deck.render(); // eslint-disable-line @typescript-eslint/no-floating-promises
+    deck.render(); // eslint-disable-line @typescript-eslint/no-floating-promises
 
     expect(renderSpy).toHaveBeenCalledTimes(1);
 

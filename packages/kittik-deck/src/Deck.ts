@@ -70,7 +70,7 @@ export class Deck {
     this.slides.push(slide);
   }
 
-  public async renderSlide (index = this.currentSlideIndex): Promise<boolean> {
+  public async render (index = this.currentSlideIndex): Promise<boolean> {
     if (!this.isRendering && typeof this.slides[index] !== 'undefined') {
       this.isRendering = true;
       await this.slides[index].render();
@@ -83,7 +83,7 @@ export class Deck {
   }
 
   public async nextSlide (): Promise<boolean> {
-    const isRendered = await this.renderSlide(this.currentSlideIndex + 1);
+    const isRendered = await this.render(this.currentSlideIndex + 1);
 
     if (isRendered) {
       this.currentSlideIndex += 1;
@@ -93,7 +93,7 @@ export class Deck {
   }
 
   public async previousSlide (): Promise<boolean> {
-    const isRendered = await this.renderSlide(this.currentSlideIndex - 1);
+    const isRendered = await this.render(this.currentSlideIndex - 1);
 
     if (isRendered) {
       this.currentSlideIndex -= 1;
