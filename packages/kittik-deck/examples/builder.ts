@@ -55,5 +55,6 @@ DeckBuilder
       .end()
   )
   .end()
+  .on('exit', () => canvas.reset().showCursor())
   .render()
   .catch((error) => console.error(error));
