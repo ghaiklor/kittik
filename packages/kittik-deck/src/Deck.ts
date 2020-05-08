@@ -112,6 +112,8 @@ export class Deck extends EventEmitter {
 
   // eslint-disable-next-line class-methods-use-this
   public exit (): void {
+    if (this.isRendering) return;
+
     process.stdin.pause();
     process.stdin.removeAllListeners();
 
