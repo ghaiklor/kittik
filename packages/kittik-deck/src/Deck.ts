@@ -1,6 +1,7 @@
 import { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
 import { DeckDeclaration } from './DeckDeclaration';
+import { EventEmitter } from 'events';
 import { ShapeRenderable } from 'kittik-shape-basic';
 import { Slide } from 'kittik-slide';
 import readline from 'readline';
@@ -12,13 +13,20 @@ export { DeckDeclaration } from './DeckDeclaration';
 export { ShapeBuilder } from 'kittik-slide';
 export { SlideBuilder } from 'kittik-slide';
 
-export class Deck {
+export declare interface Deck {
+  on: (event: 'exit', listener: () => void) => this
+  emit: (event: 'exit') => boolean
+}
+
+export class Deck extends EventEmitter {
   public canvas: Canvas = Canvas.create();
   private readonly slides: Slide[] = [];
   private isRendering = false;
   private currentSlideIndex = 0;
 
   public constructor (declaration?: DeckDeclaration) {
+    super();
+
     if (typeof declaration?.canvas !== 'undefined') {
       this.canvas = declaration.canvas;
     }
@@ -106,6 +114,8 @@ export class Deck {
   public exit (): void {
     process.stdin.pause();
     process.stdin.removeAllListeners();
+
+    this.emit('exit');
   }
 
   private initSlides (declaration: DeckDeclaration): void {
