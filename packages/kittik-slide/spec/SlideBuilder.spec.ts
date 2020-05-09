@@ -65,4 +65,25 @@ describe('slide builder', () => {
       animations: ['Print']
     }]);
   });
+
+  it('should properly mix the predefined shapes and animations through start() method', () => {
+    expect.hasAssertions();
+
+    const slide = SlideBuilder
+      .start(
+        { 'Predefined Shape': ShapeBuilder.start('Text').end() },
+        { 'Predefined Animation': AnimationBuilder.start('Print').end() }
+      )
+      .withOrder('Predefined Shape', ['Predefined Animation'])
+      .end();
+
+    expect(slide.shapes.size).toBe(1);
+    expect(slide.shapes.get('Predefined Shape')).not.toBeUndefined();
+    expect(slide.animations.size).toBe(1);
+    expect(slide.animations.get('Predefined Animation')).not.toBeUndefined();
+    expect(slide.order).toStrictEqual([{
+      shape: 'Predefined Shape',
+      animations: ['Predefined Animation']
+    }]);
+  });
 });

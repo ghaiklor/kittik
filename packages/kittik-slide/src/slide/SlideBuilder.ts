@@ -16,8 +16,16 @@ type TAnimationAccumulator<TSlideBuilder, TNextAnimation> =
 export class SlideBuilder<TShape, TAnimation> {
   private readonly slide: Slide = new Slide();
 
-  public static start (): SlideBuilder<never, never> {
-    return new this();
+  public constructor (shapes: Record<string, ShapeRenderable> = {}, animations: Record<string, Animationable> = {}) {
+    Object.keys(shapes).forEach((name) => this.slide.addShape(name, shapes[name]));
+    Object.keys(animations).forEach((name) => this.slide.addAnimation(name, animations[name]));
+  }
+
+  public static start <TShape extends string = never, TAnimation extends string = never>(
+    shapes?: Record<TShape, ShapeRenderable>,
+    animations?: Record<TAnimation, Animationable>
+  ): SlideBuilder<TShape, TAnimation> {
+    return new this(shapes, animations);
   }
 
   public withName (name: string): this {
