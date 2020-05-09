@@ -25,7 +25,7 @@ export class Slide {
   public readonly animations: Map<string, Animationable> = new Map<string, Animationable>();
   public readonly order: OrderDeclaration[] = [];
 
-  public constructor (canvas?: Canvas, declaration?: SlideDeclaration) {
+  public constructor (declaration?: SlideDeclaration, canvas?: Canvas) {
     if (typeof canvas !== 'undefined') {
       this.canvas = canvas;
     }
@@ -47,12 +47,12 @@ export class Slide {
     }
   }
 
-  public static create (canvas?: Canvas, declaration?: SlideDeclaration): Slide {
-    return new this(canvas, declaration);
+  public static create (declaration?: SlideDeclaration, canvas?: Canvas): Slide {
+    return new this(declaration, canvas);
   }
 
   public static fromObject (obj: SlideDeclaration, canvas?: Canvas): Slide {
-    return this.create(canvas, obj);
+    return this.create(obj, canvas);
   }
 
   public static fromJSON (json: string, canvas?: Canvas): Slide {

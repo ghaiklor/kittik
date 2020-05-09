@@ -84,7 +84,6 @@ describe('slide', () => {
     const canvas = new Canvas();
 
     expect(() => new Slide(
-      canvas,
       {
         name: 'Test',
 
@@ -94,7 +93,8 @@ describe('slide', () => {
         // @ts-expect-error
         shapes: [{ name: 'Test', type: 'unknown' as const }],
         order: [{ shape: 'Test' }]
-      }
+      },
+      canvas
     )).toThrow(
       'You have specified a shape with the name "Test" in slide "Test". ' +
       'This shape has an unknown type "unknown". ' +
@@ -108,7 +108,6 @@ describe('slide', () => {
     const canvas = new Canvas();
 
     expect(() => new Slide(
-      canvas,
       {
         name: 'Test',
         shapes: [{ name: 'Test', type: 'Text' as const, options: {} }],
@@ -119,7 +118,8 @@ describe('slide', () => {
         // @ts-expect-error
         animations: [{ name: 'Test', type: 'unknown' as const }],
         order: [{ shape: 'Test' }]
-      }
+      },
+      canvas
     )).toThrow(
       'You have specified an animation with the name "Test" in slide "Test". ' +
       'This animation has an unknown type "unknown". ' +
@@ -131,11 +131,11 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = new Slide(canvas, {
+    const slide = new Slide({
       name: 'Test',
       shapes: [],
       order: [{ shape: 'Not Exists' }]
-    });
+    }, canvas);
 
     await expect(slide.render()).rejects.toThrow(
       'You specified shape "Not Exists" in slide "Test" as part of ordering, ' +
@@ -148,7 +148,7 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = Slide.create(canvas, SLIDE_DECLARATION);
+    const slide = Slide.create(SLIDE_DECLARATION, canvas);
     const writeSpy = jest.spyOn(canvas, 'write').mockReturnThis();
     const eraseScreenSpy = jest.spyOn(canvas, 'eraseScreen').mockReturnThis();
     const flushSpy = jest.spyOn(canvas, 'flush').mockReturnThis();
@@ -164,11 +164,11 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = Slide.create(canvas, {
+    const slide = Slide.create({
       name: 'Test',
       shapes: [{ name: 'Test', type: 'Text' as const, options: {} }],
       order: [{ shape: 'Test' }]
-    });
+    }, canvas);
 
     expect(await slide.render()).toBeUndefined();
   });
@@ -177,11 +177,11 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = Slide.create(canvas, {
+    const slide = Slide.create({
       name: 'Test',
       shapes: [{ name: 'Test', type: 'Text' as const, options: {} }],
       order: [{ shape: 'Test', animations: ['Not Exists'] }]
-    });
+    }, canvas);
 
     expect(await slide.render()).toBeUndefined();
   });
@@ -190,7 +190,7 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = Slide.create(canvas, SLIDE_DECLARATION);
+    const slide = Slide.create(SLIDE_DECLARATION, canvas);
 
     expect(slide.toObject()).toStrictEqual(SERIALIZED_SLIDE_DECLARATION);
   });
@@ -199,7 +199,7 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = Slide.create(canvas, SLIDE_DECLARATION);
+    const slide = Slide.create(SLIDE_DECLARATION, canvas);
 
     expect(JSON.parse(slide.toJSON())).toStrictEqual(SERIALIZED_SLIDE_DECLARATION);
   });
@@ -236,7 +236,7 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = new Slide(canvas, { name: 'Test', order: [], shapes: [] });
+    const slide = new Slide({ name: 'Test', order: [], shapes: [] }, canvas);
     expect(slide.canvas).toBeInstanceOf(Canvas);
     expect(slide.shapes.size).toBe(0);
     expect(slide.animations.size).toBe(0);
@@ -248,12 +248,12 @@ describe('slide', () => {
 
     const canvas = new Canvas();
     const slide = new Slide(
-      canvas,
       {
         name: 'Test',
         shapes: [{ name: 'Test', type: 'Text' as const, options: {} }],
         order: []
-      }
+      },
+      canvas
     );
 
     expect(() => slide.addShape('Test', Text.create())).toThrow(
@@ -266,12 +266,12 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = new Slide(canvas, {
+    const slide = new Slide({
       name: 'Test',
       shapes: [],
       order: [],
       animations: [{ name: 'Test', type: 'Print' as const, options: {} }]
-    });
+    }, canvas);
 
     expect(() => slide.addAnimation('Test', Print.create({}))).toThrow(
       'You are trying to add animation with the name "Test" into the slide "Test". ' +
@@ -283,7 +283,7 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = new Slide(canvas, { name: 'Test', shapes: [], order: [{ shape: 'Test' }] });
+    const slide = new Slide({ name: 'Test', shapes: [], order: [{ shape: 'Test' }] }, canvas);
 
     expect(() => slide.addOrder('Test')).toThrow(
       'You already have specified an ordering for shape "Test" in slide "Test". ' +
@@ -296,7 +296,7 @@ describe('slide', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const slide = new Slide(canvas, { name: 'Test', shapes: [], order: [{ shape: 'Test' }] });
+    const slide = new Slide({ name: 'Test', shapes: [], order: [{ shape: 'Test' }] }, canvas);
 
     expect(() => slide.addOrder('Test #2', ['Not Existing'])).toThrow(
       'You have provided animations for the shape "Test #2" in slide "Test". ' +
