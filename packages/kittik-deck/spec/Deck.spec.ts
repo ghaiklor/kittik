@@ -1,12 +1,10 @@
 import { Deck, DeckDeclaration } from '../src/Deck';
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Animationable } from 'kittik-animation-basic';
-import { Canvas } from 'terminal-canvas';
 import { Print } from 'kittik-animation-print';
 import { Slide } from 'kittik-slide';
 
 const DECK_DECLARATION: DeckDeclaration = {
-  canvas: Canvas.create(),
   shapes: [
     {
       name: 'Global Shape',
@@ -143,7 +141,6 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck({
-      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Test',
@@ -175,7 +172,6 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck({
-      canvas: DECK_DECLARATION.canvas,
       slides: [{ name: 'Test', shapes: [], order: [] }]
     });
 
@@ -200,7 +196,6 @@ describe('deck', () => {
 
     const shape: ShapeRenderable = new Shape();
     const deck = new Deck({
-      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Test',
@@ -225,7 +220,6 @@ describe('deck', () => {
 
     const shape: ShapeRenderable = new Shape();
     const deck = new Deck({
-      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Test',
@@ -250,7 +244,6 @@ describe('deck', () => {
 
     const animation: Animationable = new Print();
     const deck = new Deck({
-      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Test',
@@ -276,7 +269,6 @@ describe('deck', () => {
 
     const animation: Animationable = new Print();
     const deck = new Deck({
-      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Test',
@@ -301,7 +293,6 @@ describe('deck', () => {
     expect.hasAssertions();
 
     const deck = new Deck({
-      canvas: DECK_DECLARATION.canvas,
       slides: [
         {
           name: 'Slide #1',

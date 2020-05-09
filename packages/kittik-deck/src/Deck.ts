@@ -24,11 +24,11 @@ export class Deck extends EventEmitter {
   private isRendering = false;
   private currentSlideIndex = 0;
 
-  public constructor (declaration?: DeckDeclaration) {
+  public constructor (declaration?: DeckDeclaration, canvas?: Canvas) {
     super();
 
-    if (typeof declaration?.canvas !== 'undefined') {
-      this.canvas = declaration.canvas;
+    if (typeof canvas !== 'undefined') {
+      this.canvas = canvas;
     }
 
     if (typeof declaration !== 'undefined') {
