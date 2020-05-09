@@ -124,11 +124,13 @@ export class Deck extends EventEmitter {
     const globalShapes = declaration.shapes ?? [];
     const globalAnimations = declaration.animations ?? [];
 
-    declaration.slides.forEach((slide) => this.addSlide(Slide.create({
-      ...slide,
-      shapes: globalShapes.concat(slide.shapes),
-      animations: globalAnimations.concat(slide.animations ?? [])
-    }, this.canvas)));
+    declaration.slides.forEach((slide) => this.addSlide(
+      Slide.create({
+        ...slide,
+        shapes: globalShapes.concat(slide.shapes),
+        animations: globalAnimations.concat(slide.animations ?? [])
+      }, this.canvas)
+    ));
   }
 
   private initKeyboard (): void {
