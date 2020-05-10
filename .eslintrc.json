@@ -149,6 +149,14 @@
         "@typescript-eslint/no-require-imports": "off",
         "@typescript-eslint/quotes": "off"
       }
+    },
+    {
+      "files": [
+        "examples/**"
+      ],
+      "rules": {
+        "node/no-unpublished-import": "off"
+      }
     }
   ]
 }
