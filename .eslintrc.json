@@ -98,6 +98,12 @@
       "error",
       "always-multiline"
     ],
+    "newline-per-chained-call": [
+      "error",
+      {
+        "ignoreChainWithDepth": 3
+      }
+    ],
     "no-console": [
       "off"
     ],
