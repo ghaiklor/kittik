@@ -28,7 +28,7 @@ export class DeckBuilder<TShape extends string, TAnimation extends string> {
   }
 
   public withSlide (fn: (builder: SlideBuilder<TShape, TAnimation>) => Slide): this {
-    const builder = SlideBuilder.start(this.shapes, this.animations);
+    const builder = SlideBuilder.start(this.shapes, this.animations).withCanvas(this.deck.canvas);
     const slide = fn(builder);
 
     this.deck.addSlide(slide);
