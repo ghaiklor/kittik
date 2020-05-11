@@ -67,7 +67,7 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
       'inline=1'
     ].join(';');
 
-    canvas.stream.write(`\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}^G`);
+    canvas.stream.write(`\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}\u0007`);
   }
 
   public toObject (): ImageObject {
