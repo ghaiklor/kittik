@@ -1,6 +1,7 @@
 import { Deck, DeckDeclaration } from '../src/Deck';
 import { Shape, ShapeRenderable } from 'kittik-shape-basic';
 import { Animationable } from 'kittik-animation-basic';
+import { Canvas } from 'terminal-canvas';
 import { Print } from 'kittik-animation-print';
 import { Slide } from 'kittik-slide';
 
@@ -47,16 +48,14 @@ const DECK_DECLARATION: DeckDeclaration = {
   ]
 };
 
-const AFTER_EACH = (deck: Deck): void => {
-  deck.exit();
-};
-
 describe('deck', () => {
   it('should properly handle the key press for previous slide', async () => {
     expect.hasAssertions();
 
-    const deck = new Deck(DECK_DECLARATION);
+    const canvas = Canvas.create();
+    const deck = new Deck(DECK_DECLARATION, canvas);
     const renderSpy = jest.spyOn(deck, 'render').mockResolvedValue(true);
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
 
     await deck.nextSlide();
     process.stdin.emit('keypress', 'p');
@@ -65,51 +64,63 @@ describe('deck', () => {
     expect(renderSpy).toHaveBeenCalledWith(1);
     expect(renderSpy).toHaveBeenCalledWith(0);
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly handle the key press for next slide', () => {
     expect.hasAssertions();
 
-    const deck = new Deck(DECK_DECLARATION);
+    const canvas = Canvas.create();
+    const deck = new Deck(DECK_DECLARATION, canvas);
     const renderSpy = jest.spyOn(deck, 'render').mockResolvedValue(true);
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
 
     process.stdin.emit('keypress', 'n');
 
     expect(renderSpy).toHaveBeenCalledTimes(1);
     expect(renderSpy).toHaveBeenCalledWith(1);
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly handle the key press for exit', () => {
     expect.hasAssertions();
 
-    const deck = new Deck(DECK_DECLARATION);
-    const exitSpy = jest.spyOn(deck, 'exit').mockImplementation();
+    const canvas = Canvas.create();
+    const deck = new Deck(DECK_DECLARATION, canvas);
+    const exitSpy = jest.spyOn(deck, 'exit').mockImplementationOnce(() => true);
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
 
     process.stdin.emit('keypress', 'q');
 
     expect(exitSpy).toHaveBeenCalledTimes(1);
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should do nothing when unknown key has been pressed', () => {
     expect.hasAssertions();
 
-    const deck = new Deck();
+    const canvas = Canvas.create();
+    const deck = new Deck(DECK_DECLARATION, canvas);
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
 
     expect(process.stdin.emit('keypress', '?')).toBe(true);
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly render next and previous slides', async () => {
     expect.hasAssertions();
 
-    const deck = new Deck(DECK_DECLARATION);
+    const canvas = Canvas.create();
+    const deck = new Deck(DECK_DECLARATION, canvas);
     const renderSpy = jest.spyOn(deck, 'render').mockResolvedValue(true);
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
 
     await deck.nextSlide();
     await deck.previousSlide();
@@ -118,14 +129,17 @@ describe('deck', () => {
     expect(renderSpy).toHaveBeenCalledWith(1);
     expect(renderSpy).toHaveBeenCalledWith(0);
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly render slides without custom canvas', async () => {
     expect.hasAssertions();
 
-    const deck = new Deck({ ...DECK_DECLARATION });
+    const canvas = Canvas.create();
+    const deck = new Deck({ ...DECK_DECLARATION }, canvas);
     const renderSpy = jest.spyOn(deck, 'render').mockResolvedValue(true);
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
 
     await deck.nextSlide();
     await deck.previousSlide();
@@ -134,12 +148,14 @@ describe('deck', () => {
     expect(renderSpy).toHaveBeenCalledWith(1);
     expect(renderSpy).toHaveBeenCalledWith(0);
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly render minimal slide without global shapes/animations', async () => {
     expect.hasAssertions();
 
+    const canvas = Canvas.create();
     const deck = new Deck({
       slides: [
         {
@@ -154,9 +170,10 @@ describe('deck', () => {
           animations: []
         }
       ]
-    });
+    }, canvas);
 
     const renderSpy = jest.spyOn(deck, 'render').mockResolvedValue(true);
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
 
     await deck.nextSlide();
     await deck.previousSlide();
@@ -165,21 +182,24 @@ describe('deck', () => {
     expect(renderSpy).toHaveBeenCalledWith(1);
     expect(renderSpy).toHaveBeenCalledWith(0);
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should not call slide renderer many times if slide is already rendering', () => {
     expect.hasAssertions();
 
+    const canvas = Canvas.create();
     const deck = new Deck({
       slides: [{ name: 'Test', shapes: [], order: [] }]
-    });
+    }, canvas);
 
     // Though, slides is a private property, I need to access it anyway in sake of the tests
     // This is done to test if slides render() behaves as expected
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const renderSpy = jest.spyOn(deck.slides[0], 'render');
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
 
     deck.render(); // eslint-disable-line @typescript-eslint/no-floating-promises
     deck.render(); // eslint-disable-line @typescript-eslint/no-floating-promises
@@ -188,13 +208,16 @@ describe('deck', () => {
 
     expect(renderSpy).toHaveBeenCalledTimes(1);
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(0);
   });
 
   it('should properly add a shape to all the slides in the deck', () => {
     expect.hasAssertions();
 
+    const canvas = Canvas.create();
     const shape: ShapeRenderable = new Shape();
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
     const deck = new Deck({
       slides: [
         {
@@ -203,7 +226,7 @@ describe('deck', () => {
           order: []
         }
       ]
-    });
+    }, canvas);
 
     deck.addShape('Shape 2', shape);
 
@@ -212,13 +235,16 @@ describe('deck', () => {
     // @ts-expect-error
     expect(deck.slides[0].shapes.size).toBe(2);
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly throw an error if shape already exists in other slides', () => {
     expect.hasAssertions();
 
+    const canvas = Canvas.create();
     const shape: ShapeRenderable = new Shape();
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
     const deck = new Deck({
       slides: [
         {
@@ -227,7 +253,7 @@ describe('deck', () => {
           order: []
         }
       ]
-    });
+    }, canvas);
 
     expect(() => deck.addShape('Shape', shape)).toThrow(
       'You are trying to add a shape with the name "Shape" into the deck. ' +
@@ -236,13 +262,16 @@ describe('deck', () => {
       'Remove the shape from the slides [Test] or rename the shape.'
     );
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly add an animation to all the slides in the deck', () => {
     expect.hasAssertions();
 
+    const canvas = Canvas.create();
     const animation: Animationable = new Print();
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
     const deck = new Deck({
       slides: [
         {
@@ -252,7 +281,7 @@ describe('deck', () => {
           animations: [{ name: 'Animation', type: 'Print' as const, options: {} }]
         }
       ]
-    });
+    }, canvas);
 
     deck.addAnimation('Animation 2', animation);
 
@@ -261,13 +290,16 @@ describe('deck', () => {
     // @ts-expect-error
     expect(deck.slides[0].animations.size).toBe(2);
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly throw an error if animation already exists in other slides', () => {
     expect.hasAssertions();
 
+    const canvas = Canvas.create();
     const animation: Animationable = new Print();
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
     const deck = new Deck({
       slides: [
         {
@@ -277,7 +309,7 @@ describe('deck', () => {
           animations: [{ name: 'Animation', type: 'Print' as const, options: {} }]
         }
       ]
-    });
+    }, canvas);
 
     expect(() => deck.addAnimation('Animation', animation)).toThrow(
       'You are trying to add an animation with the name "Animation" into the deck. ' +
@@ -286,12 +318,15 @@ describe('deck', () => {
       'Remove the animations from the slides [Test] or rename the animation.'
     );
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should properly throw an error if name of the slide already exists in the deck', () => {
     expect.hasAssertions();
 
+    const canvas = Canvas.create();
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
     const deck = new Deck({
       slides: [
         {
@@ -300,7 +335,7 @@ describe('deck', () => {
           order: []
         }
       ]
-    });
+    }, canvas);
 
     const slide = new Slide();
     slide.name = 'Slide #1';
@@ -311,6 +346,7 @@ describe('deck', () => {
       'Remove the slide "Slide #1" from the deck or rename the slide you tried to add.'
     );
 
-    AFTER_EACH(deck);
+    deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 });

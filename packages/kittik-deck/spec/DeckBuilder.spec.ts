@@ -6,11 +6,14 @@ describe('deck builder', () => {
   it('should properly create deck using DeckBuilder', () => {
     expect.hasAssertions();
 
+    const canvas = Canvas.create();
+    const resetSpy = jest.spyOn(canvas, 'reset').mockReturnThis();
+
     const PREDEFINED_SHAPES = { 'Test Shape': ShapeBuilder.start('Text').end() };
     const PREDEFINED_ANIMATIONS = { 'Test Animation': AnimationBuilder.start('Focus').end() };
     const deck = DeckBuilder
       .start(PREDEFINED_SHAPES, PREDEFINED_ANIMATIONS)
-      .withCanvas(Canvas.create())
+      .withCanvas(canvas)
       .withSlide(
         (builder) => builder
           .withName('Slide #1')
@@ -52,5 +55,6 @@ describe('deck builder', () => {
     }]);
 
     deck.exit();
+    expect(resetSpy).toHaveBeenCalledTimes(1);
   });
 });

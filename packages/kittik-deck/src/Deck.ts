@@ -19,15 +19,17 @@ export declare interface Deck {
 }
 
 export class Deck extends EventEmitter {
-  public canvas: Canvas = Canvas.create().reset().hideCursor();
-  private readonly slides: Slide[] = [];
+  public canvas: Canvas;
   private isRendering = false;
   private currentSlideIndex = 0;
+  private readonly slides: Slide[] = [];
 
   public constructor (declaration?: DeckDeclaration, canvas?: Canvas) {
     super();
 
-    if (typeof canvas !== 'undefined') {
+    if (typeof canvas === 'undefined') {
+      this.canvas = Canvas.create().reset().hideCursor();
+    } else {
       this.canvas = canvas;
     }
 
