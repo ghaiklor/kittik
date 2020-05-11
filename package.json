@@ -35,6 +35,7 @@
   "devDependencies": {
     "git-cz": "4.3.1",
     "lerna": "3.20.2",
-    "npm-check": "5.9.2"
+    "npm-check": "5.9.2",
+    "ts-node": "8.10.1"
   }
 }

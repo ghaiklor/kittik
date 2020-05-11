@@ -4,7 +4,23 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Jest (Current File)",
+      "name": "Debug Current File",
+      "console": "integratedTerminal",
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register"
+      ],
+      "args": [
+        "${workspaceFolder}/${relativeFile}"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Test Current File",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
       "console": "integratedTerminal",
       "args": [
