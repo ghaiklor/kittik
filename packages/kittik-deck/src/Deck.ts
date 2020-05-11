@@ -19,7 +19,7 @@ export declare interface Deck {
 }
 
 export class Deck extends EventEmitter {
-  public canvas: Canvas = Canvas.create();
+  public canvas: Canvas = Canvas.create().reset().hideCursor();
   private readonly slides: Slide[] = [];
   private isRendering = false;
   private currentSlideIndex = 0;
@@ -117,6 +117,7 @@ export class Deck extends EventEmitter {
     process.stdin.pause();
     process.stdin.removeAllListeners();
 
+    this.canvas.reset().showCursor();
     this.emit('exit');
   }
 
