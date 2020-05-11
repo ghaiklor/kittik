@@ -6,7 +6,6 @@
       "request": "launch",
       "name": "Jest (Current File)",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "runtimeExecutable": "~/.config/nvm/13.11.0/bin/node",
       "console": "integratedTerminal",
       "args": [
         "${relativeFile}",
