@@ -16,15 +16,14 @@ jobs:
         node-version: [10.x, 12.x, 14.x]
 
     steps:
-    - name: Checking out source code
-      uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - uses: actions/checkout@v2
+    - name: Use Node.js v${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Installing\Bootstrapping dependencies
+    - name: Installing Dependencies
       run: npm install
-    - name: Building the project
+    - name: Building the Project
       run: npm run all
-    - name: Sending coverage to Codecov
+    - name: Sending Coverage to Codecov
       run: bash <(curl -s https://codecov.io/bash)
