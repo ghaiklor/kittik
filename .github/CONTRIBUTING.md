@@ -6,7 +6,7 @@
 
 ## Building Locally
 
-After you cloned the repository, all you need to do is run npm install command:
+After you cloned the repository, all you need to do is run `npm install` command:
 
 ```shell
 npm install
