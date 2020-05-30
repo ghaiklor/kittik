@@ -7,11 +7,11 @@
       "name": "Debug Current File",
       "console": "integratedTerminal",
       "runtimeArgs": [
-        "-r",
+        "--require",
         "ts-node/register"
       ],
       "args": [
-        "${workspaceFolder}/${relativeFile}"
+        "${relativeFile}"
       ],
       "skipFiles": [
         "<node_internals>/**"
