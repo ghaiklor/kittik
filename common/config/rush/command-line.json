@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/command-line.schema.json",
+  "commands": [
+    {
+      "allowWarningsInSuccessfulBuild": false,
+      "commandKind": "global",
+      "description": "This command will clean everything and run the whole build pipeline",
+      "name": "all",
+      "safeForSimultaneousRushProcesses": true,
+      "shellCommand": "rush clean && rush rebuild && rush test && rush lint",
+      "summary": "Clean & Run the entire build pipeline (clean, build, test, lint) for all projects"
+    },
+    {
+      "allowWarningsInSuccessfulBuild": false,
+      "commandKind": "bulk",
+      "description": "This command will clean all the artifacts from all projects by calling 'clean' script in packages",
+      "enableParallelism": true,
+      "ignoreDependencyOrder": true,
+      "ignoreMissingScript": false,
+      "incremental": false,
+      "name": "clean",
+      "safeForSimultaneousRushProcesses": false,
+      "summary": "Clean the artifacts for all projects"
+    },
+    {
+      "allowWarningsInSuccessfulBuild": false,
+      "commandKind": "global",
+      "description": "Install & Run git-cz hook to create a commit by using handy generator",
+      "name": "commit",
+      "safeForSimultaneousRushProcesses": false,
+      "shellCommand": "node common/scripts/install-run.js git-cz@4.6.2 git-cz",
+      "summary": "Commit changes"
+    },
+    {
+      "allowWarningsInSuccessfulBuild": false,
+      "commandKind": "bulk",
+      "description": "This command will run lint checks in entire repository by calling 'lint' script in packages",
+      "enableParallelism": true,
+      "ignoreDependencyOrder": true,
+      "ignoreMissingScript": false,
+      "incremental": false,
+      "name": "lint",
+      "safeForSimultaneousRushProcesses": false,
+      "summary": "Run lint checks for all projects"
+    },
+    {
+      "allowWarningsInSuccessfulBuild": false,
+      "commandKind": "bulk",
+      "description": "This command will run tests in entire repository by calling 'test' script in packages",
+      "enableParallelism": true,
+      "ignoreDependencyOrder": true,
+      "ignoreMissingScript": false,
+      "incremental": false,
+      "name": "test",
+      "safeForSimultaneousRushProcesses": false,
+      "summary": "Run tests for all projects"
+    }
+  ]
+}

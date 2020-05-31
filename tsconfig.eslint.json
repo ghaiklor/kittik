@@ -1,8 +1,5 @@
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "noEmit": true
-  },
+  "extends": "./common/temp/node_modules/kittik-tsc-config/tsconfig.eslint.json",
   "include": [
     "**/*"
   ]

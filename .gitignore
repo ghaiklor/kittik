@@ -134,3 +134,7 @@ temp/
 
 # Ignore all local history of files
 .history
+
+# Rush temporary files
+common/temp/
+**/.rush/temp/

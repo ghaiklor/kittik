@@ -1,0 +1,45 @@
+{
+  "name": "kittik-eslint-config",
+  "version": "1.0.0",
+  "description": "ESLint configuration for kittik project",
+  "main": ".eslintrc.json",
+  "homepage": "https://github.com/ghaiklor/kittik#readme",
+  "license": "MIT",
+  "author": {
+    "email": "ghaiklor@gmail.com",
+    "name": "Eugene Obrezkov",
+    "url": "https://ghaiklor.com"
+  },
+  "bugs": {
+    "url": "https://github.com/ghaiklor/kittik/issues",
+    "email": "ghaiklor@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ghaiklor/kittik.git"
+  },
+  "keywords": [
+    "eslint",
+    "configuration",
+    "kittik"
+  ],
+  "files": [
+    ".eslintrc.json"
+  ],
+  "scripts": {
+    "build": "exit 0",
+    "clean": "exit 0",
+    "lint": "exit 0",
+    "test": "exit 0"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": "3.0.2",
+    "@typescript-eslint/parser": "3.0.2",
+    "eslint-config-standard-with-typescript": "18.0.2",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-jest": "23.13.2",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1"
+  }
+}

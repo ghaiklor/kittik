@@ -1,0 +1,38 @@
+{
+  "name": "kittik-jest-config",
+  "version": "1.0.0",
+  "description": "Jest configuration for kittik project",
+  "main": "jest.config.js",
+  "homepage": "https://github.com/ghaiklor/kittik#readme",
+  "license": "MIT",
+  "author": {
+    "email": "ghaiklor@gmail.com",
+    "name": "Eugene Obrezkov",
+    "url": "https://ghaiklor.com"
+  },
+  "bugs": {
+    "url": "https://github.com/ghaiklor/kittik/issues",
+    "email": "ghaiklor@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ghaiklor/kittik.git"
+  },
+  "keywords": [
+    "jest",
+    "configuration",
+    "kittik"
+  ],
+  "files": [
+    "jest.config.js"
+  ],
+  "scripts": {
+    "build": "exit 0",
+    "clean": "exit 0",
+    "lint": "exit 0",
+    "test": "exit 0"
+  },
+  "peerDependencies": {
+    "ts-jest": "26.1.0"
+  }
+}

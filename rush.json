@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+  "rushVersion": "5.23.5",
+  "npmVersion": "6.14.5",
+  "nodeSupportedVersionRange": ">=14.0.0",
+  "suppressNodeLtsWarning": true,
+  "ensureConsistentVersions": true,
+  "projectFolderMinDepth": 3,
+  "projectFolderMaxDepth": 3,
+  "gitPolicy": {
+    "versionBumpCommitMessage": "chore: 🤖 applying package updates"
+  },
+  "repository": {
+    "url": "git@github.com:ghaiklor/kittik.git",
+    "defaultBranch": "master",
+    "defaultRemote": "origin"
+  },
+  "projects": [
+    {
+      "packageName": "kittik-animation-basic",
+      "projectFolder": "src/animations/kittik-animation-basic",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-animation-focus",
+      "projectFolder": "src/animations/kittik-animation-focus",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-animation-print",
+      "projectFolder": "src/animations/kittik-animation-print",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-animation-slide",
+      "projectFolder": "src/animations/kittik-animation-slide",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-deck",
+      "projectFolder": "src/main/kittik-deck",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-shape-basic",
+      "projectFolder": "src/shapes/kittik-shape-basic",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-shape-code",
+      "projectFolder": "src/shapes/kittik-shape-code",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-shape-fig-text",
+      "projectFolder": "src/shapes/kittik-shape-fig-text",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-shape-image",
+      "projectFolder": "src/shapes/kittik-shape-image",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-shape-rectangle",
+      "projectFolder": "src/shapes/kittik-shape-rectangle",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-shape-text",
+      "projectFolder": "src/shapes/kittik-shape-text",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-slide",
+      "projectFolder": "src/main/kittik-slide",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-eslint-config",
+      "projectFolder": "common/config/eslint",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-tsc-config",
+      "projectFolder": "common/config/tsc",
+      "shouldPublish": true
+    },
+    {
+      "packageName": "kittik-jest-config",
+      "projectFolder": "common/config/jest",
+      "shouldPublish": true
+    }
+  ]
+}
