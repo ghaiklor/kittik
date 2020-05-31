@@ -22,8 +22,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Check for missing change logs
-      run: node common/scripts/install-run-rush.js change --verify
     - name: Install dependencies
       run: node common/scripts/install-run-rush.js install
     - name: Build the project
