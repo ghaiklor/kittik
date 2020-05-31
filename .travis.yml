@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - node
+  - lts/*
+
+install: node common/scripts/install-run-rush.js install
+script: node common/scripts/install-run-rush.js all
+after_success: bash <(curl -s https://codecov.io/bash)
