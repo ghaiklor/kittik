@@ -27,6 +27,6 @@ jobs:
     - name: Install dependencies
       run: node common/scripts/install-run-rush.js install
     - name: Build the project
-      run: node common/scripts/install-run-rush.js all --verbose
+      run: node common/scripts/install-run-rush.js all
     - name: Send coverage to Codecov
       run: bash <(curl -s https://codecov.io/bash)
