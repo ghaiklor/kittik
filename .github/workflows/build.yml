@@ -16,14 +16,17 @@ jobs:
         node-version: [10.x, 12.x, 14.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js v${{ matrix.node-version }}
+    - name: Clone the repository
+      uses: actions/checkout@v2
+    - name: Setup Node.js v${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Installing Dependencies
-      run: npm install
-    - name: Building the Project
-      run: npm run all
-    - name: Sending Coverage to Codecov
+    - name: Check for missing change logs
+      run: node common/scripts/install-run-rush.js change --verify
+    - name: Install dependencies
+      run: node common/scripts/install-run-rush.js install
+    - name: Build the project
+      run: node common/scripts/install-run-rush.js all --verbose
+    - name: Send coverage to Codecov
       run: bash <(curl -s https://codecov.io/bash)
