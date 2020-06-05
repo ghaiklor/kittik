@@ -9,8 +9,8 @@
   "projectFolderMaxDepth": 3,
   "pnpmOptions": {
     "pnpmStore": "local",
-    "resolutionStrategy": "fast",
-    "strictPeerDependencies": true
+    "resolutionStrategy": "fewer-dependencies",
+    "strictPeerDependencies": false
   },
   "gitPolicy": {
     "versionBumpCommitMessage": "chore: 🤖 applying package updates"
