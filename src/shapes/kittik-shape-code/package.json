@@ -47,7 +47,7 @@
   "devDependencies": {
     "@types/jest": "25.2.3",
     "@types/js-beautify": "1.11.0",
-    "@typescript-eslint/eslint-plugin": "3.0.2",
+    "@typescript-eslint/eslint-plugin": "3.1.0",
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-jest": "23.13.2",
     "eslint-plugin-node": "11.1.0",
@@ -61,6 +61,6 @@
     "rimraf": "3.0.2",
     "terminal-canvas": "3.1.1",
     "ts-jest": "26.1.0",
-    "typescript": "3.9.3"
+    "typescript": "3.9.5"
   }
 }
