@@ -17,6 +17,7 @@ dependencies:
   '@types/figlet': 1.2.0
   '@types/jest': 25.2.3
   '@types/js-beautify': 1.11.0
+  '@types/node': 14.0.11
   '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
   '@typescript-eslint/parser': 3.1.0_eslint@7.1.0+typescript@3.9.5
   eslint: 7.1.0
@@ -5142,6 +5143,7 @@ packages:
   'file:projects/kittik-animation-focus.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
+      '@types/node': 14.0.11
       '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
       eslint: 7.1.0
       eslint-plugin-import: 2.20.2_eslint@7.1.0
@@ -5160,12 +5162,13 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-diNKQT3yl4LK5tWeK3LDLNCAJLJhzV7xBwleMt1EEWeagn2s9iN4l8pyvyn6H1EbSBPvbQd+MOmcwYBNrvnlHQ==
+      integrity: sha512-0RKOzTnvVJUPCrHv4rx7rGxzUq3SiP79uavdQEO+TTnYIYMqm09mdahIBY0vfSOCPPkZ365ooiKFY5XSBFSaXw==
       tarball: 'file:projects/kittik-animation-focus.tgz'
     version: 0.0.0
   'file:projects/kittik-animation-print.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
+      '@types/node': 14.0.11
       '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
       eslint: 7.1.0
       eslint-plugin-import: 2.20.2_eslint@7.1.0
@@ -5184,12 +5187,13 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-l53w65nCabT3+OTjVAMqnBuw1hoZfKry5P0ae4N02gC+f2EOcZjuMH+kEsYkWNbL7pccQGFtJeyudZYPITYOYA==
+      integrity: sha512-wryZLTCYiMxYN+rpwTZgWKtTMc6v2xxjZwvNfFGcnJDMvt0FzLFvPgf3WsMyMy3pQiQn8AlU/cziPOn+ofqZ8g==
       tarball: 'file:projects/kittik-animation-print.tgz'
     version: 0.0.0
   'file:projects/kittik-animation-slide.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
+      '@types/node': 14.0.11
       '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
       eslint: 7.1.0
       eslint-plugin-import: 2.20.2_eslint@7.1.0
@@ -5208,12 +5212,13 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-X5GPRKtbpwGsb28+jE3g2JojOshmMsz/ufWBXDsc5c4vslR3k3Doi+ZQjvXQkSSoiEhptRCR8Tafl6RbEtEIqg==
+      integrity: sha512-aYpTl6PzvX24GqQmNkqZQz67+CWGtA4/woSVheELrfLNnYbJ+r67c0chHn5r9Yn3WSffy6bNiNs6ZtjhySOERw==
       tarball: 'file:projects/kittik-animation-slide.tgz'
     version: 0.0.0
   'file:projects/kittik-deck.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
+      '@types/node': 14.0.11
       '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
       eslint: 7.1.0
       eslint-plugin-import: 2.20.2_eslint@7.1.0
@@ -5232,7 +5237,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-LFF/jnAAZUetvxx6o90XKawEhuEsbZnflzh8ckDoBwGt6Lrh1vCTwLOdwLKjH5nhra4e9JqEzUKas2mBv+2bdA==
+      integrity: sha512-i9CFfZsCGdBYAgdSFEPTWdrkx2y4EVJHAvT7jrn5Lqj/U0ru1lJ3rkqpyjOMvxwhYFg6NyUj0fA8Zc/6EsLJPw==
       tarball: 'file:projects/kittik-deck.tgz'
     version: 0.0.0
   'file:projects/kittik-eslint-config.tgz_eslint@7.1.0+typescript@3.9.5':
@@ -5420,6 +5425,7 @@ packages:
   'file:projects/kittik-slide.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
+      '@types/node': 14.0.11
       '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
       eslint: 7.1.0
       eslint-plugin-import: 2.20.2_eslint@7.1.0
@@ -5438,7 +5444,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-6ew13R/OyQKr3IHQiQo0btUJNXqFBASQEXsVil5J65DQhe6wUnmk4z/mpJPd+lUmN+BYjzCi2iThB3rfYpjT2Q==
+      integrity: sha512-MhyFPfjjM3OvLePkFyDkw2wtYqviIGxJoA7HbSZxJErhbjcyp10PYCf64/u0hnIqI+aE6IQ853kO4uPa53LQsA==
       tarball: 'file:projects/kittik-slide.tgz'
     version: 0.0.0
   'file:projects/kittik-tsc-config.tgz':
@@ -5468,6 +5474,7 @@ specifiers:
   '@types/figlet': 1.2.0
   '@types/jest': 25.2.3
   '@types/js-beautify': 1.11.0
+  '@types/node': 14.0.11
   '@typescript-eslint/eslint-plugin': 3.1.0
   '@typescript-eslint/parser': 3.1.0
   eslint: 7.1.0
