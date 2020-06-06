@@ -63,6 +63,15 @@
       "safeForSimultaneousRushProcesses": false,
       "shellCommand": "find . -name package.json -maxdepth 4 | xargs -o -L 1 node common/scripts/install-run.js npm-check-updates@latest ncu --interactive --packageFile",
       "summary": "Upgrade all dependencies"
+    },
+    {
+      "allowWarningsInSuccessfulBuild": false,
+      "commandKind": "global",
+      "description": "This command will generate a changelog after version bump",
+      "name": "changelog",
+      "safeForSimultaneousRushProcesses": false,
+      "shellCommand": "node common/scripts/install-run.js standard-changelog@latest standard-changelog --infile .github/CHANGELOG.md --same-file --pkg src/main/kittik/package.json",
+      "summary": "Generate a changelog"
     }
   ]
 }
