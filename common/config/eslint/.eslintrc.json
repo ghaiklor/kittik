@@ -33,6 +33,11 @@
     "promise",
     "standard"
   ],
+  "settings": {
+    "jest": {
+      "version": 26
+    }
+  },
   "rules": {
     "@typescript-eslint/indent": [
       "error",
