@@ -1,6 +1,6 @@
 {
   "name": "kittik-deck",
-  "version": "5.1.0-beta.3",
+  "version": "6.0.0-rc.1",
   "description": "Deck package provides abstraction over collection of slides in Kittik",
   "license": "MIT",
   "type": "commonjs",
@@ -37,7 +37,7 @@
     "test": "jest 2>&1"
   },
   "dependencies": {
-    "kittik-slide": "5.1.0-beta.3",
+    "kittik-slide": "6.0.0-rc.1",
     "terminal-canvas": "3.1.1"
   },
   "devDependencies": {
@@ -50,15 +50,15 @@
     "eslint-plugin-standard": "4.0.1",
     "eslint": "7.2.0",
     "jest": "26.0.1",
-    "kittik-animation-basic": "5.1.0-beta.3",
-    "kittik-animation-focus": "5.1.0-beta.3",
-    "kittik-animation-print": "5.1.0-beta.3",
-    "kittik-animation-slide": "5.1.0-beta.3",
-    "kittik-eslint-config": "1.0.0",
-    "kittik-jest-config": "1.0.0",
-    "kittik-shape-basic": "5.1.0-beta.3",
-    "kittik-shape-fig-text": "5.1.0-beta.3",
-    "kittik-tsc-config": "1.0.0",
+    "kittik-animation-basic": "6.0.0-rc.1",
+    "kittik-animation-focus": "6.0.0-rc.1",
+    "kittik-animation-print": "6.0.0-rc.1",
+    "kittik-animation-slide": "6.0.0-rc.1",
+    "kittik-eslint-config": "6.0.0-rc.1",
+    "kittik-jest-config": "6.0.0-rc.1",
+    "kittik-shape-basic": "6.0.0-rc.1",
+    "kittik-shape-fig-text": "6.0.0-rc.1",
+    "kittik-tsc-config": "6.0.0-rc.1",
     "rimraf": "3.0.2",
     "ts-jest": "26.1.0",
     "typescript": "3.9.5",

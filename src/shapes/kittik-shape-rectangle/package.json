@@ -1,6 +1,6 @@
 {
   "name": "kittik-shape-rectangle",
-  "version": "5.1.0-beta.3",
+  "version": "6.0.0-rc.1",
   "description": "Shape for rendering rectangles in Kittik",
   "license": "MIT",
   "type": "commonjs",
@@ -38,7 +38,7 @@
     "test": "jest 2>&1"
   },
   "dependencies": {
-    "kittik-shape-basic": "5.1.0-beta.3"
+    "kittik-shape-basic": "6.0.0-rc.1"
   },
   "devDependencies": {
     "@types/jest": "25.2.3",
@@ -50,9 +50,9 @@
     "eslint-plugin-standard": "4.0.1",
     "eslint": "7.2.0",
     "jest": "26.0.1",
-    "kittik-eslint-config": "1.0.0",
-    "kittik-jest-config": "1.0.0",
-    "kittik-tsc-config": "1.0.0",
+    "kittik-eslint-config": "6.0.0-rc.1",
+    "kittik-jest-config": "6.0.0-rc.1",
+    "kittik-tsc-config": "6.0.0-rc.1",
     "rimraf": "3.0.2",
     "terminal-canvas": "3.1.1",
     "ts-jest": "26.1.0",

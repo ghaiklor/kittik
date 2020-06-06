@@ -1,3 +1,38 @@
+# [6.0.0-rc.1](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.3...v6.0.0-rc.1) (2020-06-06)
+
+### Bug Fixes
+
+* 🐛 canvas is not cleaning up when switching slides ([e6c6dd9](https://github.com/ghaiklor/kittik/commit/e6c6dd9f622bea9071f51776d657f7c87bdf680e))
+* 🐛 deck could exit while rendering ([387c15f](https://github.com/ghaiklor/kittik/commit/387c15f1318b053d57d3ac32595a99602151ccbb))
+* 🐛 deck is not clearing up canvas when showing\exiting ([2224e57](https://github.com/ghaiklor/kittik/commit/2224e5745c92e085b8e25cfb89b0b75103b124b9))
+* 🐛 Deck uses an old call signature for creating slides ([f595679](https://github.com/ghaiklor/kittik/commit/f5956794762a2b86565c93c73429d8558c9d50e7))
+* 🐛 image shape is not rendering in iTerm ([c9b0942](https://github.com/ghaiklor/kittik/commit/c9b09428df65785d8bf036c1712f030b8dc04202))
+* 🐛 update terminal-canvas with fixed eraseScreen behaviour ([f580d68](https://github.com/ghaiklor/kittik/commit/f580d685ac70235708fdd350b148e5a1ffc60a4a))
+* 🐛 when passing custom canvas, it still resets the original ([0748ffb](https://github.com/ghaiklor/kittik/commit/0748ffb7e6d1557634da3515142cc301142efca7))
+
+### Code Refactoring
+
+* 💡 move canvas property from deck decl to constructor ([104953f](https://github.com/ghaiklor/kittik/commit/104953fde5b2effcb82cdcdae2bc117eebf046af))
+* 💡 swap order for canvas and declaration args in Slide ([3de450f](https://github.com/ghaiklor/kittik/commit/3de450f0b668e2b573fdc69a8b2b5d8a168e61dc))
+
+### Features
+
+* 🎸 add a meta package kittik that reexports everything ([54fdf7e](https://github.com/ghaiklor/kittik/commit/54fdf7e2689de01998fdfce50ad3f5d90e4936df))
+* 🎸 Deck extends an EventEmitter and produces exit event ([2d28c52](https://github.com/ghaiklor/kittik/commit/2d28c523c1a447e8ac1fee470a6dee1ec4d549f8))
+* 🎸 DeckBuilder can accept a predefined shapes\animations ([64988f6](https://github.com/ghaiklor/kittik/commit/64988f6c06a46ae08273b46c97dc3474246023f4))
+* 🎸 SlideBuilder can be started with predefined shapes\anim ([1738ed1](https://github.com/ghaiklor/kittik/commit/1738ed11b2ca5fa71fd4d0cd2b464f1840e7c890))
+
+### BREAKING CHANGES
+
+* 🧨 DeckBuilder has no longer methods withShape(), withAnimation(). If you
+want to add a "global" shape, you can create a predefined set of
+shapes\animations and pass them into DeckBuilder.start(shapes,
+animations).
+* 🧨 DeckDeclaration no longer accepts canvas property. Instead, it must go
+into Deck constructor as a separate argument.
+* 🧨 Slide constructor() has changed its signature from (canvas, declaration)
+to (declaration, canvas)
+
 # [5.1.0-beta.3](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.2...v5.1.0-beta.3) (2020-05-04)
 
 ### Features
