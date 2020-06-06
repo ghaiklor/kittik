@@ -1,3 +1,0 @@
-{
-  "extends": "./node_modules/kittik-eslint-config/.eslintrc.json"
-}

@@ -34,6 +34,10 @@
     "standard"
   ],
   "rules": {
+    "@typescript-eslint/indent": [
+      "error",
+      2
+    ],
     "@typescript-eslint/no-magic-numbers": [
       "off"
     ],
