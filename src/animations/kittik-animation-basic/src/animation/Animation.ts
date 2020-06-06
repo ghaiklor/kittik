@@ -104,7 +104,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
     P extends keyof S
   >(options: AnimationPropertyOptions<S, P>): Promise<S> {
     const { shape, property, startValue, endValue } = options;
-    const byValue = options.byValue ?? (endValue - startValue);
+    const byValue = options.byValue ?? endValue - startValue;
     const duration = options.duration ?? this.duration;
     const easing = options.easing ?? this.easing;
     const delay = duration / (endValue - startValue);
