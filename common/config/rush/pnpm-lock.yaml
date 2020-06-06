@@ -1,4 +1,5 @@
 dependencies:
+  '@rush-temp/kittik': 'file:projects/kittik.tgz_@typescript-eslint+parser@3.1.0'
   '@rush-temp/kittik-animation-basic': 'file:projects/kittik-animation-basic.tgz_@typescript-eslint+parser@3.1.0'
   '@rush-temp/kittik-animation-focus': 'file:projects/kittik-animation-focus.tgz_@typescript-eslint+parser@3.1.0'
   '@rush-temp/kittik-animation-print': 'file:projects/kittik-animation-print.tgz_@typescript-eslint+parser@3.1.0'
@@ -20,6 +21,7 @@ dependencies:
   '@types/node': 14.0.11
   '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
   '@typescript-eslint/parser': 3.1.0_eslint@7.2.0+typescript@3.9.5
+  commander: 5.1.0
   eslint: 7.2.0
   eslint-config-standard-with-typescript: 18.0.2_1284f165f7c018f1ec504941742818bd
   eslint-plugin-import: 2.20.2_eslint@7.2.0
@@ -1286,6 +1288,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+  /commander/5.1.0:
+    dev: false
+    engines:
+      node: '>= 6'
+    resolution:
+      integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
   /component-emitter/1.3.0:
     dev: false
     resolution:
@@ -5454,8 +5462,33 @@ packages:
       integrity: sha512-PQGFiVdChFFMNDLg88g5btAZxEYw7NKyNemuCqGnOq1cRG9ik0Ww4eEN4nXI0ubU1x4VsJMQtxhDsdZ3l7YMEQ==
       tarball: 'file:projects/kittik-tsc-config.tgz'
     version: 0.0.0
+  'file:projects/kittik.tgz_@typescript-eslint+parser@3.1.0':
+    dependencies:
+      '@types/jest': 25.2.3
+      '@types/node': 14.0.11
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      commander: 5.1.0
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
+      eslint-plugin-promise: 4.2.1
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
+      jest: 26.0.1
+      rimraf: 3.0.2
+      typescript: 3.9.5
+    dev: false
+    id: 'file:projects/kittik.tgz'
+    name: '@rush-temp/kittik'
+    peerDependencies:
+      '@typescript-eslint/parser': '*'
+    resolution:
+      integrity: sha512-D6ecyE+Fnakg/UStTm85Ydzg8b0qt5GSWPVw3J1uOcKHleVFagwIqqT8BGsamI9Birk4vjzm1CUUDaKEHAPQCw==
+      tarball: 'file:projects/kittik.tgz'
+    version: 0.0.0
 registry: ''
 specifiers:
+  '@rush-temp/kittik': 'file:./projects/kittik.tgz'
   '@rush-temp/kittik-animation-basic': 'file:./projects/kittik-animation-basic.tgz'
   '@rush-temp/kittik-animation-focus': 'file:./projects/kittik-animation-focus.tgz'
   '@rush-temp/kittik-animation-print': 'file:./projects/kittik-animation-print.tgz'
@@ -5477,6 +5510,7 @@ specifiers:
   '@types/node': 14.0.11
   '@typescript-eslint/eslint-plugin': 3.1.0
   '@typescript-eslint/parser': 3.1.0
+  commander: 5.1.0
   eslint: 7.2.0
   eslint-config-standard-with-typescript: 18.0.2
   eslint-plugin-import: 2.20.2

@@ -95,6 +95,11 @@
       "packageName": "kittik-jest-config",
       "projectFolder": "common/config/jest",
       "shouldPublish": true
+    },
+    {
+      "packageName": "kittik",
+      "projectFolder": "src/main/kittik",
+      "shouldPublish": true
     }
   ]
 }
