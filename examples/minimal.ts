@@ -1,4 +1,4 @@
-import { DeckBuilder, ShapeBuilder } from '../packages/kittik-deck';
+import { DeckBuilder, ShapeBuilder } from '../src/main/kittik';
 
 DeckBuilder
   .start()
