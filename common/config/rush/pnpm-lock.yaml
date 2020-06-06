@@ -4,7 +4,7 @@ dependencies:
   '@rush-temp/kittik-animation-print': 'file:projects/kittik-animation-print.tgz_@typescript-eslint+parser@3.1.0'
   '@rush-temp/kittik-animation-slide': 'file:projects/kittik-animation-slide.tgz_@typescript-eslint+parser@3.1.0'
   '@rush-temp/kittik-deck': 'file:projects/kittik-deck.tgz_@typescript-eslint+parser@3.1.0'
-  '@rush-temp/kittik-eslint-config': 'file:projects/kittik-eslint-config.tgz_eslint@7.1.0+typescript@3.9.5'
+  '@rush-temp/kittik-eslint-config': 'file:projects/kittik-eslint-config.tgz_eslint@7.2.0+typescript@3.9.5'
   '@rush-temp/kittik-jest-config': 'file:projects/kittik-jest-config.tgz_jest@26.0.1+typescript@3.9.5'
   '@rush-temp/kittik-shape-basic': 'file:projects/kittik-shape-basic.tgz_@typescript-eslint+parser@3.1.0'
   '@rush-temp/kittik-shape-code': 'file:projects/kittik-shape-code.tgz_@typescript-eslint+parser@3.1.0'
@@ -18,15 +18,15 @@ dependencies:
   '@types/jest': 25.2.3
   '@types/js-beautify': 1.11.0
   '@types/node': 14.0.11
-  '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-  '@typescript-eslint/parser': 3.1.0_eslint@7.1.0+typescript@3.9.5
-  eslint: 7.1.0
-  eslint-config-standard-with-typescript: 18.0.2_433831c894f91460e5e8cca080fead49
-  eslint-plugin-import: 2.20.2_eslint@7.1.0
-  eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-  eslint-plugin-node: 11.1.0_eslint@7.1.0
+  '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+  '@typescript-eslint/parser': 3.1.0_eslint@7.2.0+typescript@3.9.5
+  eslint: 7.2.0
+  eslint-config-standard-with-typescript: 18.0.2_1284f165f7c018f1ec504941742818bd
+  eslint-plugin-import: 2.20.2_eslint@7.2.0
+  eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+  eslint-plugin-node: 11.1.0_eslint@7.2.0
   eslint-plugin-promise: 4.2.1
-  eslint-plugin-standard: 4.0.1_eslint@7.1.0
+  eslint-plugin-standard: 4.0.1_eslint@7.2.0
   figlet: 1.4.0
   jest: 26.0.1
   js-beautify: 1.11.0
@@ -629,11 +629,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Dk/IDOPtOgubt/IaevIUbTgV7doaKkoorvOyYM2CMwuDyP89bekI7H4xLIwunNYiK9jhCkmc6pUrJk3cj2AB9w==
-  /@typescript-eslint/eslint-plugin/3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87:
+  /@typescript-eslint/eslint-plugin/3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6:
     dependencies:
-      '@typescript-eslint/experimental-utils': 3.1.0_eslint@7.1.0+typescript@3.9.5
-      '@typescript-eslint/parser': 3.1.0_eslint@7.1.0+typescript@3.9.5
-      eslint: 7.1.0
+      '@typescript-eslint/experimental-utils': 3.1.0_eslint@7.2.0+typescript@3.9.5
+      '@typescript-eslint/parser': 3.1.0_eslint@7.2.0+typescript@3.9.5
+      eslint: 7.2.0
       functional-red-black-tree: 1.0.1
       regexpp: 3.1.0
       semver: 7.3.2
@@ -651,11 +651,11 @@ packages:
         optional: true
     resolution:
       integrity: sha512-D52KwdgkjYc+fmTZKW7CZpH5ZBJREJKZXRrveMiRCmlzZ+Rw9wRVJ1JAmHQ9b/+Ehy1ZeaylofDB9wwXUt83wg==
-  /@typescript-eslint/experimental-utils/2.34.0_eslint@7.1.0+typescript@3.9.5:
+  /@typescript-eslint/experimental-utils/2.34.0_eslint@7.2.0+typescript@3.9.5:
     dependencies:
       '@types/json-schema': 7.0.4
       '@typescript-eslint/typescript-estree': 2.34.0_typescript@3.9.5
-      eslint: 7.1.0
+      eslint: 7.2.0
       eslint-scope: 5.1.0
       eslint-utils: 2.0.0
     dev: false
@@ -666,11 +666,11 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-eS6FTkq+wuMJ+sgtuNTtcqavWXqsflWcfBnlYhg/nS4aZ1leewkXGbvBhaapn1q6qf4M71bsR1tez5JTRMuqwA==
-  /@typescript-eslint/experimental-utils/3.1.0_eslint@7.1.0+typescript@3.9.5:
+  /@typescript-eslint/experimental-utils/3.1.0_eslint@7.2.0+typescript@3.9.5:
     dependencies:
       '@types/json-schema': 7.0.4
       '@typescript-eslint/typescript-estree': 3.1.0_typescript@3.9.5
-      eslint: 7.1.0
+      eslint: 7.2.0
       eslint-scope: 5.1.0
       eslint-utils: 2.0.0
     dev: false
@@ -681,12 +681,12 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-Zf8JVC2K1svqPIk1CB/ehCiWPaERJBBokbMfNTNRczCbQSlQXaXtO/7OfYz9wZaecNvdSvVADt6/XQuIxhC79w==
-  /@typescript-eslint/parser/3.1.0_eslint@7.1.0+typescript@3.9.5:
+  /@typescript-eslint/parser/3.1.0_eslint@7.2.0+typescript@3.9.5:
     dependencies:
       '@types/eslint-visitor-keys': 1.0.0
-      '@typescript-eslint/experimental-utils': 3.1.0_eslint@7.1.0+typescript@3.9.5
+      '@typescript-eslint/experimental-utils': 3.1.0_eslint@7.2.0+typescript@3.9.5
       '@typescript-eslint/typescript-estree': 3.1.0_typescript@3.9.5
-      eslint: 7.1.0
+      eslint: 7.2.0
       eslint-visitor-keys: 1.2.0
       typescript: 3.9.5
     dev: false
@@ -1590,16 +1590,16 @@ packages:
       source-map: 0.6.1
     resolution:
       integrity: sha512-InuOIiKk8wwuOFg6x9BQXbzjrQhtyXh46K9bqVTPzSo2FnyMBaYGBMC6PhQy7yxxil9vIedFBweQBMK74/7o8A==
-  /eslint-config-standard-with-typescript/18.0.2_433831c894f91460e5e8cca080fead49:
+  /eslint-config-standard-with-typescript/18.0.2_1284f165f7c018f1ec504941742818bd:
     dependencies:
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      '@typescript-eslint/parser': 3.1.0_eslint@7.1.0+typescript@3.9.5
-      eslint: 7.1.0
-      eslint-config-standard: 14.1.1_5673dd9d074426f2975040ea7921253a
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      '@typescript-eslint/parser': 3.1.0_eslint@7.2.0+typescript@3.9.5
+      eslint: 7.2.0
+      eslint-config-standard: 14.1.1_3e221722e2cc3a79d6eb8f63f4f2d8b4
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       typescript: 3.9.5
     dev: false
     peerDependencies:
@@ -1612,13 +1612,13 @@ packages:
       typescript: '>=3.9'
     resolution:
       integrity: sha512-6D++u/gifJgj2hQ13e+YRyNs+1v3oihkfsL36P6HjeQjiOBdhRC/0wq3PRqfOwFA0hMCkcWBvhfO0GXWtGW9bg==
-  /eslint-config-standard/14.1.1_5673dd9d074426f2975040ea7921253a:
+  /eslint-config-standard/14.1.1_3e221722e2cc3a79d6eb8f63f4f2d8b4:
     dependencies:
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
     dev: false
     peerDependencies:
       eslint: '>=6.2.2'
@@ -1644,9 +1644,9 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-6j9xxegbqe8/kZY8cYpcp0xhbK0EgJlg3g9mib3/miLaExuuwc3n5UEfSnU6hWMbT0FAYVvDbL9RrRgpUeQIvA==
-  /eslint-plugin-es/3.0.1_eslint@7.1.0:
+  /eslint-plugin-es/3.0.1_eslint@7.2.0:
     dependencies:
-      eslint: 7.1.0
+      eslint: 7.2.0
       eslint-utils: 2.0.0
       regexpp: 3.1.0
     dev: false
@@ -1656,14 +1656,14 @@ packages:
       eslint: '>=4.19.1'
     resolution:
       integrity: sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==
-  /eslint-plugin-import/2.20.2_eslint@7.1.0:
+  /eslint-plugin-import/2.20.2_eslint@7.2.0:
     dependencies:
       array-includes: 3.1.1
       array.prototype.flat: 1.2.3
       contains-path: 0.1.0
       debug: 2.6.9
       doctrine: 1.5.0
-      eslint: 7.1.0
+      eslint: 7.2.0
       eslint-import-resolver-node: 0.3.3
       eslint-module-utils: 2.6.0
       has: 1.0.3
@@ -1678,10 +1678,10 @@ packages:
       eslint: 2.x - 6.x
     resolution:
       integrity: sha512-FObidqpXrR8OnCh4iNsxy+WACztJLXAHBO5hK79T1Hc77PgQZkyDGA5Ag9xAvRpglvLNxhH/zSmZ70/pZ31dHg==
-  /eslint-plugin-jest/23.13.2_eslint@7.1.0+typescript@3.9.5:
+  /eslint-plugin-jest/23.13.2_eslint@7.2.0+typescript@3.9.5:
     dependencies:
-      '@typescript-eslint/experimental-utils': 2.34.0_eslint@7.1.0+typescript@3.9.5
-      eslint: 7.1.0
+      '@typescript-eslint/experimental-utils': 2.34.0_eslint@7.2.0+typescript@3.9.5
+      eslint: 7.2.0
     dev: false
     engines:
       node: '>=8'
@@ -1690,10 +1690,10 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-qZit+moTXTyZFNDqSIR88/L3rdBlTU7CuW6XmyErD2FfHEkdoLgThkRbiQjzgYnX6rfgLx3Ci4eJmF4Ui5v1Cw==
-  /eslint-plugin-node/11.1.0_eslint@7.1.0:
+  /eslint-plugin-node/11.1.0_eslint@7.2.0:
     dependencies:
-      eslint: 7.1.0
-      eslint-plugin-es: 3.0.1_eslint@7.1.0
+      eslint: 7.2.0
+      eslint-plugin-es: 3.0.1_eslint@7.2.0
       eslint-utils: 2.0.0
       ignore: 5.1.8
       minimatch: 3.0.4
@@ -1712,9 +1712,9 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-VoM09vT7bfA7D+upt+FjeBO5eHIJQBUWki1aPvB+vbNiHS3+oGIJGIeyBtKQTME6UPXXy3vV07OL1tHd3ANuDw==
-  /eslint-plugin-standard/4.0.1_eslint@7.1.0:
+  /eslint-plugin-standard/4.0.1_eslint@7.2.0:
     dependencies:
-      eslint: 7.1.0
+      eslint: 7.2.0
     dev: false
     peerDependencies:
       eslint: '>=5.0.0'
@@ -1743,7 +1743,7 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-WFb4ihckKil6hu3Dp798xdzSfddwKKU3+nGniKF6HfeW6OLd2OUDEPP7TcHtB5+QXOKg2s6B2DaMPE1Nn/kxKQ==
-  /eslint/7.1.0:
+  /eslint/7.2.0:
     dependencies:
       '@babel/code-frame': 7.10.1
       ajv: 6.12.2
@@ -1786,7 +1786,7 @@ packages:
       node: ^10.12.0 || >=12.0.0
     hasBin: true
     resolution:
-      integrity: sha512-DfS3b8iHMK5z/YLSme8K5cge168I8j8o1uiVmFCgnnjxZQbCGyraF8bMl7Ju4yfBmCuxD7shOF7eqGkcuIHfsA==
+      integrity: sha512-B3BtEyaDKC5MlfDa2Ha8/D6DsS4fju95zs0hjS3HdGazw+LNayai38A25qMppK37wWGWNYSPOR6oYzlz5MHsRQ==
   /espree/7.1.0:
     dependencies:
       acorn: 7.2.0
@@ -5120,13 +5120,13 @@ packages:
   'file:projects/kittik-animation-basic.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       rimraf: 3.0.2
       ts-jest: 26.1.0_jest@26.0.1+typescript@3.9.5
@@ -5137,20 +5137,20 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-+gm6XabFBbUQazvjAkr+z/bYZClFUdbcQpGbUt0cDvgF7T/Dc2YqSrDBllKrRmOGDUVpUdefTTViEi+I5hDopg==
+      integrity: sha512-IFbVeAcne0sifx3tEWMHMo7WaXATPTumjaGWo/IFvFgMliQhBI/Cqtw3MXzBH6cqAPyWZCRsSA00ke3LvMKXoA==
       tarball: 'file:projects/kittik-animation-basic.tgz'
     version: 0.0.0
   'file:projects/kittik-animation-focus.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
       '@types/node': 14.0.11
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       rimraf: 3.0.2
       terminal-canvas: 3.1.1
@@ -5162,20 +5162,20 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-0RKOzTnvVJUPCrHv4rx7rGxzUq3SiP79uavdQEO+TTnYIYMqm09mdahIBY0vfSOCPPkZ365ooiKFY5XSBFSaXw==
+      integrity: sha512-bslJUZ0JpJJLE1dL0MZPIG6V6knTwT4tJn/wBwiuxoNEryQKEYjDeYfg7XmBLmOqzkNNDxECodsphBi8OVKXvQ==
       tarball: 'file:projects/kittik-animation-focus.tgz'
     version: 0.0.0
   'file:projects/kittik-animation-print.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
       '@types/node': 14.0.11
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       rimraf: 3.0.2
       terminal-canvas: 3.1.1
@@ -5187,20 +5187,20 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-wryZLTCYiMxYN+rpwTZgWKtTMc6v2xxjZwvNfFGcnJDMvt0FzLFvPgf3WsMyMy3pQiQn8AlU/cziPOn+ofqZ8g==
+      integrity: sha512-EL7Xqz9ko2KU+oylTlh9I3k/t9G12VZMhPfw/K0V2OjANe/ywo/zpFkhMCn7wg5huBeV3xXmPzIA45PDPzYL7A==
       tarball: 'file:projects/kittik-animation-print.tgz'
     version: 0.0.0
   'file:projects/kittik-animation-slide.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
       '@types/node': 14.0.11
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       rimraf: 3.0.2
       terminal-canvas: 3.1.1
@@ -5212,20 +5212,20 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-aYpTl6PzvX24GqQmNkqZQz67+CWGtA4/woSVheELrfLNnYbJ+r67c0chHn5r9Yn3WSffy6bNiNs6ZtjhySOERw==
+      integrity: sha512-aq+liljjwWPlWWNV5CCwsSX+4t9XkSrRREcvGwGPTvND3AwD1PkM0fGBon5JYu2xjTKJZQYFe7MJfOxI8neb3g==
       tarball: 'file:projects/kittik-animation-slide.tgz'
     version: 0.0.0
   'file:projects/kittik-deck.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
       '@types/node': 14.0.11
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       rimraf: 3.0.2
       terminal-canvas: 3.1.1
@@ -5237,19 +5237,19 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-i9CFfZsCGdBYAgdSFEPTWdrkx2y4EVJHAvT7jrn5Lqj/U0ru1lJ3rkqpyjOMvxwhYFg6NyUj0fA8Zc/6EsLJPw==
+      integrity: sha512-XAB+iewf/FyFiaSTyK68b7MKl5IhEUhBHZll/32PYKJ56+xeiUquLXDVhpLVg2lobyhMr2HlKgoQ6/we58IMZQ==
       tarball: 'file:projects/kittik-deck.tgz'
     version: 0.0.0
-  'file:projects/kittik-eslint-config.tgz_eslint@7.1.0+typescript@3.9.5':
+  'file:projects/kittik-eslint-config.tgz_eslint@7.2.0+typescript@3.9.5':
     dependencies:
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      '@typescript-eslint/parser': 3.1.0_eslint@7.1.0+typescript@3.9.5
-      eslint-config-standard-with-typescript: 18.0.2_433831c894f91460e5e8cca080fead49
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      '@typescript-eslint/parser': 3.1.0_eslint@7.2.0+typescript@3.9.5
+      eslint-config-standard-with-typescript: 18.0.2_1284f165f7c018f1ec504941742818bd
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
     dev: false
     id: 'file:projects/kittik-eslint-config.tgz'
     name: '@rush-temp/kittik-eslint-config'
@@ -5276,13 +5276,13 @@ packages:
   'file:projects/kittik-shape-basic.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       rimraf: 3.0.2
       terminal-canvas: 3.1.1
@@ -5294,20 +5294,20 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-YkG9REKGgPdbv5xpc8lOihPjZz14YKWqbEdEeku262QAhR8Lv3LYo9XrG1pSdpFyEXDLZnqGMT2YY+LwJoYklw==
+      integrity: sha512-YniRBJJ/aAw5B6U0pPRi/ngW3y80yxV8dz5EUD3auvPZxoUlK8XQUz6XRgiGlWf4I5XrQ/i5P3CqgiIUwn0U8g==
       tarball: 'file:projects/kittik-shape-basic.tgz'
     version: 0.0.0
   'file:projects/kittik-shape-code.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
       '@types/js-beautify': 1.11.0
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       js-beautify: 1.11.0
       redeyed: 2.1.1
@@ -5321,20 +5321,20 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-GHjfC05ODB/F7xlMrLt+iNopZTJK3EXM4y4LoOO1w+0ayALsLexCVOj7HoaJvFQqg0oUU4KYVzoWYhuqOAIhgQ==
+      integrity: sha512-iMAaPRTN+8ahHjKrMgZUDhxBC/XN+eDOhrNZ6wcfO5S2CgNfAXzEjsAaD9hSI17TytseSfdhodZK9y75cOztng==
       tarball: 'file:projects/kittik-shape-code.tgz'
     version: 0.0.0
   'file:projects/kittik-shape-fig-text.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/figlet': 1.2.0
       '@types/jest': 25.2.3
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       figlet: 1.4.0
       jest: 26.0.1
       rimraf: 3.0.2
@@ -5347,19 +5347,19 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-+MPfsTxZ1Ksh0iJq34n1iyMxuvVpISSh9PHZexTaC69lQk3/BAIa6xOGUSm4XeXr7t5FmWCoYbZ9Uh7q1uctDw==
+      integrity: sha512-7G33wgY/fgkY9xHe17Wa3dDKHTm3494kVv+0WR6GnAE/ISPZsF6ZrXPq7uPqmb87zlFvxs1Ow/5wB9zdc0DdMQ==
       tarball: 'file:projects/kittik-shape-fig-text.tgz'
     version: 0.0.0
   'file:projects/kittik-shape-image.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       rimraf: 3.0.2
       terminal-canvas: 3.1.1
@@ -5371,19 +5371,19 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-TLIS7cLS/7tSAAKhPAjr6aFicqHvxGs3XzfYgiMx7FbdME/5MWbYYS4yqP9FpTfOqyUjqpa7Gatmhz8mt83Rxw==
+      integrity: sha512-pb2i/wbLKZNlozr0wPQkTY1uvca5gHC6cYPwev8tVLFg/vRXwzIBZYbQt62W67v8y2TnL8vzjsA+0uvoaizUZQ==
       tarball: 'file:projects/kittik-shape-image.tgz'
     version: 0.0.0
   'file:projects/kittik-shape-rectangle.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       rimraf: 3.0.2
       terminal-canvas: 3.1.1
@@ -5395,19 +5395,19 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-1DG9Ly/ZdepVnW84XKS3s10W/lDajJcaMbbi5jo7bQCdOdxyncquBmialF/a/x3h3nmbwucefoLGKNgTlIgPLQ==
+      integrity: sha512-sPF2+1I8CADEC4YflOqiLJ6mUzj14ycw/OQ6B8LoTnl1CvqVfHaAobSqFPkp8PQU0e60CPXSzTFNM8nwgf4Agg==
       tarball: 'file:projects/kittik-shape-rectangle.tgz'
     version: 0.0.0
   'file:projects/kittik-shape-text.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       rimraf: 3.0.2
       terminal-canvas: 3.1.1
@@ -5419,20 +5419,20 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-SYBKhIQqw6l8U3KzHRBzQOruXBUisUrLf1DNEROI+3KSIqOrvq9ZbXAULt4qzcfKz76BTGYnaybgYCzkd7ku4g==
+      integrity: sha512-Y5qZszCVl4Wzu7bDyu+dCLdjKNBc8E+Kov/yDNTxw7sMDnO7QsQoHU/MeXljuY0JWts/CpZZSavUEyYDUKQz2A==
       tarball: 'file:projects/kittik-shape-text.tgz'
     version: 0.0.0
   'file:projects/kittik-slide.tgz_@typescript-eslint+parser@3.1.0':
     dependencies:
       '@types/jest': 25.2.3
       '@types/node': 14.0.11
-      '@typescript-eslint/eslint-plugin': 3.1.0_90ac27b2fe1971cc84dccdcfd6d78c87
-      eslint: 7.1.0
-      eslint-plugin-import: 2.20.2_eslint@7.1.0
-      eslint-plugin-jest: 23.13.2_eslint@7.1.0+typescript@3.9.5
-      eslint-plugin-node: 11.1.0_eslint@7.1.0
+      '@typescript-eslint/eslint-plugin': 3.1.0_260ea45aaf0f8bded6c6e3941a85f6e6
+      eslint: 7.2.0
+      eslint-plugin-import: 2.20.2_eslint@7.2.0
+      eslint-plugin-jest: 23.13.2_eslint@7.2.0+typescript@3.9.5
+      eslint-plugin-node: 11.1.0_eslint@7.2.0
       eslint-plugin-promise: 4.2.1
-      eslint-plugin-standard: 4.0.1_eslint@7.1.0
+      eslint-plugin-standard: 4.0.1_eslint@7.2.0
       jest: 26.0.1
       rimraf: 3.0.2
       terminal-canvas: 3.1.1
@@ -5444,7 +5444,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-MhyFPfjjM3OvLePkFyDkw2wtYqviIGxJoA7HbSZxJErhbjcyp10PYCf64/u0hnIqI+aE6IQ853kO4uPa53LQsA==
+      integrity: sha512-Ny80PNfw1Cyi8achQwGJysFbrP1RHw3yia531eX6lZBffH794B7eYtYDbgbDIgzRqTyT/o7d4oNU5YERa/1aiw==
       tarball: 'file:projects/kittik-slide.tgz'
     version: 0.0.0
   'file:projects/kittik-tsc-config.tgz':
@@ -5477,7 +5477,7 @@ specifiers:
   '@types/node': 14.0.11
   '@typescript-eslint/eslint-plugin': 3.1.0
   '@typescript-eslint/parser': 3.1.0
-  eslint: 7.1.0
+  eslint: 7.2.0
   eslint-config-standard-with-typescript: 18.0.2
   eslint-plugin-import: 2.20.2
   eslint-plugin-jest: 23.13.2
