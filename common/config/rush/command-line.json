@@ -28,7 +28,7 @@
       "description": "Install & Run git-cz hook to create a commit by using handy generator",
       "name": "commit",
       "safeForSimultaneousRushProcesses": false,
-      "shellCommand": "node common/scripts/install-run.js git-cz@4.6.2 git-cz",
+      "shellCommand": "node common/scripts/install-run.js git-cz@latest git-cz",
       "summary": "Commit changes"
     },
     {
