@@ -1,0 +1,9 @@
+[
+  {
+    "definitionName": "lockStepVersion",
+    "mainProject": "kittik",
+    "nextBump": "prerelease",
+    "policyName": "locked",
+    "version": "5.1.0-beta.3"
+  }
+]

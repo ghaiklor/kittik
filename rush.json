@@ -24,82 +24,98 @@
     {
       "packageName": "kittik-animation-basic",
       "projectFolder": "src/animations/kittik-animation-basic",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-animation-focus",
       "projectFolder": "src/animations/kittik-animation-focus",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-animation-print",
       "projectFolder": "src/animations/kittik-animation-print",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-animation-slide",
       "projectFolder": "src/animations/kittik-animation-slide",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-deck",
       "projectFolder": "src/main/kittik-deck",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-shape-basic",
       "projectFolder": "src/shapes/kittik-shape-basic",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-shape-code",
       "projectFolder": "src/shapes/kittik-shape-code",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-shape-fig-text",
       "projectFolder": "src/shapes/kittik-shape-fig-text",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-shape-image",
       "projectFolder": "src/shapes/kittik-shape-image",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-shape-rectangle",
       "projectFolder": "src/shapes/kittik-shape-rectangle",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-shape-text",
       "projectFolder": "src/shapes/kittik-shape-text",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-slide",
       "projectFolder": "src/main/kittik-slide",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-eslint-config",
       "projectFolder": "common/config/eslint",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-tsc-config",
       "projectFolder": "common/config/tsc",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik-jest-config",
       "projectFolder": "common/config/jest",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     },
     {
       "packageName": "kittik",
       "projectFolder": "src/main/kittik",
-      "shouldPublish": true
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     }
   ]
 }
