@@ -1,15 +1,10 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-## [5.1.0-beta.3](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.2...v5.1.0-beta.3) (2020-05-04)
+# [5.1.0-beta.3](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.2...v5.1.0-beta.3) (2020-05-04)
 
 ### Features
 
 * 🎸 improve type check and autocompletion for SlideBuilder ([559e1b3](https://github.com/ghaiklor/kittik/commit/559e1b3ea89b3a2a60edda1b31cf445e7672a25f))
 
-## [5.1.0-beta.2](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2020-04-26)
+# [5.1.0-beta.2](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.1...v5.1.0-beta.2) (2020-04-26)
 
 ### Bug Fixes
 
@@ -21,7 +16,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * 🎸 generic interface AnimationObject over type and options ([4e09ab7](https://github.com/ghaiklor/kittik/commit/4e09ab7425a47969ae8121316ecc81a6d17c482b))
 * 🎸 generic interface ShapeObject over type and options ([37bd243](https://github.com/ghaiklor/kittik/commit/37bd2433525cb888def8cb58fe80b6f6992f6f6b))
 
-## [5.1.0-beta.1](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.0...v5.1.0-beta.1) (2020-04-20)
+# [5.1.0-beta.1](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.0...v5.1.0-beta.1) (2020-04-20)
 
 ### Features
 
@@ -29,7 +24,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * 🎸 improve type info in ShapeBuilder, improving overall DX ([b621c43](https://github.com/ghaiklor/kittik/commit/b621c43b9a86b2659d24d7ec699cbc005b47c337))
 * 🎸 re-export conditional types for options and objects ([bdcaafe](https://github.com/ghaiklor/kittik/commit/bdcaafe3df8d8f995106cd71290f0ef1c862b593))
 
-## [5.1.0-beta.0](https://github.com/ghaiklor/kittik/compare/v2.1.2...v5.1.0-beta.0) (2020-04-19)
+# [5.1.0-beta.0](https://github.com/ghaiklor/kittik/compare/v2.1.2...v5.1.0-beta.0) (2020-04-19)
 
 ### Bug Fixes
 
@@ -65,13 +60,13 @@ but only the one (options)
 
 * **slide:** Update kittik-shape-code with fixes ([e2ff33b](https://github.com/ghaiklor/kittik/commit/e2ff33b2e2fa1e2de164c9c60b87c81851a4be36))
 
-## [2.1.0](https://github.com/ghaiklor/kittik/compare/v2.0.0...v2.1.0) (2016-05-10)
+# [2.1.0](https://github.com/ghaiklor/kittik/compare/v2.0.0...v2.1.0) (2016-05-10)
 
 ### Features
 
 * **shape:** Add new shape that renders code blocks ([98cbd94](https://github.com/ghaiklor/kittik/commit/98cbd9416fc0fde3477747727df55d5665408e19))
 
-## [2.0.0](https://github.com/ghaiklor/kittik/compare/v1.0.1...v2.0.0) (2016-05-04)
+# [2.0.0](https://github.com/ghaiklor/kittik/compare/v1.0.1...v2.0.0) (2016-05-04)
 
 ### Bug Fixes
 
@@ -97,7 +92,7 @@ but only the one (options)
 
 * **package:** Fix issue with non-exists cli ([673df76](https://github.com/ghaiklor/kittik/commit/673df7636ad84dddb77f6ae20af7298b0e659657))
 
-## [1.0.0](https://github.com/ghaiklor/kittik/compare/e05a5604ce4bd4d2fc39b16a64190629d2a3fa07...v1.0.0) (2015-12-08)
+# [1.0.0](https://github.com/ghaiklor/kittik/compare/e05a5604ce4bd4d2fc39b16a64190629d2a3fa07...v1.0.0) (2015-12-08)
 
 ### Bug Fixes
 
