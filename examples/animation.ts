@@ -10,7 +10,11 @@ DeckBuilder.start()
       .withShape(
         "Animated JavaScript",
         ShapeBuilder.start("Code")
-          .withText("if (number % 3 === 0 && number % 5 === 0) { console.log('Fizz Buzz'); }")
+          .withText(`
+            function isFizzBuzz(number) {
+              return (number % 3 === 0) || (number % 5 === 0);
+            }
+          `)
           .withX("center")
           .withY("middle")
           .end()
