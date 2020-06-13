@@ -78,6 +78,13 @@ const SERIALIZED_SLIDE_DECLARATION: SlideDeclaration = {
 };
 
 describe('slide', () => {
+  it('should properly generate a unique name by default', () => {
+    expect.hasAssertions();
+
+    const slide = new Slide();
+    expect((/Untitled Slide #.{7}/u).test(slide.name)).toBe(true);
+  });
+
   it('should properly throw an error if shape type is unknown', () => {
     expect.hasAssertions();
 

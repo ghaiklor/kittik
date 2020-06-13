@@ -20,7 +20,7 @@ export { SlideDeclaration } from './SlideDeclaration';
 
 export class Slide {
   public canvas: Canvas = Canvas.create();
-  public name = 'Untitled Slide';
+  public name = `Untitled Slide #${Math.random().toString(36).slice(2)}`;
   public readonly shapes: Map<string, ShapeRenderable> = new Map<string, ShapeRenderable>();
   public readonly animations: Map<string, Animationable> = new Map<string, Animationable>();
   public readonly order: OrderDeclaration[] = [];
