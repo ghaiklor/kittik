@@ -1,6 +1,6 @@
 {
   "name": "kittik-tsc-config",
-  "version": "6.0.0-rc.1",
+  "version": "6.0.0-rc.2",
   "description": "TypeScript configuration for kittik project",
   "main": "tsconfig.json",
   "homepage": "https://github.com/ghaiklor/kittik#readme",

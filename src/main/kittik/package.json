@@ -1,6 +1,6 @@
 {
   "name": "kittik",
-  "version": "6.0.0-rc.1",
+  "version": "6.0.0-rc.2",
   "description": "Kittik CLI and main package to import everything for building slides",
   "homepage": "https://github.com/ghaiklor/kittik/#readme",
   "license": "MIT",
@@ -48,14 +48,14 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "jest": "26.0.1",
-    "kittik-eslint-config": "6.0.0-rc.1",
-    "kittik-jest-config": "6.0.0-rc.1",
-    "kittik-tsc-config": "6.0.0-rc.1",
+    "kittik-eslint-config": "6.0.0-rc.2",
+    "kittik-jest-config": "6.0.0-rc.2",
+    "kittik-tsc-config": "6.0.0-rc.2",
     "rimraf": "3.0.2",
     "typescript": "3.9.5"
   },
   "dependencies": {
-    "kittik-deck": "6.0.0-rc.1",
-    "kittik-slide": "6.0.0-rc.1"
+    "kittik-deck": "6.0.0-rc.2",
+    "kittik-slide": "6.0.0-rc.2"
   }
 }

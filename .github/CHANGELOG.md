@@ -1,3 +1,10 @@
+# [6.0.0-rc.2](https://github.com/ghaiklor/kittik/compare/v6.0.0-rc.1...v6.0.0-rc.2) (2020-06-13)
+
+### Bug Fixes
+
+* 🐛 issue with "Untitled Slide" already exists in builder ([bdf598c](https://github.com/ghaiklor/kittik/commit/bdf598ca12d4fb2f1356fd60a1b4eaced3d891cf))
+* 🐛 when animating code can throw an error "wrong syntax" ([dbd1734](https://github.com/ghaiklor/kittik/commit/dbd173471db4103d6e2943ab95ec1f43c5b85a18))
+
 # [6.0.0-rc.1](https://github.com/ghaiklor/kittik/compare/v5.1.0-beta.3...v6.0.0-rc.1) (2020-06-06)
 
 ### Bug Fixes

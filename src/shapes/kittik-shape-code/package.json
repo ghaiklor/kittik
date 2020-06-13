@@ -1,6 +1,6 @@
 {
   "name": "kittik-shape-code",
-  "version": "6.0.0-rc.1",
+  "version": "6.0.0-rc.2",
   "description": "Code shape for rendering code in Kittik",
   "license": "MIT",
   "type": "commonjs",
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "js-beautify": "1.11.0",
-    "kittik-shape-basic": "6.0.0-rc.1",
+    "kittik-shape-basic": "6.0.0-rc.2",
     "redeyed": "2.1.1"
   },
   "devDependencies": {
@@ -55,9 +55,9 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "jest": "26.0.1",
-    "kittik-eslint-config": "6.0.0-rc.1",
-    "kittik-jest-config": "6.0.0-rc.1",
-    "kittik-tsc-config": "6.0.0-rc.1",
+    "kittik-eslint-config": "6.0.0-rc.2",
+    "kittik-jest-config": "6.0.0-rc.2",
+    "kittik-tsc-config": "6.0.0-rc.2",
     "rimraf": "3.0.2",
     "terminal-canvas": "3.1.1",
     "ts-jest": "26.1.0",
