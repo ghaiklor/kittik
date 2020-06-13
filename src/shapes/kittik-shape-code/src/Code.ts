@@ -30,7 +30,13 @@ export class Code extends Shape implements CodeOptions, ShapeRenderable {
   public render <T extends Canvas>(canvas: T): void {
     super.render(canvas);
 
-    const codeSplits = redeyed(this.text, DEFAULT_THEME).splits;
+    let codeSplits: string[] = [];
+    try {
+      codeSplits = redeyed(this.text, DEFAULT_THEME).splits;
+    } catch (error) {
+      codeSplits = [this.text];
+    }
+
     const x = parseInt(this.x, 10);
     const y = parseInt(this.y, 10);
 
