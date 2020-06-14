@@ -55,7 +55,7 @@ rush test
 rust lint
 ```
 
-You can find them all in [`common/config/rush/command-line.json`](../common/config/rush/command-line.json) file.
+You can find them all in [`common/config/rush/command-line.json`](./common/config/rush/command-line.json) file.
 
 _NOTE: if you want to run the whole build pipeline, you can run `rush all` command._
 
