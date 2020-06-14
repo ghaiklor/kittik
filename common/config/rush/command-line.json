@@ -61,7 +61,7 @@
       "description": "This command will upgrade all the dependencies in all the projects to the latest version",
       "name": "upgrade",
       "safeForSimultaneousRushProcesses": false,
-      "shellCommand": "find . -name package.json -maxdepth 4 | xargs -o -L 1 node common/scripts/install-run.js npm-check-updates@latest ncu --interactive --packageFile",
+      "shellCommand": "find ./src -name package.json | xargs -o -L 1 node common/scripts/install-run.js npm-check-updates@latest ncu --interactive --packageFile",
       "summary": "Upgrade all dependencies"
     },
     {
