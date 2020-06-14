@@ -870,7 +870,7 @@ packages:
   /array-includes/3.1.1:
     dependencies:
       define-properties: 1.1.3
-      es-abstract: 1.17.5
+      es-abstract: 1.17.6
       is-string: 1.0.5
     dev: false
     engines:
@@ -886,7 +886,7 @@ packages:
   /array.prototype.flat/1.2.3:
     dependencies:
       define-properties: 1.1.3
-      es-abstract: 1.17.5
+      es-abstract: 1.17.6
     dev: false
     engines:
       node: '>= 0.4'
@@ -1541,7 +1541,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==
-  /es-abstract/1.17.5:
+  /es-abstract/1.17.6:
     dependencies:
       es-to-primitive: 1.2.1
       function-bind: 1.1.1
@@ -1552,13 +1552,13 @@ packages:
       object-inspect: 1.7.0
       object-keys: 1.1.1
       object.assign: 4.1.0
-      string.prototype.trimleft: 2.1.2
-      string.prototype.trimright: 2.1.2
+      string.prototype.trimend: 1.0.1
+      string.prototype.trimstart: 1.0.1
     dev: false
     engines:
       node: '>= 0.4'
     resolution:
-      integrity: sha512-BR9auzDbySxOcfog0tLECW8l28eRGpDpU3Dm3Hp4q/N+VtLTmyj4EUN088XZWQDW/hzj6sYRDXeOFsaAODKvpg==
+      integrity: sha512-Fr89bON3WFyUi5EvAeI48QTWX0AyekGgLA8H+c+7fbfCkJwRWRMLd8CQedNEyJuoYYhmtEqY92pgte1FAhBlhw==
   /es-to-primitive/1.2.1:
     dependencies:
       is-callable: 1.2.0
@@ -3638,7 +3638,7 @@ packages:
   /object.values/1.1.1:
     dependencies:
       define-properties: 1.1.3
-      es-abstract: 1.17.5
+      es-abstract: 1.17.6
       function-bind: 1.1.1
       has: 1.0.3
     dev: false
@@ -4531,34 +4531,14 @@ packages:
   /string.prototype.trimend/1.0.1:
     dependencies:
       define-properties: 1.1.3
-      es-abstract: 1.17.5
+      es-abstract: 1.17.6
     dev: false
     resolution:
       integrity: sha512-LRPxFUaTtpqYsTeNKaFOw3R4bxIzWOnbQ837QfBylo8jIxtcbK/A/sMV7Q+OAV/vWo+7s25pOE10KYSjaSO06g==
-  /string.prototype.trimleft/2.1.2:
-    dependencies:
-      define-properties: 1.1.3
-      es-abstract: 1.17.5
-      string.prototype.trimstart: 1.0.1
-    dev: false
-    engines:
-      node: '>= 0.4'
-    resolution:
-      integrity: sha512-gCA0tza1JBvqr3bfAIFJGqfdRTyPae82+KTnm3coDXkZN9wnuW3HjGgN386D7hfv5CHQYCI022/rJPVlqXyHSw==
-  /string.prototype.trimright/2.1.2:
-    dependencies:
-      define-properties: 1.1.3
-      es-abstract: 1.17.5
-      string.prototype.trimend: 1.0.1
-    dev: false
-    engines:
-      node: '>= 0.4'
-    resolution:
-      integrity: sha512-ZNRQ7sY3KroTaYjRS6EbNiiHrOkjihL9aQE/8gfQ4DtAC/aEBRHFJa44OmoWxGGqXuJlfKkZW4WcXErGr+9ZFg==
   /string.prototype.trimstart/1.0.1:
     dependencies:
       define-properties: 1.1.3
-      es-abstract: 1.17.5
+      es-abstract: 1.17.6
     dev: false
     resolution:
       integrity: sha512-XxZn+QpvrBI1FOcg6dIpxUPgWCPuNXvMD72aaRaUQv1eD4e/Qy8i/hFTe0BUmD60p/QA6bh1avmuPTfNjqVWRw==
@@ -5159,7 +5139,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-w2IjVF5SDzDpwmHZQ9isUuYa3uK1uIZxh5dBh60I0CnypzikvJsGM4UBK3NsK0z3fNAj7jUIMTB1BoxrEsrewg==
+      integrity: sha512-iVMZzq/NLYTPnho6DaNZSiZv+5jEkVedvsR/Szp9y+y2F7D0SRbnfnEEFPxMDff+Y6buGZVrBQy/sMwkV1avQw==
       tarball: 'file:projects/kittik-animation-basic.tgz'
     version: 0.0.0
   'file:projects/kittik-animation-focus.tgz_@typescript-eslint+parser@3.2.0':
@@ -5184,7 +5164,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-tk3GpPx+Hvy51IV+VUpOBetxS4mObVZLsWsquNpF4KX6P4Xbnxto1+cZvSeMP6PBqrPC2xlDObKPnN/U03kyYQ==
+      integrity: sha512-ocnclhls5EUsiT/4l2YJRWG4Ut5gNFlEelxdGw7Bn8y1O7rVfa4YyX6LLIgcJiamGkruDfuabv/r22wFo4k/LQ==
       tarball: 'file:projects/kittik-animation-focus.tgz'
     version: 0.0.0
   'file:projects/kittik-animation-print.tgz_@typescript-eslint+parser@3.2.0':
@@ -5209,7 +5189,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-nrYz2fW/mbUaMgEdgXSPjE5BOyCZiZwjhrorCJ+9/zKvvOEZwhiSZLt7gAkPIASgN6QmvKjNKNKxidjElyRVfg==
+      integrity: sha512-fRb1fhUW9Nwiu/4OdUHKy+6y9wVX70EHSuI0uTTiGcOsSXCIA/os+tUVkJL+3G5E0DgVprzx1Cf0qIK1w5Eszw==
       tarball: 'file:projects/kittik-animation-print.tgz'
     version: 0.0.0
   'file:projects/kittik-animation-slide.tgz_@typescript-eslint+parser@3.2.0':
@@ -5234,7 +5214,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-T1PYU/N2ldL1oCPz4aQCJO51KiImYazG5suELEvyofT9EyidaJW93NdDJcROGgAK3x1JlarqCwmcn1h8EirMcQ==
+      integrity: sha512-DR5fqQ+3ScKeU7QO8TSLvmZ52PBJEZDclL0ZRlPkVIj/yO8FcBulHY0sd5KSWDNsbAEGTEsH+tM+yh0GYWGMJw==
       tarball: 'file:projects/kittik-animation-slide.tgz'
     version: 0.0.0
   'file:projects/kittik-deck.tgz_@typescript-eslint+parser@3.2.0':
@@ -5259,7 +5239,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-IYhB/gf1Q3Rmp1rKtZW6udjoQjd6rSzGDZ3tYaakJmDh19WRySe3v3r5jJ7MN8LT5e9Xj0SP3cFW02G+gyqcDg==
+      integrity: sha512-pqmcOupvl+32iAYCoiIoF0BzXlGRwuDaTA6j3wf0ySZFUx1pS390pgJcEdUyy/vJ0Iu83vjKTRzY61GeOA/Efw==
       tarball: 'file:projects/kittik-deck.tgz'
     version: 0.0.0
   'file:projects/kittik-eslint-config.tgz_eslint@7.2.0+typescript@3.9.5':
@@ -5316,7 +5296,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-O+a42XRt1g+mmKH2INlke+lNYQG0+l2ZcguqgsQ7NcobqtD1R/DSIJDpwoL65KYm+/dRvY3pyXo/fRoGWbk2Hw==
+      integrity: sha512-V3Lbw8rghrWodNoE21I7xjHIj/YPsV/kAc7CVsG6tO8U9FxgY+KYqTI7nMn+dt1kfRYVO2or+n3wSf8NViKjmw==
       tarball: 'file:projects/kittik-shape-basic.tgz'
     version: 0.0.0
   'file:projects/kittik-shape-code.tgz_@typescript-eslint+parser@3.2.0':
@@ -5343,7 +5323,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-BH4hT25ij+nGVStyp6WWL9UTz8aTFiYS8gztZHc8hK/nSFWJ4MQCSFMG945pj+drf7kp8T4xcKgYc085eeUsZA==
+      integrity: sha512-y5mERJrqh+gRcffgM8r4yQ6jhO7CrxJcQ+bpJEA7qsyXrP7P9xe9cvuHqiCdOgm4BgnxBWg479ZFouJBuIva7g==
       tarball: 'file:projects/kittik-shape-code.tgz'
     version: 0.0.0
   'file:projects/kittik-shape-fig-text.tgz_@typescript-eslint+parser@3.2.0':
@@ -5369,7 +5349,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-bB5DJDD22lyl011AvXjmMfXRNnxaYKBiuNcE1VufRitCPwGe7h6V0h8dJdw1OgNAKKNfs3EBx5TwW+6pRM3tAA==
+      integrity: sha512-+SzKZxT8G8/YUAb5M74yVnWSkqmo+jDoIuRZh+wMebEqJEDzVxJlwBJXj8GST9HDn1CYpriOAIqkqdXnXGVSxw==
       tarball: 'file:projects/kittik-shape-fig-text.tgz'
     version: 0.0.0
   'file:projects/kittik-shape-image.tgz_@typescript-eslint+parser@3.2.0':
@@ -5393,7 +5373,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-W3Ot13b+tlGYM+kA5KlLPffQYXgIpxsCUaB8Of6ND16eemAMShmWegHg6znZaqglVgaPVQtqPamrvx3Hoy3pPg==
+      integrity: sha512-G5715xa8ILIUnoUfKcjO4Y+lDa2Cr7z5T/Cp6cgk8Dmaub6K4gRoWdNxcmyyqoGW0RJTYy502lgObWfQf3U9GQ==
       tarball: 'file:projects/kittik-shape-image.tgz'
     version: 0.0.0
   'file:projects/kittik-shape-rectangle.tgz_@typescript-eslint+parser@3.2.0':
@@ -5417,7 +5397,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-acQwdVirbFlcLs+c4Vojjz9J0AvRaItshLEN1sGGwA7lxB9hboOSXdQYMdoCtbei8/kpGDlnkCLz2CNFqLsZKg==
+      integrity: sha512-fX3dX7cWYwJz6AtXmZqeKvymbDUaI8USz6Z5AI80LCmyW7IaQsQio+VqNWIuMRT3/ICpvRQjP4IH30GHITuKUQ==
       tarball: 'file:projects/kittik-shape-rectangle.tgz'
     version: 0.0.0
   'file:projects/kittik-shape-text.tgz_@typescript-eslint+parser@3.2.0':
@@ -5441,7 +5421,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-nVYBwxohvEndct5AAXDjA7V4mgkhgiIm/xYq44OghdMKTm1iC66jIyb0ZXYplTNulgpWV84ItceWvaTF8q3EAw==
+      integrity: sha512-DkqZmPgQK9cLcjL1TZVLFNwcn18OzWsjbpFK+mmKWDfA2BxdlQZFv7pkC8Kl31WCBMKq6V9jIPkzEWvfd3KGaA==
       tarball: 'file:projects/kittik-shape-text.tgz'
     version: 0.0.0
   'file:projects/kittik-slide.tgz_@typescript-eslint+parser@3.2.0':
@@ -5466,7 +5446,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-gar3qL5xYjTUpl5sNIK7OP+jzMyh6YheHvJ1a7TRKM4hbg/0lCdWyihq29KKu98vHaqqFuD7QiYWmwOWYOnhJQ==
+      integrity: sha512-zw8I31iRakTxek7ZTRM4Qbb6ysg79k9DNxHf7MQv61yAODZheQ7ODaYXQLlGgZMhiXYYoVkL5bDnSEl7i9imBA==
       tarball: 'file:projects/kittik-slide.tgz'
     version: 0.0.0
   'file:projects/kittik-tsc-config.tgz':
@@ -5495,7 +5475,7 @@ packages:
     peerDependencies:
       '@typescript-eslint/parser': '*'
     resolution:
-      integrity: sha512-1dS5c3kmS7tZbjh1LeX1PLyusiB58ANRx7KDCHpOpN6zIqBRnqDHNXlIQcNpbKncaon3Vv2vN7yJqowL6Xn0zQ==
+      integrity: sha512-nkrtk5P3ozjtyN4zaFKbIif3BizSa1kDoAvTfwU2Iydqbw8cRsENwVIhA55usHR4iIlZ/9o1Xc0PyM29P1Op6w==
       tarball: 'file:projects/kittik.tgz'
     version: 0.0.0
 registry: ''
