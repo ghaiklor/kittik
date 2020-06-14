@@ -70,7 +70,7 @@
       "description": "This command will generate a changelog after version bump",
       "name": "changelog",
       "safeForSimultaneousRushProcesses": false,
-      "shellCommand": "node common/scripts/install-run.js standard-changelog@latest standard-changelog --infile .github/CHANGELOG.md --same-file --pkg src/main/kittik/package.json",
+      "shellCommand": "node common/scripts/install-run.js standard-changelog@latest standard-changelog --infile CHANGELOG.md --same-file --pkg src/main/kittik/package.json",
       "summary": "Generate a changelog"
     }
   ]
