@@ -7,6 +7,7 @@ If something didn’t work out for you, please open an issue and I will assist y
 - [Examples](#examples)
   - [All shapes in kittik](#all-shapes-in-kittik)
   - [Animate a shape](#animate-a-shape)
+  - [How it could look like in a real world scenario](#how-it-could-look-like-in-a-real-world-scenario)
   - [Create a deck with several slides](#create-a-deck-with-several-slides)
   - [Draw an ASCII art in the slide](#draw-an-ascii-art-in-the-slide)
   - [Hello, World in Kittik](#hello-world-in-kittik)
@@ -24,6 +25,12 @@ If something didn’t work out for you, please open an issue and I will assist y
 | Source                 | Demo                          |
 | ---------------------- | ----------------------------- |
 | [Link](./animation.ts) | ![animation.ts][animation.ts] |
+
+## How it could look like in a real world scenario
+
+| Source            | Demo                |
+| ----------------- | ------------------- |
+| [Link](./demo.ts) | ![demo.ts][demo.ts] |
 
 ## Create a deck with several slides
 
@@ -57,6 +64,7 @@ If something didn’t work out for you, please open an issue and I will assist y
 
 [all-shapes.ts]: https://user-images.githubusercontent.com/3625244/84594423-c3978c00-ae5a-11ea-9e47-c1ca13f9f72d.gif
 [animation.ts]: https://user-images.githubusercontent.com/3625244/84570127-e4e17500-ad93-11ea-9a56-18bf0bca8366.gif
+[demo.ts]: https://user-images.githubusercontent.com/3625244/84595639-aca86800-ae61-11ea-93e3-4dd6ed7e9588.gif
 [few-slides.ts]: https://user-images.githubusercontent.com/3625244/84570300-481fd700-ad95-11ea-938a-6113af611345.gif
 [figlet.ts]: https://user-images.githubusercontent.com/3625244/84570384-ea3fbf00-ad95-11ea-8c1c-4aca3f2a590c.gif
 [hello-world.ts]: https://user-images.githubusercontent.com/3625244/84570438-2ecb5a80-ad96-11ea-8099-11b9fa87e6a7.gif
