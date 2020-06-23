@@ -96,6 +96,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
   // Someone else can override it in children and make use of `this` in his own class
   // eslint-disable-next-line class-methods-use-this
   public async delay (ms: number): Promise<void> {
+    // eslint-disable-next-line no-promise-executor-return
     return await new Promise((resolve) => setTimeout(resolve, isFinite(ms) ? ms : 1));
   }
 
