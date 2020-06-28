@@ -1,8 +1,8 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
-  "rushVersion": "5.25.2",
-  "pnpmVersion": "5.1.8",
-  "nodeSupportedVersionRange": ">=12.0.0",
+  "rushVersion": "5.27.0",
+  "pnpmVersion": "5.2.6",
+  "nodeSupportedVersionRange": ">=14.0.0",
   "suppressNodeLtsWarning": true,
   "ensureConsistentVersions": true,
   "projectFolderMinDepth": 3,
