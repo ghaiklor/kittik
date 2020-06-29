@@ -1,17 +1,22 @@
 export {
   Deck,
-  DeckBuilder
+  DeckBuilder,
+  DeckDeclaration
 } from 'kittik-deck';
 
 export {
   AnimationBuilder,
+  AnimationDeclaration,
   AnimationObject,
   AnimationOptions,
   AnimationType,
+  OrderDeclaration,
   ShapeBuilder,
+  ShapeDeclaration,
   ShapeObject,
   ShapeOptions,
   ShapeType,
   Slide,
-  SlideBuilder
+  SlideBuilder,
+  SlideDeclaration
 } from 'kittik-slide';
