@@ -4,6 +4,7 @@
     "codecov",
     "dedupe",
     "downlevel",
+    "frontmatter",
     "ghaiklor",
     "infile",
     "keypress",
@@ -11,6 +12,7 @@
     "lcov",
     "lernaupdate",
     "maxdepth",
+    "mdast",
     "multiline",
     "obrezkov",
     "paren",
@@ -26,6 +28,7 @@
     "snyk",
     "tsbuildinfo",
     "turbolizer",
+    "unist",
     "xargs"
   ]
 }

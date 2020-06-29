@@ -1,0 +1,67 @@
+{
+  "name": "kittik-parser-markdown",
+  "version": "6.0.0-rc.2",
+  "description": "Markdown parser for kittik to translate markdown into kittik deck",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "dist/MarkdownParser.js",
+  "types": "dist/MarkdownParser.d.ts",
+  "homepage": "https://github.com/ghaiklor/kittik#readme",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "kittik",
+    "parser",
+    "markdown"
+  ],
+  "author": {
+    "name": "Eugene Obrezkov",
+    "email": "ghaiklor@gmail.com",
+    "url": "https://ghaiklor.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ghaiklor/kittik.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ghaiklor/kittik/issues",
+    "email": "ghaiklor@gmail.com"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf coverage dist tsconfig.tsbuildinfo *.log",
+    "lint": "eslint --fix --ext .js,.ts .",
+    "test": "jest 2>&1"
+  },
+  "dependencies": {
+    "kittik": "6.0.0-rc.2",
+    "remark-parse": "8.0.2",
+    "unified": "9.0.0",
+    "remark-frontmatter": "2.0.0",
+    "unist-util-visit": "2.0.2"
+  },
+  "devDependencies": {
+    "@types/jest": "26.0.3",
+    "@typescript-eslint/eslint-plugin": "3.4.0",
+    "eslint": "7.3.1",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jest": "23.17.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.0.1",
+    "jest": "26.1.0",
+    "kittik-eslint-config": "6.0.0-rc.2",
+    "kittik-jest-config": "6.0.0-rc.2",
+    "kittik-tsc-config": "6.0.0-rc.2",
+    "rimraf": "3.0.2",
+    "ts-jest": "26.1.1",
+    "typescript": "3.9.5",
+    "unist-util-inspect": "6.0.0",
+    "@types/mdast": "3.0.3",
+    "@types/unist": "2.0.3"
+  }
+}

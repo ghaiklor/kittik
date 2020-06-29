@@ -116,6 +116,12 @@
       "projectFolder": "src/main/kittik",
       "shouldPublish": true,
       "versionPolicyName": "locked"
+    },
+    {
+      "packageName": "kittik-parser-markdown",
+      "projectFolder": "src/parsers/kittik-parser-markdown",
+      "shouldPublish": true,
+      "versionPolicyName": "locked"
     }
   ]
 }
