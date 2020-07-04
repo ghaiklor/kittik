@@ -39,8 +39,8 @@
   },
   "devDependencies": {
     "@types/jest": "26.0.3",
-    "@typescript-eslint/eslint-plugin": "3.4.0",
-    "eslint": "7.3.1",
+    "@typescript-eslint/eslint-plugin": "3.5.0",
+    "eslint": "7.4.0",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jest": "23.17.1",
     "eslint-plugin-node": "11.1.0",
@@ -53,6 +53,6 @@
     "kittik-tsc-config": "6.0.0-rc.2",
     "rimraf": "3.0.2",
     "ts-jest": "26.1.1",
-    "typescript": "3.9.5"
+    "typescript": "3.9.6"
   }
 }
