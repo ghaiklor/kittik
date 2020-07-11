@@ -45,9 +45,9 @@
     "redeyed": "2.1.1"
   },
   "devDependencies": {
-    "@types/jest": "26.0.3",
+    "@types/jest": "26.0.4",
     "@types/js-beautify": "1.11.0",
-    "@typescript-eslint/eslint-plugin": "3.5.0",
+    "@typescript-eslint/eslint-plugin": "3.6.0",
     "eslint": "7.4.0",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jest": "23.18.0",
