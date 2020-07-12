@@ -40,7 +40,7 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     this.rawDuration = duration;
   }
 
-  public async animate <T extends Shape>(shape: T): Promise<T> {
+  public async animate <T extends Shape> (shape: T): Promise<T> {
     const { direction } = this;
 
     if (direction.includes('bounce')) {
@@ -71,7 +71,7 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     return { type, options };
   }
 
-  private async animateBounce <T extends Shape>(shape: T, direction: BounceDirection): Promise<T> {
+  private async animateBounce <T extends Shape> (shape: T, direction: BounceDirection): Promise<T> {
     const x = parseInt(shape.x, 10);
     const y = parseInt(shape.y, 10);
     const { offset } = this;
@@ -126,7 +126,7 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     return await sequence;
   }
 
-  private async animateShake <T extends Shape>(shape: T, direction: ShakeDirection): Promise<T> {
+  private async animateShake <T extends Shape> (shape: T, direction: ShakeDirection): Promise<T> {
     const x = parseInt(shape.x, 10);
     const y = parseInt(shape.y, 10);
     const { offset } = this;

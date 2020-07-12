@@ -14,7 +14,7 @@ export class DeckBuilder<TShape extends string, TAnimation extends string> {
     this.animations = animations;
   }
 
-  public static start <TShape extends string = never, TAnimation extends string = never>(
+  public static start <TShape extends string = never, TAnimation extends string = never> (
     shapes?: Record<TShape, ShapeRenderable>,
     animations?: Record<TAnimation, Animationable>
   ): DeckBuilder<TShape, TAnimation> {

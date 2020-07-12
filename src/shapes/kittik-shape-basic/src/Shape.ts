@@ -47,7 +47,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     }
   }
 
-  public static create <S extends Shape, O extends Partial<ShapeOptions>>(options?: O): S {
+  public static create <S extends Shape, O extends Partial<ShapeOptions>> (options?: O): S {
     return (new this(options)) as S;
   }
 
@@ -65,7 +65,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     return this.create(obj.options);
   }
 
-  public static fromJSON <S extends Shape>(json: string): S {
+  public static fromJSON <S extends Shape> (json: string): S {
     return this.fromObject(JSON.parse(json));
   }
 
@@ -155,7 +155,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
     this.rawForeground = foreground;
   }
 
-  public render <T extends Canvas>(canvas: T): void {
+  public render <T extends Canvas> (canvas: T): void {
     this.rawCanvas = canvas;
   }
 

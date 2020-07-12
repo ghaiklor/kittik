@@ -73,7 +73,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
     return this.create(obj.options);
   }
 
-  public static fromJSON <A extends Animation>(json: string): A {
+  public static fromJSON <A extends Animation> (json: string): A {
     return this.fromObject(JSON.parse(json));
   }
 
@@ -81,7 +81,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
   // Moreover, in case overridden method wants to use its `this` we need to have it here
   // Even if we do not use `this` in this specific implementation, someone else can
   // eslint-disable-next-line class-methods-use-this
-  public onTick <S extends Shape, P extends keyof S, V extends number>(shape: S, property: P, value: V): void {
+  public onTick <S extends Shape, P extends keyof S, V extends number> (shape: S, property: P, value: V): void {
     Object.assign(shape, { [property]: value });
   }
 
@@ -103,7 +103,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
   public async animateProperty<
     S extends Shape,
     P extends keyof S
-  >(options: AnimationPropertyOptions<S, P>): Promise<S> {
+  > (options: AnimationPropertyOptions<S, P>): Promise<S> {
     const { shape, property, startValue, endValue } = options;
     const byValue = options.byValue ?? endValue - startValue;
     const duration = options.duration ?? this.duration;

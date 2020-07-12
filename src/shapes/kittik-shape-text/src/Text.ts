@@ -56,7 +56,7 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     return this.text.split('\n').length.toString();
   }
 
-  public render <T extends Canvas>(canvas: T): void {
+  public render <T extends Canvas> (canvas: T): void {
     super.render(canvas);
 
     const text = this.text.split('\n');

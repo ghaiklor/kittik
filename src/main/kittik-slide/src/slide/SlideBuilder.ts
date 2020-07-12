@@ -21,7 +21,7 @@ export class SlideBuilder<TShape, TAnimation> {
     Object.keys(animations).forEach((name) => this.slide.addAnimation(name, animations[name]));
   }
 
-  public static start <TShape extends string = never, TAnimation extends string = never>(
+  public static start <TShape extends string = never, TAnimation extends string = never> (
     shapes?: Record<TShape, ShapeRenderable>,
     animations?: Record<TAnimation, Animationable>
   ): SlideBuilder<TShape, TAnimation> {
@@ -38,7 +38,7 @@ export class SlideBuilder<TShape, TAnimation> {
     return this;
   }
 
-  public withShape <T extends string>(name: T, shape: ShapeRenderable): TShapeAccumulator<this, T> {
+  public withShape <T extends string> (name: T, shape: ShapeRenderable): TShapeAccumulator<this, T> {
     this.slide.addShape(name, shape);
 
     // eslint-disable-next-line no-warning-comments
@@ -47,7 +47,7 @@ export class SlideBuilder<TShape, TAnimation> {
     return this as unknown as TShapeAccumulator<this, T>;
   }
 
-  public withAnimation <T extends string>(name: T, animation: Animationable): TAnimationAccumulator<this, T> {
+  public withAnimation <T extends string> (name: T, animation: Animationable): TAnimationAccumulator<this, T> {
     this.slide.addAnimation(name, animation);
 
     // eslint-disable-next-line no-warning-comments

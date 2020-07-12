@@ -52,7 +52,7 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     this.rawPreserveAspectRatio = preserve;
   }
 
-  public render <T extends Canvas>(canvas: T): void {
+  public render <T extends Canvas> (canvas: T): void {
     super.render(canvas);
 
     const { width, height, image, preserveAspectRatio } = this;

@@ -57,7 +57,7 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     });
   }
 
-  public render <T extends Canvas>(canvas: T): void {
+  public render <T extends Canvas> (canvas: T): void {
     super.render(canvas);
 
     const text = this.renderedText.split('\n');

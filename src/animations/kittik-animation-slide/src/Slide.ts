@@ -17,7 +17,7 @@ export class Slide extends Animation implements SlideOptions, Animationable {
     }
   }
 
-  public async animate <T extends Shape>(shape: T): Promise<T> {
+  public async animate <T extends Shape> (shape: T): Promise<T> {
     const { startX, startY, endX, endY } = this.parseCoordinates(shape);
 
     return await Promise.all([
@@ -37,7 +37,12 @@ export class Slide extends Animation implements SlideOptions, Animationable {
     return { type, options };
   }
 
-  private parseCoordinates <T extends Shape>(shape: T): { startX: number, startY: number, endX: number, endY: number } {
+  private parseCoordinates <T extends Shape> (shape: T): {
+    startX: number
+    startY: number
+    endX: number
+    endY: number
+  } {
     const { canvas } = shape;
     const x = parseInt(shape.x, 10);
     const y = parseInt(shape.y, 10);

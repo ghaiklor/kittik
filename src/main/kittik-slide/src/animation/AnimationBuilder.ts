@@ -13,7 +13,7 @@ export class AnimationBuilder<T extends AnimationType, O extends AnimationOption
     this.options = {} as unknown as O;
   }
 
-  public static start <T extends AnimationType, O extends AnimationOptions<T>>(type: T): AnimationBuilder<T, O> {
+  public static start <T extends AnimationType, O extends AnimationOptions<T>> (type: T): AnimationBuilder<T, O> {
     return new this(type);
   }
 
