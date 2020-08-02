@@ -11,7 +11,7 @@
     "pnpmStore": "local",
     "preventManualShrinkwrapChanges": true,
     "resolutionStrategy": "fewer-dependencies",
-    "strictPeerDependencies": false,
+    "strictPeerDependencies": true,
     "useWorkspaces": true
   },
   "gitPolicy": {
