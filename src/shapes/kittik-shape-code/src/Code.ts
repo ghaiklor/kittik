@@ -27,7 +27,7 @@ export class Code extends Shape implements CodeOptions, ShapeRenderable {
     return this.text.split('\n').length.toString();
   }
 
-  public render <T extends Canvas>(canvas: T): void {
+  public render <T extends Canvas> (canvas: T): void {
     super.render(canvas);
 
     let codeSplits: string[] = [];

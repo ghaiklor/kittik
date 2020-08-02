@@ -20,7 +20,7 @@ describe('fig text shape', () => {
     expect.hasAssertions();
 
     const canvas = new Canvas();
-    const shape = new FigText();
+    const shape = new FigText({ text: 'Hello, World!' });
     const backgroundSpy = jest.spyOn(canvas, 'background').mockReturnThis();
     const foregroundSpy = jest.spyOn(canvas, 'foreground').mockReturnThis();
     const moveToSpy = jest.spyOn(canvas, 'moveTo').mockReturnThis();

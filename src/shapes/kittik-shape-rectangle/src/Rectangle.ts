@@ -7,7 +7,7 @@ export { RectangleObject } from './RectangleObject';
 export { RectangleOptions } from './RectangleOptions';
 
 export class Rectangle extends Shape implements RectangleOptions, ShapeRenderable {
-  public render <T extends Canvas>(canvas: T): void {
+  public render <T extends Canvas> (canvas: T): void {
     super.render(canvas);
 
     const { text, background, foreground } = this;

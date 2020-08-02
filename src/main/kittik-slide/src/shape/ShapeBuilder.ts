@@ -13,7 +13,7 @@ export class ShapeBuilder<T extends ShapeType, O extends ShapeOptions<T>> implem
     this.options = {} as unknown as O;
   }
 
-  public static start <T extends ShapeType, O extends ShapeOptions<T>>(type: T): ShapeBuilder<T, O> {
+  public static start <T extends ShapeType, O extends ShapeOptions<T>> (type: T): ShapeBuilder<T, O> {
     return new this(type);
   }
 
