@@ -4,6 +4,7 @@ module.exports = {
   coverageProvider: 'v8',
   coverageReporters: ['json', 'text', 'lcov', 'clover'],
   errorOnDeprecated: true,
+  globals: { 'ts-jest': { packageJson: 'package.json' } },
   maxWorkers: '80%',
   preset: 'ts-jest',
   reporters: ['jest-standard-reporter'],
