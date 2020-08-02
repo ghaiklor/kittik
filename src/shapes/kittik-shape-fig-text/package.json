@@ -46,6 +46,7 @@
     "@types/figlet": "1.2.0",
     "@types/jest": "26.0.8",
     "@typescript-eslint/eslint-plugin": "3.7.1",
+    "@typescript-eslint/parser": "3.7.1",
     "eslint": "7.6.0",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jest": "23.20.0",

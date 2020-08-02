@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "3.7.1",
+    "@typescript-eslint/parser": "3.7.1",
     "eslint-config-standard-with-typescript": "18.0.2",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jest": "23.20.0",

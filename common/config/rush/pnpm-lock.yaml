@@ -4,7 +4,8 @@ importers:
   ../../src/animations/kittik-animation-basic:
     devDependencies:
       '@types/jest': 26.0.8
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -23,6 +24,7 @@ importers:
     specifiers:
       '@types/jest': 26.0.8
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -44,7 +46,8 @@ importers:
     devDependencies:
       '@types/jest': 26.0.8
       '@types/node': 14.0.27
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -66,6 +69,7 @@ importers:
       '@types/jest': 26.0.8
       '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -90,7 +94,8 @@ importers:
     devDependencies:
       '@types/jest': 26.0.8
       '@types/node': 14.0.27
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -112,6 +117,7 @@ importers:
       '@types/jest': 26.0.8
       '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -136,7 +142,8 @@ importers:
     devDependencies:
       '@types/jest': 26.0.8
       '@types/node': 14.0.27
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -158,6 +165,7 @@ importers:
       '@types/jest': 26.0.8
       '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -182,7 +190,8 @@ importers:
       kittik-slide: 'link:../kittik-slide'
     devDependencies:
       '@types/node': 14.0.27
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -199,6 +208,7 @@ importers:
     specifiers:
       '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -221,7 +231,8 @@ importers:
     devDependencies:
       '@types/jest': 26.0.8
       '@types/node': 14.0.27
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -246,6 +257,7 @@ importers:
       '@types/jest': 26.0.8
       '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -281,7 +293,8 @@ importers:
     devDependencies:
       '@types/jest': 26.0.8
       '@types/node': 14.0.27
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -303,6 +316,7 @@ importers:
       '@types/jest': 26.0.8
       '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -333,7 +347,8 @@ importers:
       terminal-canvas: 3.1.2
     devDependencies:
       '@types/jest': 26.0.8
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -351,6 +366,7 @@ importers:
     specifiers:
       '@types/jest': 26.0.8
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -374,7 +390,8 @@ importers:
     devDependencies:
       '@types/jest': 26.0.8
       '@types/js-beautify': 1.11.0
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -394,6 +411,7 @@ importers:
       '@types/jest': 26.0.8
       '@types/js-beautify': 1.11.0
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -419,7 +437,8 @@ importers:
     devDependencies:
       '@types/figlet': 1.2.0
       '@types/jest': 26.0.8
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -439,6 +458,7 @@ importers:
       '@types/figlet': 1.2.0
       '@types/jest': 26.0.8
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -461,7 +481,8 @@ importers:
       kittik-shape-basic: 'link:../kittik-shape-basic'
     devDependencies:
       '@types/jest': 26.0.8
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -480,6 +501,7 @@ importers:
     specifiers:
       '@types/jest': 26.0.8
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -501,7 +523,8 @@ importers:
       kittik-shape-basic: 'link:../kittik-shape-basic'
     devDependencies:
       '@types/jest': 26.0.8
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -520,6 +543,7 @@ importers:
     specifiers:
       '@types/jest': 26.0.8
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -541,7 +565,8 @@ importers:
       kittik-shape-basic: 'link:../kittik-shape-basic'
     devDependencies:
       '@types/jest': 26.0.8
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0_eslint@7.6.0
       eslint-plugin-jest: 23.20.0_eslint@7.6.0+typescript@3.9.7
@@ -560,6 +585,7 @@ importers:
     specifiers:
       '@types/jest': 26.0.8
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-plugin-import: 2.22.0
       eslint-plugin-jest: 23.20.0
@@ -580,7 +606,8 @@ importers:
     specifiers: {}
   ../config/jest:
     devDependencies:
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0
+      '@typescript-eslint/eslint-plugin': 3.7.1_d22ed00097c81894d28d3f9848aea27e
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0
       eslint: 7.6.0
       eslint-config-standard-with-typescript: 18.0.2_d9855e55842e586418c07c7c0d75af84
       eslint-plugin-import: 2.22.0_eslint@7.6.0
@@ -591,6 +618,7 @@ importers:
       kittik-tsc-config: 'link:../tsc'
     specifiers:
       '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
       eslint: 7.6.0
       eslint-config-standard-with-typescript: 18.0.2
       eslint-plugin-import: 2.22.0
@@ -1268,15 +1296,17 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Dk/IDOPtOgubt/IaevIUbTgV7doaKkoorvOyYM2CMwuDyP89bekI7H4xLIwunNYiK9jhCkmc6pUrJk3cj2AB9w==
-  /@typescript-eslint/eslint-plugin/3.7.1_eslint@7.6.0:
+  /@typescript-eslint/eslint-plugin/3.7.1_98f5354ad0bbc327ab4925c12674a6b1:
     dependencies:
-      '@typescript-eslint/experimental-utils': 3.7.1_eslint@7.6.0
+      '@typescript-eslint/experimental-utils': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
       debug: 4.1.1
       eslint: 7.6.0
       functional-red-black-tree: 1.0.1
       regexpp: 3.1.0
       semver: 7.3.2
-      tsutils: 3.17.1
+      tsutils: 3.17.1_typescript@3.9.7
+      typescript: 3.9.7
     dev: true
     engines:
       node: ^10.12.0 || >=12.0.0
@@ -1289,16 +1319,16 @@ packages:
         optional: true
     resolution:
       integrity: sha512-3DB9JDYkMrc8Au00rGFiJLK2Ja9CoMP6Ut0sHsXp3ZtSugjNxvSSHTnKLfo4o+QmjYBJqEznDqsG1zj4F2xnsg==
-  /@typescript-eslint/eslint-plugin/3.7.1_eslint@7.6.0+typescript@3.9.7:
+  /@typescript-eslint/eslint-plugin/3.7.1_d22ed00097c81894d28d3f9848aea27e:
     dependencies:
-      '@typescript-eslint/experimental-utils': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/experimental-utils': 3.7.1_eslint@7.6.0
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0
       debug: 4.1.1
       eslint: 7.6.0
       functional-red-black-tree: 1.0.1
       regexpp: 3.1.0
       semver: 7.3.2
-      tsutils: 3.17.1_typescript@3.9.7
-      typescript: 3.9.7
+      tsutils: 3.17.1
     dev: true
     engines:
       node: ^10.12.0 || >=12.0.0
@@ -1381,6 +1411,26 @@ packages:
       '@typescript-eslint/typescript-estree': 3.7.1
       eslint: 7.6.0
       eslint-visitor-keys: 1.3.0
+    dev: true
+    engines:
+      node: ^10.12.0 || >=12.0.0
+    peerDependencies:
+      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    resolution:
+      integrity: sha512-W4QV/gXvfIsccN8225784LNOorcm7ch68Fi3V4Wg7gmkWSQRKevO4RrRqWo6N/Z/myK1QAiGgeaXN57m+R/8iQ==
+  /@typescript-eslint/parser/3.7.1_eslint@7.6.0+typescript@3.9.7:
+    dependencies:
+      '@types/eslint-visitor-keys': 1.0.0
+      '@typescript-eslint/experimental-utils': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      '@typescript-eslint/types': 3.7.1
+      '@typescript-eslint/typescript-estree': 3.7.1_typescript@3.9.7
+      eslint: 7.6.0
+      eslint-visitor-keys: 1.3.0
+      typescript: 3.9.7
     dev: true
     engines:
       node: ^10.12.0 || >=12.0.0
@@ -2306,7 +2356,7 @@ packages:
       integrity: sha512-qFcX0XJkdg+PB3xjZZG/wKSuT1PnQWx57+TVSjIMmILd2yC/6ByYElPwJnslDsuWuSAp4AwJGumarAAmJch5Kw==
   /eslint-config-standard-with-typescript/18.0.2_d9855e55842e586418c07c7c0d75af84:
     dependencies:
-      '@typescript-eslint/eslint-plugin': 3.7.1_eslint@7.6.0
+      '@typescript-eslint/eslint-plugin': 3.7.1_d22ed00097c81894d28d3f9848aea27e
       '@typescript-eslint/parser': 3.7.1_eslint@7.6.0
       eslint: 7.6.0
       eslint-config-standard: 14.1.1_8c34eab1cc58993ad07e205e1894a681
