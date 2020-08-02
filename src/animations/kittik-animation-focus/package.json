@@ -38,7 +38,7 @@
     "test": "jest 2>&1"
   },
   "dependencies": {
-    "kittik-animation-basic": "6.0.0-rc.2"
+    "kittik-animation-basic": "workspace:*"
   },
   "devDependencies": {
     "@types/jest": "26.0.8",
@@ -51,11 +51,11 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "jest": "26.2.2",
-    "kittik-eslint-config": "6.0.0-rc.2",
-    "kittik-jest-config": "6.0.0-rc.2",
-    "kittik-shape-basic": "6.0.0-rc.2",
-    "kittik-shape-rectangle": "6.0.0-rc.2",
-    "kittik-tsc-config": "6.0.0-rc.2",
+    "kittik-eslint-config": "workspace:*",
+    "kittik-jest-config": "workspace:*",
+    "kittik-shape-basic": "workspace:*",
+    "kittik-shape-rectangle": "workspace:*",
+    "kittik-tsc-config": "workspace:*",
     "rimraf": "3.0.2",
     "terminal-canvas": "3.1.2",
     "ts-jest": "26.1.4",

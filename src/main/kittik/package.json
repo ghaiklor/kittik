@@ -48,14 +48,14 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "jest": "26.2.2",
-    "kittik-eslint-config": "6.0.0-rc.2",
-    "kittik-jest-config": "6.0.0-rc.2",
-    "kittik-tsc-config": "6.0.0-rc.2",
+    "kittik-eslint-config": "workspace:*",
+    "kittik-jest-config": "workspace:*",
+    "kittik-tsc-config": "workspace:*",
     "rimraf": "3.0.2",
     "typescript": "3.9.7"
   },
   "dependencies": {
-    "kittik-deck": "6.0.0-rc.2",
-    "kittik-slide": "6.0.0-rc.2"
+    "kittik-deck": "workspace:*",
+    "kittik-slide": "workspace:*"
   }
 }
