@@ -8,6 +8,7 @@ module.exports = {
   maxWorkers: '80%',
   preset: 'ts-jest',
   reporters: ['jest-standard-reporter'],
+  restoreMocks: true,
   slowTestThreshold: 5,
   testEnvironment: 'node',
   verbose: false
