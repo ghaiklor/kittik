@@ -603,7 +603,26 @@ importers:
       ts-jest: 26.1.4
       typescript: 3.9.7
   ../config/eslint:
-    specifiers: {}
+    devDependencies:
+      '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
+      '@typescript-eslint/parser': 3.7.1_eslint@7.6.0+typescript@3.9.7
+      eslint: 7.6.0
+      eslint-config-standard-with-typescript: 18.0.2_ac805c29aacf4ec46bc75a448414e826
+      eslint-plugin-import: 2.22.0_eslint@7.6.0
+      eslint-plugin-node: 11.1.0_eslint@7.6.0
+      eslint-plugin-promise: 4.2.1
+      eslint-plugin-standard: 4.0.1_eslint@7.6.0
+      typescript: 3.9.7
+    specifiers:
+      '@typescript-eslint/eslint-plugin': 3.7.1
+      '@typescript-eslint/parser': 3.7.1
+      eslint: 7.6.0
+      eslint-config-standard-with-typescript: 18.0.2
+      eslint-plugin-import: 2.22.0
+      eslint-plugin-node: 11.1.0
+      eslint-plugin-promise: 4.2.1
+      eslint-plugin-standard: 4.0.1
+      typescript: 3.9.7
   ../config/jest:
     devDependencies:
       '@typescript-eslint/eslint-plugin': 3.7.1_98f5354ad0bbc327ab4925c12674a6b1
