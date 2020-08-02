@@ -34,7 +34,7 @@
     "build": "tsc",
     "clean": "rimraf coverage dist tsconfig.tsbuildinfo *.log",
     "lint": "eslint --fix --ext .js,.ts .",
-    "test": "jest 2>&1"
+    "test": "jest"
   },
   "dependencies": {
     "terminal-canvas": "3.1.2"

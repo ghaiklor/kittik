@@ -35,7 +35,7 @@
     "build": "tsc",
     "clean": "rimraf coverage dist tsconfig.tsbuildinfo *.log",
     "lint": "eslint --fix --ext .js,.ts .",
-    "test": "jest 2>&1"
+    "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "26.0.8",
