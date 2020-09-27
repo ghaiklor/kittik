@@ -1,4 +1,4 @@
-import { AnimationObject } from 'kittik-animation-basic';
-import { SlideOptions } from './SlideOptions';
+import type { AnimationObject } from 'kittik-animation-basic';
+import type { SlideOptions } from './SlideOptions';
 
 export type SlideObject = AnimationObject<'Slide', SlideOptions>;

@@ -1,7 +1,8 @@
-import { Animation, Animationable } from 'kittik-animation-basic';
-import { Direction, SlideOptions } from './SlideOptions';
-import { Shape } from 'kittik-shape-basic';
-import { SlideObject } from './SlideObject';
+import type { Animationable } from 'kittik-animation-basic';
+import { Animation } from 'kittik-animation-basic';
+import type { Direction, SlideOptions } from './SlideOptions';
+import type { Shape } from 'kittik-shape-basic';
+import type { SlideObject } from './SlideObject';
 
 export { SlideObject } from './SlideObject';
 export { SlideOptions, Direction } from './SlideOptions';

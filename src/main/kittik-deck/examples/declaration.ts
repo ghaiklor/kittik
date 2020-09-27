@@ -1,7 +1,7 @@
 import { Deck } from '..';
-import { FigTextOptions } from 'kittik-shape-fig-text';
-import { FocusOptions } from 'kittik-animation-focus';
-import { SlideOptions } from 'kittik-animation-slide';
+import type { FigTextOptions } from 'kittik-shape-fig-text';
+import type { FocusOptions } from 'kittik-animation-focus';
+import type { SlideOptions } from 'kittik-animation-slide';
 
 const AsciiArtShapeOptions: Partial<FigTextOptions> = {
   text: 'ASCII ART',

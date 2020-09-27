@@ -1,7 +1,10 @@
-import { Focus, FocusObject, FocusOptions } from 'kittik-animation-focus';
-import { Print, PrintObject, PrintOptions } from 'kittik-animation-print';
-import { Slide, SlideObject, SlideOptions } from 'kittik-animation-slide';
-import { Animation } from 'kittik-animation-basic';
+import type { FocusObject, FocusOptions } from 'kittik-animation-focus';
+import { Focus } from 'kittik-animation-focus';
+import type { PrintObject, PrintOptions } from 'kittik-animation-print';
+import { Print } from 'kittik-animation-print';
+import type { SlideObject, SlideOptions } from 'kittik-animation-slide';
+import { Slide } from 'kittik-animation-slide';
+import type { Animation } from 'kittik-animation-basic';
 
 export type AnimationType = 'Focus' | 'Print' | 'Slide';
 export type AnimationOptions<T extends AnimationType> = TypesMap[T]['options'];

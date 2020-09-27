@@ -1,11 +1,12 @@
-import { Text, TextObject } from 'kittik-shape-text';
-import { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
+import type { TextObject } from 'kittik-shape-text';
+import { Text } from 'kittik-shape-text';
+import type { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
 import { Canvas } from 'terminal-canvas';
-import { OrderDeclaration } from '../src/slide/OrderDeclaration';
+import type { OrderDeclaration } from '../src/slide/OrderDeclaration';
 import { Print } from 'kittik-animation-print';
-import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
+import type { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
 import { Slide } from '../src/slide/Slide';
-import { SlideDeclaration } from '../src/slide/SlideDeclaration';
+import type { SlideDeclaration } from '../src/slide/SlideDeclaration';
 
 const SLIDE_DECLARATION: SlideDeclaration = {
   name: 'Testing Slide',

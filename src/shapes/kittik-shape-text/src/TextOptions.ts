@@ -1,4 +1,4 @@
-import { ShapeOptions } from 'kittik-shape-basic';
+import type { ShapeOptions } from 'kittik-shape-basic';
 
 export interface TextOptions extends ShapeOptions {
   align: 'left' | 'center' | 'right'

@@ -1,7 +1,8 @@
-import { Shape, ShapeRenderable } from 'kittik-shape-basic';
-import { Canvas } from 'terminal-canvas';
-import { TextObject } from './TextObject';
-import { TextOptions } from './TextOptions';
+import type { ShapeRenderable } from 'kittik-shape-basic';
+import { Shape } from 'kittik-shape-basic';
+import type { Canvas } from 'terminal-canvas';
+import type { TextObject } from './TextObject';
+import type { TextOptions } from './TextOptions';
 
 export { TextObject } from './TextObject';
 export { TextOptions } from './TextOptions';

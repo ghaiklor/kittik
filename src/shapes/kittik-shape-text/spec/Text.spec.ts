@@ -1,6 +1,6 @@
 import { Canvas } from 'terminal-canvas';
 import { Text } from '../src/Text';
-import { TextOptions } from '../src/TextOptions';
+import type { TextOptions } from '../src/TextOptions';
 
 describe('text shape', () => {
   it('should properly get actual width of the shape', () => {

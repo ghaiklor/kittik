@@ -1,5 +1,5 @@
-import { AnimationOptions } from './AnimationOptions';
-import { Shape } from 'kittik-shape-basic';
+import type { AnimationOptions } from './AnimationOptions';
+import type { Shape } from 'kittik-shape-basic';
 
 export interface AnimationPropertyOptions<S extends Shape, P extends keyof S> extends Partial<AnimationOptions> {
   shape: S

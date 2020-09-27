@@ -1,4 +1,5 @@
-import { FigText, FigTextOptions } from '../src/FigText';
+import type { FigTextOptions } from '../src/FigText';
+import { FigText } from '../src/FigText';
 import { Canvas } from 'terminal-canvas';
 
 describe('fig text shape', () => {

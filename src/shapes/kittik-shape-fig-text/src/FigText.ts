@@ -1,8 +1,10 @@
-import { Shape, ShapeRenderable } from 'kittik-shape-basic';
-import figlet, { Fonts, KerningMethods, PrintDirection } from 'figlet';
-import { Canvas } from 'terminal-canvas';
-import { FigTextObject } from './FigTextObject';
-import { FigTextOptions } from './FigTextOptions';
+import type { ShapeRenderable } from 'kittik-shape-basic';
+import { Shape } from 'kittik-shape-basic';
+import type { Fonts, KerningMethods, PrintDirection } from 'figlet';
+import figlet from 'figlet';
+import type { Canvas } from 'terminal-canvas';
+import type { FigTextObject } from './FigTextObject';
+import type { FigTextOptions } from './FigTextOptions';
 
 export { FigTextObject } from './FigTextObject';
 export { FigTextOptions } from './FigTextOptions';

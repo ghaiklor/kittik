@@ -1,5 +1,5 @@
 import { Focus } from '../src/Focus';
-import { FocusObject } from '../src/FocusObject';
+import type { FocusObject } from '../src/FocusObject';
 import { Shape } from 'kittik-shape-basic';
 
 describe('focus animation', () => {

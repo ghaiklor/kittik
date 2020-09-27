@@ -1,6 +1,8 @@
-import { Deck, DeckDeclaration } from '../src/Deck';
-import { Shape, ShapeRenderable } from 'kittik-shape-basic';
-import { Animationable } from 'kittik-animation-basic';
+import type { DeckDeclaration } from '../src/Deck';
+import { Deck } from '../src/Deck';
+import type { ShapeRenderable } from 'kittik-shape-basic';
+import { Shape } from 'kittik-shape-basic';
+import type { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
 import { Print } from 'kittik-animation-print';
 import { Slide } from 'kittik-slide';

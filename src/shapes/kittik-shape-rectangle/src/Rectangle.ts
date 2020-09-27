@@ -1,7 +1,8 @@
-import { Shape, ShapeRenderable } from 'kittik-shape-basic';
-import { Canvas } from 'terminal-canvas';
-import { RectangleObject } from './RectangleObject';
-import { RectangleOptions } from './RectangleOptions';
+import type { ShapeRenderable } from 'kittik-shape-basic';
+import { Shape } from 'kittik-shape-basic';
+import type { Canvas } from 'terminal-canvas';
+import type { RectangleObject } from './RectangleObject';
+import type { RectangleOptions } from './RectangleOptions';
 
 export { RectangleObject } from './RectangleObject';
 export { RectangleOptions } from './RectangleOptions';

@@ -1,12 +1,12 @@
 import { ANIMATIONS } from '../animation/Animations';
-import { AnimationDeclaration } from '../animation/AnimationDeclaration';
-import { Animationable } from 'kittik-animation-basic';
+import type { AnimationDeclaration } from '../animation/AnimationDeclaration';
+import type { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
-import { OrderDeclaration } from './OrderDeclaration';
+import type { OrderDeclaration } from './OrderDeclaration';
 import { SHAPES } from '../shape/Shapes';
-import { ShapeDeclaration } from '../shape/ShapeDeclaration';
-import { ShapeRenderable } from 'kittik-shape-basic';
-import { SlideDeclaration } from './SlideDeclaration';
+import type { ShapeDeclaration } from '../shape/ShapeDeclaration';
+import type { ShapeRenderable } from 'kittik-shape-basic';
+import type { SlideDeclaration } from './SlideDeclaration';
 
 export { AnimationBuilder } from '../animation/AnimationBuilder';
 export { AnimationDeclaration } from '../animation/AnimationDeclaration';

@@ -1,5 +1,6 @@
-import { ANIMATIONS, AnimationOptions, AnimationType } from './Animations';
-import { AnimationObject, Animationable } from 'kittik-animation-basic';
+import type { AnimationOptions, AnimationType } from './Animations';
+import { ANIMATIONS } from './Animations';
+import type { AnimationObject, Animationable } from 'kittik-animation-basic';
 
 export class AnimationBuilder<T extends AnimationType, O extends AnimationOptions<T>> implements AnimationObject<T, O> {
   public type: T;

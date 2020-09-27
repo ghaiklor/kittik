@@ -1,7 +1,8 @@
-import { Animation, Animationable } from 'kittik-animation-basic';
-import { PrintObject } from './PrintObject';
-import { PrintOptions } from './PrintOptions';
-import { Shape } from 'kittik-shape-basic';
+import type { Animationable } from 'kittik-animation-basic';
+import { Animation } from 'kittik-animation-basic';
+import type { PrintObject } from './PrintObject';
+import type { PrintOptions } from './PrintOptions';
+import type { Shape } from 'kittik-shape-basic';
 
 export { PrintObject } from './PrintObject';
 export { PrintOptions } from './PrintOptions';

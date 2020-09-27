@@ -1,7 +1,7 @@
 import { Canvas } from 'terminal-canvas';
-import { ShapeObject } from './ShapeObject';
-import { ShapeOptions } from './ShapeOptions';
-import { ShapeRenderable } from './ShapeRenderable';
+import type { ShapeObject } from './ShapeObject';
+import type { ShapeOptions } from './ShapeOptions';
+import type { ShapeRenderable } from './ShapeRenderable';
 
 export { ShapeObject } from './ShapeObject';
 export { ShapeOptions } from './ShapeOptions';

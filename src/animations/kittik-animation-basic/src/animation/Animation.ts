@@ -1,10 +1,10 @@
 import * as EASING from '../easing/Easing';
-import { AnimationObject } from './AnimationObject';
-import { AnimationOptions } from './AnimationOptions';
-import { AnimationPropertyOptions } from './AnimationPropertyOptions';
-import { EasingOptions } from '../easing/EasingOptions';
+import type { AnimationObject } from './AnimationObject';
+import type { AnimationOptions } from './AnimationOptions';
+import type { AnimationPropertyOptions } from './AnimationPropertyOptions';
+import type { EasingOptions } from '../easing/EasingOptions';
 import { EventEmitter } from 'events';
-import { Shape } from 'kittik-shape-basic';
+import type { Shape } from 'kittik-shape-basic';
 
 export { Animationable } from './Animationable';
 export { AnimationObject } from './AnimationObject';
@@ -36,8 +36,8 @@ export declare interface Animation {
 }
 
 export class Animation extends EventEmitter implements AnimationOptions {
-  public duration = 1000;
   public easing: EASING.Easing = 'outQuad';
+  protected rawDuration = 1000;
 
   public constructor (options?: Partial<AnimationOptions>) {
     super();
@@ -77,6 +77,14 @@ export class Animation extends EventEmitter implements AnimationOptions {
     return this.fromObject(JSON.parse(json));
   }
 
+  public get duration (): number {
+    return this.rawDuration;
+  }
+
+  public set duration (duration: number) {
+    this.rawDuration = duration;
+  }
+
   // We need to have a possibility to override onTick in children
   // Moreover, in case overridden method wants to use its `this` we need to have it here
   // Even if we do not use `this` in this specific implementation, someone else can
@@ -89,6 +97,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
   // Someone else can override it in children and make use of `this` in his own class
   // eslint-disable-next-line class-methods-use-this
   public onEasing (easing: EASING.Easing, options: EasingOptions): number {
+    // eslint-disable-next-line import/namespace
     return Math.round(EASING[easing](options.time, options.startValue, options.byValue, options.duration));
   }
 

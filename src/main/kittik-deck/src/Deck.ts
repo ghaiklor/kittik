@@ -1,8 +1,8 @@
-import { Animationable } from 'kittik-animation-basic';
+import type { Animationable } from 'kittik-animation-basic';
 import { Canvas } from 'terminal-canvas';
-import { DeckDeclaration } from './DeckDeclaration';
+import type { DeckDeclaration } from './DeckDeclaration';
 import { EventEmitter } from 'events';
-import { ShapeRenderable } from 'kittik-shape-basic';
+import type { ShapeRenderable } from 'kittik-shape-basic';
 import { Slide } from 'kittik-slide';
 import readline from 'readline';
 import tty from 'tty';

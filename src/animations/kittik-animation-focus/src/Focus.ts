@@ -1,7 +1,8 @@
-import { Animation, Animationable } from 'kittik-animation-basic';
-import { BounceDirection, Direction, FocusOptions, ShakeDirection } from './FocusOptions';
-import { FocusObject } from './FocusObject';
-import { Shape } from 'kittik-shape-basic';
+import { Animation } from 'kittik-animation-basic';
+import type { Animationable } from 'kittik-animation-basic';
+import type { BounceDirection, Direction, FocusOptions, ShakeDirection } from './FocusOptions';
+import type { FocusObject } from './FocusObject';
+import type { Shape } from 'kittik-shape-basic';
 
 export { FocusObject } from './FocusObject';
 export { FocusOptions, Direction, BounceDirection, ShakeDirection } from './FocusOptions';
@@ -10,7 +11,6 @@ export class Focus extends Animation implements FocusOptions, Animationable {
   public direction: Direction = 'shakeX';
   public offset = 5;
   public repeat = 1;
-  private rawDuration = 1000;
 
   public constructor (options?: Partial<FocusOptions>) {
     super(options);

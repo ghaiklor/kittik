@@ -1,4 +1,4 @@
-import { AnimationOptions } from 'kittik-animation-basic';
+import type { AnimationOptions } from 'kittik-animation-basic';
 
 export type BounceDirection = 'bounceUp' | 'bounceRight' | 'bounceDown' | 'bounceLeft';
 export type ShakeDirection = 'shakeX' | 'shakeY';

@@ -1,4 +1,4 @@
-import { AnimationOptions } from 'kittik-animation-basic';
+import type { AnimationOptions } from 'kittik-animation-basic';
 
 export type Direction = 'inUp' | 'inDown' | 'inLeft' | 'inRight' | 'outUp' | 'outDown' | 'outLeft' | 'outRight';
 

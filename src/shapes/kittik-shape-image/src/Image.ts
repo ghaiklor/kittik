@@ -1,7 +1,8 @@
-import { Shape, ShapeRenderable } from 'kittik-shape-basic';
-import { Canvas } from 'terminal-canvas';
-import { ImageObject } from './ImageObject';
-import { ImageOptions } from './ImageOptions';
+import type { ShapeRenderable } from 'kittik-shape-basic';
+import { Shape } from 'kittik-shape-basic';
+import type { Canvas } from 'terminal-canvas';
+import type { ImageObject } from './ImageObject';
+import type { ImageOptions } from './ImageOptions';
 import fs from 'fs';
 import path from 'path';
 

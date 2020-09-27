@@ -1,8 +1,9 @@
-import { Slide, SlideBuilder } from 'kittik-slide';
-import { Animationable } from 'kittik-animation-basic';
-import { Canvas } from 'terminal-canvas';
+import type { Slide } from 'kittik-slide';
+import { SlideBuilder } from 'kittik-slide';
+import type { Animationable } from 'kittik-animation-basic';
+import type { Canvas } from 'terminal-canvas';
 import { Deck } from './Deck';
-import { ShapeRenderable } from 'kittik-shape-basic';
+import type { ShapeRenderable } from 'kittik-shape-basic';
 
 export class DeckBuilder<TShape extends string, TAnimation extends string> {
   private readonly deck: Deck = new Deck();

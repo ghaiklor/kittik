@@ -1,7 +1,8 @@
-import { Shape, ShapeRenderable } from 'kittik-shape-basic';
-import { Canvas } from 'terminal-canvas';
-import { CodeObject } from './CodeObject';
-import { CodeOptions } from './CodeOptions';
+import type { ShapeRenderable } from 'kittik-shape-basic';
+import { Shape } from 'kittik-shape-basic';
+import type { Canvas } from 'terminal-canvas';
+import type { CodeObject } from './CodeObject';
+import type { CodeOptions } from './CodeOptions';
 import { DEFAULT_THEME } from './themes/default';
 import { js_beautify as beautify } from 'js-beautify';
 import redeyed from 'redeyed';
@@ -33,7 +34,7 @@ export class Code extends Shape implements CodeOptions, ShapeRenderable {
     let codeSplits: string[] = [];
     try {
       codeSplits = redeyed(this.text, DEFAULT_THEME).splits;
-    } catch (error) {
+    } catch (error: unknown) {
       codeSplits = [this.text];
     }
 

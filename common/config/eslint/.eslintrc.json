@@ -8,6 +8,8 @@
   "extends": [
     "eslint:all",
     "plugin:@typescript-eslint/all",
+    "plugin:import/errors",
+    "plugin:import/warnings",
     "plugin:import/typescript",
     "plugin:jest/all",
     "plugin:node/recommended",
@@ -32,11 +34,6 @@
     "promise",
     "standard"
   ],
-  "settings": {
-    "jest": {
-      "version": 26
-    }
-  },
   "rules": {
     "@typescript-eslint/indent": [
       "error",
@@ -44,6 +41,18 @@
     ],
     "@typescript-eslint/no-magic-numbers": [
       "off"
+    ],
+    "@typescript-eslint/no-shadow": [
+      "off"
+    ],
+    "no-duplicate-imports": [
+      "off"
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
     ],
     "@typescript-eslint/no-type-alias": [
       "error",
@@ -134,6 +143,10 @@
         ]
       }
     ],
+    "@typescript-eslint/quotes": [
+      "error",
+      "single"
+    ],
     "node/no-unsupported-features/es-syntax": [
       "error",
       {
@@ -161,10 +174,14 @@
         "*.js"
       ],
       "rules": {
-        "@typescript-eslint/no-unsafe-assignment": "off",
         "@typescript-eslint/no-require-imports": "off",
-        "@typescript-eslint/quotes": "off"
+        "@typescript-eslint/no-unsafe-assignment": "off"
       }
     }
-  ]
+  ],
+  "settings": {
+    "jest": {
+      "version": 26
+    }
+  }
 }

@@ -1,4 +1,5 @@
-import { Slide, SlideOptions } from '../src/Slide';
+import type { SlideOptions } from '../src/Slide';
+import { Slide } from '../src/Slide';
 import { Canvas } from 'terminal-canvas';
 import { Rectangle } from 'kittik-shape-rectangle';
 

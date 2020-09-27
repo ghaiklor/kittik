@@ -1,6 +1,6 @@
-import { Animationable } from 'kittik-animation-basic';
-import { Canvas } from 'terminal-canvas';
-import { ShapeRenderable } from 'kittik-shape-basic';
+import type { Animationable } from 'kittik-animation-basic';
+import type { Canvas } from 'terminal-canvas';
+import type { ShapeRenderable } from 'kittik-shape-basic';
 import { Slide } from './Slide';
 
 type TShapeAccumulator<TSlideBuilder, TNextShape> =

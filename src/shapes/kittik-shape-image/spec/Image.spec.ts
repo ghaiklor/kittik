@@ -1,4 +1,5 @@
-import { Image, ImageOptions } from '../src/Image';
+import type { ImageOptions } from '../src/Image';
+import { Image } from '../src/Image';
 import { Canvas } from 'terminal-canvas';
 import path from 'path';
 

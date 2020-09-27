@@ -1,8 +1,8 @@
-import { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
+import type { AnimationDeclaration } from '../src/animation/AnimationDeclaration';
 import { Canvas } from 'terminal-canvas';
-import { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
+import type { ShapeDeclaration } from '../src/shape/ShapeDeclaration';
 import { Slide } from '..';
-import { SlideOptions } from 'kittik-animation-slide';
+import type { SlideOptions } from 'kittik-animation-slide';
 
 const canvas = Canvas
   .create()

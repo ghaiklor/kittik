@@ -1,5 +1,6 @@
-import { SHAPES, ShapeOptions, ShapeType } from './Shapes';
-import { ShapeObject, ShapeRenderable } from 'kittik-shape-basic';
+import type { ShapeOptions, ShapeType } from './Shapes';
+import { SHAPES } from './Shapes';
+import type { ShapeObject, ShapeRenderable } from 'kittik-shape-basic';
 
 export class ShapeBuilder<T extends ShapeType, O extends ShapeOptions<T>> implements ShapeObject<T, O> {
   public type: T;
