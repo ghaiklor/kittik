@@ -1,6 +1,6 @@
 {
   "name": "kittik",
-  "version": "6.0.0-rc.2",
+  "version": "6.0.0-rc.3",
   "description": "Kittik CLI and main package to import everything for building slides",
   "homepage": "https://github.com/ghaiklor/kittik/#readme",
   "license": "MIT",

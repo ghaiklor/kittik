@@ -1,6 +1,6 @@
 {
   "name": "kittik-animation-print",
-  "version": "6.0.0-rc.2",
+  "version": "6.0.0-rc.3",
   "description": "Provides text printing animation in Kittik",
   "license": "MIT",
   "type": "commonjs",

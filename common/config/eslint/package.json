@@ -1,6 +1,6 @@
 {
   "name": "kittik-eslint-config",
-  "version": "6.0.0-rc.2",
+  "version": "6.0.0-rc.3",
   "description": "ESLint configuration for kittik project",
   "main": ".eslintrc.json",
   "homepage": "https://github.com/ghaiklor/kittik#readme",

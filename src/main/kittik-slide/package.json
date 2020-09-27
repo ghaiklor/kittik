@@ -1,6 +1,6 @@
 {
   "name": "kittik-slide",
-  "version": "6.0.0-rc.2",
+  "version": "6.0.0-rc.3",
   "description": "Slide package that combines all shapes and animations in one package and provides abstraction over real slide in Kittik",
   "license": "MIT",
   "type": "commonjs",

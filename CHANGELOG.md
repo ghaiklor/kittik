@@ -1,3 +1,9 @@
+# [6.0.0-rc.3](https://github.com/ghaiklor/kittik/compare/v6.0.0-rc.2...v6.0.0-rc.3) (2020-09-27)
+
+### Features
+
+* 🎸 add re-export for Declaration types ([4c7add3](https://github.com/ghaiklor/kittik/commit/4c7add38310f1b7970111a94b959725975c46b85))
+
 # [6.0.0-rc.2](https://github.com/ghaiklor/kittik/compare/v6.0.0-rc.1...v6.0.0-rc.2) (2020-06-13)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "kittik-shape-text",
-  "version": "6.0.0-rc.2",
+  "version": "6.0.0-rc.3",
   "description": "Shape for rendering text in Kittik",
   "license": "MIT",
   "type": "commonjs",

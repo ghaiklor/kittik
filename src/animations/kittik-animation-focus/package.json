@@ -1,6 +1,6 @@
 {
   "name": "kittik-animation-focus",
-  "version": "6.0.0-rc.2",
+  "version": "6.0.0-rc.3",
   "description": "Provides focus animations in Kittik",
   "license": "MIT",
   "type": "commonjs",
