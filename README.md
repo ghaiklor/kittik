@@ -1,7 +1,7 @@
 # kittik
 
 ![Travis (.com) branch](https://img.shields.io/travis/com/ghaiklor/kittik/master?style=flat-square)
-![Codecov](https://img.shields.io/codecov/c/github/ghaiklor/kittik?style=flat-square)
+![Code Coverage](https://img.shields.io/codecov/c/github/ghaiklor/kittik?style=flat-square)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ghaiklor/kittik?style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/ghaiklor/kittik?style=flat-square)
 
