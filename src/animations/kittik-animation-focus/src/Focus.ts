@@ -32,11 +32,11 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     }
   }
 
-  public get duration (): number {
+  public override get duration (): number {
     return this.rawDuration / this.repeat;
   }
 
-  public set duration (duration: number) {
+  public override set duration (duration: number) {
     this.rawDuration = duration;
   }
 
@@ -58,7 +58,7 @@ export class Focus extends Animation implements FocusOptions, Animationable {
     );
   }
 
-  public toObject (): FocusObject {
+  public override toObject (): FocusObject {
     const base = super.toObject();
     const type: FocusObject['type'] = 'Focus';
     const options: FocusObject['options'] = {

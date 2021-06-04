@@ -17,8 +17,8 @@ export class SlideBuilder<TShape, TAnimation> {
   private readonly slide: Slide = new Slide();
 
   public constructor (shapes: Record<string, ShapeRenderable> = {}, animations: Record<string, Animationable> = {}) {
-    Object.keys(shapes).forEach((name) => this.slide.addShape(name, shapes[name]));
-    Object.keys(animations).forEach((name) => this.slide.addAnimation(name, animations[name]));
+    Object.keys(shapes).forEach((name) => this.slide.addShape(name, shapes[name]!));
+    Object.keys(animations).forEach((name) => this.slide.addAnimation(name, animations[name]!));
   }
 
   public static start <TShape extends string = never, TAnimation extends string = never> (

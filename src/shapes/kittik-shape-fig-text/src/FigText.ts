@@ -40,12 +40,12 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     }
   }
 
-  public get width (): string {
+  public override get width (): string {
     const lengths = this.renderedText.split('\n').map((item) => item.length);
     return Math.max(...lengths).toString();
   }
 
-  public get height (): string {
+  public override get height (): string {
     return this.renderedText.split('\n').length.toString();
   }
 
@@ -59,7 +59,7 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     });
   }
 
-  public render <T extends Canvas> (canvas: T): void {
+  public override render <T extends Canvas> (canvas: T): void {
     super.render(canvas);
 
     const text = this.renderedText.split('\n');
@@ -71,7 +71,7 @@ export class FigText extends Shape implements FigTextOptions, ShapeRenderable {
     text.forEach((line, index) => canvas.moveTo(x, y + index).write(line));
   }
 
-  public toObject (): FigTextObject {
+  public override toObject (): FigTextObject {
     const base = super.toObject();
     const type: FigTextObject['type'] = 'FigText';
     const options: FigTextObject['options'] = {

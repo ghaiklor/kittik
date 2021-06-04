@@ -27,7 +27,7 @@ export class Slide extends Animation implements SlideOptions, Animationable {
     ]).then(() => shape);
   }
 
-  public toObject (): SlideObject {
+  public override toObject (): SlideObject {
     const base = super.toObject();
     const type: SlideObject['type'] = 'Slide';
     const options: SlideObject['options'] = {
@@ -50,14 +50,14 @@ export class Slide extends Animation implements SlideOptions, Animationable {
     const width = parseInt(shape.width, 10);
     const height = parseInt(shape.height, 10);
     const directions = {
-      inDown: () => [x, canvas.height + height, x, y],
-      inLeft: () => [-width, y, x, y],
-      inRight: () => [canvas.width + width, y, x, y],
-      inUp: () => [x, -height, x, y],
-      outDown: () => [x, y, x, canvas.height + height],
-      outLeft: () => [x, y, -width, y],
-      outRight: () => [x, y, canvas.width + 1, y],
-      outUp: () => [x, y, x, -height]
+      inDown: () => [x, canvas.height + height, x, y] as const,
+      inLeft: () => [-width, y, x, y]  as const,
+      inRight: () => [canvas.width + width, y, x, y]  as const,
+      inUp: () => [x, -height, x, y]  as const,
+      outDown: () => [x, y, x, canvas.height + height]  as const,
+      outLeft: () => [x, y, -width, y]  as const,
+      outRight: () => [x, y, canvas.width + 1, y]  as const,
+      outUp: () => [x, y, x, -height]  as const
     };
 
     const [startX, startY, endX, endY] = directions[this.direction]();

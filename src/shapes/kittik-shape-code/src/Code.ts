@@ -11,24 +11,24 @@ export { CodeObject } from './CodeObject';
 export { CodeOptions } from './CodeOptions';
 
 export class Code extends Shape implements CodeOptions, ShapeRenderable {
-  public get text (): string {
+  public override get text (): string {
     return beautify(this.rawText, { indent_size: 2 });
   }
 
-  public set text (code: string) {
+  public override set text (code: string) {
     this.rawText = code;
   }
 
-  public get width (): string {
+  public override get width (): string {
     const lengths = this.text.split('\n').map((item) => item.length);
     return Math.max(...lengths).toString();
   }
 
-  public get height (): string {
+  public override get height (): string {
     return this.text.split('\n').length.toString();
   }
 
-  public render <T extends Canvas> (canvas: T): void {
+  public override render <T extends Canvas> (canvas: T): void {
     super.render(canvas);
 
     let codeSplits: string[] = [];
@@ -48,7 +48,7 @@ export class Code extends Shape implements CodeOptions, ShapeRenderable {
       const color = (/__(?<color>.*)__/u).exec(split);
 
       if ((/\n/u).exec(code) === null) {
-        canvas.foreground(color === null ? 'none' : color[1]);
+        canvas.foreground(color === null ? 'none' : typeof color[1] === 'string' ? color[1] : 'none');
         canvas.write(code);
       } else {
         canvas.moveTo(x, canvas.cursorY + 1).write(code.replace('\n', ''));
@@ -56,7 +56,7 @@ export class Code extends Shape implements CodeOptions, ShapeRenderable {
     });
   }
 
-  public toObject (): CodeObject {
+  public override toObject (): CodeObject {
     const base = super.toObject();
     const type: CodeObject['type'] = 'Code';
     const options: CodeObject['options'] = {

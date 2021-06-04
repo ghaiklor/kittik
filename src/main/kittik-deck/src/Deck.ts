@@ -83,7 +83,7 @@ export class Deck extends EventEmitter {
   public async render (index = this.currentSlideIndex): Promise<boolean> {
     if (!this.isRendering && typeof this.slides[index] !== 'undefined') {
       this.isRendering = true;
-      await this.slides[index].render();
+      await this.slides[index]!.render();
       this.isRendering = false;
 
       return true;

@@ -48,16 +48,16 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     }
   }
 
-  public get width (): string {
+  public override get width (): string {
     const lengths = this.text.split('\n').map((item) => item.length);
     return Math.max(...lengths).toString();
   }
 
-  public get height (): string {
+  public override get height (): string {
     return this.text.split('\n').length.toString();
   }
 
-  public render <T extends Canvas> (canvas: T): void {
+  public override render <T extends Canvas> (canvas: T): void {
     super.render(canvas);
 
     const text = this.text.split('\n');
@@ -92,7 +92,7 @@ export class Text extends Shape implements TextOptions, ShapeRenderable {
     });
   }
 
-  public toObject (): TextObject {
+  public override toObject (): TextObject {
     const base = super.toObject();
     const type: TextObject['type'] = 'Text';
     const options: TextObject['options'] = {

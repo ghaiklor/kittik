@@ -10,7 +10,7 @@ export { PrintOptions } from './PrintOptions';
 export class Print extends Animation implements PrintOptions, Animationable {
   private originalText = '';
 
-  public onTick <S extends Shape, P extends keyof S, V extends number> (shape: S, _property: P, value: V): void {
+  public override onTick <S extends Shape, P extends keyof S, V extends number> (shape: S, _property: P, value: V): void {
     shape.text = this.originalText.slice(0, value);
   }
 
@@ -25,7 +25,7 @@ export class Print extends Animation implements PrintOptions, Animationable {
     });
   }
 
-  public toObject (): PrintObject {
+  public override toObject (): PrintObject {
     const base = super.toObject();
     const type: PrintObject['type'] = 'Print';
     const options: PrintObject['options'] = {

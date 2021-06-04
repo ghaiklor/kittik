@@ -8,7 +8,7 @@ export { RectangleObject } from './RectangleObject';
 export { RectangleOptions } from './RectangleOptions';
 
 export class Rectangle extends Shape implements RectangleOptions, ShapeRenderable {
-  public render <T extends Canvas> (canvas: T): void {
+  public override render <T extends Canvas> (canvas: T): void {
     super.render(canvas);
 
     const { text, background, foreground } = this;
@@ -33,7 +33,7 @@ export class Rectangle extends Shape implements RectangleOptions, ShapeRenderabl
       .write(text);
   }
 
-  public toObject (): RectangleObject {
+  public override toObject (): RectangleObject {
     const base = super.toObject();
     const type: RectangleObject['type'] = 'Rectangle';
     const options: RectangleObject['options'] = {

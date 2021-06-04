@@ -53,7 +53,7 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     this.rawPreserveAspectRatio = preserve;
   }
 
-  public render <T extends Canvas> (canvas: T): void {
+  public override render <T extends Canvas> (canvas: T): void {
     super.render(canvas);
 
     const { width, height, image, preserveAspectRatio } = this;
@@ -71,7 +71,7 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
     canvas.stream.write(`\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}\u0007`);
   }
 
-  public toObject (): ImageObject {
+  public override toObject (): ImageObject {
     const base = super.toObject();
     const type: ImageObject['type'] = 'Image';
     const options: ImageObject['options'] = {
