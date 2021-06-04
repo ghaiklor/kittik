@@ -2,10 +2,13 @@
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
   "rushVersion": "5.34.2",
   "pnpmVersion": "5.8.0",
-  "nodeSupportedVersionRange": ">=14.0.0",
+  "allowMostlyStandardPackageNames": false,
   "ensureConsistentVersions": true,
-  "projectFolderMinDepth": 3,
+  "nodeSupportedVersionRange": ">=14.0.0",
   "projectFolderMaxDepth": 3,
+  "projectFolderMinDepth": 3,
+  "suppressNodeLtsWarning": false,
+  "telemetryEnabled": true,
   "pnpmOptions": {
     "pnpmStore": "local",
     "preventManualShrinkwrapChanges": true,
@@ -13,13 +16,19 @@
     "strictPeerDependencies": true,
     "useWorkspaces": true
   },
-  "gitPolicy": {
-    "versionBumpCommitMessage": "chore: 🤖 applying package updates"
-  },
   "repository": {
     "url": "git@github.com:ghaiklor/kittik.git",
     "defaultBranch": "master",
     "defaultRemote": "origin"
+  },
+  "gitPolicy": {
+    "versionBumpCommitMessage": "chore: 🤖 applying package updates"
+  },
+  "eventHooks": {
+    "postRushBuild": [],
+    "postRushInstall": [],
+    "preRushBuild": [],
+    "preRushInstall": []
   },
   "projects": [
     {
