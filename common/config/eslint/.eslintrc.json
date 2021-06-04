@@ -13,7 +13,7 @@
     "plugin:import/typescript",
     "plugin:jest/all",
     "plugin:node/recommended",
-    "plugin:prettier:recommended",
+    "plugin:prettier/recommended",
     "plugin:promise/recommended",
     "standard-with-typescript",
     "prettier"
