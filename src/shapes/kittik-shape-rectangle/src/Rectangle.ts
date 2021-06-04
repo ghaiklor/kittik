@@ -1,14 +1,17 @@
-import type { ShapeRenderable } from 'kittik-shape-basic';
-import { Shape } from 'kittik-shape-basic';
-import type { Canvas } from 'terminal-canvas';
-import type { RectangleObject } from './RectangleObject';
-import type { RectangleOptions } from './RectangleOptions';
+import type { ShapeRenderable } from "kittik-shape-basic";
+import { Shape } from "kittik-shape-basic";
+import type { Canvas } from "terminal-canvas";
+import type { RectangleObject } from "./RectangleObject";
+import type { RectangleOptions } from "./RectangleOptions";
 
-export { RectangleObject } from './RectangleObject';
-export { RectangleOptions } from './RectangleOptions';
+export { RectangleObject } from "./RectangleObject";
+export { RectangleOptions } from "./RectangleOptions";
 
-export class Rectangle extends Shape implements RectangleOptions, ShapeRenderable {
-  public override render <T extends Canvas> (canvas: T): void {
+export class Rectangle
+  extends Shape
+  implements RectangleOptions, ShapeRenderable
+{
+  public render<T extends Canvas>(canvas: T): void {
     super.render(canvas);
 
     const { text, background, foreground } = this;
@@ -17,12 +20,9 @@ export class Rectangle extends Shape implements RectangleOptions, ShapeRenderabl
     const x1 = parseInt(this.x, 10);
     const y1 = parseInt(this.y, 10);
     const y2 = y1 + height;
-    const filler = ' '.repeat(width);
+    const filler = " ".repeat(width);
 
-    canvas
-      .moveTo(x1, y1)
-      .background(background)
-      .foreground(foreground);
+    canvas.moveTo(x1, y1).background(background).foreground(foreground);
 
     for (let y = y1; y <= y2; y += 1) {
       canvas.write(filler).moveTo(x1, y);
@@ -33,11 +33,11 @@ export class Rectangle extends Shape implements RectangleOptions, ShapeRenderabl
       .write(text);
   }
 
-  public override toObject (): RectangleObject {
+  public toObject(): RectangleObject {
     const base = super.toObject();
-    const type: RectangleObject['type'] = 'Rectangle';
-    const options: RectangleObject['options'] = {
-      ...base.options
+    const type: RectangleObject["type"] = "Rectangle";
+    const options: RectangleObject["options"] = {
+      ...base.options,
     };
 
     return { type, options };

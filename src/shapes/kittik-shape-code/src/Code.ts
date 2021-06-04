@@ -1,34 +1,34 @@
-import type { ShapeRenderable } from 'kittik-shape-basic';
-import { Shape } from 'kittik-shape-basic';
-import type { Canvas } from 'terminal-canvas';
-import type { CodeObject } from './CodeObject';
-import type { CodeOptions } from './CodeOptions';
-import { DEFAULT_THEME } from './themes/default';
-import { js_beautify as beautify } from 'js-beautify';
-import redeyed from 'redeyed';
+import type { ShapeRenderable } from "kittik-shape-basic";
+import { Shape } from "kittik-shape-basic";
+import type { Canvas } from "terminal-canvas";
+import type { CodeObject } from "./CodeObject";
+import type { CodeOptions } from "./CodeOptions";
+import { DEFAULT_THEME } from "./themes/default";
+import { js_beautify as beautify } from "js-beautify";
+import redeyed from "redeyed";
 
-export { CodeObject } from './CodeObject';
-export { CodeOptions } from './CodeOptions';
+export { CodeObject } from "./CodeObject";
+export { CodeOptions } from "./CodeOptions";
 
 export class Code extends Shape implements CodeOptions, ShapeRenderable {
-  public override get text (): string {
+  public get text(): string {
     return beautify(this.rawText, { indent_size: 2 });
   }
 
-  public override set text (code: string) {
+  public set text(code: string) {
     this.rawText = code;
   }
 
-  public override get width (): string {
-    const lengths = this.text.split('\n').map((item) => item.length);
+  public get width(): string {
+    const lengths = this.text.split("\n").map((item) => item.length);
     return Math.max(...lengths).toString();
   }
 
-  public override get height (): string {
-    return this.text.split('\n').length.toString();
+  public get height(): string {
+    return this.text.split("\n").length.toString();
   }
 
-  public override render <T extends Canvas> (canvas: T): void {
+  public render<T extends Canvas>(canvas: T): void {
     super.render(canvas);
 
     let codeSplits: string[] = [];
@@ -44,23 +44,30 @@ export class Code extends Shape implements CodeOptions, ShapeRenderable {
     canvas.moveTo(x, y);
 
     codeSplits.forEach((split: string) => {
-      const code = split.replace(/__.*__/u, '');
-      const color = (/__(?<color>.*)__/u).exec(split);
+      const code = split.replace(/__.*__/u, "");
+      const color = /__(?<color>.*)__/u.exec(split);
 
-      if ((/\n/u).exec(code) === null) {
-        canvas.foreground(color === null ? 'none' : typeof color[1] === 'string' ? color[1] : 'none');
+      if (/\n/u.exec(code) === null) {
+        canvas.foreground(
+          // eslint-disable-next-line no-nested-ternary
+          color === null
+            ? "none"
+            : typeof color[1] === "string"
+            ? color[1]
+            : "none"
+        );
         canvas.write(code);
       } else {
-        canvas.moveTo(x, canvas.cursorY + 1).write(code.replace('\n', ''));
+        canvas.moveTo(x, canvas.cursorY + 1).write(code.replace("\n", ""));
       }
     });
   }
 
-  public override toObject (): CodeObject {
+  public toObject(): CodeObject {
     const base = super.toObject();
-    const type: CodeObject['type'] = 'Code';
-    const options: CodeObject['options'] = {
-      ...base.options
+    const type: CodeObject["type"] = "Code";
+    const options: CodeObject["options"] = {
+      ...base.options,
     };
 
     return { type, options };

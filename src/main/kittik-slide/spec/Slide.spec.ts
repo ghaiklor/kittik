@@ -174,6 +174,7 @@ describe("slide", () => {
     const eraseScreenSpy = jest.spyOn(canvas, "eraseScreen").mockReturnThis();
     const flushSpy = jest.spyOn(canvas, "flush").mockReturnThis();
 
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
     expect(await slide.render()).toBeUndefined();
 
     expect(writeSpy.mock.calls.length).toBeGreaterThanOrEqual(3);
@@ -194,6 +195,7 @@ describe("slide", () => {
       canvas
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
     expect(await slide.render()).toBeUndefined();
   });
 
@@ -210,6 +212,7 @@ describe("slide", () => {
       canvas
     );
 
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
     expect(await slide.render()).toBeUndefined();
   });
 
@@ -239,6 +242,7 @@ describe("slide", () => {
     const canvas = new Canvas();
     const slide = Slide.fromObject(SLIDE_DECLARATION, canvas);
 
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
     expect(await slide.render()).toBeUndefined();
   });
 
@@ -248,6 +252,7 @@ describe("slide", () => {
     const canvas = new Canvas();
     const slide = Slide.fromJSON(JSON.stringify(SLIDE_DECLARATION), canvas);
 
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
     expect(await slide.render()).toBeUndefined();
   });
 

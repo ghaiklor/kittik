@@ -1,59 +1,64 @@
-import type { ShapeRenderable } from 'kittik-shape-basic';
-import { Shape } from 'kittik-shape-basic';
-import type { Canvas } from 'terminal-canvas';
-import type { ImageObject } from './ImageObject';
-import type { ImageOptions } from './ImageOptions';
-import fs from 'fs';
-import path from 'path';
+import type { ShapeRenderable } from "kittik-shape-basic";
+import { Shape } from "kittik-shape-basic";
+import type { Canvas } from "terminal-canvas";
+import type { ImageObject } from "./ImageObject";
+import type { ImageOptions } from "./ImageOptions";
+import fs from "fs";
+import path from "path";
 
-export { ImageObject } from './ImageObject';
-export { ImageOptions } from './ImageOptions';
+export { ImageObject } from "./ImageObject";
+export { ImageOptions } from "./ImageOptions";
 
 export class Image extends Shape implements ImageOptions, ShapeRenderable {
-  private rawImageOrPath = 'R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=';
+  private rawImageOrPath = "R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=";
   private rawPreserveAspectRatio = true;
 
-  public constructor (options?: Partial<ImageOptions>) {
+  public constructor(options?: Partial<ImageOptions>) {
     super(options);
 
-    if (typeof options?.image !== 'undefined') {
+    if (typeof options?.image !== "undefined") {
       this.image = options.image;
     }
 
-    if (typeof options?.preserveAspectRatio !== 'undefined') {
+    if (typeof options?.preserveAspectRatio !== "undefined") {
       this.preserveAspectRatio = options.preserveAspectRatio;
     }
   }
 
-  public static isBase64 (string: string): boolean {
-    return (/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/u).test(string);
+  public static isBase64(string: string): boolean {
+    return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/u.test(
+      string
+    );
   }
 
-  public get image (): string {
+  public get image(): string {
     if (Image.isBase64(this.rawImageOrPath)) {
       return this.rawImageOrPath;
     }
 
     if (fs.existsSync(path.resolve(process.cwd(), this.rawImageOrPath))) {
-      return fs.readFileSync(path.resolve(process.cwd(), this.rawImageOrPath), 'base64');
+      return fs.readFileSync(
+        path.resolve(process.cwd(), this.rawImageOrPath),
+        "base64"
+      );
     }
 
-    throw new Error('Image is not in base64 or does not exist on file system');
+    throw new Error("Image is not in base64 or does not exist on file system");
   }
 
-  public set image (image: string) {
+  public set image(image: string) {
     this.rawImageOrPath = image;
   }
 
-  public get preserveAspectRatio (): boolean {
+  public get preserveAspectRatio(): boolean {
     return this.rawPreserveAspectRatio;
   }
 
-  public set preserveAspectRatio (preserve: boolean) {
+  public set preserveAspectRatio(preserve: boolean) {
     this.rawPreserveAspectRatio = preserve;
   }
 
-  public override render <T extends Canvas> (canvas: T): void {
+  public render<T extends Canvas>(canvas: T): void {
     super.render(canvas);
 
     const { width, height, image, preserveAspectRatio } = this;
@@ -65,19 +70,21 @@ export class Image extends Shape implements ImageOptions, ShapeRenderable {
       `width=${width}`,
       `height=${height}`,
       `preserveAspectRatio=${preserveAspectRatio ? 1 : 0}`,
-      'inline=1'
-    ].join(';');
+      "inline=1",
+    ].join(";");
 
-    canvas.stream.write(`\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}\u0007`);
+    canvas.stream.write(
+      `\u001b[${y + 1};${x + 1}H\u001b]1337;File=${args}:${image}\u0007`
+    );
   }
 
-  public override toObject (): ImageObject {
+  public toObject(): ImageObject {
     const base = super.toObject();
-    const type: ImageObject['type'] = 'Image';
-    const options: ImageObject['options'] = {
+    const type: ImageObject["type"] = "Image";
+    const options: ImageObject["options"] = {
       ...base.options,
       image: this.rawImageOrPath,
-      preserveAspectRatio: this.rawPreserveAspectRatio
+      preserveAspectRatio: this.rawPreserveAspectRatio,
     };
 
     return { type, options };

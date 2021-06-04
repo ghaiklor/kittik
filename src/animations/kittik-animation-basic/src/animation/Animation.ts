@@ -81,6 +81,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
   }
 
   public static fromJSON<A extends Animation>(json: string): A {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return this.fromObject(JSON.parse(json));
   }
 
@@ -114,6 +115,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
   public onEasing(easing: EASING.Easing, options: EasingOptions): number {
     // eslint-disable-next-line import/namespace
     return Math.round(
+      // eslint-disable-next-line import/namespace
       EASING[easing](
         options.time,
         options.startValue,
@@ -162,6 +164,7 @@ export class Animation extends EventEmitter implements AnimationOptions {
         );
 
         this.delay(delay)
+          // eslint-disable-next-line promise/always-return
           .then(() => {
             tick(resolve, reject);
           })

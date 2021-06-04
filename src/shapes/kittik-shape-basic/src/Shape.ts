@@ -76,6 +76,7 @@ export class Shape implements ShapeOptions, ShapeRenderable {
   }
 
   public static fromJSON<S extends Shape>(json: string): S {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return this.fromObject(JSON.parse(json));
   }
 

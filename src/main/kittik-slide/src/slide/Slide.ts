@@ -68,6 +68,7 @@ export class Slide {
   }
 
   public static fromJSON(json: string, canvas?: Canvas): Slide {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return this.fromObject(JSON.parse(json), canvas);
   }
 

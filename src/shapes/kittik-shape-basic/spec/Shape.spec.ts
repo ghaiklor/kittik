@@ -190,8 +190,8 @@ describe("basic shape", () => {
     const shape = new Shape();
     const json = shape.toJSON();
 
-    // eslint-disable-next-line max-len
     expect(json).toStrictEqual(
+      // eslint-disable-next-line max-len
       '{"type":"Basic","options":{"background":"none","foreground":"none","height":"25%","text":"","width":"50%","x":"left","y":"top"}}'
     );
   });
@@ -209,8 +209,8 @@ describe("basic shape", () => {
 
     const json = shape.toJSON();
 
-    // eslint-disable-next-line max-len
     expect(json).toStrictEqual(
+      // eslint-disable-next-line max-len
       '{"type":"Basic","options":{"background":"none","foreground":"none","height":"50","text":"test","width":"30","x":"0","y":"0"}}'
     );
   });
