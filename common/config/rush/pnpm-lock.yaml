@@ -11,9 +11,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -22,6 +24,7 @@ importers:
       kittik-jest-config: workspace:*
       kittik-shape-basic: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       ts-jest: 27.0.2
       typescript: 4.3.2
@@ -30,9 +33,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -41,6 +46,7 @@ importers:
       kittik-jest-config: link:../../../common/config/jest
       kittik-shape-basic: link:../../shapes/kittik-shape-basic
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
       typescript: 4.3.2
@@ -52,9 +58,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -65,6 +73,7 @@ importers:
       kittik-shape-basic: workspace:*
       kittik-shape-rectangle: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2
@@ -77,9 +86,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -89,6 +100,7 @@ importers:
       kittik-shape-basic: link:../../shapes/kittik-shape-basic
       kittik-shape-rectangle: link:../../shapes/kittik-shape-rectangle
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
@@ -101,9 +113,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -114,6 +128,7 @@ importers:
       kittik-shape-basic: workspace:*
       kittik-shape-rectangle: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2
@@ -126,9 +141,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -138,6 +155,7 @@ importers:
       kittik-shape-basic: link:../../shapes/kittik-shape-basic
       kittik-shape-rectangle: link:../../shapes/kittik-shape-rectangle
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
@@ -150,9 +168,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -163,6 +183,7 @@ importers:
       kittik-shape-basic: workspace:*
       kittik-shape-rectangle: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2
@@ -175,9 +196,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -187,6 +210,7 @@ importers:
       kittik-shape-basic: link:../../shapes/kittik-shape-basic
       kittik-shape-rectangle: link:../../shapes/kittik-shape-rectangle
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
@@ -198,9 +222,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -210,6 +236,7 @@ importers:
       kittik-jest-config: workspace:*
       kittik-slide: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       typescript: 4.3.2
     dependencies:
@@ -220,9 +247,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -230,6 +259,7 @@ importers:
       kittik-eslint-config: link:../../../common/config/eslint
       kittik-jest-config: link:../../../common/config/jest
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       typescript: 4.3.2
 
@@ -240,9 +270,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -257,6 +289,7 @@ importers:
       kittik-shape-fig-text: workspace:*
       kittik-slide: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2
@@ -270,9 +303,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -286,6 +321,7 @@ importers:
       kittik-shape-basic: link:../../shapes/kittik-shape-basic
       kittik-shape-fig-text: link:../../shapes/kittik-shape-fig-text
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
       typescript: 4.3.2
@@ -297,9 +333,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -317,6 +355,7 @@ importers:
       kittik-shape-rectangle: workspace:*
       kittik-shape-text: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2
@@ -336,9 +375,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -348,6 +389,7 @@ importers:
       kittik-jest-config: link:../../../common/config/jest
       kittik-shape-basic: link:../../shapes/kittik-shape-basic
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
@@ -359,9 +401,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -369,6 +413,7 @@ importers:
       kittik-eslint-config: workspace:*
       kittik-jest-config: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2
@@ -380,9 +425,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -390,6 +437,7 @@ importers:
       kittik-eslint-config: link:../../../common/config/eslint
       kittik-jest-config: link:../../../common/config/jest
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
       typescript: 4.3.2
@@ -401,9 +449,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -413,6 +463,7 @@ importers:
       kittik-jest-config: workspace:*
       kittik-shape-basic: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       redeyed: 2.1.1
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
@@ -428,9 +479,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -438,6 +491,7 @@ importers:
       kittik-eslint-config: link:../../../common/config/eslint
       kittik-jest-config: link:../../../common/config/jest
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
@@ -450,9 +504,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       figlet: 1.5.0
@@ -462,6 +518,7 @@ importers:
       kittik-jest-config: workspace:*
       kittik-shape-basic: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2
@@ -475,9 +532,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -485,6 +544,7 @@ importers:
       kittik-eslint-config: link:../../../common/config/eslint
       kittik-jest-config: link:../../../common/config/jest
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
@@ -496,9 +556,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -507,6 +569,7 @@ importers:
       kittik-jest-config: workspace:*
       kittik-shape-basic: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2
@@ -518,9 +581,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -528,6 +593,7 @@ importers:
       kittik-eslint-config: link:../../../common/config/eslint
       kittik-jest-config: link:../../../common/config/jest
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
@@ -539,9 +605,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -550,6 +618,7 @@ importers:
       kittik-jest-config: workspace:*
       kittik-shape-basic: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2
@@ -561,9 +630,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -571,6 +642,7 @@ importers:
       kittik-eslint-config: link:../../../common/config/eslint
       kittik-jest-config: link:../../../common/config/jest
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
@@ -582,9 +654,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       jest: 27.0.4
@@ -593,6 +667,7 @@ importers:
       kittik-jest-config: workspace:*
       kittik-shape-basic: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2
@@ -604,9 +679,11 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       jest: 27.0.4
@@ -614,6 +691,7 @@ importers:
       kittik-eslint-config: link:../../../common/config/eslint
       kittik-jest-config: link:../../../common/config/jest
       kittik-tsc-config: link:../../../common/config/tsc
+      prettier: 2.3.0
       rimraf: 3.0.2
       terminal-canvas: 3.1.2
       ts-jest: 27.0.2_jest@27.0.4+typescript@4.3.2
@@ -624,21 +702,27 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-config-standard-with-typescript: 20.0.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
+      prettier: 2.3.0
       typescript: 4.3.2
     devDependencies:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-config-standard-with-typescript: 20.0.0_70e97de7ed79e42da184963c2435131c
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
+      prettier: 2.3.0
       typescript: 4.3.2
 
   ../config/jest:
@@ -646,27 +730,33 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0
       eslint-config-standard-with-typescript: 20.0.0
       eslint-plugin-import: 2.23.4
       eslint-plugin-jest: 24.3.6
       eslint-plugin-node: 11.1.0
+      eslint-plugin-prettier: 3.4.0
       eslint-plugin-promise: 5.1.0
       eslint-plugin-standard: 4.1.0
       kittik-eslint-config: workspace:*
       kittik-tsc-config: workspace:*
+      prettier: 2.3.0
       typescript: 4.3.2
     devDependencies:
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
       eslint-config-standard-with-typescript: 20.0.0_70e97de7ed79e42da184963c2435131c
       eslint-plugin-import: 2.23.4_eslint@7.27.0
       eslint-plugin-jest: 24.3.6_96f391697c1a8fe4118e43c515afd690
       eslint-plugin-node: 11.1.0_eslint@7.27.0
+      eslint-plugin-prettier: 3.4.0_beb8ddd1fba5378f74976112c7860a07
       eslint-plugin-promise: 5.1.0_eslint@7.27.0
       eslint-plugin-standard: 4.1.0_eslint@7.27.0
       kittik-eslint-config: link:../eslint
       kittik-tsc-config: link:../tsc
+      prettier: 2.3.0
       typescript: 4.3.2
 
   ../config/tsc:
@@ -2114,6 +2204,15 @@ packages:
       source-map: 0.6.1
     dev: true
 
+  /eslint-config-prettier/8.3.0_eslint@7.27.0:
+    resolution: {integrity: sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 7.27.0
+    dev: true
+
   /eslint-config-standard-with-typescript/20.0.0_70e97de7ed79e42da184963c2435131c:
     resolution: {integrity: sha512-IoySf3r0a2+P3Z6GMjv8p1HuOQ6GWQbMpdt9G8uEbkGpnNWAGBXpgaiutbZHbaQAvG5pkVtYepCfHUxYbVDLCA==}
     peerDependencies:
@@ -2231,6 +2330,23 @@ packages:
       minimatch: 3.0.4
       resolve: 1.20.0
       semver: 6.3.0
+    dev: true
+
+  /eslint-plugin-prettier/3.4.0_beb8ddd1fba5378f74976112c7860a07:
+    resolution: {integrity: sha512-UDK6rJT6INSfcOo545jiaOwB701uAIt2/dR7WnFQoGCVl1/EMqdANBmwUaqqQ45aXprsTGzSa39LI1PyuRBxxw==}
+    engines: {node: '>=6.0.0'}
+    peerDependencies:
+      eslint: '>=5.0.0'
+      eslint-config-prettier: '*'
+      prettier: '>=1.13.0'
+    peerDependenciesMeta:
+      eslint-config-prettier:
+        optional: true
+    dependencies:
+      eslint: 7.27.0
+      eslint-config-prettier: 8.3.0_eslint@7.27.0
+      prettier: 2.3.0
+      prettier-linter-helpers: 1.0.0
     dev: true
 
   /eslint-plugin-promise/5.1.0_eslint@7.27.0:
@@ -2410,6 +2526,10 @@ packages:
 
   /fast-deep-equal/3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
+    dev: true
+
+  /fast-diff/1.2.0:
+    resolution: {integrity: sha512-xJuoT5+L99XlZ8twedaRf6Ax2TgQVxvgZOYoPKqZufmJib0tL2tegPBOZb1pVNgIhlqDlA0eO0c3wBvQcmzx4w==}
     dev: true
 
   /fast-glob/3.2.5:
@@ -3932,6 +4052,19 @@ packages:
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: true
+
+  /prettier-linter-helpers/1.0.0:
+    resolution: {integrity: sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      fast-diff: 1.2.0
+    dev: true
+
+  /prettier/2.3.0:
+    resolution: {integrity: sha512-kXtO4s0Lz/DW/IJ9QdWhAf7/NmPWQXkFr/r/WkR3vyI+0v8amTDxiaQSLzs8NBlytfLWX/7uQUMIW677yLKl4w==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /pretty-format/26.6.2:
