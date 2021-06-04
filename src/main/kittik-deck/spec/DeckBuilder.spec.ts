@@ -1,6 +1,7 @@
 import { AnimationBuilder, ShapeBuilder } from '../src/Deck';
 import { Canvas } from 'terminal-canvas';
 import { DeckBuilder } from '../src/DeckBuilder';
+import { Slide } from 'kittik-slide';
 
 describe('deck builder', () => {
   it('should properly create deck using DeckBuilder', () => {
@@ -33,7 +34,7 @@ describe('deck builder', () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    const [firstSlide, secondSlide] = deck.slides;
+    const [firstSlide, secondSlide] = deck.slides as [Slide, Slide];
 
     expect(firstSlide.shapes.size).toBe(1);
     expect(firstSlide.shapes.has('Test Shape')).toBe(true);
