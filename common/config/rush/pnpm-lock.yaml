@@ -54,7 +54,7 @@ importers:
   ../../src/animations/kittik-animation-focus:
     specifiers:
       '@types/jest': 26.0.23
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
@@ -82,7 +82,7 @@ importers:
       kittik-animation-basic: link:../kittik-animation-basic
     devDependencies:
       '@types/jest': 26.0.23
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
@@ -109,7 +109,7 @@ importers:
   ../../src/animations/kittik-animation-print:
     specifiers:
       '@types/jest': 26.0.23
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
@@ -137,7 +137,7 @@ importers:
       kittik-animation-basic: link:../kittik-animation-basic
     devDependencies:
       '@types/jest': 26.0.23
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
@@ -164,7 +164,7 @@ importers:
   ../../src/animations/kittik-animation-slide:
     specifiers:
       '@types/jest': 26.0.23
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
@@ -192,7 +192,7 @@ importers:
       kittik-animation-basic: link:../kittik-animation-basic
     devDependencies:
       '@types/jest': 26.0.23
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
@@ -218,7 +218,7 @@ importers:
 
   ../../src/main/kittik:
     specifiers:
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
@@ -243,7 +243,7 @@ importers:
       kittik-deck: link:../kittik-deck
       kittik-slide: link:../kittik-slide
     devDependencies:
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
@@ -266,7 +266,7 @@ importers:
   ../../src/main/kittik-deck:
     specifiers:
       '@types/jest': 26.0.23
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
@@ -299,7 +299,7 @@ importers:
       terminal-canvas: 3.1.2
     devDependencies:
       '@types/jest': 26.0.23
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
@@ -329,7 +329,7 @@ importers:
   ../../src/main/kittik-slide:
     specifiers:
       '@types/jest': 26.0.23
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0
       '@typescript-eslint/parser': 4.26.0
       eslint: 7.27.0
@@ -371,7 +371,7 @@ importers:
       kittik-shape-text: link:../../shapes/kittik-shape-text
     devDependencies:
       '@types/jest': 26.0.23
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@typescript-eslint/eslint-plugin': 4.26.0_025fc50e542c8e957dec903a5ef525ba
       '@typescript-eslint/parser': 4.26.0_eslint@7.27.0+typescript@4.3.2
       eslint: 7.27.0
@@ -1118,7 +1118,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       chalk: 4.1.1
       jest-message-util: 26.6.2
       jest-util: 26.6.2
@@ -1130,7 +1130,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       chalk: 4.1.1
       jest-message-util: 27.0.2
       jest-util: 27.0.2
@@ -1151,7 +1151,7 @@ packages:
       '@jest/test-result': 27.0.2
       '@jest/transform': 27.0.2
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       ansi-escapes: 4.3.2
       chalk: 4.1.1
       emittery: 0.8.1
@@ -1189,7 +1189,7 @@ packages:
     dependencies:
       '@jest/fake-timers': 27.0.3
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       jest-mock: 27.0.3
     dev: true
 
@@ -1199,7 +1199,7 @@ packages:
     dependencies:
       '@jest/types': 27.0.2
       '@sinonjs/fake-timers': 7.1.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       jest-message-util: 27.0.2
       jest-mock: 27.0.3
       jest-util: 27.0.2
@@ -1311,7 +1311,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.3
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@types/yargs': 15.0.13
       chalk: 4.1.1
     dev: true
@@ -1322,7 +1322,7 @@ packages:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.3
       '@types/istanbul-reports': 3.0.1
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       '@types/yargs': 16.0.3
       chalk: 4.1.1
     dev: true
@@ -1401,7 +1401,7 @@ packages:
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
     dependencies:
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
     dev: true
 
   /@types/istanbul-lib-coverage/2.0.3:
@@ -1439,8 +1439,8 @@ packages:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
     dev: true
 
-  /@types/node/15.12.0:
-    resolution: {integrity: sha512-+aHJvoCsVhO2ZCuT4o5JtcPrCPyDE3+1nvbDprYes+pPkEsbjH7AGUCNtjMOXS0fqH14t+B7yLzaqSz92FPWyw==}
+  /@types/node/15.12.1:
+    resolution: {integrity: sha512-zyxJM8I1c9q5sRMtVF+zdd13Jt6RU4r4qfhTd7lQubyThvLfx6yYekWSQjGCGV2Tkecgxnlpl/DNlb6Hg+dmEw==}
     dev: true
 
   /@types/prettier/2.2.3:
@@ -2492,8 +2492,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /execa/5.1.0:
-    resolution: {integrity: sha512-CkdUB7s2y6S+d4y+OM/+ZtQcJCiKUCth4cNImGMqrt2zEVtW2rfHGspQBE1GDo6LjeNIQmTPKXqTCKjqFKyu3A==}
+  /execa/5.1.1:
+    resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
     engines: {node: '>=10'}
     dependencies:
       cross-spawn: 7.0.3
@@ -3009,7 +3009,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.0.2
-      execa: 5.1.0
+      execa: 5.1.1
       throat: 6.0.1
     dev: true
 
@@ -3020,7 +3020,7 @@ packages:
       '@jest/environment': 27.0.3
       '@jest/test-result': 27.0.2
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       chalk: 4.1.1
       co: 4.6.0
       dedent: 0.7.0
@@ -3152,7 +3152,7 @@ packages:
       '@jest/environment': 27.0.3
       '@jest/fake-timers': 27.0.3
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       jest-mock: 27.0.3
       jest-util: 27.0.2
       jsdom: 16.6.0
@@ -3170,7 +3170,7 @@ packages:
       '@jest/environment': 27.0.3
       '@jest/fake-timers': 27.0.3
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       jest-mock: 27.0.3
       jest-util: 27.0.2
     dev: true
@@ -3191,7 +3191,7 @@ packages:
     dependencies:
       '@jest/types': 27.0.2
       '@types/graceful-fs': 4.1.5
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       anymatch: 3.1.2
       fb-watchman: 2.0.1
       graceful-fs: 4.2.6
@@ -3214,7 +3214,7 @@ packages:
       '@jest/source-map': 27.0.1
       '@jest/test-result': 27.0.2
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       chalk: 4.1.1
       co: 4.6.0
       expect: 27.0.2
@@ -3284,7 +3284,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
     dev: true
 
   /jest-pnp-resolver/1.2.2_jest-resolve@27.0.4:
@@ -3339,7 +3339,7 @@ packages:
       '@jest/test-result': 27.0.2
       '@jest/transform': 27.0.2
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       chalk: 4.1.1
       emittery: 0.8.1
       exit: 0.1.2
@@ -3401,7 +3401,7 @@ packages:
     resolution: {integrity: sha512-svy//5IH6bfQvAbkAEg1s7xhhgHTtXu0li0I2fdKHDsLP2P2MOiscPQIENQep8oU2g2B3jqLyxKKzotZOz4CwQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       graceful-fs: 4.2.6
     dev: true
 
@@ -3453,7 +3453,7 @@ packages:
     engines: {node: '>= 10.14.2'}
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       chalk: 4.1.1
       graceful-fs: 4.2.6
       is-ci: 2.0.0
@@ -3465,7 +3465,7 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       chalk: 4.1.1
       graceful-fs: 4.2.6
       is-ci: 3.0.0
@@ -3490,7 +3490,7 @@ packages:
     dependencies:
       '@jest/test-result': 27.0.2
       '@jest/types': 27.0.2
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       ansi-escapes: 4.3.2
       chalk: 4.1.1
       jest-util: 27.0.2
@@ -3501,7 +3501,7 @@ packages:
     resolution: {integrity: sha512-EoBdilOTTyOgmHXtw/cPc+ZrCA0KJMrkXzkrPGNwLmnvvlN1nj7MPrxpT7m+otSv2e1TLaVffzDnE/LB14zJMg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 15.12.0
+      '@types/node': 15.12.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
