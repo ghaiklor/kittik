@@ -1,6 +1,6 @@
-import { Canvas } from 'terminal-canvas';
-import { Rectangle } from 'kittik-shape-rectangle';
-import { Slide } from '..';
+import { Canvas } from "terminal-canvas";
+import { Rectangle } from "kittik-shape-rectangle";
+import { Slide } from "..";
 
 const onTick = (shape: Rectangle): void => {
   canvas.eraseScreen();
@@ -8,25 +8,23 @@ const onTick = (shape: Rectangle): void => {
   canvas.flush();
 };
 
-const canvas = new Canvas()
-  .reset()
-  .hideCursor();
+const canvas = new Canvas().reset().hideCursor();
 
 const shape = new Rectangle({
-  background: 'white',
-  foreground: 'black',
-  text: 'Sliding',
-  x: 'center',
-  y: 'middle'
+  background: "white",
+  foreground: "black",
+  text: "Sliding",
+  x: "center",
+  y: "middle",
 });
 
 const inLeft = new Slide({
-  direction: 'inLeft',
+  direction: "inLeft",
   duration: 5000,
-  easing: 'outBounce'
-}).on('tick', onTick);
+  easing: "outBounce",
+}).on("tick", onTick);
 
-(async function animate () {
+(async function animate() {
   shape.render(canvas);
   canvas.flush();
 

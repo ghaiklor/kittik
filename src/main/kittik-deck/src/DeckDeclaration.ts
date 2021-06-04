@@ -1,7 +1,11 @@
-import type { AnimationDeclaration, ShapeDeclaration, SlideDeclaration } from 'kittik-slide';
+import type {
+  AnimationDeclaration,
+  ShapeDeclaration,
+  SlideDeclaration,
+} from "kittik-slide";
 
 export interface DeckDeclaration {
-  shapes?: ShapeDeclaration[]
-  animations?: AnimationDeclaration[]
-  slides: SlideDeclaration[]
+  shapes?: ShapeDeclaration[];
+  animations?: AnimationDeclaration[];
+  slides: SlideDeclaration[];
 }

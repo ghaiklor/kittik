@@ -1,1 +1,1 @@
-module.exports = require('kittik-jest-config');
+module.exports = require("kittik-jest-config");

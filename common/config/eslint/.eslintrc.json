@@ -37,10 +37,6 @@
     "standard"
   ],
   "rules": {
-    "@typescript-eslint/indent": [
-      "error",
-      2
-    ],
     "@typescript-eslint/no-magic-numbers": [
       "off"
     ],
@@ -66,28 +62,8 @@
     "@typescript-eslint/prefer-readonly-parameter-types": [
       "off"
     ],
-    "@typescript-eslint/semi": [
-      "error",
-      "always"
-    ],
     "@typescript-eslint/typedef": [
       "off"
-    ],
-    "array-bracket-newline": [
-      "error",
-      "consistent"
-    ],
-    "array-element-newline": [
-      "error",
-      "consistent"
-    ],
-    "function-call-argument-newline": [
-      "error",
-      "consistent"
-    ],
-    "function-paren-newline": [
-      "error",
-      "consistent"
     ],
     "id-length": [
       "error",
@@ -111,20 +87,6 @@
     "max-statements": [
       "off"
     ],
-    "multiline-comment-style": [
-      "error",
-      "separate-lines"
-    ],
-    "multiline-ternary": [
-      "error",
-      "always-multiline"
-    ],
-    "newline-per-chained-call": [
-      "error",
-      {
-        "ignoreChainWithDepth": 3
-      }
-    ],
     "no-console": [
       "off"
     ],
@@ -145,10 +107,6 @@
         ]
       }
     ],
-    "@typescript-eslint/quotes": [
-      "error",
-      "single"
-    ],
     "node/no-unsupported-features/es-syntax": [
       "error",
       {
@@ -156,10 +114,6 @@
           "modules"
         ]
       }
-    ],
-    "semi": [
-      "error",
-      "always"
     ],
     "sort-keys": [
       "error",

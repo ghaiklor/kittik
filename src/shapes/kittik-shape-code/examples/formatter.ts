@@ -1,5 +1,5 @@
-import { Canvas } from 'terminal-canvas';
-import { Code } from '..';
+import { Canvas } from "terminal-canvas";
+import { Code } from "..";
 
 const CODE = `
 badWrittenCode     = 5 + ()=>{console.log('test')}

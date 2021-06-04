@@ -1,7 +1,7 @@
-import * as EASING from '../src/easing/Easing';
+import * as EASING from "../src/easing/Easing";
 
-describe('easing', () => {
-  it('should properly calculate all the easing functions', () => {
+describe("easing", () => {
+  it("should properly calculate all the easing functions", () => {
     expect.hasAssertions();
 
     expect(EASING.inQuad(100, 1000, 20, 1000)).toBeCloseTo(1000.2);
@@ -30,14 +30,14 @@ describe('easing', () => {
     expect(EASING.inOutExpo(0, 1000, 20, 1000)).toBeCloseTo(1000);
     expect(EASING.inOutExpo(1000, 1000, 20, 1000)).toBeCloseTo(1020);
     expect(EASING.inOutExpo(100, 1000, 20, 1000)).toBeCloseTo(1000.039);
-    expect(EASING.inOutExpo(900, 1000, 20, 1000)).toBeCloseTo(1019.960);
-    expect(EASING.inCirc(100, 1000, 20, 1000)).toBeCloseTo(1000.100);
+    expect(EASING.inOutExpo(900, 1000, 20, 1000)).toBeCloseTo(1019.96);
+    expect(EASING.inCirc(100, 1000, 20, 1000)).toBeCloseTo(1000.1);
     expect(EASING.outCirc(100, 1000, 20, 1000)).toBeCloseTo(1008.717);
     expect(EASING.inOutCirc(100, 1000, 20, 1000)).toBeCloseTo(1000.202);
     expect(EASING.inOutCirc(900, 1000, 20, 1000)).toBeCloseTo(1019.797);
     expect(EASING.inElastic(1000, 1000, 20, 1000)).toBeCloseTo(1020);
     expect(EASING.inElastic(0, 1000, 20, 1000)).toBeCloseTo(1000);
-    expect(EASING.inElastic(100, 1000, -20, 1000)).toBeCloseTo(999.960);
+    expect(EASING.inElastic(100, 1000, -20, 1000)).toBeCloseTo(999.96);
     expect(EASING.inElastic(100, 1000, 20, 1000)).toBeCloseTo(1000.039);
     expect(EASING.outElastic(0, 1000, 20, 1000)).toBeCloseTo(1000);
     expect(EASING.outElastic(1000, 1000, 20, 1000)).toBeCloseTo(1020);
@@ -51,7 +51,7 @@ describe('easing', () => {
     expect(EASING.inBack(100, 1000, 20, 1000)).toBeCloseTo(999.713);
     expect(EASING.outBack(100, 1000, 20, 1000)).toBeCloseTo(1008.176);
     expect(EASING.inOutBack(100, 1000, 20, 1000)).toBeCloseTo(999.249);
-    expect(EASING.inOutBack(900, 1000, 20, 1000)).toBeCloseTo(1020.750);
+    expect(EASING.inOutBack(900, 1000, 20, 1000)).toBeCloseTo(1020.75);
     expect(EASING.inBounce(100, 1000, 20, 1000)).toBeCloseTo(1000.237);
     expect(EASING.outBounce(100, 1000, 20, 1000)).toBeCloseTo(1001.512);
     expect(EASING.outBounce(300, 1000, 20, 1000)).toBeCloseTo(1013.612);

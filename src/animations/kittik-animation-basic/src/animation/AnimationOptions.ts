@@ -1,6 +1,6 @@
-import type { Easing } from '../easing/Easing';
+import type { Easing } from "../easing/Easing";
 
 export interface AnimationOptions {
-  duration: number
-  easing: Easing
+  duration: number;
+  easing: Easing;
 }

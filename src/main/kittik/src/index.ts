@@ -1,8 +1,4 @@
-export {
-  Deck,
-  DeckBuilder,
-  DeckDeclaration
-} from 'kittik-deck';
+export { Deck, DeckBuilder, DeckDeclaration } from "kittik-deck";
 
 export {
   AnimationBuilder,
@@ -18,5 +14,5 @@ export {
   ShapeType,
   Slide,
   SlideBuilder,
-  SlideDeclaration
-} from 'kittik-slide';
+  SlideDeclaration,
+} from "kittik-slide";

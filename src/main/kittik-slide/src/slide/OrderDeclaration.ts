@@ -1,4 +1,4 @@
 export interface OrderDeclaration {
-  shape: string
-  animations?: string[]
+  shape: string;
+  animations?: string[];
 }

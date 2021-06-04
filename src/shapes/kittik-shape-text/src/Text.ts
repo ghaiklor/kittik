@@ -8,7 +8,7 @@ export { TextObject } from './TextObject';
 export { TextOptions } from './TextOptions';
 
 export class Text extends Shape implements TextOptions, ShapeRenderable {
-  public align: 'left' | 'center' | 'right' = 'center';
+  public align: 'center' | 'left' | 'right' = 'center';
   public blink = false;
   public bold = false;
   public dim = false;

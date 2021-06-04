@@ -1,7 +1,15 @@
-import type { AnimationOptions } from 'kittik-animation-basic';
+import type { AnimationOptions } from "kittik-animation-basic";
 
-export type Direction = 'inUp' | 'inDown' | 'inLeft' | 'inRight' | 'outUp' | 'outDown' | 'outLeft' | 'outRight';
+export type Direction =
+  | "inDown"
+  | "inLeft"
+  | "inRight"
+  | "inUp"
+  | "outDown"
+  | "outLeft"
+  | "outRight"
+  | "outUp";
 
 export interface SlideOptions extends AnimationOptions {
-  direction: Direction
+  direction: Direction;
 }
